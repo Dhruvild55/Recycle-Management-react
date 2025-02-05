@@ -9,7 +9,7 @@ import { iconCarrateDown, iconSettings } from "../../../assets/images/icons";
 const Sidebar = ({ isCollapsed }) => {
   const translations = useSelector((state) => state.settings.translations);
   const [openMenus, setOpenMenus] = useState({});
-  const [selectedMenu, setSelectedMenu] = useState(null);
+  const [selectedMenu, setSelectedMenu] = useState("dashboard");
 
   const toggleMenu = useCallback(
     (name) => {

@@ -40,7 +40,15 @@ const RolesList = () => {
         <thead>
           <tr>
             {rolesColumns.map((item, index) => (
-              <th key={index}>{item.label}</th>
+              <th
+                key={index}
+                style={{
+                  textAlign: item.key === "action" ? "right" : "left",
+                  padding: item.key === "action" ? "16px 60px" : "16px 60px",
+                }}
+              >
+                {item.label}
+              </th>
             ))}
           </tr>
         </thead>
@@ -56,8 +64,19 @@ const RolesList = () => {
           ) : (
             rolesData?.data.map((row, index) => (
               <tr key={index}>
-                <td key={index}>{row}</td>
-                <td>
+                <td
+                  key={index}
+                  style={{
+                    textAlign: "left",
+                    padding: "10px 60px",
+                    fontSize: "14px",
+                    fontWeight: "400",
+                    color: "#181D27",
+                  }}
+                >
+                  {row}
+                </td>
+                <td style={{ textAlign: "right", padding: "10px 50px" }}>
                   <button onClick={() => handleEditPermission(row)}>
                     <img src={iconEdit} />
                   </button>

@@ -1,4 +1,4 @@
-$sidebar-width: 270px;
+$sidebar-width: 310px;
 $sidebar-bg: white;
 $sidebar-color: #414651;
 $highlight-color: #c9ffdf;
@@ -7,8 +7,7 @@ $highlight-color: #c9ffdf;
   position: absolute;
   width: 100%;
   max-width: $sidebar-width;
-  height: 590px;
-
+  height: 90vh; // Make it responsive to screen height
   background-color: $sidebar-bg;
   color: $sidebar-color;
   overflow-y: auto;
@@ -65,7 +64,7 @@ $highlight-color: #c9ffdf;
             display: block;
             color: $sidebar-color;
             text-decoration: none;
-            font-size: 12px;
+            font-size: 14px;
             font-weight: 400;
           }
 
@@ -98,7 +97,7 @@ $highlight-color: #c9ffdf;
   }
 
   .settings-section {
-    padding-top: 80px;
+    margin-top: 40%;
     padding-left: 25px;
     display: flex;
     gap: 7px;
@@ -112,14 +111,32 @@ $highlight-color: #c9ffdf;
   }
 }
 
-@media screen and (min-width: 1440px) and (max-height: 920px) {
+@media screen and (min-width: 1440px) and (min-height: 920px) {
   $sidebar-width: 302px;
+
   .sidebar {
     max-width: $sidebar-width;
-    min-height: 788px;
+    height: 75vh; // Adjust sidebar height based on viewport height
 
     .sidebar-logo {
       padding-left: 25px;
+    }
+    .sidebar-nav {
+      ul {
+        li {
+          .menu-header {
+            gap: 20px;
+            a {
+              font-size: 14px;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+    }
+
+    .settings-section {
+      margin-top: 70%;
     }
   }
 }

@@ -1,36 +1,76 @@
-/* eslint-disable no-unused-vars */
+import { useState, useRef } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { createUser } from "../../../../query/users/createUsers/createUsers.query";
 import { ReactToastify } from "../../../../shared/utils";
 import { route } from "../../../../shared/constants/AllRoutes";
 import { useForm } from "react-hook-form";
 import ProfilePic from "../../../../shared/components/ProfilePic";
+import { FiEyeOff } from "react-icons/fi";
+import { FiEye } from "react-icons/fi";
+import { RegisterAdmin } from "../../../../query/users/Admin/register/register.query";
 
 export default function AddUserPage() {
   const navigate = useNavigate();
   const language = useSelector((store) => store.settings.translations);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConformPassword, setShowConformPassword] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const fileInputRef = useRef(null);
+
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm();
 
-  const createUserMutation = useMutation({
-    mutationFn: createUser,
+  const addAdminMutation = useMutation({
+    mutationFn: RegisterAdmin,
     onSuccess: (data) => {
       ReactToastify(data?.message, "success");
       navigate(route.userManagement);
     },
-    onError: (error) => {
-      ReactToastify("Anauthorized Token", "error");
+    onError: () => {
+      ReactToastify("Unauthorized Token", "error");
     },
   });
 
-  const onSubmit = async (data) => {
-    createUserMutation.mutate(data);
+  // Handle file selection
+  const onFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setSelectedImage(file);
+    }
   };
+
+  // Handle form submission
+  const onSubmit = async (data) => {
+    const formData = new FormData();
+
+    formData.append("FirstName", data.firstName);
+    formData.append("LastName", data.lastName);
+    formData.append("Email", data.email);
+    formData.append("Password", data.password);
+    formData.append("Phone", data.phone);
+    formData.append("Role", data.roles);
+    formData.append("BusinessName", "");
+    formData.append("BusinessRegistrationNumber", "");
+    formData.append("ContactName", "");
+    formData.append("MobileNumber", "");
+    formData.append("AddressLine1", "");
+    formData.append("AddressLine2", "");
+    formData.append("City", "");
+    formData.append("State", "");
+    formData.append("ZipCode", "");
+
+    if (selectedImage) {
+      formData.append("selfie", selectedImage);
+    }
+
+    addAdminMutation.mutate(formData);
+  };
+
   const isValidName = (value) => {
     if (/[^A-Za-z\s'-]/.test(value)) {
       return `${language.pleaseEnterValidName}`;
@@ -65,140 +105,208 @@ export default function AddUserPage() {
   };
 
   return (
-    <div className="personal-info-form">
-      <div>
-        <button className="back-button">&larr; BACK</button>
-      </div>
-      <div className="personal-info-title">
-        <h2>Personal Information</h2>
-      </div>
-      <div className="profile-photo-section">
-        <div className="profile-left">
-          <h1>Your Photo</h1>
-          <p>This will be displayed your profile</p>
+    <div className="create-admin-section">
+      <div className="main-section">
+        <div className="header-contant">
+          <button className="back-button">&larr; BACK TO ADMIN LIST</button>
         </div>
-        <div className="profile=center">
-          <ProfilePic size={60} />
-        </div>
-        <div className="photo-actions">
-          <button className="delete-button">Delete</button>
-          <button className="update-button">Update</button>
-        </div>
-      </div>
+        <div className="personal-info-section">
+          <h2>Personal Information</h2>
 
-      <form className="form" onSubmit={handleSubmit(onSubmit)}>
-        <div className="form-group">
-          <div className="input-field">
-            <label>{language.first_Name}</label>
-            <input
-              placeholder={language.first_Name}
-              {...register("firstName", {
-                required: `${language.requiredFirstName}`,
-                validate: isValidName,
-              })}
-            />
-            {errors.firstName && (
-              <p className="error-message">{errors.firstName.message}</p>
-            )}
-          </div>
-
-          <div className="input-field">
-            <label>{language.last_name}</label>
-            <input
-              type="text"
-              placeholder={language.last_name}
-              {...register("lastName", {
-                required: `${language.requiredLastName}`,
-                validate: isValidName,
-              })}
-            />
-            {errors.lastName && (
-              <p className="error-message">{errors.lastName.message}</p>
-            )}
-          </div>
-          <div className="input-field">
-            <label>Username</label>
-            <input
-              type="text"
-              placeholder="userName"
-              {...register("userName", {
-                required: `${language.requiredLastName}`,
-                validate: isValidName,
-              })}
-            />
-          </div>
-        </div>
-
-        <div className="form-group">
-          <div className="input-field">
-            <label htmlFor="phone-number">Phone Number</label>
-            <div className="phone-input">
-              <span className="country-code">+60</span>
-              <input
-                type="text"
-                className="phone-input-box"
-                placeholder={language.phone_number}
-                {...register("phone", {
-                  required: `${language.requiredNumber}`,
-                  pattern: {
-                    value: /^\d{10}$/,
-                    message: `${language.invalidPhoneNumber}`,
-                  },
-                })}
-              />
-              {errors.phone && (
-                <p className="error-message">{errors.phone.message}</p>
-              )}
+          <div className="profile-photo-section">
+            <div className="profile-left">
+              <h1>Your Photo</h1>
+              <p>This will be displayed on your profile</p>
             </div>
-          </div>
-
-          <div className="input-field">
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" placeholder="Enter your email" />
-          </div>
-
-          <div className="input-field">
-            <label htmlFor="password">Password</label>
+            <div className="profile-center">
+              <ProfilePic
+                size={60}
+                image={
+                  selectedImage ? URL.createObjectURL(selectedImage) : null
+                }
+              />
+            </div>
+            <div className="photo-actions">
+              <button
+                className="delete-button"
+                onClick={() => setSelectedImage(null)}
+              >
+                Delete
+              </button>
+              <button
+                className="update-button"
+                onClick={() => fileInputRef.current.click()}
+              >
+                Update
+              </button>
+            </div>
             <input
-              type="password"
-              id="password"
-              placeholder="Create a password"
-            />
-            <small>Must be at least 8 characters.</small>
-          </div>
-        </div>
-
-        <div className="form-group-last">
-          <div className="input-field">
-            <label htmlFor="roles">Roles</label>
-            <select id="roles" className="roles-input">
-              <option value="">Select your roles</option>
-              <option value="admin">Admin</option>
-              <option value="user">User</option>
-              <option value="editor">Editor</option>
-            </select>
-          </div>
-
-          <div className="input-field">
-            <label htmlFor="confirm-password">Confirm Password</label>
-            <input
-              type="password"
-              id="confirm-password"
-              placeholder="Confirm your password"
-              className="conform-password-input"
+              type="file"
+              accept="image/*"
+              ref={fileInputRef}
+              style={{ display: "none" }}
+              onChange={onFileChange}
             />
           </div>
-        </div>
+          <form className="form" onSubmit={handleSubmit(onSubmit)}>
+            {/* Your existing form inputs remain unchanged */}
+            <div className="form-group">
+              <div className="input-field">
+                {" "}
+                <label>{language.first_Name}</label>
+                <input
+                  placeholder={language.first_Name}
+                  {...register("firstName", {
+                    required: `${language.requiredFirstName}`,
+                    validate: isValidName,
+                  })}
+                />
+                {errors.firstName && (
+                  <p className="error-message">{errors.firstName.message}</p>
+                )}
+              </div>
+              <div className="input-field">
+                <label>{language.last_name}</label>
+                <input
+                  type="text"
+                  placeholder={language.last_name}
+                  {...register("lastName", {
+                    required: `${language.requiredLastName}`,
+                    validate: isValidName,
+                  })}
+                />
+                {errors.lastName && (
+                  <p className="error-message">{errors.lastName.message}</p>
+                )}
+              </div>
+              <div className="input-field">
+                <label>Username</label>
+                <input
+                  type="text"
+                  placeholder="userName"
+                  {...register("userName", {
+                    required: `${language.requiredLastName}`,
+                    validate: isValidName,
+                  })}
+                />
+              </div>
+            </div>
+            <div className="form-group">
+              <div className="input-field">
+                <label>Phone Number</label>
+                <div className="phone-input">
+                  <span className="country-code">+60</span>
+                  <input
+                    type="text"
+                    className="phone-input-box"
+                    placeholder={language.phone_number}
+                    {...register("phone", {
+                      required: `${language.requiredNumber}`,
+                      pattern: {
+                        value: /^\d{10}$/,
+                        message: `${language.invalidPhoneNumber}`,
+                      },
+                    })}
+                  />
+                  {errors.phone && (
+                    <p className="error-message">{errors.phone.message}</p>
+                  )}
+                </div>
+              </div>
 
-        <div className="form-actions">
-          <button type="submit" className="submit-button">
-            Submit
-          </button>
-          <button type="button" className="cancel-button">
-            Cancel
-          </button>
+              <div className="input-field">
+                <label>Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="Enter your email"
+                  {...register("email", {})}
+                />
+              </div>
+
+              <div className="input-field">
+                <label>Password</label>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Create a password"
+                  {...register("password", {
+                    required: "Password is required",
+                    minLength: {
+                      value: 8,
+                      message: "Must be at least 8 characters",
+                    },
+                  })}
+                />
+                <button
+                  type="button"
+                  className="eye-button"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <FiEye /> : <FiEyeOff />}
+                </button>
+                {errors.password && (
+                  <p className="error-message">{errors.password.message}</p>
+                )}
+              </div>
+            </div>
+
+            <div className="form-group-last">
+              <div className="input-field">
+                <label>Roles</label>
+                <select
+                  {...register("roles", {
+                    required: "Role selection is required",
+                  })}
+                  className="roles-input"
+                >
+                  <option value="">Select your role</option>
+                  <option value="admin">Admin</option>
+                  <option value="user">User</option>
+                  <option value="editor">Editor</option>
+                </select>
+                {errors.roles && (
+                  <p className="error-message">{errors.roles.message}</p>
+                )}
+              </div>
+
+              <div className="input-field">
+                <label>Confirm Password</label>
+                <input
+                  type={showConformPassword ? "text" : "password"}
+                  placeholder="Confirm your password"
+                  {...register("confirmPassword", {
+                    required: "Confirm Password is required",
+                    validate: (value) =>
+                      value === watch("password") || "Passwords do not match",
+                  })}
+                  className="conform-password-input"
+                />
+                <button
+                  type="button"
+                  className="eye-button"
+                  onClick={() => setShowConformPassword(!showConformPassword)}
+                >
+                  {showConformPassword ? <FiEye /> : <FiEyeOff />}
+                </button>
+                {errors.confirmPassword && (
+                  <p className="error-message">
+                    {errors.confirmPassword.message}
+                  </p>
+                )}
+              </div>
+            </div>
+
+            <div className="form-actions">
+              <button type="submit" className="submit-button">
+                Submit
+              </button>
+              <button type="button" className="cancel-button">
+                Cancel
+              </button>
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
     </div>
   );
 }

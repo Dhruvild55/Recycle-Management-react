@@ -6,7 +6,7 @@
   .userList-section {
     background: #ffffff;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 20px;
 
     .userManagement-top-section {
       margin: 12px;
@@ -14,7 +14,7 @@
       display: flex;
       gap: 20px;
       background-color: #c9ffdf;
-      border-radius: 10px;
+      border-radius: 20px;
 
       .btn {
         border-radius: 7px;
@@ -119,17 +119,18 @@
 
           &:hover:not(:disabled) {
             background-color: #1f7f82;
+            color: white;
           }
 
           &.active {
             background-color: #1f7f82;
             color: #fff;
-            font-weight: bold;
+            font-weight: 500;
           }
           &.disable {
-            background-color: #407677;
-            color: #fff;
-            font-weight: bold;
+            background-color: #e0ffec;
+            color: #181d27;
+            font-weight: 500;
           }
         }
         .btn-text {
@@ -152,6 +153,11 @@
   }
 }
 
+@media screen and (min-width: 1440px) and (max-height: 920px) {
+  .userManagerment-section {
+    margin-left: 70px;
+  }
+}
 /* Responsive Design */
 @media (max-width: 768px) {
   .userManagerment-section {

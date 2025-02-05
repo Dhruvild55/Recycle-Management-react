@@ -20,11 +20,7 @@ const EditPermissions = () => {
   const { mutate: updateUsermutation, isPending: isupdateRole } = useMutation({
     mutationFn: updateRoles,
     onSuccess: (data) => {
-      console.log(data);
       refetch();
-    },
-    onError: (error) => {
-      console.log(error);
     },
   });
   useEffect(() => {
@@ -46,11 +42,23 @@ const EditPermissions = () => {
     uncheckedIcon: false,
   };
   const handleToggle = (index, key, pageName) => {
+    setPermissions((prev) => {
+      return prev.map((item) =>
+        item.pageName === pageName ? { ...item, [key]: !item[key] } : item
+      );
+    });
     const updatedRow = permissions.find((item) => item.pageName === pageName);
     if (!updatedRow) return;
     const updatedData = { ...updatedRow, [key]: !updatedRow[key] };
-    console.log("Updated Row Data:", updatedData);
-    updateUsermutation(updatedData);
+    updateUsermutation(updatedData, {
+      onError: () => {
+        setPermissions((prev) => {
+          return prev.map((item) =>
+            item.pageName === pageName ? { ...item, [key]: !item[key] } : item
+          );
+        });
+      },
+    });
   };
   return (
     <div className="permission-section">
@@ -72,7 +80,15 @@ const EditPermissions = () => {
           <thead>
             <tr>
               {header.map((item, index) => (
-                <th key={index}>{item.label}</th>
+                <th
+                  key={index}
+                  style={{
+                    textAlign: "left",
+                    padding: item.label === "Page" ? "16px 30px" : "16px 50px",
+                  }}
+                >
+                  {item.label}
+                </th>
               ))}
             </tr>
           </thead>
@@ -86,20 +102,32 @@ const EditPermissions = () => {
                 </td>
               </tr>
             ) : (
-              permissions.map((row, index) => (
+              permissions?.map((row, index) => (
                 <tr key={index}>
-                  <td>{row.pageName}</td>
+                  <td
+                    style={{
+                      textAlign: "left",
+                      paddingLeft: "28px",
+                      fontSize: "14px",
+                      fontWeight: "400",
+                      color: "#181D27",
+                    }}
+                  >
+                    {row.pageName}
+                  </td>
                   {header.slice(1).map((item) => (
-                    <td key={item.key}>
-                      <div className="d-flex align-items-center">
+                    <td
+                      key={item.key}
+                      style={{ textAlign: "right", paddingLeft: "28px" }}
+                    >
+                      <div className="d-flex align-items-right">
                         <label
                           style={{
                             color: "black",
-                            alignItems: "center",
                             marginRight: "10px",
                           }}
                         >
-                          {row[item.key] === true ? "yes" : "No"}
+                          {row[item.key] === true ? "Yes" : "No"}
                         </label>
                         <Switch
                           checked={row[item.key]}

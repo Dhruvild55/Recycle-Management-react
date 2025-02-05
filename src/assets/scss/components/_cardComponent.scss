@@ -1,9 +1,13 @@
 .card-section {
   display: flex;
   gap: 16px;
+  justify-content: center; // Centers cards in container
+
   .card-box {
-    height: 170px;
-    width: 230px;
+    height: 100%;
+    width: 100%;
+    max-width: 260px;
+    min-height: 170px;
     border: none;
     padding: 30px;
     border-radius: 15px;
@@ -14,29 +18,70 @@
       #e2ffeb 46%,
       #aee3be 100%
     );
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
     .card-title {
       font-weight: 600;
       font-size: 14px;
       padding-bottom: 10px;
     }
+
     .card-value {
       color: #1f7f82 !important;
       font-size: 22px;
       font-weight: 600;
     }
+
     .card-inner-div {
       display: flex;
       gap: 10px;
       align-items: center;
+
       .textValue-box {
         background-color: white;
         padding: 5px 10px 2px 10px;
         border-radius: 15px;
         color: #1f7f82;
       }
+
       p {
         font-size: 12px;
       }
     }
+  }
+}
+
+/* Responsive for 1440px width & 920px height */
+@media screen and (min-width: 1440px) and (max-height: 920px) {
+  .card-section {
+    .card-box {
+      padding: 30px;
+    }
+  }
+}
+
+/* Responsive for Tablets (1024px width) */
+@media screen and (max-width: 1024px) {
+  .card-box {
+    width: 220px;
+    height: 160px;
+    padding: 25px;
+  }
+}
+
+/* Responsive for Mobile (768px width and below) */
+@media screen and (max-width: 768px) {
+  .card-section {
+    flex-direction: column; // Stack cards vertically
+    align-items: center;
+  }
+
+  .card-box {
+    width: 90%; // Use percentage for better adaptability
+    max-width: 320px;
+    height: auto;
+    padding: 20px;
   }
 }

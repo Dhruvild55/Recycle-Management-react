@@ -3,11 +3,12 @@ import { Avatar } from "@mui/material";
 
 // COMPONENT
 
-const ProfilePic = ({ size }) => {
+const ProfilePic = ({ size, image }) => {
+  const defaultImg = "./images/profile-pic.png";
   return (
     <Avatar
       alt="Remy Sharp"
-      src="./images/profile-pic.png"
+      src={image || defaultImg}
       sx={{ width: size, height: size }}
     />
   );

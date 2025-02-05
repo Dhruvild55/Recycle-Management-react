@@ -3,15 +3,13 @@
   top: 0;
   height: 60px;
   width: 1085px;
-  margin-left: 280px;
+  margin-left: 320px;
   background-color: transparent; // Ensure background is transparent
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 30px;
+  padding: 10px 30px 0 35px;
   transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
-  padding-right: 60px;
-
   &.shifted {
     margin-left: 0px;
     width: 1365px;
@@ -68,5 +66,10 @@
         }
       }
     }
+  }
+}
+
+@media screen and (min-width: 1440px) and (max-height: 920px) {
+  .header {
   }
 }
