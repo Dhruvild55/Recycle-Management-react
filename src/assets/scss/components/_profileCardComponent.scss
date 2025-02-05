@@ -1,0 +1,44 @@
+.user-card {
+  height: 320px;
+  width: 280px;
+  border: 1px solid #abefc6;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .user-profile {
+    padding-left: 10px;
+    margin-bottom: 10px;
+  }
+
+  .user-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    h2 {
+      font-size: 14px;
+      font-weight: 700;
+    }
+    h3 {
+      font-size: 12px;
+      font-weight: 400;
+    }
+  }
+  .user-since {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h2 {
+      font-size: 14px;
+      font-weight: 700;
+    }
+    h3 {
+      font-size: 12px;
+      font-weight: 400;
+    }
+  }
+}

@@ -1,0 +1,42 @@
+.business-registration-section {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  margin-top: 10px;
+  .registration-information {
+    .pr-title h1 {
+      font-size: 15px;
+      font-weight: 700;
+    }
+    .registration-information-details {
+      display: flex;
+      margin-top: 20px;
+      gap: 30px;
+      align-items: center;
+      justify-content: center;
+      .input-feild {
+        display: flex;
+        flex-direction: column;
+
+        label {
+          margin-bottom: 5px;
+          font-size: 14px;
+          font-weight: 400;
+        }
+
+        input {
+          width: 100%;
+          height: 40px;
+          padding: 8px 76px 8px 12px;
+          border: 1px solid #929292;
+          border-radius: 10px;
+          font-size: 14px;
+          &:focus {
+            border-color: #007bff;
+            outline: none;
+          }
+        }
+      }
+    }
+  }
+}

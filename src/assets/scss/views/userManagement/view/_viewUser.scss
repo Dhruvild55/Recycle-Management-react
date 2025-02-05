@@ -1,0 +1,85 @@
+$primary-bg-color: white;
+$secondary-bg-color: #c9ffdf;
+$highlight-color: #1f7f82;
+$font-family: "Inter", sans-serif;
+
+.user-profile-section {
+  font-family: $font-family;
+  transition: margin-left 0.3s ease;
+  margin-left: 30px;
+
+  .profile-container {
+    background-color: $primary-bg-color;
+    border-radius: 10px;
+    padding: 20px;
+
+    .header-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+
+      button {
+        border: none;
+      }
+
+      .actions {
+        display: flex;
+        gap: 5px;
+
+        span {
+          font-size: 14px;
+          font-weight: 400;
+        }
+      }
+    }
+
+    .tabs-section {
+      background-color: $secondary-bg-color;
+      padding: 10px;
+      border-radius: 10px;
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+
+      button {
+        border: none;
+        border-radius: 7px;
+        padding: 5px 15px;
+        font-size: 14px;
+        background-color: $primary-bg-color;
+        transition: background-color 0.3s ease;
+
+        &.selected {
+          background-color: $highlight-color;
+          color: $primary-bg-color;
+        }
+
+        &:hover {
+          background-color: $highlight-color;
+          color: $primary-bg-color;
+        }
+      }
+    }
+
+    .recycler-history {
+      h1 {
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .card-wrapper {
+        padding: 10px;
+        display: flex;
+        gap: 10px;
+      }
+    }
+
+    .rewards {
+      h1 {
+        font-size: 14px;
+        font-weight: 600;
+      }
+    }
+  }
+}

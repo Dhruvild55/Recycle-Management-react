@@ -1,0 +1,19 @@
+.collecter-profile-body {
+  display: flex;
+  gap: 20px;
+
+  .collecter-details {
+    h2 {
+      font-size: 14px;
+      font-weight: 700;
+    }
+  }
+  .extra-details {
+    margin-top: 8px;
+    p {
+      font-size: 14px;
+      color: #181d27;
+      font-weight: 500;
+    }
+  }
+}

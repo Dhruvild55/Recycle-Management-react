@@ -1,0 +1,207 @@
+.userManagerment-section {
+  font-family: "Inter", sans-serif;
+  margin-left: 30px;
+  transition: margin-left 0.3s ease;
+
+  .userList-section {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+
+    .userManagement-top-section {
+      margin: 12px;
+      padding: 12px;
+      display: flex;
+      gap: 20px;
+      background-color: #c9ffdf;
+      border-radius: 10px;
+
+      .btn {
+        border-radius: 7px;
+        padding: 5px 15px 5px 15px;
+        border: none;
+        font-size: 14px !important;
+        background-color: white;
+        &.selected {
+          background-color: #1f7f82;
+          color: white;
+        }
+      }
+      button:hover {
+        background-color: #1f7f82;
+        color: white;
+      }
+    }
+
+    .userList-header {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      justify-content: space-between;
+      padding: 5px 15px 5px 15px;
+      gap: 5px;
+
+      div {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        input {
+          width: 30rem;
+          padding: 10px;
+          border: 1px solid #d4d4d4;
+          border-radius: 10px;
+          font-size: 0.95rem;
+          outline: none;
+
+          // &:focus {
+          //   border-color: #007bff;
+          //   box-shadow: 0 0 3px rgba(0, 123, 255, 0.5);
+          // }
+        }
+
+        select {
+          padding: 6px 10px;
+          border: 1px solid #ddd;
+          border-radius: 5px;
+          font-size: 0.95rem;
+        }
+      }
+
+      button {
+        color: #1f7f82;
+        border: #1f7f82 2px solid;
+        padding: 10px 8px;
+        font-size: 12px;
+        border-radius: 8px;
+        display: flex;
+        gap: 9px;
+        align-items: center;
+        cursor: pointer;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+        &:hover {
+          background-color: #1f7f82;
+          color: white;
+          box-shadow: 0 4px 8px rgba(0, 91, 179, 0.2);
+        }
+      }
+    }
+
+    .table-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 12px;
+
+      .section {
+        word-wrap: normal !important;
+        border: none !important;
+      }
+
+      .pagination {
+        display: flex;
+        gap: 10px;
+
+        .span {
+          font-weight: 500;
+        }
+
+        button {
+          // background-color: #e0ffec;
+          // color: #fff;
+          border: none;
+          padding: 5px 10px;
+          border-radius: 7px;
+          font-size: 0.8rem;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+
+          &:hover:not(:disabled) {
+            background-color: #1f7f82;
+          }
+
+          &.active {
+            background-color: #1f7f82;
+            color: #fff;
+            font-weight: bold;
+          }
+          &.disable {
+            background-color: #407677;
+            color: #fff;
+            font-weight: bold;
+          }
+        }
+        .btn-text {
+          &:disabled {
+            cursor: not-allowed;
+            background-color: transparent;
+            color: black;
+          }
+          &:hover:not(:disabled) {
+            background-color: transparent;
+          }
+        }
+
+        span {
+          font-size: 0.95rem;
+          color: #555;
+        }
+      }
+    }
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .userManagerment-section {
+    padding: 15px;
+
+    .userList-section {
+      padding: 15px;
+
+      .userList-header {
+        flex-direction: column;
+        gap: 15px;
+
+        div {
+          width: 100%;
+          flex-direction: column;
+          gap: 10px;
+
+          input,
+          select {
+            width: 100%;
+          }
+        }
+
+        button {
+          width: 100%;
+        }
+      }
+
+      table {
+        font-size: 0.85rem;
+
+        thead th,
+        tbody td {
+          padding: 8px 10px;
+        }
+      }
+
+      .pagination {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+
+        button {
+          width: 100%;
+        }
+
+        span {
+          text-align: center;
+        }
+      }
+    }
+  }
+}

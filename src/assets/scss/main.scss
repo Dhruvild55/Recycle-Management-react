@@ -1,0 +1,37 @@
+@import "./variable";
+
+// components
+@import "./components/header";
+@import "./components/sidebar";
+@import "./components/breadcrumb";
+@import "./components/cardComponent";
+@import "./components/profilePic";
+@import "./components/customTable";
+@import "./components/profileCardComponent";
+@import "./components/barChartComponent";
+@import "./components/secondaryHeader";
+
+// userManagement Components
+@import "./components/UserManagement/Recycler/Information/recyclerInformation";
+@import "./components/UserManagement/Recycler/Information/businessRegister";
+@import "./components/UserManagement/Recycler/Information/businessAddress";
+@import "./components/UserManagement/Recycler/History/recyclerHistory";
+@import "./components/UserManagement/Recycler/History/previousItems";
+@import "./components/UserManagement/Recycler/Rewards/rewards";
+
+@import "./components/UserManagement/collecter/Information/collecterInformation";
+@import "./components/UserManagement/collecter/Information/collecterAddressCard";
+@import "./components/UserManagement/collecter/Information/storageDetails";
+
+// views
+@import "./views/auth/login";
+@import "./views/dashboard/dashboard";
+
+@import "./views/userManagement/userManagement";
+@import "./views/createUser/createUser";
+@import "./views/userManagement/view/viewUser";
+@import "./views/userManagement/editPermission/editPermission";
+@import "./views/campaignManagement/createCampaign/createCampaign";
+
+// layouts
+@import "./layouts/main-layout";

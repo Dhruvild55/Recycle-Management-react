@@ -1,0 +1,66 @@
+.next-pickup-card {
+  display: flex;
+  align-items: center;
+  padding: 20px 20px 20px 20px;
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 320px;
+  font-family: Arial, sans-serif;
+
+  .icon {
+    margin-right: 16px;
+    padding: 10px;
+
+    img {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .content {
+    .content-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+      gap: 5px;
+
+      .title {
+        font-size: 14px;
+        font-weight: 400;
+        color: #333;
+      }
+
+      .status {
+        font-size: 12px;
+        color: #067647;
+        background-color: #abefc6;
+        padding: 2px 8px;
+        border-radius: 12px;
+        text-align: center;
+        font-weight: 500;
+      }
+    }
+
+    .location {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 8px;
+    }
+
+    .date-time {
+      .date {
+        font-size: 25px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      .time {
+        font-size: 14px;
+        color: #555;
+      }
+    }
+  }
+}

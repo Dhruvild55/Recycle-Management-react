@@ -1,0 +1,46 @@
+.business-address-form {
+  background-color: white;
+  margin-top: 10px;
+  border-radius: 8px;
+  padding: 2rem;
+
+  h2 {
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .form-control {
+    border: 1px solid #929292;
+    padding: 8px 76px 8px 12px;
+    border-radius: 10px;
+    &:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+  }
+
+  .map-container {
+    height: 240px;
+    overflow: hidden;
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: 1px black solid;
+      border-radius: 8px;
+    }
+  }
+
+  .row {
+    margin-bottom: 1rem;
+  }
+
+  .mb-3 {
+    margin-bottom: 1rem !important;
+  }
+}

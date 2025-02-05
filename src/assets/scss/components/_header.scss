@@ -1,0 +1,72 @@
+.header {
+  position: fixed;
+  top: 0;
+  height: 60px;
+  width: 1085px;
+  margin-left: 280px;
+  background-color: transparent; // Ensure background is transparent
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
+  padding-right: 60px;
+
+  &.shifted {
+    margin-left: 0px;
+    width: 1365px;
+  }
+
+  &-left {
+    display: flex;
+    align-items: center;
+
+    .logo-text {
+      color: #ffffff; // White text color
+      text-decoration: none !important;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+  }
+
+  &-right {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-items: center;
+    align-items: center;
+
+    .dropdown-section {
+      padding: 10px;
+      background-color: transparent !important;
+      border: 2px solid black;
+      border-radius: 5px;
+    }
+    .profile {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+
+      .header-btn {
+        display: flex;
+        align-items: center;
+        color: black;
+        background-color: transparent;
+        border: none !important;
+        gap: 5px;
+
+        &:active,
+        &:focus,
+        &:disabled {
+          border: none;
+          background-color: transparent;
+        }
+
+        &:disabled {
+          background-color: transparent;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+.profile-header {
+  background-color: #c9ffdf;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+
+  button {
+    border: none;
+    border-radius: 7px;
+    padding: 5px 15px 5px 15px;
+    font-size: 14px;
+    background-color: white;
+    &.selected {
+      background-color: #1f7f82;
+      color: white;
+    }
+  }
+  button:hover {
+    background-color: #1f7f82;
+    color: white;
+  }
+}

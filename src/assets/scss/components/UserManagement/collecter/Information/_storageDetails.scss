@@ -1,0 +1,59 @@
+.storage-details-card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 16px;
+  padding: 16px;
+}
+
+.storage-details-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #abefc6;
+  border-radius: 12px;
+  padding: 16px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+
+  .card-content {
+    flex: 1;
+    margin-right: 16px;
+
+    .date {
+      font-size: 14px;
+      color: #1f7f82;
+      margin-bottom: 12px;
+      font-weight: bold;
+    }
+
+    .details {
+      p {
+        margin: 6px 0;
+        font-size: 12px;
+        font-weight: 500;
+        color: #181d27;
+
+        span {
+          font-weight: bold;
+          color: #555;
+        }
+        p {
+          color: #535862;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+
+  .image-container {
+    flex-shrink: 0;
+
+    img {
+      width: 180px;
+      height: auto;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+  }
+}

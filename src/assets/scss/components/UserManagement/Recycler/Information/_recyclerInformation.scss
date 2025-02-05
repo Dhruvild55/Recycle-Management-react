@@ -1,0 +1,33 @@
+.profile-body {
+  display: flex;
+  gap: 20px;
+
+  .recyclers-info-section {
+    h2 {
+      font-size: 15px;
+      font-weight: 400;
+    }
+    .recycle-info-details {
+      display: flex;
+      .recyclers-info-sub-section {
+        display: flex;
+        .points-section {
+          margin-top: 20px;
+          background-image: url(/images/points-bg.png);
+          height: 310px;
+          width: 280px;
+          background-repeat: no-repeat;
+          background-size: cover;
+          overflow: hidden;
+          border-radius: 10px;
+          img {
+            height: 335px;
+            padding: 59px 47px 43px 0px;
+            margin: 105px 140px 0px 87px;
+            width: 307px;
+          }
+        }
+      }
+    }
+  }
+}

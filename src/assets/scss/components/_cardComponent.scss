@@ -1,0 +1,42 @@
+.card-section {
+  display: flex;
+  gap: 16px;
+  .card-box {
+    height: 170px;
+    width: 230px;
+    border: none;
+    padding: 30px;
+    border-radius: 15px;
+    background-color: #28cbc1;
+    background-image: linear-gradient(
+      270deg,
+      #d3e8ac 0%,
+      #e2ffeb 46%,
+      #aee3be 100%
+    );
+    .card-title {
+      font-weight: 600;
+      font-size: 14px;
+      padding-bottom: 10px;
+    }
+    .card-value {
+      color: #1f7f82 !important;
+      font-size: 22px;
+      font-weight: 600;
+    }
+    .card-inner-div {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      .textValue-box {
+        background-color: white;
+        padding: 5px 10px 2px 10px;
+        border-radius: 15px;
+        color: #1f7f82;
+      }
+      p {
+        font-size: 12px;
+      }
+    }
+  }
+}
