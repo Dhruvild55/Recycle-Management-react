@@ -4,6 +4,7 @@ import Header from "../../shared/components/Header";
 import Sidebar from "../../shared/components/Sidebar";
 import useMediaQuery from "../../shared/hooks/useMediaQuery";
 import { Loader } from "../../shared/components/Loader";
+import Footer from "../../shared/components/Footer";
 
 const MainLayout = ({ children }) => {
   const [sidebarVisible, setSidebarVisible] = useState(false);
@@ -28,6 +29,7 @@ const MainLayout = ({ children }) => {
           >
             {children}
           </Suspense>
+          <Footer />
         </div>
       </div>
     </div>

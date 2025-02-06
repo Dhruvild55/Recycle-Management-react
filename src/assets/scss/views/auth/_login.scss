@@ -27,8 +27,14 @@ $box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       border-radius: 10px;
       width: 100%;
       max-width: 480px;
-      min-height: 470px;
+      min-height: 370px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+      @include media-max(xxl) {
+        max-width: 629px; /* Increased width */
+        min-height: 780px; /* Increased height */
+        padding: 3rem;
+      }
 
       .login-header {
         display: flex;
@@ -39,7 +45,17 @@ $box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         p {
           font-size: 12px;
           color: #999999;
-          font-weight: 400;
+          font-weight: $fw-400;
+        }
+
+        @include media-max(xxl) {
+          width: 504px;
+          height: 42px;
+          margin-bottom: 30px;
+          p {
+            font-size: 12px;
+            font-weight: $fw-400;
+          }
         }
       }
 
@@ -57,12 +73,28 @@ $box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
           }
           p {
             font-size: 14px;
-            font-weight: 400;
+            font-weight: $fw-400;
+          }
+
+          @include media-max(xxl) {
+            margin: 48px 0;
+            h2 {
+              font-size: 40px;
+              font-weight: 700;
+            }
+            p {
+              font-size: 14px;
+              font-weight: $fw-400;
+            }
           }
         }
 
         .login-form-group {
           margin-bottom: 15px;
+
+          @include media-max(xxl) {
+            padding: 15px;
+          }
           .form-group {
             margin-bottom: 1rem;
 
@@ -149,49 +181,6 @@ $box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
           margin-top: 15px;
           text-align: center;
           font-size: 13px;
-        }
-      }
-    }
-  }
-}
-
-/* Responsive Design */
-
-@media screen and (min-width: 1440px) and (max-height: 920px) {
-  .login-page {
-    .login-form-container {
-      .login-form {
-        max-width: 629px; /* Increased width */
-        min-height: 780px; /* Increased height */
-        padding: 3rem;
-
-        .login-header {
-          width: 504px;
-          height: 42px;
-          margin-bottom: 30px;
-          p {
-            font-size: 12px;
-            font-weight: 400;
-          }
-        }
-        .form-container {
-          .login-title {
-            margin: 48px 0;
-
-            h2 {
-              font-size: 40px;
-              font-weight: 700;
-            }
-            p {
-              font-size: 14px;
-              font-weight: 400;
-            }
-          }
-          .login-form-group {
-            padding: 15px;
-            .form-group {
-            }
-          }
         }
       }
     }

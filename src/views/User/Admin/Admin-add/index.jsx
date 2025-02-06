@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState, useRef } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { useSelector } from "react-redux";
@@ -8,7 +9,8 @@ import { useForm } from "react-hook-form";
 import ProfilePic from "../../../../shared/components/ProfilePic";
 import { FiEyeOff } from "react-icons/fi";
 import { FiEye } from "react-icons/fi";
-import { RegisterAdmin } from "../../../../query/users/Admin/register/register.query";
+import InputField from "../../../../shared/components/InputFieldComponent";
+import { createUser } from "../../../../query/users/createUsers/createUsers.query";
 
 export default function AddUserPage() {
   const navigate = useNavigate();
@@ -26,7 +28,7 @@ export default function AddUserPage() {
   } = useForm();
 
   const addAdminMutation = useMutation({
-    mutationFn: RegisterAdmin,
+    mutationFn: createUser,
     onSuccess: (data) => {
       ReactToastify(data?.message, "success");
       navigate(route.userManagement);
@@ -54,15 +56,6 @@ export default function AddUserPage() {
     formData.append("Password", data.password);
     formData.append("Phone", data.phone);
     formData.append("Role", data.roles);
-    formData.append("BusinessName", "");
-    formData.append("BusinessRegistrationNumber", "");
-    formData.append("ContactName", "");
-    formData.append("MobileNumber", "");
-    formData.append("AddressLine1", "");
-    formData.append("AddressLine2", "");
-    formData.append("City", "");
-    formData.append("State", "");
-    formData.append("ZipCode", "");
 
     if (selectedImage) {
       formData.append("selfie", selectedImage);
@@ -149,80 +142,50 @@ export default function AddUserPage() {
             />
           </div>
           <form className="form" onSubmit={handleSubmit(onSubmit)}>
-            {/* Your existing form inputs remain unchanged */}
             <div className="form-group">
-              <div className="input-field">
-                {" "}
-                <label>{language.first_Name}</label>
-                <input
-                  placeholder={language.first_Name}
-                  {...register("firstName", {
-                    required: `${language.requiredFirstName}`,
-                    validate: isValidName,
-                  })}
-                />
-                {errors.firstName && (
-                  <p className="error-message">{errors.firstName.message}</p>
-                )}
-              </div>
-              <div className="input-field">
-                <label>{language.last_name}</label>
-                <input
-                  type="text"
-                  placeholder={language.last_name}
-                  {...register("lastName", {
-                    required: `${language.requiredLastName}`,
-                    validate: isValidName,
-                  })}
-                />
-                {errors.lastName && (
-                  <p className="error-message">{errors.lastName.message}</p>
-                )}
-              </div>
-              <div className="input-field">
-                <label>Username</label>
-                <input
-                  type="text"
-                  placeholder="userName"
-                  {...register("userName", {
-                    required: `${language.requiredLastName}`,
-                    validate: isValidName,
-                  })}
-                />
-              </div>
+              <InputField
+                label={language.first_Name}
+                placeholder={language.first_Name}
+                type="text"
+                register={register}
+                errors={errors}
+                name="firstName"
+              />
+              <InputField
+                label={language.last_name}
+                placeholder={language.last_name}
+                type="text"
+                register={register}
+                errors={errors}
+                name="lastName"
+              />
+              <InputField
+                label="Username"
+                placeholder="username"
+                type="text"
+                register={register}
+                errors={errors}
+                name="userName"
+              />
             </div>
             <div className="form-group">
-              <div className="input-field">
-                <label>Phone Number</label>
-                <div className="phone-input">
-                  <span className="country-code">+60</span>
-                  <input
-                    type="text"
-                    className="phone-input-box"
-                    placeholder={language.phone_number}
-                    {...register("phone", {
-                      required: `${language.requiredNumber}`,
-                      pattern: {
-                        value: /^\d{10}$/,
-                        message: `${language.invalidPhoneNumber}`,
-                      },
-                    })}
-                  />
-                  {errors.phone && (
-                    <p className="error-message">{errors.phone.message}</p>
-                  )}
-                </div>
-              </div>
+              <InputField
+                label="phone number"
+                placeholder="Phone Number"
+                type="tel"
+                register={register}
+                errors={errors}
+                name="phone"
+              />
 
-              <div className="input-field">
-                <label>Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  placeholder="Enter your email"
-                  {...register("email", {})}
-                />
-              </div>
+              <InputField
+                label="email"
+                placeholder="Enter Your Email"
+                type="email"
+                register={register}
+                errors={errors}
+                name="email"
+              />
 
               <div className="input-field">
                 <label>Password</label>

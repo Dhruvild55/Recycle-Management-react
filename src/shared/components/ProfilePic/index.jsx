@@ -1,14 +1,20 @@
 /* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import { Avatar } from "@mui/material";
+import { useQuery } from "@tanstack/react-query";
+import { getFilePath } from "../../../query/getfilePath/filePath.query";
 
-// COMPONENT
+const ProfilePic = ({ size, image, name }) => {
+  const { data, isLoading } = useQuery({
+    queryKey: ["filePath", image],
+    queryFn: () => getFilePath({ image }),
+    enabled: !!image,
+  });
 
-const ProfilePic = ({ size, image }) => {
-  const defaultImg = "./images/profile-pic.png";
   return (
     <Avatar
-      alt="Remy Sharp"
-      src={image || defaultImg}
+      alt={name}
+      src={data || image || ""}
       sx={{ width: size, height: size }}
     />
   );

@@ -1,5 +1,9 @@
 @import "./variable";
 
+//helpers
+
+@import "./helpers/media-queries";
+
 // components
 @import "./components/header";
 @import "./components/sidebar";
@@ -10,6 +14,7 @@
 @import "./components/profileCardComponent";
 @import "./components/barChartComponent";
 @import "./components/secondaryHeader";
+@import "./components/footer";
 
 // userManagement Components
 @import "./components/UserManagement/Recycler/Information/recyclerInformation";

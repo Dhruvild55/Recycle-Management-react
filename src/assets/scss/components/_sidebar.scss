@@ -65,7 +65,7 @@ $highlight-color: #c9ffdf;
             color: $sidebar-color;
             text-decoration: none;
             font-size: 14px;
-            font-weight: 400;
+            font-weight: $fw-400;
           }
 
           .caret-icon {
@@ -106,7 +106,7 @@ $highlight-color: #c9ffdf;
       color: $sidebar-color;
       text-decoration: none;
       font-size: 14px;
-      font-weight: 400;
+      font-weight: $fw-400;
     }
   }
 }

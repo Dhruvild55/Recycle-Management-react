@@ -72,7 +72,7 @@ function Header({ toggleSidebar, isCollapsed }) {
           <div className="profile">
             <Dropdown>
               <Dropdown.Toggle className="header-btn">
-                <ProfilePic size={40} />
+                <ProfilePic size={40} image={data?.data?.user?.selfiePath} />
                 <label>{data?.data?.user?.firstName}</label>
               </Dropdown.Toggle>
               <Dropdown.Menu className="up-arrow">

@@ -66,7 +66,12 @@ const AdminList = () => {
       label: "Name",
       render: (row) => (
         <div className="d-flex align-items-center">
-          <ProfilePic size={30} userId={row.id} />
+          <ProfilePic
+            size={30}
+            userId={row.id}
+            image={row.selfiePath}
+            name={row.userName}
+          />
           <span className="ms-2">{row.firstName}</span>
         </div>
       ),
@@ -80,10 +85,13 @@ const AdminList = () => {
       label: "Action",
       render: (row) => (
         <div className="flex gap-2">
-          <button onClick={() => alert("Edit clicked")}>
+          <button onClick={() => alert("Edit clicked")} className="action-btn">
             <img src={iconEdit} />
           </button>
-          <button onClick={() => deleteUserMutation({ userId: row.id })}>
+          <button
+            onClick={() => deleteUserMutation({ userId: row.id })}
+            className="action-btn"
+          >
             <img src={iconDelete} />
           </button>
         </div>

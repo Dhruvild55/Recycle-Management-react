@@ -35,6 +35,17 @@
           text-align: center; // Set horizontal alignment
           vertical-align: middle; // Set vertical alignment
 
+          .action-btn {
+            transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+          }
+          .action-btn:hover {
+            transform: scale(1.1);
+          }
+
+          .action-btn:active {
+            opacity: 0.7;
+          }
+
           .td-userName {
             display: flex;
             align-items: center;

@@ -1,22 +1,17 @@
 /* eslint-disable no-unused-vars */
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { route } from "../../shared/constants/AllRoutes";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { approveUsers } from "../../query/users/approveUser/approveUser.query";
 import { ReactToastify } from "../../shared/utils";
 import ButtonComponent from "../../shared/components/Buttoncomponent";
-import { iconDelete, iconEdit } from "../../assets/images/icons";
-import { getRoles } from "../../query/roles/getRoles/getRoles.query";
-import { Table } from "react-bootstrap";
-import AdminList from "./Admin/Admin-list";
-import RecyclerList from "./Recycler/Recycler-List";
-import CollecterList from "./Collecter/Collecter-List";
-import RolesList from "./Admin And Roles/Roles-List";
+
+const AdminList = lazy(() => import("./Admin/Admin-list"));
+const RecyclerList = lazy(() => import("./Recycler/Recycler-List"));
+const RolesList = lazy(() => import("./Admin And Roles/Roles-List"));
+const CollecterList = lazy(() => import("./Collecter/Collecter-List"));
 
 function UserManagement() {
   const [isSelectedBtn, setisSelectedBtn] = useState("admin");
-  const navigate = useNavigate();
 
   useEffect(() => {
     document.title = "User Managemant | Recycle Management ";
@@ -40,6 +35,15 @@ function UserManagement() {
   const handleButtonClick = (role) => {
     setisSelectedBtn(role);
   };
+
+  const componentMap = {
+    admin: AdminList,
+    recycler: RecyclerList,
+    collecter: CollecterList,
+    "admin roles": RolesList,
+  };
+
+  const SelectedComponent = componentMap[isSelectedBtn];
 
   return (
     <div className="userManagerment-section">
@@ -68,47 +72,9 @@ function UserManagement() {
             }`}
           />
         </div>
-        {isSelectedBtn === "admin" ? (
-          <AdminList />
-        ) : isSelectedBtn === "recycler" ? (
-          <RecyclerList />
-        ) : isSelectedBtn === "collecter" ? (
-          <CollecterList />
-        ) : isSelectedBtn === "admin roles" ? (
-          <RolesList />
-        ) : (
-          ""
-        )}
-        {/* {isSelectedBtn === "admin roles" ? (
-          <div>
-            <Table responsive>
-              <thead>
-                <tr>
-                  {rolesColumns.map((item, index) => (
-                    <th key={index}>{item.label}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {rolesData?.data.map((row, index) => (
-                  <tr key={index}>
-                    <td key={index}>{row}</td>
-                    <td>
-                      <button onClick={() => handleEditPermission(row)}>
-                        <img src={iconEdit} />
-                      </button>
-                      <button onClick={() => alert("delete Clicked")}>
-                        <img src={iconDelete} />
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </Table>
-          </div>
-        ) : (
-          ""
-        )} */}
+        <Suspense fallback={<div>Loading...</div>}>
+          {SelectedComponent && <SelectedComponent />}
+        </Suspense>
       </div>
     </div>
   );
