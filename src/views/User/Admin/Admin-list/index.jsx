@@ -105,6 +105,7 @@ const AdminList = () => {
         <label>List of Admin</label>
         <div>
           <input
+            className="search-input"
             type="text"
             placeholder={translations.search}
             value={searchQuery}

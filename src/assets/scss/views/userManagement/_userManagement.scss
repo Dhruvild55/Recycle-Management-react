@@ -1,6 +1,5 @@
 .userManagerment-section {
   font-family: "Inter", sans-serif;
-  margin-left: 30px;
   transition: margin-left 0.3s ease;
 
   .userList-section {
@@ -46,12 +45,14 @@
         align-items: center;
         gap: 10px;
 
-        input {
+        .search-input {
           width: 30rem;
-          padding: 10px;
+          padding: 10px 45px;
           border: 1px solid #d4d4d4;
           border-radius: 10px;
           font-size: 0.95rem;
+          background: url("/images/searchIcon.png") no-repeat 18px center;
+          background-size: 16px;
           outline: none;
 
           // &:focus {

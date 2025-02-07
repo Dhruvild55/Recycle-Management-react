@@ -1,6 +1,6 @@
 $sidebar-width: 310px;
 $sidebar-bg: white;
-$sidebar-color: #414651;
+$sidebar-color: #7c7c7c;
 $highlight-color: #c9ffdf;
 
 .sidebar {
@@ -8,13 +8,18 @@ $highlight-color: #c9ffdf;
   width: 100%;
   max-width: $sidebar-width;
   height: 90vh; // Make it responsive to screen height
+  // height: 75vh;
   background-color: $sidebar-bg;
   color: $sidebar-color;
-  overflow-y: auto;
   transition: transform 0.3s ease-in-out;
   border-radius: 10px;
   top: 20px;
   left: 20px;
+  flex-direction: column;
+
+  @include media-max(xxl) {
+    height: 75vh;
+  }
 
   &.collapsed {
     transform: translateX(-100%);
@@ -26,10 +31,35 @@ $highlight-color: #c9ffdf;
     justify-content: left;
     align-items: center;
     padding-left: 15px;
+    position: fixed;
+    z-index: 10;
   }
 
   .sidebar-nav {
-    margin-top: 10px;
+    flex: 1;
+    margin-top: 80px;
+    overflow-y: auto;
+    height: calc(100vh - 150px);
+    scrollbar-width: thin;
+    scrollbar-color: $sidebar-color $sidebar-bg;
+
+    @include media-max(xxl) {
+      height: calc(78vh - 117px);
+    }
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+    &::-webkit-scrollbar-track {
+      background: $sidebar-bg;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: $highlight-color;
+      border-top-left-radius: 15px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background: darken($sidebar-color, 10%);
+    }
 
     ul {
       list-style: none;
@@ -94,19 +124,22 @@ $highlight-color: #c9ffdf;
         }
       }
     }
-  }
+    .settings-section {
+      margin-top: 40%;
+      padding: 32px 25px 32px 25px;
+      display: flex;
+      gap: 7px;
 
-  .settings-section {
-    margin-top: 40%;
-    padding-left: 25px;
-    display: flex;
-    gap: 7px;
+      .label {
+        color: $sidebar-color;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: $fw-400;
+      }
 
-    .label {
-      color: $sidebar-color;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: $fw-400;
+      @include media-max(xxl) {
+        margin-top: 60%;
+      }
     }
   }
 }

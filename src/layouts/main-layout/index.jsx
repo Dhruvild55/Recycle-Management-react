@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { Suspense, useState } from "react";
 import Header from "../../shared/components/Header";
@@ -29,7 +30,7 @@ const MainLayout = ({ children }) => {
           >
             {children}
           </Suspense>
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </div>
     </div>

@@ -222,10 +222,12 @@ export default function AddUserPage() {
                   })}
                   className="roles-input"
                 >
-                  <option value="">Select your role</option>
                   <option value="admin">Admin</option>
-                  <option value="user">User</option>
-                  <option value="editor">Editor</option>
+                  <option value="super Admin">Super Admin</option>
+                  <option value="b2b Collecter">B2B COLLECTOR</option>
+                  <option value="b2b Recycler">B2B RECYCLER</option>
+                  <option value="b2c Collecter">B2C COLLECTOR</option>
+                  <option value="b2c Recycler">B2C RECYCLER</option>
                 </select>
                 {errors.roles && (
                   <p className="error-message">{errors.roles.message}</p>

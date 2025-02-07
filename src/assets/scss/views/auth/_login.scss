@@ -3,7 +3,6 @@ $primary-hover: #134d4f;
 $secondary-color: #414651;
 $border-color: #d5d7da;
 $text-muted: #999999;
-$box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 
 .login-page {
   background-image: url("/images/bgImage.png");
@@ -11,6 +10,10 @@ $box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   height: 100vh;
   background-size: 30% 184%;
   background-position: center bottom;
+
+  @include media-max(xxl) {
+    background-size: 35% 170%;
+  }
 
   .login-form-container {
     display: flex;
@@ -24,16 +27,21 @@ $box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     .login-form {
       background: #fff;
       padding: 2rem;
-      border-radius: 10px;
+      border-radius: 20px;
       width: 100%;
-      max-width: 480px;
-      min-height: 370px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 530px;
+      height: 590px;
+      //
+      position: absolute;
+      left: 55%;
 
       @include media-max(xxl) {
         max-width: 629px; /* Increased width */
         min-height: 780px; /* Increased height */
         padding: 3rem;
+        margin-left: 0px;
+        position: absolute;
+        left: 702px;
       }
 
       .login-header {
@@ -181,61 +189,6 @@ $box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
           margin-top: 15px;
           text-align: center;
           font-size: 13px;
-        }
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .login-page {
-    .login-form-container {
-      .login-form {
-        width: 90%;
-        max-width: 560px;
-        min-height: 700px;
-        padding: 1.5rem;
-
-        .form-container {
-          .login-title {
-            h2 {
-              font-size: 20px;
-            }
-            p {
-              font-size: 12px;
-            }
-          }
-
-          .login-button {
-            font-size: 0.9rem;
-          }
-        }
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .login-page {
-    .login-form-container {
-      .login-form {
-        width: 95%;
-        max-width: 320px;
-        padding: 1.2rem;
-
-        .form-container {
-          .login-title {
-            h2 {
-              font-size: 18px;
-            }
-            p {
-              font-size: 12px;
-            }
-          }
-
-          .login-button {
-            font-size: 0.85rem;
-          }
         }
       }
     }
