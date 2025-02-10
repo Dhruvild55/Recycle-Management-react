@@ -27,29 +27,11 @@
       background: darken($sidebar-color, 10%);
     }
     border-radius: 15px;
-    padding: 75px 15px 16px 70px;
+    padding: 0px 15px 16px -1px;
     transition: padding 0.5s;
 
     &.active {
-      padding-inline-start: 270px;
+      padding-inline-start: 335px;
     }
-    .container-fluid {
-      // margin-left: 0px;
-    }
-  }
-}
-
-@media (max-width: 768px) {
-  .main-layout {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-
-  .main-content {
-    padding-left: 0;
-
-    // .container-fluid {
-    //   padding: 0 10px;
-    // }
   }
 }

@@ -9,5 +9,16 @@ export const route = {
   ViewCollecter: `/user-Management/view-collecter`,
   EditPermission: (role) => `/user-Management/edit-permission/${role}`,
 
+  appContentManagement: "/app-content-Management",
+  addWaste: "/app-content-Management/add-waste",
+
+  collectionManagement: "/collection-Management",
+
+  rewardsManagement: "/rewards-Management",
+
   createCampaign: "/create-campaign",
+
+  collectorServiceManagement: "/Collector-Service-Management",
+  viewCollecterServiceInformation:
+    "/Collector-Service-Management/Collecter-Information",
 };

@@ -11,7 +11,7 @@ const RolesList = lazy(() => import("./Admin And Roles/Roles-List"));
 const CollecterList = lazy(() => import("./Collecter/Collecter-List"));
 
 function UserManagement() {
-  const [isSelectedBtn, setisSelectedBtn] = useState("admin");
+  const [isSelectedBtn, setisSelectedBtn] = useState("Admin");
 
   useEffect(() => {
     document.title = "User Managemant | Recycle Management ";
@@ -37,7 +37,7 @@ function UserManagement() {
   };
 
   const componentMap = {
-    admin: AdminList,
+    Admin: AdminList,
     recycler: RecyclerList,
     collecter: CollecterList,
     "admin roles": RolesList,
@@ -47,12 +47,12 @@ function UserManagement() {
 
   return (
     <div className="userManagerment-section">
-      <div className="userList-section">
+      <div className="secondary-section">
         <div className="userManagement-top-section">
           <ButtonComponent
             label="Admin"
-            onClick={() => handleButtonClick("admin")}
-            className={`btn${isSelectedBtn === "admin" ? " selected" : ""}`}
+            onClick={() => handleButtonClick("Admin")}
+            className={`btn${isSelectedBtn === "Admin" ? " selected" : ""}`}
           />
           <ButtonComponent
             label="Recycler"
@@ -73,7 +73,7 @@ function UserManagement() {
           />
         </div>
         <Suspense fallback={<div>Loading...</div>}>
-          {SelectedComponent && <SelectedComponent />}
+          {SelectedComponent && <SelectedComponent Role={isSelectedBtn} />}
         </Suspense>
       </div>
     </div>

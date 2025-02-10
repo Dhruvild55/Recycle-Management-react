@@ -8,7 +8,6 @@ $highlight-color: #c9ffdf;
   width: 100%;
   max-width: $sidebar-width;
   height: 90vh; // Make it responsive to screen height
-  // height: 75vh;
   background-color: $sidebar-bg;
   color: $sidebar-color;
   transition: transform 0.3s ease-in-out;
@@ -22,7 +21,7 @@ $highlight-color: #c9ffdf;
   }
 
   &.collapsed {
-    transform: translateX(-100%);
+    transform: translateX(-110%);
   }
 
   .sidebar-logo {
@@ -44,7 +43,7 @@ $highlight-color: #c9ffdf;
     scrollbar-color: $sidebar-color $sidebar-bg;
 
     @include media-max(xxl) {
-      height: calc(78vh - 117px);
+      height: calc(79vh - 117px);
     }
 
     &::-webkit-scrollbar {
@@ -138,7 +137,7 @@ $highlight-color: #c9ffdf;
       }
 
       @include media-max(xxl) {
-        margin-top: 60%;
+        margin-top: 55%;
       }
     }
   }

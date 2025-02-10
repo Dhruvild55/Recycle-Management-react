@@ -15,13 +15,19 @@ const InputField = ({ label, placeholder, type, register, errors, name }) => {
         </div>
       ) : (
         <div>
-          <input placeholder={placeholder} type={type} {...register(name)} />
-          {errors[name] && (
+          <input
+            placeholder={placeholder}
+            type={type}
+            {...(register ? register(name) : {})}
+          />
+          {errors && errors[name] && (
             <p className="error-message">{errors[name].message}</p>
           )}
         </div>
       )}
-      {errors[name] && <p className="error-message">{errors[name].message}</p>}
+      {errors && errors[name] && (
+        <p className="error-message">{errors[name].message}</p>
+      )}
     </div>
   );
 };

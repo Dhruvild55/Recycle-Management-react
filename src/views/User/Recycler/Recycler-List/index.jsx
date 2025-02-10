@@ -16,6 +16,7 @@ const RecyclerList = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const [isDescendingOrder, setIsdescendingOrder] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const currentRole = "Recycler";
 
   const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ["userList", pageNumber, pageSize, isDescendingOrder],
@@ -24,6 +25,7 @@ const RecyclerList = () => {
         pageNumber,
         pageSize,
         isDescendingOrder,
+        currentRole,
       }),
     keepPreviousData: true,
   });

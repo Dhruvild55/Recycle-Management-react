@@ -5,7 +5,6 @@ import Header from "../../shared/components/Header";
 import Sidebar from "../../shared/components/Sidebar";
 import useMediaQuery from "../../shared/hooks/useMediaQuery";
 import { Loader } from "../../shared/components/Loader";
-import Footer from "../../shared/components/Footer";
 
 const MainLayout = ({ children }) => {
   const [sidebarVisible, setSidebarVisible] = useState(false);
@@ -17,13 +16,13 @@ const MainLayout = ({ children }) => {
 
   return (
     <div className="main-layout">
-      <Header toggleSidebar={toggleSidebar} isCollapsed={sidebarVisible} />
       <Sidebar isCollapsed={sidebarVisible} />
       <div
         className={`main-content  ${
           width ? sidebarVisible && "active" : !sidebarVisible && "active"
         }`}
       >
+        <Header toggleSidebar={toggleSidebar} isCollapsed={sidebarVisible} />
         <div className="container-fluid">
           <Suspense
             fallback={<Loader animation="border" width="50px" height="50px" />}

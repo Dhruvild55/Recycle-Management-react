@@ -24,7 +24,7 @@ export const SidebarLinks = [
   },
   {
     name: "app_content_Management",
-    path: "/",
+    path: route.appContentManagement,
     icon: iconApp,
   },
   {
@@ -80,7 +80,7 @@ export const SidebarLinks = [
   },
   {
     name: "collection_service_management",
-    path: "/",
+    path: route.collectorServiceManagement,
     icon: iconCollection,
   },
   {

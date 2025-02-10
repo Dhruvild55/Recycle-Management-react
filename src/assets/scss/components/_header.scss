@@ -1,14 +1,14 @@
 .header {
-  position: fixed;
-  top: 0;
+  // top: 0;
   height: 60px;
-  width: 1085px;
-  margin-left: 320px;
+  // width: 1085px;
+  margin-bottom: 10px;
   background-color: transparent; // Ensure background is transparent
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 30px 0 35px;
+  padding: 10px 30px 0 25px;
+
   transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
   &.shifted {
     margin-left: 0px;

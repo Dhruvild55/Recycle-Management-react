@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { usersList } from "../../../../query/users/getusers/getUsers.query";
@@ -13,7 +14,8 @@ import { route } from "../../../../shared/constants/AllRoutes";
 import Pagination from "../../../../shared/components/CustomPagination";
 import CustomTable from "../../../../shared/components/CustomTable";
 
-const AdminList = () => {
+const AdminList = ({ Role }) => {
+  console.log("Role", Role);
   const [pageSize, setPageSize] = useState(10);
   const [pageNumber, setPageNumber] = useState(1);
   const [isDescendingOrder, setIsdescendingOrder] = useState(false);
@@ -23,12 +25,13 @@ const AdminList = () => {
 
   // show user data API
   const { data, isLoading, isError, refetch } = useQuery({
-    queryKey: ["userList", pageNumber, pageSize, isDescendingOrder],
+    queryKey: ["userList", pageNumber, pageSize, isDescendingOrder, Role],
     queryFn: () =>
       usersList({
         pageNumber,
         pageSize,
         isDescendingOrder,
+        Role,
       }),
     keepPreviousData: true,
   });
@@ -112,7 +115,7 @@ const AdminList = () => {
             onChange={(e) => setSearchQuery(e.target.value.toLowerCase())}
           />
         </div>
-        <button onClick={() => navigate(route.addUser)}>
+        <button onClick={() => navigate(route.addUser)} className="add-btn">
           {" "}
           Add Admin <FaPlus style={{ fontSize: "15px" }} />
         </button>

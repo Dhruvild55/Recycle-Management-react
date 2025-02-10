@@ -1,0 +1,18 @@
+.collecter-list-section {
+  font-family: "Inter", sans-serif;
+  transition: margin-left 0.3s ease;
+
+  .collecterList-section {
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+
+    .collecterList-header {
+      padding: 5px 15px 5px 15px;
+      label {
+        font-size: 16px;
+        font-weight: 600;
+      }
+    }
+  }
+}
