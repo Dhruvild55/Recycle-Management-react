@@ -20,8 +20,8 @@ const BarChartComponent = ({ xPos, yPos }) => {
         <PieChart width={xPos} height={yPos}>
           <Pie
             data={data}
-            cx={120}
-            cy={130}
+            cx={110}
+            cy={100}
             innerRadius={60}
             outerRadius={93}
             fill="#8884d8"
@@ -42,10 +42,10 @@ const BarChartComponent = ({ xPos, yPos }) => {
             src={iconDrop}
             style={{
               position: "absolute",
-              left: "51%",
-              top: "58%",
+              left: "45.5%",
+              top: "53.5%",
               transform: "translate(-50%, -50%)",
-              fontSize: "24px",
+              fontSize: "30px",
               color: "#555",
             }}
           />

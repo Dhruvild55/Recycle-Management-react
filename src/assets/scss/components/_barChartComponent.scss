@@ -2,8 +2,6 @@
   margin-top: 20px;
   .chart-box {
     position: relative;
-    width: 310px;
-    height: 200px;
     border-radius: 10px;
     border: 1px solid #e9eaeb;
     overflow: hidden;
@@ -12,7 +10,7 @@
   }
   .chart-data {
     display: flex;
-    padding-left: 34px;
+    padding-left: 58px;
     div {
       display: flex;
       gap: 10px;

@@ -2,9 +2,7 @@ const BusinessRegistration = () => {
   return (
     <div className="business-registration-section">
       <div className="registration-information">
-        <div className="pr-title">
-          <h1>Business Registration information</h1>
-        </div>
+        <h1 className="pr-title">Business Registration information</h1>
         <div className="registration-information-details">
           <div className="input-feild">
             <label>Business Name</label>

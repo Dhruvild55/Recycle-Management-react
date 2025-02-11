@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { useState, memo, useCallback } from "react";
 import { FaCaretRight } from "react-icons/fa";
 import { iconCarrateDown } from "../../../assets/images/icons";
+import SettingIcon from "../../../assets/images/icons/SettingIcon";
 
 const Sidebar = ({ isCollapsed, setSelectedMenu, selectedMenu }) => {
   const translations = useSelector((state) => state.settings.translations);
@@ -37,7 +38,9 @@ const Sidebar = ({ isCollapsed, setSelectedMenu, selectedMenu }) => {
           {SidebarLinks.map(({ name, icon, path, children }) => (
             <li
               key={name}
-              className={`menu-item ${selectedMenu === name ? "selected" : ""}`}
+              className={`menu-item ${
+                selectedMenu.name === name ? "selected" : ""
+              }`}
             >
               <div
                 className="menu-header"
@@ -83,7 +86,7 @@ const Sidebar = ({ isCollapsed, setSelectedMenu, selectedMenu }) => {
           ))}
         </ul>
         <div className="settings-section">
-          {/* <img src={iconSettings} alt="settings" /> */}
+          <SettingIcon color="#1F7F82" />
           <label>Settings</label>
         </div>
       </nav>

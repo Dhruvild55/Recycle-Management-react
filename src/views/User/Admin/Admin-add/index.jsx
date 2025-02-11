@@ -101,14 +101,14 @@ export default function AddUserPage() {
     <div className="create-admin-section">
       <div className="main-section">
         <div className="header-contant">
-          <button className="back-button">&larr; BACK TO ADMIN LIST</button>
+          <button className="back-button">&larr; BACK</button>
         </div>
         <div className="personal-info-section">
           <h2>Personal Information</h2>
 
           <div className="profile-photo-section">
             <div className="profile-left">
-              <h1>Your Photo</h1>
+              <p className="profile-left-title">Your Photo</p>
               <p>This will be displayed on your profile</p>
             </div>
             <div className="profile-center">
