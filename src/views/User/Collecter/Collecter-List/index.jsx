@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import { useSelector } from "react-redux";
 import { iconDelete, iconEdit } from "../../../../assets/images/icons";
@@ -10,7 +11,7 @@ import CustomTable from "../../../../shared/components/CustomTable";
 import Pagination from "../../../../shared/components/CustomPagination";
 import { useState } from "react";
 
-const CollecterList = () => {
+const CollecterList = ({ Role }) => {
   const translations = useSelector((state) => state.settings.translations);
   const [pageSize, setPageSize] = useState(10);
   const [pageNumber, setPageNumber] = useState(1);
@@ -18,12 +19,13 @@ const CollecterList = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const { data, isLoading, isError, refetch } = useQuery({
-    queryKey: ["userList", pageNumber, pageSize, isDescendingOrder],
+    queryKey: ["userList", pageNumber, pageSize, isDescendingOrder, Role],
     queryFn: () =>
       usersList({
         pageNumber,
         pageSize,
         isDescendingOrder,
+        Role,
       }),
     keepPreviousData: true,
   });
@@ -91,6 +93,7 @@ const CollecterList = () => {
         <label>List of Collecters</label>
         <div>
           <input
+            className="search-input"
             type="text"
             placeholder={translations.search}
             value={searchQuery}

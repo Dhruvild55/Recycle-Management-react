@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { useSelector } from "react-redux";
@@ -10,7 +11,7 @@ import { usersList } from "../../../../query/users/getusers/getUsers.query";
 import CustomTable from "../../../../shared/components/CustomTable";
 import Pagination from "../../../../shared/components/CustomPagination";
 
-const RecyclerList = () => {
+const RecyclerList = ({ Role }) => {
   const translations = useSelector((state) => state.settings.translations);
   const [pageSize, setPageSize] = useState(10);
   const [pageNumber, setPageNumber] = useState(1);
@@ -19,13 +20,14 @@ const RecyclerList = () => {
   const currentRole = "Recycler";
 
   const { data, isLoading, isError, refetch } = useQuery({
-    queryKey: ["userList", pageNumber, pageSize, isDescendingOrder],
+    queryKey: ["userList", pageNumber, pageSize, isDescendingOrder, Role],
     queryFn: () =>
       usersList({
         pageNumber,
         pageSize,
         isDescendingOrder,
         currentRole,
+        Role,
       }),
     keepPreviousData: true,
   });
@@ -92,6 +94,7 @@ const RecyclerList = () => {
         <label>List of Admin</label>
         <div>
           <input
+            className="search-input"
             type="text"
             placeholder={translations.search}
             value={searchQuery}

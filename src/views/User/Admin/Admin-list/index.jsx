@@ -15,7 +15,6 @@ import Pagination from "../../../../shared/components/CustomPagination";
 import CustomTable from "../../../../shared/components/CustomTable";
 
 const AdminList = ({ Role }) => {
-  console.log("Role", Role);
   const [pageSize, setPageSize] = useState(10);
   const [pageNumber, setPageNumber] = useState(1);
   const [isDescendingOrder, setIsdescendingOrder] = useState(false);

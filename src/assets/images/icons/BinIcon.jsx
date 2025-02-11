@@ -1,0 +1,21 @@
+const BinIcon = ({ color }) => {
+  return (
+    <svg
+      width="20"
+      height="21"
+      viewBox="0 0 20 21"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M8.5 10H11.5M18 6.5V17.5C18 18.0304 17.7893 18.5391 17.4142 18.9142C17.0391 19.2893 16.5304 19.5 16 19.5H4C3.46957 19.5 2.96086 19.2893 2.58579 18.9142C2.21071 18.5391 2 18.0304 2 17.5V6.5M19 6.5V3.5C19 2.96957 18.7893 2.46086 18.4142 2.08579C18.0391 1.71071 17.5304 1.5 17 1.5H3C2.46957 1.5 1.96086 1.71071 1.58579 2.08579C1.21071 2.46086 1 2.96957 1 3.5V6.5H19Z"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
+export default BinIcon;

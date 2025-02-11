@@ -47,6 +47,8 @@ $grid-breakpoints: (
   align-items: center;
   cursor: pointer;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
 
   &:hover {
     background-color: #1f7f82;
@@ -59,4 +61,9 @@ $grid-breakpoints: (
   background: #ffffff;
   padding: 20px;
   border-radius: 20px;
+}
+
+.buttons {
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
 }

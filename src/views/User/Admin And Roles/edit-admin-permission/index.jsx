@@ -111,6 +111,8 @@ const EditPermissions = () => {
                       fontSize: "14px",
                       fontWeight: "400",
                       color: "#181D27",
+                      paddingTop: "10px",
+                      paddingBottom: "10px",
                     }}
                   >
                     {row.pageName}

@@ -31,7 +31,7 @@ const RolesList = () => {
       <div className="userList-header">
         <label>Roles and Permissions</label>
         <div></div>
-        <button onClick={() => navigate(route.addUser)}>
+        <button onClick={() => navigate(route.addUser)} className="add-btn">
           {" "}
           Add Roles <FaPlus style={{ fontSize: "15px" }} />
         </button>
@@ -77,10 +77,16 @@ const RolesList = () => {
                   {row}
                 </td>
                 <td style={{ textAlign: "right", padding: "10px 50px" }}>
-                  <button onClick={() => handleEditPermission(row)}>
+                  <button
+                    onClick={() => handleEditPermission(row)}
+                    className="buttons"
+                  >
                     <img src={iconEdit} />
                   </button>
-                  <button onClick={() => alert("delete Clicked")}>
+                  <button
+                    onClick={() => alert("delete Clicked")}
+                    className="buttons"
+                  >
                     <img src={iconDelete} />
                   </button>
                 </td>

@@ -1,124 +1,126 @@
 .userManagerment-section {
   font-family: "Inter", sans-serif;
   transition: margin-left 0.3s ease;
-
-  .userManagement-top-section {
-    margin: 12px;
-    padding: 12px;
-    display: flex;
-    gap: 20px;
-    background-color: #c9ffdf;
+  .userList-section {
+    background: #ffffff;
+    padding: 20px;
     border-radius: 20px;
-
-    .btn {
-      border-radius: 7px;
-      padding: 5px 15px 5px 15px;
-      border: none;
-      font-size: 14px !important;
-      background-color: white;
-      &.selected {
+    .userManagement-top-section {
+      padding: 15px;
+      display: flex;
+      gap: 20px;
+      background-color: #c9ffdf;
+      border-radius: 20px;
+      .btn {
+        border-radius: 7px;
+        padding: 5px 15px 5px 15px;
+        border: none;
+        font-size: 14px !important;
+        background-color: white;
+        &.selected {
+          background-color: #1f7f82;
+          color: white;
+        }
+      }
+      button:hover {
         background-color: #1f7f82;
         color: white;
       }
     }
-    button:hover {
-      background-color: #1f7f82;
-      color: white;
-    }
-  }
 
-  .userList-header {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    justify-content: space-between;
-    padding: 5px 15px 5px 15px;
-    gap: 5px;
-
-    div {
+    .userList-header {
       display: flex;
       align-items: center;
-      gap: 10px;
+      text-align: center;
+      justify-content: space-between;
+      padding: 5px 15px 5px 15px;
+      gap: 5px;
+      margin-top: 20px;
+      margin-bottom: 20px;
 
-      .search-input {
-        width: 30rem;
-        padding: 10px 45px;
-        border: 1px solid #d4d4d4;
-        border-radius: 10px;
-        font-size: 0.95rem;
-        background: url("/images/searchIcon.png") no-repeat 18px center;
-        background-size: 16px;
-        outline: none;
-      }
+      div {
+        display: flex;
+        align-items: center;
+        gap: 10px;
 
-      select {
-        padding: 6px 10px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        font-size: 0.95rem;
+        .search-input {
+          width: 30rem;
+          padding: 10px 45px;
+          border: 1px solid #d4d4d4;
+          border-radius: 10px;
+          font-size: 0.95rem;
+          background: url("/images/searchIcon.png") no-repeat 18px center;
+          background-size: 16px;
+          outline: none;
+        }
+
+        select {
+          padding: 6px 10px;
+          border: 1px solid #ddd;
+          border-radius: 5px;
+          font-size: 0.95rem;
+        }
       }
     }
-  }
 
-  .table-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 12px;
-
-    .section {
-      word-wrap: normal !important;
-      border: none !important;
-    }
-
-    .pagination {
+    .table-footer {
       display: flex;
-      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      margin: 12px;
 
-      .span {
-        font-weight: 500;
+      .section {
+        word-wrap: normal !important;
+        border: none !important;
       }
 
-      button {
-        // background-color: #e0ffec;
-        // color: #fff;
-        border: none;
-        padding: 5px 10px;
-        border-radius: 7px;
-        font-size: 0.8rem;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
+      .pagination {
+        display: flex;
+        gap: 10px;
 
-        &:hover:not(:disabled) {
-          background-color: #1f7f82;
-          color: white;
-        }
-
-        &.active {
-          background-color: #1f7f82;
-          color: #fff;
+        .span {
           font-weight: 500;
         }
-        &.disable {
-          background-color: #e0ffec;
-          color: #181d27;
-          font-weight: 500;
-        }
-      }
-      .btn-text {
-        &:disabled {
-          cursor: not-allowed;
-          background-color: transparent;
-          color: black;
-        }
-        &:hover:not(:disabled) {
-          background-color: transparent;
-        }
-      }
 
-      span {
-        font-size: 0.95rem;
-        color: #555;
+        button {
+          border: none;
+          padding: 5px 10px;
+          border-radius: 7px;
+          font-size: 0.8rem;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+
+          &:hover:not(:disabled) {
+            background-color: #1f7f82;
+            color: white;
+          }
+
+          &.active {
+            background-color: #1f7f82;
+            color: #fff;
+            font-weight: 500;
+          }
+          &.disable {
+            background-color: #e0ffec;
+            color: #181d27;
+            font-weight: 500;
+          }
+        }
+        .btn-text {
+          &:disabled {
+            cursor: not-allowed;
+            background-color: transparent;
+            color: black;
+          }
+          &:hover:not(:disabled) {
+            background-color: transparent;
+          }
+        }
+
+        span {
+          font-size: 0.95rem;
+          color: #555;
+        }
       }
     }
   }

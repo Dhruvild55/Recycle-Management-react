@@ -38,8 +38,8 @@ function UserManagement() {
 
   const componentMap = {
     Admin: AdminList,
-    recycler: RecyclerList,
-    collecter: CollecterList,
+    Recycler: RecyclerList,
+    Collecter: CollecterList,
     "admin roles": RolesList,
   };
 
@@ -47,7 +47,7 @@ function UserManagement() {
 
   return (
     <div className="userManagerment-section">
-      <div className="secondary-section">
+      <div className="userList-section ">
         <div className="userManagement-top-section">
           <ButtonComponent
             label="Admin"
@@ -56,13 +56,13 @@ function UserManagement() {
           />
           <ButtonComponent
             label="Recycler"
-            onClick={() => handleButtonClick("recycler")}
-            className={`btn${isSelectedBtn === "recycler" ? " selected" : ""}`}
+            onClick={() => handleButtonClick("Recycler")}
+            className={`btn${isSelectedBtn === "Recycler" ? " selected" : ""}`}
           />
           <ButtonComponent
             label="Collecter"
-            onClick={() => handleButtonClick("collecter")}
-            className={`btn${isSelectedBtn === "collecter" ? " selected" : ""}`}
+            onClick={() => handleButtonClick("Collecter")}
+            className={`btn${isSelectedBtn === "Collecter" ? " selected" : ""}`}
           />
           <ButtonComponent
             label="Admin Roles and Permissions"

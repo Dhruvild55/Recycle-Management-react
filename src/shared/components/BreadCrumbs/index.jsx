@@ -13,6 +13,7 @@ function BreadCrumbs() {
   return (
     <Breadcrumb className="breadcrumb-section">
       {items.map((value, index) => {
+        console.log(value);
         const last = index === items.length - 1;
         const to = location.pathname.split(value)[0];
         return last ? (

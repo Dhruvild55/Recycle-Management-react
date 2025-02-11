@@ -1,36 +1,33 @@
+import AppIcon from "../../../assets/images/icons/AppIcon";
+import BinIcon from "../../../assets/images/icons/BinIcon";
+import CollectionIcon from "../../../assets/images/icons/CollectionIcon";
+import MenuIcon from "../../../assets/images/icons/menuIcon";
+import ReportIcon from "../../../assets/images/icons/ReportIcon";
+import RewardsIcon from "../../../assets/images/icons/RewardsIcon";
+import SponserIcon from "../../../assets/images/icons/SponserIcon";
+import UserIcon from "../../../assets/images/icons/UserIcon";
 import { route } from "../../constants/AllRoutes";
-
-import {
-  iconApp,
-  iconBank,
-  iconCollection,
-  iconDashboard,
-  iconDrop,
-  iconReport,
-  iconRewardsIcon,
-  iconUser,
-} from "../../../assets/images/icons";
 
 export const SidebarLinks = [
   {
     name: "dashboard",
     path: route.dashboard,
-    icon: iconDashboard,
+    icon: <MenuIcon color="#1F7F82" />,
   },
   {
     name: "user_management",
     path: route.userManagement,
-    icon: iconUser,
+    icon: <UserIcon color="#1F7F82" />,
   },
   {
     name: "app_content_Management",
     path: route.appContentManagement,
-    icon: iconApp,
+    icon: <AppIcon color="#1F7F82" />,
   },
   {
     name: "collaction_Management",
     path: "/",
-    icon: iconDrop,
+    icon: <CollectionIcon color="#1F7F82" />,
     children: [
       {
         name: "add_campaign",
@@ -47,7 +44,7 @@ export const SidebarLinks = [
   {
     name: "rewards_Management",
     path: "/",
-    icon: iconRewardsIcon,
+    icon: <RewardsIcon color="#1F7F82" />,
     children: [
       {
         name: "add_campaign",
@@ -64,7 +61,7 @@ export const SidebarLinks = [
   {
     name: "campaign_Management",
     path: route.createCampaign,
-    icon: iconBank,
+    icon: <SponserIcon color="#1F7F82" />,
     children: [
       {
         name: "add_campaign",
@@ -81,11 +78,11 @@ export const SidebarLinks = [
   {
     name: "collection_service_management",
     path: route.collectorServiceManagement,
-    icon: iconCollection,
+    icon: <BinIcon color="#1F7F82" />,
   },
   {
     name: "report",
     path: "/",
-    icon: iconReport,
+    icon: <ReportIcon color="#1F7F82" />,
   },
 ];

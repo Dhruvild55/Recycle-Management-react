@@ -1,26 +1,31 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-// import { route } from "../../constants/AllRoutes";
 import { navigationTo, removeToken } from "../../../helper/helper";
 import { SUPPORTED_LANGUAGES } from "../../utils";
 import { useDispatch } from "react-redux";
 import { changeLanguage } from "../../../redux/appSetings/appSettingsSlice";
 import { useEffect, useState } from "react";
-import { IoMdMenu } from "react-icons/io";
-import { RxCaretDown } from "react-icons/rx";
 import BreadCrumbs from "../BreadCrumbs";
 import ProfilePic from "../ProfilePic";
 import { Dropdown, OverlayTrigger } from "react-bootstrap";
-import { iconBell } from "../../../assets/images/icons";
+import { iconBell, iconMenu } from "../../../assets/images/icons";
 import { getProfile } from "../../../query/profile/getProfile/getProfile.query";
 import { useQuery } from "@tanstack/react-query";
+import MenuIcon from "../../../assets/images/icons/menuIcon";
+import UserIcon from "../../../assets/images/icons/UserIcon";
+import AppIcon from "../../../assets/images/icons/AppIcon";
+import CollectionIcon from "../../../assets/images/icons/CollectionIcon";
+import RewardsIcon from "../../../assets/images/icons/RewardsIcon";
+import SponserIcon from "../../../assets/images/icons/SponserIcon";
+import BinIcon from "../../../assets/images/icons/BinIcon";
+import ReportIcon from "../../../assets/images/icons/ReportIcon";
 
-function Header({ toggleSidebar, isCollapsed }) {
+function Header({ toggleSidebar, isCollapsed, selectedMenu }) {
   const dispatch = useDispatch();
   const [selectedLanguage, setSelectedLanguage] = useState(
     localStorage.getItem("language") || "en"
   );
-
+  console.log("selected Menu", selectedMenu);
   useEffect(() => {
     dispatch(changeLanguage(selectedLanguage));
   }, [dispatch, selectedLanguage]);
@@ -42,18 +47,42 @@ function Header({ toggleSidebar, isCollapsed }) {
     dispatch(changeLanguage(language));
   };
 
+  const formatTitle = (name) => {
+    return name
+      .replace(/_/g, " ") // Replace "_" with space
+      .replace(/\b\w/g, (char) => char.toUpperCase()); // Capitalize first letter of each word
+  };
+
   return (
     <>
       <header className={`header ${isCollapsed ? "shifted" : ""} `}>
         <div className={`header-left `}>
-          <div>
-            <IoMdMenu
-              style={{ color: "black", fontSize: "28px" }}
-              onClick={toggleSidebar}
-            />
+          <div onClick={toggleSidebar}>
+            {selectedMenu.name === "dashboard" ? (
+              <MenuIcon color="#181D27" />
+            ) : selectedMenu.name === "user_management" ? (
+              <UserIcon color="#181D27" />
+            ) : selectedMenu.name === "app_content_Management" ? (
+              <AppIcon color="#181D27" />
+            ) : selectedMenu.name === "collaction_Management" ? (
+              <CollectionIcon color="#181D27" />
+            ) : selectedMenu.name === "rewards_Management" ? (
+              <RewardsIcon color="#181D27" />
+            ) : selectedMenu.name === "campaign_Management" ? (
+              <SponserIcon color="#181D27" />
+            ) : selectedMenu.name === "collection_service_management" ? (
+              <BinIcon color="#181D27" />
+            ) : selectedMenu.name === "report" ? (
+              <ReportIcon color="#181D27" />
+            ) : (
+              ""
+            )}
           </div>
           <div>
-            <BreadCrumbs />
+            <span style={{ fontSize: "24px", fontWeight: "600" }}>
+              {formatTitle(selectedMenu.name)}
+            </span>
+            {/* <BreadCrumbs /> */}
           </div>
         </div>
         <div className="header-right">

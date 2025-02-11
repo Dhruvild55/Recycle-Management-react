@@ -4,12 +4,11 @@ import { SidebarLinks } from "./confiuge"; // Corrected typo "confiuge" to "conf
 import { useSelector } from "react-redux";
 import { useState, memo, useCallback } from "react";
 import { FaCaretRight } from "react-icons/fa";
-import { iconCarrateDown, iconSettings } from "../../../assets/images/icons";
+import { iconCarrateDown } from "../../../assets/images/icons";
 
-const Sidebar = ({ isCollapsed }) => {
+const Sidebar = ({ isCollapsed, setSelectedMenu, selectedMenu }) => {
   const translations = useSelector((state) => state.settings.translations);
   const [openMenus, setOpenMenus] = useState({});
-  const [selectedMenu, setSelectedMenu] = useState("dashboard");
 
   const toggleMenu = useCallback(
     (name) => {
@@ -22,8 +21,8 @@ const Sidebar = ({ isCollapsed }) => {
   );
 
   const handleMenuSelect = useCallback(
-    (name) => {
-      setSelectedMenu(name);
+    (name, icon) => {
+      setSelectedMenu({ name, icon });
     },
     [setSelectedMenu]
   );
@@ -43,11 +42,11 @@ const Sidebar = ({ isCollapsed }) => {
               <div
                 className="menu-header"
                 onClick={() => {
-                  handleMenuSelect(name);
+                  handleMenuSelect(name, icon);
                   children && toggleMenu(name);
                 }}
               >
-                <img src={icon} className="menu-icon" alt="icon" />
+                {icon}
                 <Link to={path}>{translations[name]}</Link>
                 {children && (
                   <span className="caret-icon">
@@ -84,7 +83,7 @@ const Sidebar = ({ isCollapsed }) => {
           ))}
         </ul>
         <div className="settings-section">
-          <img src={iconSettings} alt="settings" />
+          {/* <img src={iconSettings} alt="settings" /> */}
           <label>Settings</label>
         </div>
       </nav>

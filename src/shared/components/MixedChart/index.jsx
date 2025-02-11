@@ -1,56 +1,82 @@
+import React from "react";
 import {
   LineChart,
   Line,
-  AreaChart,
-  Area,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
+  ReferenceLine,
 } from "recharts";
 
 const data = [
-  { name: "Jan", actual: 4000, target: 2400 },
-  { name: "Feb", actual: 3000, target: 1398 },
-  { name: "Mar", actual: 2000, target: 9800 },
-  { name: "Apr", actual: 2780, target: 3908 },
-  { name: "May", actual: 1890, target: 4800 },
-  { name: "Jun", actual: 2390, target: 3800 },
-  { name: "Jul", actual: 3490, target: 4300 },
-  { name: "Aug", actual: 4000, target: 2400 },
-  { name: "Sep", actual: 3000, target: 1398 },
-  { name: "Oct", actual: 2000, target: 9800 },
-  { name: "Nov", actual: 2780, target: 3908 },
-  { name: "Dec", actual: 1890, target: 4800 },
+  { month: "Jan '24", actual: 5000, expected: 4000 },
+  { month: "Feb '24", actual: 8000, expected: 6000 },
+  { month: "Mar '24", actual: 12000, expected: 9000 },
+  { month: "Apr '24", actual: 18000, expected: 12000 },
+  { month: "May '24", actual: 24000, expected: 16000 },
+  { month: "Jun '24", actual: 27000, expected: 19000 },
+  { month: "Jul '24", actual: 28549, expected: 21391 }, // Highlighted data point
+  { month: "Aug '24", actual: 30000, expected: 23000 },
+  { month: "Sep '24", actual: 32000, expected: 25000 },
+  { month: "Oct '24", actual: 35000, expected: 28000 },
+  { month: "Nov '24", actual: 37000, expected: 30000 },
+  { month: "Dec '24", actual: 42000, expected: 33000 },
 ];
+
+const CustomTooltip = ({ active, payload }) => {
+  if (active && payload && payload.length) {
+    return (
+      <div
+        className="custom-tooltip"
+        style={{
+          background: "#fff",
+          padding: "10px",
+          borderRadius: "5px",
+          boxShadow: "0px 0px 10px rgba(0,0,0,0.1)",
+        }}
+      >
+        <p>
+          <strong>{payload[0].payload.month}</strong>
+        </p>
+        <p>Actual: {payload[0].value}</p>
+        <p>Expected: {payload[1]?.value}</p>
+      </div>
+    );
+  }
+  return null;
+};
 
 const MixedChart = () => {
   return (
-    <ResponsiveContainer width="100%" height={400}>
+    <ResponsiveContainer width="100%" height={450}>
       <LineChart data={data}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
+        <CartesianGrid strokeDasharray="3 3" vertical={false} />
+        <XAxis dataKey="month" />
         <YAxis />
-        <Tooltip />
-        <Legend />
+        <Tooltip content={<CustomTooltip />} />
+        <ReferenceLine
+          x="Jul '24"
+          stroke="#C9FFDF"
+          strokeWidth={50}
+          label={{
+            position: "insideTop",
+            fill: "#C9FFDF",
+          }}
+        />
         <Line
           type="monotone"
           dataKey="actual"
-          stroke="#82ca9d"
-          dot={{ r: 6 }}
-          activeDot={{ r: 8 }}
+          stroke="#005e7c"
+          strokeWidth={2}
         />
-        <AreaChart data={data}>
-          <Area
-            type="monotone"
-            dataKey="target"
-            stroke="#8884d8"
-            fill="#8884d8"
-            fillOpacity={0.3}
-          />
-        </AreaChart>
+        <Line
+          type="monotone"
+          dataKey="expected"
+          stroke="lightgreen"
+          strokeWidth={2}
+        />
       </LineChart>
     </ResponsiveContainer>
   );
