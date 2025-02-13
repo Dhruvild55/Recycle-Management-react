@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import CardComponent from "../../shared/components/CardComponent";
 import MixedChart from "../../shared/components/MixedChart";
 import BarChartComponent from "../../shared/components/BarChartComponent";
+import { Table } from "react-bootstrap";
+import ProfilePic from "../../shared/components/ProfilePic";
 
 const Dashboard = () => {
   useEffect(() => {
@@ -17,17 +19,17 @@ const Dashboard = () => {
           </div>
           <div className="chart-contant">
             <MixedChart />
-            {/* <BarChartComponent xPos={310} yPos={200} /> */}
+            <BarChartComponent xPos={300} yPos={200} />
           </div>
         </div>
-        {/* <div className="table-section">
+        {/* <div className="bottom-section">
           <div className="top-collecter-section">
             <div className="section-header">
               <h1>Top Collecter</h1>
-              <div>
+              <div className="inner-header">
                 <span>FILTER:</span>
                 <select style={{ borderRadius: "10px", padding: "5px" }}>
-                  <option>123</option>
+                  <option>By Week</option>
                 </select>
               </div>
             </div>
@@ -40,7 +42,10 @@ const Dashboard = () => {
               </thead>
               <tbody>
                 <tr>
-                  <td>Asdfqwer</td>
+                  <td>
+                    <ProfilePic />
+                    <span>asdf</span>
+                  </td>
                   <td>Collection : 20kg</td>
                 </tr>
                 <tr>
@@ -61,10 +66,10 @@ const Dashboard = () => {
           <div className="top-recycler-section">
             <div className="section-header">
               <h1>Top Collecter</h1>
-              <div>
+              <div className="inner-header">
                 <span>FILTER:</span>
                 <select style={{ borderRadius: "10px", padding: "5px" }}>
-                  <option>123</option>
+                  <option>By Day</option>
                 </select>
               </div>
             </div>

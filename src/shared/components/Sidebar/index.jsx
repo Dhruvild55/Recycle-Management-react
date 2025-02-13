@@ -42,25 +42,27 @@ const Sidebar = ({ isCollapsed, setSelectedMenu, selectedMenu }) => {
                 selectedMenu.name === name ? "selected" : ""
               }`}
             >
-              <div
-                className="menu-header"
-                onClick={() => {
-                  handleMenuSelect(name, icon);
-                  children && toggleMenu(name);
-                }}
-              >
-                {icon}
-                <Link to={path}>{translations[name]}</Link>
-                {children && (
-                  <span className="caret-icon">
-                    {openMenus[name] ? (
-                      <FaCaretRight />
-                    ) : (
-                      <img src={iconCarrateDown} alt="caret" />
-                    )}
-                  </span>
-                )}
-              </div>
+              <Link to={path}>
+                <div
+                  className="menu-header"
+                  onClick={() => {
+                    handleMenuSelect(name, icon);
+                    children && toggleMenu(name);
+                  }}
+                >
+                  {icon}
+                  {translations[name]}
+                  {children && (
+                    <span className="caret-icon">
+                      {openMenus[name] ? (
+                        <FaCaretRight />
+                      ) : (
+                        <img src={iconCarrateDown} alt="caret" />
+                      )}
+                    </span>
+                  )}
+                </div>
+              </Link>
               {children && openMenus[name] && (
                 <ul className="submenu">
                   {children.map(({ name: childName, path: childPath }) => (

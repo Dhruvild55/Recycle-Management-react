@@ -1,16 +1,26 @@
 /* eslint-disable react/prop-types */
-const InputField = ({ label, placeholder, type, register, errors, name }) => {
+const InputField = ({
+  label,
+  placeholder,
+  type,
+  register,
+  errors,
+  name,
+  validation,
+}) => {
   return (
     <div className="input-field">
       <label>{label}</label>
       {type === "tel" ? (
         <div className="phone-input">
-          <span className="country-code">+60</span>
+          <select className="country-code">
+            <option>+60</option>
+          </select>
           <input
             className="phone-input-box"
             type={type}
             placeholder={placeholder}
-            {...register(name)}
+            {...register(name, validation)}
           />
         </div>
       ) : (
@@ -18,15 +28,12 @@ const InputField = ({ label, placeholder, type, register, errors, name }) => {
           <input
             placeholder={placeholder}
             type={type}
-            {...(register ? register(name) : {})}
+            {...(register ? register(name, validation) : {})}
           />
           {errors && errors[name] && (
             <p className="error-message">{errors[name].message}</p>
           )}
         </div>
-      )}
-      {errors && errors[name] && (
-        <p className="error-message">{errors[name].message}</p>
       )}
     </div>
   );

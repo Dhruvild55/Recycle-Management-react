@@ -8,9 +8,12 @@ import RewardsList from "../Rewards";
 import BusinessAddress from "../Information/BusinessAddress";
 import BusinessRegistration from "../Information/BusinessRegistration";
 import PreviousItems from "../History/PreviousItems";
+import { useNavigate } from "react-router-dom";
+import { route } from "../../../../shared/constants/AllRoutes";
 
 const RecyclerProfile = () => {
   const [selectedButton, setSelectedButton] = useState("recycler-information");
+  const navigate = useNavigate();
 
   const handleBtnClick = (value) => {
     setSelectedButton(value);
@@ -21,7 +24,9 @@ const RecyclerProfile = () => {
       <div className="profile-container">
         <div className="header-section">
           <div>
-            <button>&larr; BACK</button>
+            <button onClick={() => navigate(route.userManagement)}>
+              &larr; BACK
+            </button>
           </div>
           <div className="actions">
             <img src={iconDelete} alt="delete icon" />

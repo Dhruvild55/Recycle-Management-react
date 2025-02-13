@@ -1,7 +1,9 @@
 .profile-body {
   display: flex;
-  gap: 45px;
-
+  gap: 40px;
+  @include media-max(xxl) {
+    gap: 5px;
+  }
   .recyclers-info-section {
     h2 {
       font-size: 15px;
@@ -9,26 +11,36 @@
     }
     .recycler-details {
       display: flex;
-      gap: 35px;
+      gap: 20px;
+
+      @include media-max(xxl) {
+        gap: 5px;
+      }
       .recycle-info-details {
         display: flex;
       }
       .pointes-container {
         background: url(/public/images/points-bg.png);
         width: 300px;
-        height: 340px;
+        height: 330px;
         background-repeat: no-repeat;
         background-size: 240% 101%;
         background-position: left bottom;
         border-radius: 10px;
+        @include media-max(xxl) {
+          width: 280px;
+        }
 
         .pointes-sec {
           background-image: url(/public/images/points-prize.png);
-          height: 339px;
-          width: 295px;
+          height: 330px;
+          width: 300px;
           background-size: 105% 82%;
           background-repeat: no-repeat;
           background-position: -334% 217%;
+          @include media-max(xxl) {
+            width: 280px;
+          }
           .top-section {
             padding: 40px 0px 0px 21px;
             p {

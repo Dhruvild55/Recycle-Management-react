@@ -44,6 +44,8 @@ const CampaignCreate = lazy(() =>
   import("../views/campaignManagement/createCampaign")
 );
 
+const PageNotFound = lazy(() => import("../views/notFoundPage"));
+
 const RoutesDetails = [
   {
     defaultRoutes: "",
@@ -94,6 +96,7 @@ const RoutesDetails = [
       { path: route.addWaste, Component: AddWeastePage, exact: true },
       //
       { path: route.createCampaign, Component: CampaignCreate, exact: true },
+      { path: route.NotFoundPage, Component: PageNotFound, exact: true },
     ],
   },
 ];

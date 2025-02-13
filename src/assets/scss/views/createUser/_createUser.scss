@@ -81,14 +81,18 @@
             }
             .eye-button {
               position: absolute;
-              top: 65%;
-              left: 80%;
+              margin-top: 49px;
+              margin-left: 280px;
               transform: translateY(-50%);
               background: none;
               border: none;
               cursor: pointer;
               font-size: 18px;
               color: gray;
+
+              @include media-max(xxl) {
+                margin-left: 260px;
+              }
 
               &:hover {
                 color: #3fb4b4;
@@ -105,6 +109,7 @@
                 background-color: #f8f9fa;
                 border: 1px solid #ccc;
                 border-radius: 4px;
+                width: 80px;
               }
 
               input {
@@ -143,8 +148,8 @@
               border-radius: 4px;
             }
             .eye-button {
-              top: 71%;
-              left: 80%;
+              margin-top: 49px;
+              margin-left: 280px;
               position: absolute;
               transform: translateY(-50%);
               background: none;
@@ -152,6 +157,9 @@
               cursor: pointer;
               font-size: 18px;
               color: gray;
+              @include media-max(xxl) {
+                margin-left: 260px;
+              }
 
               &:hover {
                 color: #3fb4b4;

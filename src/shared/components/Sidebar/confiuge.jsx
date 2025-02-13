@@ -21,68 +21,32 @@ export const SidebarLinks = [
   },
   {
     name: "app_content_Management",
-    path: route.appContentManagement,
+    path: route.NotFoundPage,
     icon: <AppIcon color="#1F7F82" />,
   },
   {
     name: "collaction_Management",
-    path: "/",
+    path: route.NotFoundPage,
     icon: <CollectionIcon color="#1F7F82" />,
-    children: [
-      {
-        name: "add_campaign",
-        path: "/",
-        icon: "",
-      },
-      {
-        name: "update_campaign",
-        path: "/",
-        icon: "",
-      },
-    ],
   },
   {
     name: "rewards_Management",
-    path: "/",
+    path: route.NotFoundPage,
     icon: <RewardsIcon color="#1F7F82" />,
-    children: [
-      {
-        name: "add_campaign",
-        path: "/",
-        icon: "",
-      },
-      {
-        name: "update_campaign",
-        path: "/",
-        icon: "",
-      },
-    ],
   },
   {
     name: "campaign_Management",
-    path: route.createCampaign,
+    path: route.NotFoundPage,
     icon: <SponserIcon color="#1F7F82" />,
-    children: [
-      {
-        name: "add_campaign",
-        path: "/",
-        icon: "",
-      },
-      {
-        name: "update_campaign",
-        path: "/",
-        icon: "",
-      },
-    ],
   },
   {
     name: "collection_service_management",
-    path: route.collectorServiceManagement,
+    path: route.NotFoundPage,
     icon: <BinIcon color="#1F7F82" />,
   },
   {
     name: "report",
-    path: "/",
+    path: route.NotFoundPage,
     icon: <ReportIcon color="#1F7F82" />,
   },
 ];

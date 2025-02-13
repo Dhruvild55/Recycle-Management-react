@@ -34,7 +34,7 @@ function CustomTable({ headers, data, isLoading }) {
           ))
         ) : (
           <tr>
-            <td colSpan="7">
+            <td colSpan="7" className="no-user">
               <p>No user Found</p>
             </td>
           </tr>

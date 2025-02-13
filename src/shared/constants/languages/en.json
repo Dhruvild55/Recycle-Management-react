@@ -1,14 +1,14 @@
 {
   "dashboard": "Dashboard",
   "user_management": "User Management",
-  "campaign_Management": "Campaign Management",
-  "add_campaign": "Add Campaign",
-  "update_campaign": "Update Campaign",
   "app_content_Management": "App Content Management",
   "collaction_Management": "Collection Management",
   "rewards_Management": "Rewards Management",
+  "campaign_Management": "Campaign Management",
   "collection_service_management": "Collection Service Management",
   "report": "Report",
+  "add_campaign": "Add Campaign",
+  "update_campaign": "Update Campaign",
 
   "create_user": "Create User",
   "show": "Show",

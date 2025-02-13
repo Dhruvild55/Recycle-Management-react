@@ -68,13 +68,13 @@ const MixedChart = () => {
         <Line
           type="monotone"
           dataKey="actual"
-          stroke="#005e7c"
+          stroke="#1F7F82"
           strokeWidth={2}
         />
         <Line
           type="monotone"
           dataKey="expected"
-          stroke="lightgreen"
+          stroke="#C5E4CC"
           strokeWidth={2}
         />
       </LineChart>

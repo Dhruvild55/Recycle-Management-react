@@ -21,4 +21,6 @@ export const route = {
   collectorServiceManagement: "/Collector-Service-Management",
   viewCollecterServiceInformation:
     "/Collector-Service-Management/Collecter-Information",
+
+  NotFoundPage: "/not-found",
 };

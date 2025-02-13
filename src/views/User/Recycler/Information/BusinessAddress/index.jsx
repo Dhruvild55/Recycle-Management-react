@@ -6,12 +6,7 @@ const BusinessAddress = () => {
         <div className="row">
           <div className="col-md-6 mb-3">
             <label htmlFor="unitNo">Unit No.</label>
-            <input
-              type="text"
-              id="unitNo"
-              className="form-control"
-              placeholder="15-10/1"
-            />
+            <input type="text" className="form-control" value="15-10/1" />
           </div>
           <div className="col-md-6 mb-3">
             <label htmlFor="address">Address</label>
@@ -19,7 +14,7 @@ const BusinessAddress = () => {
               type="text"
               id="address"
               className="form-control"
-              placeholder="Jalan Sentosa 39/2, USJ 15"
+              value="Jalan Sentosa 39/2, USJ 15"
             />
           </div>
         </div>
@@ -31,7 +26,7 @@ const BusinessAddress = () => {
               type="text"
               id="city"
               className="form-control"
-              placeholder="Subang Jaya"
+              value="Subang Jaya"
             />
           </div>
           <div className="col-md-6 mb-3">
@@ -40,7 +35,7 @@ const BusinessAddress = () => {
               type="text"
               id="state"
               className="form-control"
-              placeholder="Selangor"
+              value="Selangor"
             />
           </div>
         </div>
@@ -51,7 +46,7 @@ const BusinessAddress = () => {
             type="text"
             id="postcode"
             className="form-control"
-            placeholder="403450"
+            value="403450"
           />
         </div>
         <div className="col-md-6 mb-3">
@@ -60,7 +55,7 @@ const BusinessAddress = () => {
             type="text"
             id="country"
             className="form-control"
-            placeholder="Malaysia"
+            value="Malaysia"
           />
         </div>
 

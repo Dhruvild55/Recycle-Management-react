@@ -42,7 +42,7 @@ const BarChartComponent = ({ xPos, yPos }) => {
             src={iconDrop}
             style={{
               position: "absolute",
-              left: "45.5%",
+              left: "180px",
               top: "53.5%",
               transform: "translate(-50%, -50%)",
               fontSize: "30px",
@@ -54,11 +54,11 @@ const BarChartComponent = ({ xPos, yPos }) => {
       <div className="chart-data">
         <div>
           <div className="data-rounded">11</div>
-          <h2>asdf</h2>
+          <h2>14567 </h2>
         </div>
         <div>
           <div className="data-rounded">15</div>
-          <h2>asdf</h2>
+          <h2>12340</h2>
         </div>
       </div>
     </div>
@@ -66,3 +66,6 @@ const BarChartComponent = ({ xPos, yPos }) => {
 };
 
 export default BarChartComponent;
+
+// left: "45.5%",
+//               top: "53.5%",

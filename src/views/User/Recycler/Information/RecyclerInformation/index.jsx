@@ -13,7 +13,7 @@ const RecyclerInformation = () => {
         </div>
         <div className="recycler-details">
           <div className="recycle-info-details">
-            <BarChartComponent xPos={330} yPos={200} />
+            <BarChartComponent xPos={330} yPos={200} leftPos={45.5} />
             <div className="recyclers-info-sub-section"></div>
           </div>
           <div className="pointes-container">

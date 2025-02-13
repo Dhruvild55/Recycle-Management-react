@@ -11,6 +11,8 @@ import { FiEyeOff } from "react-icons/fi";
 import { FiEye } from "react-icons/fi";
 import InputField from "../../../../shared/components/InputFieldComponent";
 import { createUser } from "../../../../query/users/createUsers/createUsers.query";
+import { validationRules } from "../../../../shared/constants/ValidationRules";
+import { Loader } from "../../../../shared/components/Loader";
 
 export default function AddUserPage() {
   const navigate = useNavigate();
@@ -27,7 +29,7 @@ export default function AddUserPage() {
     formState: { errors },
   } = useForm();
 
-  const addAdminMutation = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: createUser,
     onSuccess: (data) => {
       ReactToastify(data?.message, "success");
@@ -61,7 +63,7 @@ export default function AddUserPage() {
       formData.append("selfie", selectedImage);
     }
 
-    addAdminMutation.mutate(formData);
+    mutate(formData);
   };
 
   const isValidName = (value) => {
@@ -101,7 +103,12 @@ export default function AddUserPage() {
     <div className="create-admin-section">
       <div className="main-section">
         <div className="header-contant">
-          <button className="back-button">&larr; BACK</button>
+          <button
+            className="back-button"
+            onClick={() => navigate(route.userManagement)}
+          >
+            &larr; BACK
+          </button>
         </div>
         <div className="personal-info-section">
           <h2>Personal Information</h2>
@@ -150,6 +157,7 @@ export default function AddUserPage() {
                 register={register}
                 errors={errors}
                 name="firstName"
+                validation={validationRules.firstName}
               />
               <InputField
                 label={language.last_name}
@@ -158,6 +166,7 @@ export default function AddUserPage() {
                 register={register}
                 errors={errors}
                 name="lastName"
+                validation={validationRules.lastName}
               />
               <InputField
                 label="Username"
@@ -176,6 +185,7 @@ export default function AddUserPage() {
                 register={register}
                 errors={errors}
                 name="phone"
+                validation={validationRules.phone}
               />
 
               <InputField
@@ -185,6 +195,7 @@ export default function AddUserPage() {
                 register={register}
                 errors={errors}
                 name="email"
+                validation={validationRules.email}
               />
 
               <div className="input-field">
@@ -224,9 +235,9 @@ export default function AddUserPage() {
                 >
                   <option value="admin">Admin</option>
                   <option value="super Admin">Super Admin</option>
-                  <option value="b2b Collecter">B2B COLLECTOR</option>
+                  <option value="b2b Collector">B2B COLLECTOR</option>
                   <option value="b2b Recycler">B2B RECYCLER</option>
-                  <option value="b2c Collecter">B2C COLLECTOR</option>
+                  <option value="b2c Collector">B2C COLLECTOR</option>
                   <option value="b2c Recycler">B2C RECYCLER</option>
                 </select>
                 {errors.roles && (
@@ -262,8 +273,16 @@ export default function AddUserPage() {
             </div>
 
             <div className="form-actions">
-              <button type="submit" className="submit-button">
-                Submit
+              <button
+                type="submit"
+                className="submit-button"
+                disabled={isPending}
+              >
+                {isPending ? (
+                  <Loader animation="border" width="20px" height="20px" />
+                ) : (
+                  "Submit"
+                )}
               </button>
               <button type="button" className="cancel-button">
                 Cancel

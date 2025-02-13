@@ -31,7 +31,10 @@ const RolesList = () => {
       <div className="userList-header">
         <label>Roles and Permissions</label>
         <div></div>
-        <button onClick={() => navigate(route.addUser)} className="add-btn">
+        <button
+          onClick={() => navigate(route.NotFoundPage)}
+          className="add-btn"
+        >
           {" "}
           Add Roles <FaPlus style={{ fontSize: "15px" }} />
         </button>

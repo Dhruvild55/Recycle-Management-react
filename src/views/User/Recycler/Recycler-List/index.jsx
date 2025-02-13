@@ -2,7 +2,11 @@
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { iconDelete, iconEdit } from "../../../../assets/images/icons";
+import {
+  iconDelete,
+  iconEdit,
+  iconProfile,
+} from "../../../../assets/images/icons";
 import ProfilePic from "../../../../shared/components/ProfilePic";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { deleteUser } from "../../../../query/users/deleteUser/deleteUser.query";
@@ -10,6 +14,8 @@ import { ReactToastify } from "../../../../shared/utils";
 import { usersList } from "../../../../query/users/getusers/getUsers.query";
 import CustomTable from "../../../../shared/components/CustomTable";
 import Pagination from "../../../../shared/components/CustomPagination";
+import { useNavigate } from "react-router-dom";
+import { route } from "../../../../shared/constants/AllRoutes";
 
 const RecyclerList = ({ Role }) => {
   const translations = useSelector((state) => state.settings.translations);
@@ -18,6 +24,7 @@ const RecyclerList = ({ Role }) => {
   const [isDescendingOrder, setIsdescendingOrder] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const currentRole = "Recycler";
+  const navigate = useNavigate();
 
   const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ["userList", pageNumber, pageSize, isDescendingOrder, Role],
@@ -70,8 +77,15 @@ const RecyclerList = ({ Role }) => {
       label: "Action",
       render: (row) => (
         <div className="flex gap-2">
-          <button onClick={() => alert("Edit clicked")}>
-            <img src={iconEdit} />
+          <button
+            onClick={() => navigate(route.viewRecycler)}
+            style={{
+              backgroundColor: "#D9F0FF",
+              padding: "5px 5px",
+              borderRadius: "10px",
+            }}
+          >
+            <img src={iconProfile} />
           </button>
           <button onClick={() => deleteUserMutation({ userId: row.id })}>
             <img src={iconDelete} />
@@ -91,7 +105,7 @@ const RecyclerList = ({ Role }) => {
   return (
     <div>
       <div className="userList-header">
-        <label>List of Admin</label>
+        <label>List of Recycler</label>
         <div>
           <input
             className="search-input"
@@ -105,11 +119,6 @@ const RecyclerList = ({ Role }) => {
           <label>Filter:</label>
           <select>
             <option>All</option>
-            <option>Account Manager</option>
-            <option>Administration</option>
-            <option>Assistant Account</option>
-            <option>Assistant Manager</option>
-            <option>Branch Manager</option>
           </select>
         </div>
       </div>

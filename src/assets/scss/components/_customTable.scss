@@ -8,7 +8,7 @@
     thead {
       th {
         padding: 16px 10px;
-        text-align: center;
+        text-align: justify;
         vertical-align: middle;
         font-weight: 600;
         letter-spacing: 0.02em;
@@ -26,11 +26,14 @@
           background-color: #f0f8ff;
           transition: background-color 0.2s ease-in-out;
         }
+        .no-user {
+          text-align: center;
+        }
 
         td {
           color: #444;
           padding: 10px;
-          text-align: center;
+          text-align: justify;
           vertical-align: middle;
 
           .action-btn {

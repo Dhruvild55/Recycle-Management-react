@@ -49,9 +49,21 @@ const AdminList = ({ Role }) => {
     },
   });
 
+  const formatDate = (dateTimeString) => {
+    const isoString = dateTimeString.replace(" ", "T");
+    const date = new Date(isoString);
+    if (isNaN(date.getTime())) {
+      return "";
+    }
+    return date.toISOString().split("T")[0];
+  };
+
   const tableData = data?.data?.items || [];
-  const filteredData = tableData.filter((user) =>
-    user.userName.toLowerCase().includes(searchQuery)
+  const filteredData = tableData.filter(
+    (user) =>
+      user.userName.toLowerCase().includes(searchQuery) ||
+      user.email.toLowerCase().includes(searchQuery) ||
+      user.phoneNumber.toLowerCase().includes(searchQuery)
   );
 
   const totalPages = Math.ceil(data?.data?.totalRecords / pageSize);
@@ -64,7 +76,7 @@ const AdminList = ({ Role }) => {
         row.id.length > 10 ? `${row.id.slice(0, 10)}...` : row.id,
     },
     {
-      key: "firstName",
+      key: "userName",
       label: "Name",
       render: (row) => (
         <div className="d-flex align-items-center">
@@ -74,20 +86,32 @@ const AdminList = ({ Role }) => {
             image={row.selfiePath}
             name={row.userName}
           />
-          <span className="ms-2">{row.firstName}</span>
+          <span className="ms-2">{row.userName}</span>
         </div>
       ),
     },
     { key: "roles", label: "Roles" },
     { key: "phoneNumber", label: "Phone No." },
     { key: "email", label: "Email" },
-    { key: "lastLogin", label: "Last Login" },
+    {
+      key: "lastLoginDate",
+      label: "Last Login",
+      render: (row) => (
+        <div className="d-flex align-items-center">
+          <span>{row.lastLoginDay}</span>{" "}
+          <span className="ms-2">{formatDate(row.lastLoginDate)}</span>
+        </div>
+      ),
+    },
     {
       key: "action",
       label: "Action",
       render: (row) => (
         <div className="flex gap-2">
-          <button onClick={() => alert("Edit clicked")} className="action-btn">
+          <button
+            onClick={() => alert("This page is under Development!")}
+            className="action-btn"
+          >
             <img src={iconEdit} />
           </button>
           <button
@@ -122,11 +146,6 @@ const AdminList = ({ Role }) => {
           <label>Filter:</label>
           <select>
             <option>All</option>
-            <option>Account Manager</option>
-            <option>Administration</option>
-            <option>Assistant Account</option>
-            <option>Assistant Manager</option>
-            <option>Branch Manager</option>
           </select>
         </div>
       </div>

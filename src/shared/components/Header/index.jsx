@@ -57,7 +57,7 @@ function Header({ toggleSidebar, isCollapsed, selectedMenu }) {
     <>
       <header className={`header ${isCollapsed ? "shifted" : ""} `}>
         <div className={`header-left `}>
-          <div onClick={toggleSidebar}>
+          <div>
             {selectedMenu.name === "dashboard" ? (
               <MenuIcon color="#181D27" />
             ) : selectedMenu.name === "user_management" ? (

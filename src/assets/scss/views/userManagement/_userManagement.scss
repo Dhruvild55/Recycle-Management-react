@@ -44,7 +44,8 @@
         gap: 10px;
 
         .search-input {
-          width: 30rem;
+          width: 100%;
+          min-width: 670px;
           padding: 10px 45px;
           border: 1px solid #d4d4d4;
           border-radius: 10px;
@@ -52,6 +53,10 @@
           background: url("/images/searchIcon.png") no-repeat 18px center;
           background-size: 16px;
           outline: none;
+
+          @include media-max(xxl) {
+            min-width: 660px;
+          }
         }
 
         select {
@@ -69,7 +74,7 @@
       justify-content: space-between;
       margin: 12px;
 
-      .section {
+      select {
         word-wrap: normal !important;
         border: none !important;
       }

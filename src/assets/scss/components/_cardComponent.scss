@@ -1,6 +1,6 @@
 .card-section {
   display: flex;
-  gap: 16px;
+  gap: 20px;
   justify-content: center; // Centers cards in container
 
   .card-box {
@@ -50,38 +50,5 @@
         font-size: 12px;
       }
     }
-  }
-}
-
-/* Responsive for 1440px width & 920px height */
-@media screen and (min-width: 1440px) and (max-height: 920px) {
-  .card-section {
-    .card-box {
-      padding: 30px;
-    }
-  }
-}
-
-/* Responsive for Tablets (1024px width) */
-@media screen and (max-width: 1024px) {
-  .card-box {
-    width: 220px;
-    height: 160px;
-    padding: 25px;
-  }
-}
-
-/* Responsive for Mobile (768px width and below) */
-@media screen and (max-width: 768px) {
-  .card-section {
-    flex-direction: column; // Stack cards vertically
-    align-items: center;
-  }
-
-  .card-box {
-    width: 90%; // Use percentage for better adaptability
-    max-width: 320px;
-    height: auto;
-    padding: 20px;
   }
 }
