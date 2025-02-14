@@ -53,8 +53,10 @@ const PreviousItems = () => {
   ];
 
   return (
-    <div className="table-container">
-      <h1>Previous Items</h1>
+    <div className="common-main-section" style={{ marginTop: "10px" }}>
+      <label className="primary-title" style={{ marginBottom: "20px" }}>
+        Previous Items
+      </label>
       <CustomTable headers={headerData} data={rows} />
     </div>
   );

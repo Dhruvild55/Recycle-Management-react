@@ -1,7 +1,6 @@
 import axiosInstance from "../../../axios";
 
 export const updateRoles = async (data) => {
-  console.log("query", data);
   const response = await axiosInstance.put(
     `/admin/updatepermission?culture=en`,
     data

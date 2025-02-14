@@ -101,17 +101,17 @@ export default function AddUserPage() {
 
   return (
     <div className="create-admin-section">
-      <div className="main-section">
+      <div className="common-main-section">
         <div className="header-contant">
           <button
-            className="back-button"
+            className="back-text"
             onClick={() => navigate(route.userManagement)}
           >
             &larr; BACK
           </button>
         </div>
         <div className="personal-info-section">
-          <h2>Personal Information</h2>
+          <label className="primary-title">Personal Information</label>
 
           <div className="profile-photo-section">
             <div className="profile-left">

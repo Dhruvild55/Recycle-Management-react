@@ -39,12 +39,10 @@ const AdminList = ({ Role }) => {
   const { mutate: deleteUserMutation, isPending: isDeleteUser } = useMutation({
     mutationFn: deleteUser,
     onSuccess: (data) => {
-      console.log("delete User Succesfullly", data.message);
       ReactToastify(data.message, "success");
       refetch();
     },
     onError: (error) => {
-      console.log("error in user Deletion", error);
       ReactToastify("Delete user failed", "error");
     },
   });
@@ -128,7 +126,7 @@ const AdminList = ({ Role }) => {
   return (
     <div>
       <div className="userList-header">
-        <label>List of Admin</label>
+        <label className="primary-title">List of Admin</label>
         <div>
           <input
             className="search-input"
@@ -143,7 +141,7 @@ const AdminList = ({ Role }) => {
           Add Admin <FaPlus style={{ fontSize: "15px" }} />
         </button>
         <div>
-          <label>Filter:</label>
+          <label className="back-text">Filter:</label>
           <select>
             <option>All</option>
           </select>

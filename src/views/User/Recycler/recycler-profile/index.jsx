@@ -21,10 +21,13 @@ const RecyclerProfile = () => {
 
   return (
     <div className="user-profile-section">
-      <div className="profile-container">
+      <div className="common-main-section">
         <div className="header-section">
           <div>
-            <button onClick={() => navigate(route.userManagement)}>
+            <button
+              className="back-text"
+              onClick={() => navigate(route.userManagement)}
+            >
               &larr; BACK
             </button>
           </div>
@@ -66,7 +69,7 @@ const RecyclerProfile = () => {
         )}
         {selectedButton === "recycler-history" && (
           <div className="recycler-history">
-            <h1>Recycler History</h1>
+            <label className="primary-title">Recycler History</label>
             <div className="card-wrapper">
               <RecyclerHistory />
             </div>
@@ -74,12 +77,13 @@ const RecyclerProfile = () => {
         )}
         {selectedButton === "rewards" && (
           <div className="rewards">
-            <h1>Rewards History</h1>
+            <label className="primary-title">Rewards History</label>
             <RewardsList />
           </div>
         )}
         {selectedButton === "hardware" && (
           <div className="hardware-section">
+            <label className="primary-title">Hardware</label>
             <HardwareTable />
           </div>
         )}

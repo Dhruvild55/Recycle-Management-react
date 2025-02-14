@@ -62,11 +62,11 @@ const EditPermissions = () => {
   };
   return (
     <div className="permission-section">
-      <div className="permission-container">
+      <div className="common-main-section">
         <div>
-          <button className="back-btn">Back to Roles List</button>
+          <button className="back-text">Back to Roles List</button>
         </div>
-        <div>
+        <div style={{ marginTop: "20px" }}>
           <p>Roles</p>
           <div className="input-section">
             <input type="text" placeholder="Enter your new role" />

@@ -1,8 +1,11 @@
 const BusinessAddress = () => {
   return (
-    <div className="business-address-form">
-      <h2>Business Address</h2>
-      <form>
+    <div
+      className="common-main-section"
+      style={{ marginTop: "10px", padding: "2rem" }}
+    >
+      <label className="primary-title">Business Address</label>
+      <form style={{ marginTop: "15px" }}>
         <div className="row">
           <div className="col-md-6 mb-3">
             <label htmlFor="unitNo">Unit No.</label>

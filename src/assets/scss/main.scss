@@ -1,7 +1,7 @@
 @import "./variable";
+@import "./common";
 
 //helpers
-
 @import "./helpers/media-queries";
 
 // components
@@ -15,6 +15,7 @@
 @import "./components/barChartComponent";
 @import "./components/secondaryHeader";
 @import "./components/footer";
+@import "./components/dragAndDrop";
 
 // userManagement Components
 @import "./components/UserManagement/Recycler/Information/recyclerInformation";
@@ -30,6 +31,7 @@
 // App content Management
 @import "./views/appContentManagement/appContantList";
 @import "./views/appContentManagement/addNewWaste";
+@import "./views/appContentManagement/addGuidelines";
 
 // Collecter Service Management
 @import "./views/CollecterServiceManagement/CollecterServiceList";

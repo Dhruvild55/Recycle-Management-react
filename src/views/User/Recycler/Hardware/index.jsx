@@ -44,7 +44,7 @@ const HardwareTable = () => {
     },
   ];
   return (
-    <div className="hardware-table">
+    <div className="hardware-table" style={{ marginTop: "20px" }}>
       <CustomTable headers={headerData} data={rows} />
     </div>
   );

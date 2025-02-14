@@ -21,7 +21,7 @@ export const SidebarLinks = [
   },
   {
     name: "app_content_Management",
-    path: route.NotFoundPage,
+    path: route.appContentManagement,
     icon: <AppIcon color="#1F7F82" />,
   },
   {

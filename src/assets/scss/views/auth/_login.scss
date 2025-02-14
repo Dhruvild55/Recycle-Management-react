@@ -11,10 +11,6 @@ $text-muted: #999999;
   background-size: 30% 184%;
   background-position: center bottom;
 
-  @include media-max(xxl) {
-    background-size: 35% 170%;
-  }
-
   .login-form-container {
     display: flex;
     justify-content: center;
@@ -31,19 +27,23 @@ $text-muted: #999999;
       width: 100%;
       max-width: 530px;
       height: 590px;
-      //
       position: absolute;
       left: 55%;
-
-      @include media-max(xxl) {
-        max-width: 629px; /* Increased width */
-        min-height: 780px; /* Increased height */
-        padding: 3rem;
-        margin-left: 0px;
-        position: absolute;
-        left: 702px;
+      @include media-min(xs) {
+        left: 0px;
       }
-
+      @include media-min(sm) {
+        left: 15%;
+      }
+      @include media-min(md) {
+        left: 30%;
+      }
+      @include media-min(lg) {
+        left: 45%;
+      }
+      @include media-min(xl) {
+        left: 55%;
+      }
       .login-header {
         display: flex;
         align-items: center;
@@ -54,16 +54,6 @@ $text-muted: #999999;
           font-size: 12px;
           color: #999999;
           font-weight: $fw-400;
-        }
-
-        @include media-max(xxl) {
-          width: 504px;
-          height: 42px;
-          margin-bottom: 30px;
-          p {
-            font-size: 12px;
-            font-weight: $fw-400;
-          }
         }
       }
 
@@ -82,18 +72,6 @@ $text-muted: #999999;
           p {
             font-size: 14px;
             font-weight: $fw-400;
-          }
-
-          @include media-max(xxl) {
-            margin: 48px 0;
-            h2 {
-              font-size: 40px;
-              font-weight: 700;
-            }
-            p {
-              font-size: 14px;
-              font-weight: $fw-400;
-            }
           }
         }
 

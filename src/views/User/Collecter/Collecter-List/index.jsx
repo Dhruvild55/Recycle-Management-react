@@ -40,12 +40,10 @@ const CollecterList = ({ Role }) => {
   const { mutate: deleteUserMutation, isPending: isDeleteUser } = useMutation({
     mutationFn: deleteUser,
     onSuccess: (data) => {
-      console.log("delete User Succesfullly", data.message);
       ReactToastify(data.message, "success");
       refetch();
     },
     onError: (error) => {
-      console.log("error in user Deletion", error);
       ReactToastify("Delete user failed", "error");
     },
   });
@@ -67,17 +65,37 @@ const CollecterList = ({ Role }) => {
         </div>
       ),
     },
-    { key: "roles", label: "Roles" },
-    { key: "phoneNumber", label: "Phone No." },
+    { key: "roles", label: "Category" },
     { key: "email", label: "Email" },
-    { key: "lastLogin", label: "Status" },
+    { key: "phoneNumber", label: "Phone No." },
+    { key: "location", label: "Location" },
+    {
+      key: "isApprovedByAdmin",
+      label: "Status",
+      render: (row) => (
+        <div
+          className="flex gap-2"
+          style={{ alignItems: "center", display: "flex" }}
+        >
+          <div
+            style={{
+              width: "10px",
+              height: "10px",
+              backgroundColor: row.isApprovedByAdmin ? "#00DE4E" : "#C6C6C6",
+              borderRadius: "20px",
+            }}
+          ></div>
+          <span>{row.isApprovedByAdmin ? "Active" : "Not Active"}</span>
+        </div>
+      ),
+    },
     {
       key: "action",
       label: "Action",
       render: (row) => (
         <div className="flex gap-2">
           <button
-            onClick={() => navigate(route.ViewCollecter)}
+            onClick={() => navigate(route.viewCollector(row.id))}
             style={{
               backgroundColor: "#D9F0FF",
               padding: "5px 5px",
@@ -104,7 +122,7 @@ const CollecterList = ({ Role }) => {
   return (
     <div>
       <div className="userList-header">
-        <label>List of Collectors</label>
+        <label className="primary-title">List of Collectors</label>
         <div>
           <input
             className="search-input"

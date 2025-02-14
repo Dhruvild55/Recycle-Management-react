@@ -24,10 +24,10 @@ const RolesList = () => {
   });
 
   const handleEditPermission = (role) => {
-    navigate(route.EditPermission(role));
+    navigate(route.editPermission(role));
   };
   return (
-    <div>
+    <>
       <div className="userList-header">
         <label>Roles and Permissions</label>
         <div></div>
@@ -98,7 +98,7 @@ const RolesList = () => {
           )}
         </tbody>
       </Table>
-    </div>
+    </>
   );
 };
 

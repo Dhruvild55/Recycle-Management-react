@@ -25,7 +25,6 @@ function Header({ toggleSidebar, isCollapsed, selectedMenu }) {
   const [selectedLanguage, setSelectedLanguage] = useState(
     localStorage.getItem("language") || "en"
   );
-  console.log("selected Menu", selectedMenu);
   useEffect(() => {
     dispatch(changeLanguage(selectedLanguage));
   }, [dispatch, selectedLanguage]);
@@ -48,9 +47,11 @@ function Header({ toggleSidebar, isCollapsed, selectedMenu }) {
   };
 
   const formatTitle = (name) => {
-    return name
-      .replace(/_/g, " ") // Replace "_" with space
-      .replace(/\b\w/g, (char) => char.toUpperCase()); // Capitalize first letter of each word
+    if (name) {
+      return name
+        .replace(/_/g, " ") // Replace "_" with space
+        .replace(/\b\w/g, (char) => char.toUpperCase()); // Capitalize first letter of each word
+    }
   };
 
   return (

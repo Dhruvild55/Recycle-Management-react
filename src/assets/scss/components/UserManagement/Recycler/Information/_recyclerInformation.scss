@@ -2,20 +2,13 @@
   display: flex;
   gap: 40px;
   @include media-max(xxl) {
-    gap: 5px;
+    gap: 10px;
   }
   .recyclers-info-section {
-    h2 {
-      font-size: 15px;
-      font-weight: $fw-400;
-    }
     .recycler-details {
       display: flex;
       gap: 20px;
 
-      @include media-max(xxl) {
-        gap: 5px;
-      }
       .recycle-info-details {
         display: flex;
       }
@@ -27,9 +20,6 @@
         background-size: 240% 101%;
         background-position: left bottom;
         border-radius: 10px;
-        @include media-max(xxl) {
-          width: 280px;
-        }
 
         .pointes-sec {
           background-image: url(/public/images/points-prize.png);
@@ -38,9 +28,6 @@
           background-size: 105% 82%;
           background-repeat: no-repeat;
           background-position: -334% 217%;
-          @include media-max(xxl) {
-            width: 280px;
-          }
           .top-section {
             padding: 40px 0px 0px 21px;
             p {

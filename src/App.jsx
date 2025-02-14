@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import { Loader } from "./shared/components/Loader";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { navigationTo } from "./helper/helper";
 
 const AllRoutes = React.lazy(() => import("./routes"));
 
@@ -18,11 +19,10 @@ const queryClient = new QueryClient({
         }
       },
       onError: (error) => {
-        if (error.response?.status === 401) {
+        console.error("Query Error:", error);
+        if (error?.response?.status === 401) {
           console.warn("Unauthorized access. Redirecting to login...");
-          window.location.href = "/login";
-        } else {
-          console.error("Query Error:", error);
+          navigationTo({ to: "/login", replace: true });
         }
       },
     },

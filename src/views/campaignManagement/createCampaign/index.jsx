@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { createCampaign } from "../../../query/campaign/createCampaign/createCampaign.query";
@@ -55,7 +56,6 @@ const CreateCampaign = () => {
     formData.append("BannerPath", "");
 
     if (data.ImageLogo[0]) {
-      console.log(data.ImageLogo[0]);
       formData.append("ImageLogo", data.ImageLogo[0]);
     }
     if (data.BannerLogo[0]) {

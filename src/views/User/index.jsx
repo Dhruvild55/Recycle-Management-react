@@ -1,80 +1,66 @@
 /* eslint-disable no-unused-vars */
-import { lazy, Suspense, useEffect, useState } from "react";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { approveUsers } from "../../query/users/approveUser/approveUser.query";
-import { ReactToastify } from "../../shared/utils";
+import { useEffect, useState, Suspense, lazy } from "react";
 import ButtonComponent from "../../shared/components/Buttoncomponent";
 
+// Lazy load all list components
 const AdminList = lazy(() => import("./Admin/Admin-list"));
 const RecyclerList = lazy(() => import("./Recycler/Recycler-List"));
-const RolesList = lazy(() => import("./Admin And Roles/Roles-List"));
 const CollecterList = lazy(() => import("./Collecter/Collecter-List"));
+const RolesList = lazy(() => import("./Admin And Roles/Roles-List"));
 
 function UserManagement() {
-  const [isSelectedBtn, setisSelectedBtn] = useState("Admin");
+  // State to track which button is selected
+  const [selectedRole, setSelectedRole] = useState("Admin");
 
   useEffect(() => {
-    document.title = "User Managemant | Recycle Management ";
+    document.title = "User Management | Recycle Management ";
   }, []);
 
-  // approve user mutation
-  const { mutate: approveUserMutation, isPending: isApproveUser } = useMutation(
-    {
-      mutationFn: approveUsers,
-      onSuccess: (data) => {
-        console.log("User approved successfully", data);
-        ReactToastify(data.message, "success");
-      },
-      onError: (error) => {
-        console.error("Error approving user:", error);
-        ReactToastify("User approved failed", "error");
-      },
+  const renderSelectedComponent = () => {
+    switch (selectedRole) {
+      case "Admin":
+        return <AdminList Role="Admin" />;
+      case "Recycler":
+        return <RecyclerList Role="Recycler" />;
+      case "Collector":
+        return <CollecterList Role="Collector" />;
+      case "Roles":
+        return <RolesList />;
+      default:
+        return null;
     }
-  );
-
-  const handleButtonClick = (role) => {
-    setisSelectedBtn(role);
   };
-
-  const componentMap = {
-    Admin: AdminList,
-    Recycler: RecyclerList,
-    Collector: CollecterList,
-    "admin roles": RolesList,
-  };
-
-  const SelectedComponent = componentMap[isSelectedBtn];
 
   return (
     <div className="userManagerment-section">
-      <div className="userList-section">
+      <div className="common-main-section">
         <div className="userManagement-top-section">
           <ButtonComponent
             label="Admin"
-            onClick={() => handleButtonClick("Admin")}
-            className={`btn${isSelectedBtn === "Admin" ? " selected" : ""}`}
+            onClick={() => setSelectedRole("Admin")}
+            className={`btn${selectedRole === "Admin" ? " selected" : ""}`}
           />
           <ButtonComponent
             label="Recycler"
-            onClick={() => handleButtonClick("Recycler")}
-            className={`btn${isSelectedBtn === "Recycler" ? " selected" : ""}`}
+            onClick={() => setSelectedRole("Recycler")}
+            className={`btn${selectedRole === "Recycler" ? " selected" : ""}`}
           />
           <ButtonComponent
             label="Collector"
-            onClick={() => handleButtonClick("Collector")}
-            className={`btn${isSelectedBtn === "Collector" ? " selected" : ""}`}
+            onClick={() => setSelectedRole("Collector")}
+            className={`btn${selectedRole === "Collector" ? " selected" : ""}`}
           />
           <ButtonComponent
             label="Admin Roles and Permissions"
-            onClick={() => handleButtonClick("admin roles")}
-            className={`btn${
-              isSelectedBtn === "admin roles" ? " selected" : ""
-            }`}
+            onClick={() => setSelectedRole("Roles")}
+            className={`btn${selectedRole === "Roles" ? " selected" : ""}`}
           />
         </div>
-        <Suspense fallback={<div>Loading...</div>}>
-          {SelectedComponent && <SelectedComponent Role={isSelectedBtn} />}
-        </Suspense>
+        <div className="userManagement-content-section">
+          <Suspense fallback={<div>Loading...</div>}>
+            {renderSelectedComponent()}
+          </Suspense>
+        </div>
       </div>
     </div>
   );

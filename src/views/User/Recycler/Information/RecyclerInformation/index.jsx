@@ -9,7 +9,7 @@ const RecyclerInformation = () => {
       </div>
       <div className="recyclers-info-section">
         <div>
-          <h2>Recycler Information</h2>
+          <label className="primary-title">Recycler Information</label>
         </div>
         <div className="recycler-details">
           <div className="recycle-info-details">

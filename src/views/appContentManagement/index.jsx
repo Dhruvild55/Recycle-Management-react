@@ -54,19 +54,27 @@ const AppContentManagement = () => {
 
   return (
     <div className="appcontent-section">
-      <div className="secondary-section">
-        <div className="header">
-          <label>Material & Service Management</label>
+      <div className="common-main-section" style={{ padding: "30px" }}>
+        <div className="title-section">
+          <label className="primary-title">Material & Service Management</label>
           <button className="add-btn" onClick={() => navigate(route.addWaste)}>
             Add Material <FaPlus style={{ fontSize: "15px" }} />
           </button>
         </div>
         <CustomTable headers={headres} data={data} />
       </div>
-      <div className="secondary-section" style={{ marginTop: "20px" }}>
-        <div className="header">
-          <label>Guidelines & Terms & Condition</label>
-          <button className="add-btn">
+      <div
+        className="common-main-section"
+        style={{ marginTop: "20px", padding: "30px" }}
+      >
+        <div className="title-section">
+          <label className="primary-title">
+            Guidelines & Terms & Condition
+          </label>
+          <button
+            className="add-btn"
+            onClick={() => navigate(route.addGuidelines)}
+          >
             Add Services <FaPlus style={{ fontSize: "15px" }} />
           </button>
         </div>

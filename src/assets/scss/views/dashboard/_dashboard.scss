@@ -4,22 +4,17 @@ $font-family: "Inter", sans-serif;
 .dashboard-section {
   transition: margin-left 0.3s ease;
 
-  .main-section {
-    padding: 20px;
-    border-radius: 20px;
-    background-color: $primary-bg-color;
-
-    .cards-container {
-      display: flex;
-      margin-top: 30px;
-      flex-wrap: wrap;
-    }
-    .chart-contant {
-      margin-top: 30px;
-      gap: 15px; // gap: 32px;
-      display: flex;
-    }
+  .cards-container {
+    display: flex;
+    margin-top: 30px;
+    flex-wrap: wrap;
   }
+  .chart-contant {
+    margin-top: 30px;
+    gap: 15px; // gap: 32px;
+    display: flex;
+  }
+
   .bottom-section {
     display: flex;
     gap: 15px;

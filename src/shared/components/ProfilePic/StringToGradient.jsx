@@ -7,7 +7,6 @@ const gradients = [
 ];
 
 const StringToGradient = (string) => {
-  console.log(string);
   const trimmedString = string.trim().replace(/\s/g, "");
   const startHash = trimmedString
     .split("")

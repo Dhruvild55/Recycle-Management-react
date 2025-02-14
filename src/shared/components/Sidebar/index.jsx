@@ -1,15 +1,27 @@
 /* eslint-disable react/prop-types */
-import { Link } from "react-router-dom";
-import { SidebarLinks } from "./confiuge"; // Corrected typo "confiuge" to "config"
+import { Link, useLocation } from "react-router-dom"; // Import useLocation
 import { useSelector } from "react-redux";
-import { useState, memo, useCallback } from "react";
+import { useState, memo, useCallback, useEffect } from "react";
 import { FaCaretRight } from "react-icons/fa";
+import { SidebarLinks } from "./confiuge";
 import { iconCarrateDown } from "../../../assets/images/icons";
 import SettingIcon from "../../../assets/images/icons/SettingIcon";
 
 const Sidebar = ({ isCollapsed, setSelectedMenu, selectedMenu }) => {
   const translations = useSelector((state) => state.settings.translations);
   const [openMenus, setOpenMenus] = useState({});
+  const location = useLocation(); // Get the current location
+
+  // Extract menu name from the URL if selectedMenu is not set
+  useEffect(() => {
+    if (!selectedMenu?.name) {
+      const path = location.pathname.split("/")[1]; // Assuming the first segment is the menu name
+      const matchedMenu = SidebarLinks.find((link) => link.path.includes(path));
+      if (matchedMenu) {
+        setSelectedMenu({ name: matchedMenu.name, icon: matchedMenu.icon });
+      }
+    }
+  }, [location, selectedMenu, setSelectedMenu]);
 
   const toggleMenu = useCallback(
     (name) => {
@@ -39,7 +51,7 @@ const Sidebar = ({ isCollapsed, setSelectedMenu, selectedMenu }) => {
             <li
               key={name}
               className={`menu-item ${
-                selectedMenu.name === name ? "selected" : ""
+                selectedMenu?.name === name ? "selected" : ""
               }`}
             >
               <Link to={path}>
@@ -69,7 +81,7 @@ const Sidebar = ({ isCollapsed, setSelectedMenu, selectedMenu }) => {
                     <li
                       key={childName}
                       className={
-                        selectedMenu === childName
+                        selectedMenu?.name === childName
                           ? "submenu-item selected"
                           : "submenu-item"
                       }

@@ -17,7 +17,6 @@ const CONSTANT = {
 
 const Login = () => {
   const navigate = useNavigate();
-  console.log(window.innerHeight, window.innerWidth);
 
   useEffect(() => {
     document.title = CONSTANT.DOC_TITLE;

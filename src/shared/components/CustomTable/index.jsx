@@ -3,7 +3,6 @@ import { Table } from "react-bootstrap";
 import { Loader } from "../Loader";
 
 function CustomTable({ headers, data, isLoading }) {
-  console.log(isLoading);
   return (
     <Table responsive>
       <thead>

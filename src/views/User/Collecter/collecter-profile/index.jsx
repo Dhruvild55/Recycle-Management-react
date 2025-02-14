@@ -14,10 +14,13 @@ const CollecterProfile = () => {
   const navigate = useNavigate();
   return (
     <div className="user-profile-section">
-      <div className="profile-container">
+      <div className="common-main-section">
         <div className="header-section">
           <div className="left-side">
-            <button onClick={() => navigate(route.userManagement)}>
+            <button
+              className="back-text"
+              onClick={() => navigate(route.userManagement)}
+            >
               &larr; BACK
             </button>
           </div>

@@ -1,26 +1,19 @@
 export const route = {
   login: "/",
   dashboard: "/dashboard",
-
   userManagement: "/user-Management",
-  addUser: "/user-Management/add",
-  // viewUser: (id) => `/user-Management/view/${id}`,
-  viewRecycler: `/user-Management/view-recycler`,
-  ViewCollecter: `/user-Management/view-collecter`,
-  EditPermission: (role) => `/user-Management/edit-permission/${role}`,
-
+  addUser: "/user-Management/admin/add",
+  viewRecycler: (id) => `/user-Management/view-recycler/${id}`,
+  viewCollector: (id) => `/user-Management/view-collector/${id}`,
+  editPermission: (role) => `/user-Management/edit-permission/${role}`,
   appContentManagement: "/app-content-Management",
   addWaste: "/app-content-Management/add-waste",
-
+  addGuidelines: "/app-content-Management/add-Guidelines",
   collectionManagement: "/collection-Management",
-
   rewardsManagement: "/rewards-Management",
-
   createCampaign: "/create-campaign",
-
   collectorServiceManagement: "/Collector-Service-Management",
   viewCollecterServiceInformation:
     "/Collector-Service-Management/Collecter-Information",
-
   NotFoundPage: "/not-found",
 };

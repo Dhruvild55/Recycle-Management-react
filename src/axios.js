@@ -25,9 +25,10 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   (error) => {
+    console.log(error);
     if (error?.response?.status === 401) {
       removeToken();
-      navigationTo({ to: "/", replace: true });
+      navigationTo({ to: "/login", replace: true });
       ReactToastify("token expired", error);
       return Promise.reject(error);
     }

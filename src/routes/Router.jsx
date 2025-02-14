@@ -31,6 +31,10 @@ const AddWeastePage = lazy(() =>
   import("../views/appContentManagement/addNewWaste")
 );
 
+const AddGuideLinePage = lazy(() =>
+  import("../views/appContentManagement/addGuidelines")
+);
+
 // collecterServiceManagement
 const CollecterServiceManagementPage = lazy(() =>
   import("../views/CollectorServiceManagement/NewCollecterPermissionList")
@@ -65,16 +69,20 @@ const RoutesDetails = [
     children: [
       { path: route.dashboard, Component: Dashboard, exact: true },
       { path: route.userManagement, Component: UserManagement, exact: true },
+
       { path: route.addUser, Component: AddUserPage, exact: true },
-      // { path: route.viewUser(`:id`), Component: UserProfilePage, exact: true },
-      { path: route.viewRecycler, Component: RecyclerProfilePage, exact: true },
       {
-        path: route.ViewCollecter,
+        path: route.viewRecycler(`:id`),
+        Component: RecyclerProfilePage,
+        exact: true,
+      },
+      {
+        path: route.viewCollector(`:id`),
         Component: CollecterProfilePage,
         exact: true,
       },
       {
-        path: route.EditPermission(":role"),
+        path: route.editPermission(":role"),
         Component: AdminPermissionEditPage,
         exact: true,
       },
@@ -94,6 +102,7 @@ const RoutesDetails = [
         exact: true,
       },
       { path: route.addWaste, Component: AddWeastePage, exact: true },
+      { path: route.addGuidelines, Component: AddGuideLinePage, exact: true },
       //
       { path: route.createCampaign, Component: CampaignCreate, exact: true },
       { path: route.NotFoundPage, Component: PageNotFound, exact: true },

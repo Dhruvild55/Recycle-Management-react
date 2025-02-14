@@ -33,7 +33,7 @@ $grid-breakpoints: (
   md: 767px,
   lg: 992px,
   xl: 1200px,
-  xxl: 1440px,
+  xxl: 1400px,
 ) !default;
 
 .add-btn {
@@ -57,13 +57,13 @@ $grid-breakpoints: (
   }
 }
 
-.secondary-section {
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 20px;
-}
-
 .buttons {
   margin-top: 0px !important;
   margin-bottom: 0px !important;
+}
+
+.common-main-section {
+  padding: 20px;
+  background-color: white;
+  border-radius: 20px;
 }

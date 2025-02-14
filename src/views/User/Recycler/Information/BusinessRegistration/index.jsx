@@ -1,8 +1,13 @@
 const BusinessRegistration = () => {
   return (
-    <div className="business-registration-section">
+    <div
+      className="common-main-section"
+      style={{ marginTop: "10px", padding: "2rem" }}
+    >
       <div className="registration-information">
-        <h1 className="pr-title">Business Registration information</h1>
+        <label className="primary-title">
+          Business Registration information
+        </label>
         <div className="registration-information-details">
           <div className="input-feild">
             <label>Business Name</label>

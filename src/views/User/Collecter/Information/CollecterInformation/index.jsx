@@ -8,7 +8,7 @@ const CollecterInformation = () => {
         <ProfileCardComponent />
       </div>
       <div className="collecter-details">
-        <h2>Collecter Information</h2>
+        <label className="primary-title">Collecter Information</label>
         <CollecterAddressComponent />
         <div className="extra-details">
           <p>User ID: #SF0038</p>
