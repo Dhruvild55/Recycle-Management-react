@@ -1,12 +1,15 @@
 /* eslint-disable react/prop-types */
 
+import { useSelector } from "react-redux";
 import ButtonComponent from "../Buttoncomponent";
 
 function Pagination({ currentPage, totalPages, onPageChange }) {
+  const translations = useSelector((state) => state.settings.translations);
+
   return (
     <div className="pagination">
       <ButtonComponent
-        label="Previous"
+        label={translations.previous}
         onClick={() => onPageChange(currentPage - 1)}
         className="btn-text"
         disable={currentPage === 1}
@@ -21,7 +24,7 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
         </button>
       ))}
       <ButtonComponent
-        label="Next"
+        label={translations.next}
         onClick={() => onPageChange(currentPage + 1)}
         className="btn-text"
         disable={currentPage === totalPages}

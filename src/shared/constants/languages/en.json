@@ -9,23 +9,44 @@
   "report": "Report",
   "add_campaign": "Add Campaign",
   "update_campaign": "Update Campaign",
+  "settings": "Settings",
 
-  "create_user": "Create User",
-  "show": "Show",
-  "entries": "entries",
-  "userName": "UserName",
-  "email": "Email",
+  "admin": "Admin",
+  "recycler": "Recycler",
+  "collector": "Collector",
+  "admin_rols_and_Permissions": "Admin Roles and Permissions",
+
+  "add_admin": "Add Admin",
+
+  "list_of_admin": "List Of Admin",
+  "list_of_recycler": "List of Recycler",
+  "list_of_collector": "List of Collector",
+
+  "filter": "Filter",
+  "showing_entries": "SHOWING 10 ENTRIES",
+
+  "user_id": "User Id",
+  "name": "Name",
   "roles": "Roles",
-  "actions": "Actions",
-  "No_users_found": "No users found",
+  "phone_no": "Phone No.",
+  "email": "Email",
+  "last_login": "Last Login",
+  "action": "Action",
+  "category": "Category",
+  "status": "Status",
+  "state": "State",
+  "location": "Location",
+
   "previous": "Previous",
   "next": "Next",
   "search": "Search",
+
+  "No_users_found": "No users found",
   "active": "Active",
   "deactive": "Deactive",
   "activate": "Activate",
   "deactivate": "Deactivate",
-  "status": "Status",
+
   "deleteUser": "Delete User",
   "delete": "Delete",
 

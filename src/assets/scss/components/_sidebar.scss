@@ -1,13 +1,13 @@
 $sidebar-width: 310px;
 $sidebar-bg: white;
 $sidebar-color: #7c7c7c;
-$highlight-color: #c9ffdf;
+$highlight-color: $table-header-background;
 
 .sidebar {
   position: absolute;
   width: 100%;
   max-width: $sidebar-width;
-  height: 90vh; // Make it responsive to screen height
+  height: 90vh;
   background-color: $sidebar-bg;
   color: $sidebar-color;
   transition: transform 0.3s ease-in-out;

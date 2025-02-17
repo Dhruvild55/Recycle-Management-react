@@ -15,6 +15,7 @@ export { default as iconSponser } from "./sponserIcon.svg";
 export { default as iconBin } from "./binIcon.svg";
 export { default as iconReport } from "./reportIcon.svg";
 export { default as iconSetting } from "./settingIcon.svg";
+export { default as iconRightArrow } from "./rightArrow.svg";
 
 export { default as iconTruck } from "./recycling-truck.png";
 export { default as iconMarkerPin } from "./markerPin.png";

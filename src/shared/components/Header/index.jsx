@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import { navigationTo, removeToken } from "../../../helper/helper";
 import { SUPPORTED_LANGUAGES } from "../../utils";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { changeLanguage } from "../../../redux/appSetings/appSettingsSlice";
 import { useEffect, useState } from "react";
 import BreadCrumbs from "../BreadCrumbs";
@@ -22,6 +22,7 @@ import ReportIcon from "../../../assets/images/icons/ReportIcon";
 
 function Header({ toggleSidebar, isCollapsed, selectedMenu }) {
   const dispatch = useDispatch();
+  const translations = useSelector((state) => state.settings.translations);
   const [selectedLanguage, setSelectedLanguage] = useState(
     localStorage.getItem("language") || "en"
   );
@@ -47,6 +48,7 @@ function Header({ toggleSidebar, isCollapsed, selectedMenu }) {
   };
 
   const formatTitle = (name) => {
+    console.log(name);
     if (name) {
       return name
         .replace(/_/g, " ") // Replace "_" with space
@@ -81,13 +83,13 @@ function Header({ toggleSidebar, isCollapsed, selectedMenu }) {
           </div>
           <div>
             <span style={{ fontSize: "24px", fontWeight: "600" }}>
-              {formatTitle(selectedMenu.name)}
+              {translations[selectedMenu.name]}
             </span>
             {/* <BreadCrumbs /> */}
           </div>
         </div>
         <div className="header-right">
-          {/* <select
+          <select
             className="dropdown-section"
             onChange={(e) => handleLanguageChange(e)}
             value={selectedLanguage}
@@ -95,7 +97,7 @@ function Header({ toggleSidebar, isCollapsed, selectedMenu }) {
             {SUPPORTED_LANGUAGES.map((items) => (
               <option key={items.identifire}>{items.identifire}</option>
             ))}
-          </select> */}
+          </select>
           <div>
             <img src={iconBell} />
           </div>

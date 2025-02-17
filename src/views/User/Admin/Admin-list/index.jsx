@@ -2,7 +2,11 @@
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { usersList } from "../../../../query/users/getusers/getUsers.query";
-import { iconDelete, iconEdit } from "../../../../assets/images/icons";
+import {
+  iconDelete,
+  iconEdit,
+  iconRightArrow,
+} from "../../../../assets/images/icons";
 import ProfilePic from "../../../../shared/components/ProfilePic";
 import { ReactToastify } from "../../../../shared/utils";
 import { deleteUser } from "../../../../query/users/deleteUser/deleteUser.query";
@@ -69,13 +73,13 @@ const AdminList = ({ Role }) => {
   const adminColumns = [
     {
       key: "id",
-      label: "User ID",
+      label: "user_id",
       render: (row) =>
         row.id.length > 10 ? `${row.id.slice(0, 10)}...` : row.id,
     },
     {
       key: "userName",
-      label: "Name",
+      label: "name",
       render: (row) => (
         <div className="d-flex align-items-center">
           <ProfilePic
@@ -88,12 +92,12 @@ const AdminList = ({ Role }) => {
         </div>
       ),
     },
-    { key: "roles", label: "Roles" },
-    { key: "phoneNumber", label: "Phone No." },
-    { key: "email", label: "Email" },
+    { key: "roles", label: "roles" },
+    { key: "phoneNumber", label: "phone_no" },
+    { key: "email", label: "email" },
     {
       key: "lastLoginDate",
-      label: "Last Login",
+      label: "last_login",
       render: (row) => (
         <div className="d-flex align-items-center">
           <span>{row.lastLoginDay}</span>{" "}
@@ -103,7 +107,7 @@ const AdminList = ({ Role }) => {
     },
     {
       key: "action",
-      label: "Action",
+      label: "action",
       render: (row) => (
         <div className="flex gap-2">
           <button
@@ -126,7 +130,7 @@ const AdminList = ({ Role }) => {
   return (
     <div>
       <div className="userList-header">
-        <label className="primary-title">List of Admin</label>
+        <label className="primary-title">{translations.list_of_admin}</label>
         <div>
           <input
             className="search-input"
@@ -138,10 +142,10 @@ const AdminList = ({ Role }) => {
         </div>
         <button onClick={() => navigate(route.addUser)} className="add-btn">
           {" "}
-          Add Admin <FaPlus style={{ fontSize: "15px" }} />
+          {translations.add_admin} <FaPlus style={{ fontSize: "15px" }} />
         </button>
         <div>
-          <label className="back-text">Filter:</label>
+          <label className="back-text">{translations.filter}:</label>
           <select>
             <option>All</option>
           </select>
@@ -154,7 +158,12 @@ const AdminList = ({ Role }) => {
       />
       <div className="table-footer">
         <div>
-          <span>{translations.show} </span>
+          <span className="back-text" style={{ color: "#181D27" }}>
+            {translations.showing_entries}
+          </span>
+          {"  "}
+          <img src={iconRightArrow} />
+          {/* <span>{translations.show} </span>
           <select
             value={pageSize}
             onChange={(e) => setPageSize(Number(e.target.value))}
@@ -165,7 +174,7 @@ const AdminList = ({ Role }) => {
               </option>
             ))}
           </select>
-          <span>{translations.entries}</span>
+          <span>{translations.entries}</span> */}
         </div>
         <div>
           <Pagination

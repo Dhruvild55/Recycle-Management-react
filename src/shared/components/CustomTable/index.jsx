@@ -1,14 +1,17 @@
 /* eslint-disable react/prop-types */
 import { Table } from "react-bootstrap";
 import { Loader } from "../Loader";
+import { useSelector } from "react-redux";
 
 function CustomTable({ headers, data, isLoading }) {
+  const translations = useSelector((state) => state.settings.translations);
+
   return (
     <Table responsive>
       <thead>
         <tr>
           {headers.map((header) => (
-            <th key={header.key}>{header.label}</th>
+            <th key={header.key}>{translations[header.label]}</th>
           ))}
         </tr>
       </thead>

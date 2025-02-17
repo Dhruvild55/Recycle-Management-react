@@ -101,7 +101,7 @@ const Sidebar = ({ isCollapsed, setSelectedMenu, selectedMenu }) => {
         </ul>
         <div className="settings-section">
           <SettingIcon color="#1F7F82" />
-          <label>Settings</label>
+          <label>{translations.settings}</label>
         </div>
       </nav>
     </div>

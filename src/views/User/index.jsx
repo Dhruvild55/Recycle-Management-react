@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState, Suspense, lazy } from "react";
 import ButtonComponent from "../../shared/components/Buttoncomponent";
+import { useSelector } from "react-redux";
 
 // Lazy load all list components
 const AdminList = lazy(() => import("./Admin/Admin-list"));
@@ -11,9 +12,11 @@ const RolesList = lazy(() => import("./Admin And Roles/Roles-List"));
 function UserManagement() {
   // State to track which button is selected
   const [selectedRole, setSelectedRole] = useState("Admin");
+  const translations = useSelector((state) => state.settings.translations);
 
   useEffect(() => {
     document.title = "User Management | Recycle Management ";
+    console.log("hello");
   }, []);
 
   const renderSelectedComponent = () => {
@@ -36,22 +39,22 @@ function UserManagement() {
       <div className="common-main-section">
         <div className="userManagement-top-section">
           <ButtonComponent
-            label="Admin"
+            label={translations.admin}
             onClick={() => setSelectedRole("Admin")}
             className={`btn${selectedRole === "Admin" ? " selected" : ""}`}
           />
           <ButtonComponent
-            label="Recycler"
+            label={translations.recycler}
             onClick={() => setSelectedRole("Recycler")}
             className={`btn${selectedRole === "Recycler" ? " selected" : ""}`}
           />
           <ButtonComponent
-            label="Collector"
+            label={translations.collector}
             onClick={() => setSelectedRole("Collector")}
             className={`btn${selectedRole === "Collector" ? " selected" : ""}`}
           />
           <ButtonComponent
-            label="Admin Roles and Permissions"
+            label={translations.admin_rols_and_Permissions}
             onClick={() => setSelectedRole("Roles")}
             className={`btn${selectedRole === "Roles" ? " selected" : ""}`}
           />

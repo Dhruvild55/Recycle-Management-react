@@ -2,7 +2,11 @@
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { iconDelete, iconProfile } from "../../../../assets/images/icons";
+import {
+  iconDelete,
+  iconProfile,
+  iconRightArrow,
+} from "../../../../assets/images/icons";
 import ProfilePic from "../../../../shared/components/ProfilePic";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { deleteUser } from "../../../../query/users/deleteUser/deleteUser.query";
@@ -48,13 +52,13 @@ const RecyclerList = ({ Role }) => {
   const collecterColumns = [
     {
       key: "id",
-      label: "User ID",
+      label: "user_id",
       render: (row) =>
         row.id.length > 10 ? `${row.id.slice(0, 10)}...` : row.id,
     },
     {
       key: "firstName",
-      label: "Name",
+      label: "name",
       render: (row) => (
         <div className="d-flex align-items-center">
           <ProfilePic size={30} userId={row.id} />
@@ -62,13 +66,13 @@ const RecyclerList = ({ Role }) => {
         </div>
       ),
     },
-    { key: "roles", label: "Category" },
-    { key: "email", label: "Email" },
-    { key: "phoneNumber", label: "Phone No." },
+    { key: "roles", label: "category" },
+    { key: "email", label: "email" },
+    { key: "phoneNumber", label: "phone_no" },
     { key: "state", label: "State" },
     {
       key: "isApprovedByAdmin",
-      label: "Status",
+      label: "status",
       render: (row) => (
         <div
           className="flex gap-2"
@@ -88,7 +92,7 @@ const RecyclerList = ({ Role }) => {
     },
     {
       key: "action",
-      label: "Action",
+      label: "action",
       render: (row) => (
         <div className="flex gap-2">
           <button
@@ -119,7 +123,7 @@ const RecyclerList = ({ Role }) => {
   return (
     <div>
       <div className="userList-header">
-        <label className="primary-title">List of Recycler</label>
+        <label className="primary-title">{translations.list_of_recycler}</label>
         <div>
           <input
             className="search-input"
@@ -130,7 +134,7 @@ const RecyclerList = ({ Role }) => {
           />
         </div>
         <div>
-          <label>Filter:</label>
+          <label>{translations.filter}:</label>
           <select>
             <option>All</option>
           </select>
@@ -143,7 +147,12 @@ const RecyclerList = ({ Role }) => {
       />
       <div className="table-footer">
         <div>
-          <span>{translations.show} </span>
+          <span className="back-text" style={{ color: "#181D27" }}>
+            {translations.showing_entries}
+          </span>
+          {"  "}
+          <img src={iconRightArrow} />
+          {/* <span>{translations.show} </span>
           <select
             value={pageSize}
             onChange={(e) => setPageSize(Number(e.target.value))}
@@ -154,7 +163,7 @@ const RecyclerList = ({ Role }) => {
               </option>
             ))}
           </select>
-          <span>{translations.entries}</span>
+          <span>{translations.entries}</span> */}
         </div>
         <div>
           <Pagination

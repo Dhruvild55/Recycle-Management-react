@@ -1,12 +1,10 @@
 $primary-100: #ffffff;
-
-// 18 #1F7F82  // Brand/600
-//  4 #1D6568    Brand/700
-//     #3FB4B4
-//     #067647
-//     #299170    text card dashboard
-//     #C9FFDF  table header color
-// 7 #FFFFFF   // white
+$table-header-background: #c9ffdf;
+$btn-hover-color: #1f7f82;
+$secondary-color: #1d6568;
+$secondary-btn-hover-color: #3fb4b4;
+$beage-color: #067647;
+//     #299170
 
 $fw-400: 400;
 $fw-500: 500;
@@ -60,10 +58,4 @@ $grid-breakpoints: (
 .buttons {
   margin-top: 0px !important;
   margin-bottom: 0px !important;
-}
-
-.common-main-section {
-  padding: 20px;
-  background-color: white;
-  border-radius: 20px;
 }
