@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
-import { usersList } from "../../../../query/users/getusers/getUsers.query";
 import {
   iconDelete,
   iconEdit,
@@ -17,8 +16,9 @@ import { useNavigate } from "react-router-dom";
 import { route } from "../../../../shared/constants/AllRoutes";
 import Pagination from "../../../../shared/components/CustomPagination";
 import CustomTable from "../../../../shared/components/CustomTable";
+import useUserList from "../../../../shared/hooks/useUserList";
 
-const AdminList = ({ Role }) => {
+const AdminList = ({ role }) => {
   const [pageSize, setPageSize] = useState(10);
   const [pageNumber, setPageNumber] = useState(1);
   const [isDescendingOrder, setIsdescendingOrder] = useState(false);
@@ -26,17 +26,16 @@ const AdminList = ({ Role }) => {
   const navigate = useNavigate();
   const translations = useSelector((state) => state.settings.translations);
 
-  // show user data API
-  const { data, isLoading, isError, refetch } = useQuery({
-    queryKey: ["userList", pageNumber, pageSize, isDescendingOrder, Role],
-    queryFn: () =>
-      usersList({
-        pageNumber,
-        pageSize,
-        isDescendingOrder,
-        Role,
-      }),
-    keepPreviousData: true,
+  // show user data hook
+  const {
+    data: userListData,
+    isLoading,
+    refetch,
+  } = useUserList({
+    role,
+    pageSize,
+    pageNumber,
+    isDescendingOrder,
   });
 
   // delete user api
@@ -60,7 +59,7 @@ const AdminList = ({ Role }) => {
     return date.toISOString().split("T")[0];
   };
 
-  const tableData = data?.data?.items || [];
+  const tableData = userListData?.data?.items || [];
   const filteredData = tableData.filter(
     (user) =>
       user.userName.toLowerCase().includes(searchQuery) ||
@@ -68,7 +67,7 @@ const AdminList = ({ Role }) => {
       user.phoneNumber.toLowerCase().includes(searchQuery)
   );
 
-  const totalPages = Math.ceil(data?.data?.totalRecords / pageSize);
+  const totalPages = Math.ceil(userListData?.data?.totalRecords / pageSize);
 
   const adminColumns = [
     {

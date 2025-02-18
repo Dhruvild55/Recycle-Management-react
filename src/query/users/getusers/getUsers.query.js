@@ -4,11 +4,11 @@ export const usersList = async ({
   pageNumber,
   pageSize,
   isDescendingOrder,
-  Role,
+  role,
 }) => {
   const sortOrder = isDescendingOrder ? "email_desc" : "email_aesc";
   const response = await axiosInstance.get(
-    `/admin/userlist?pageNumber=${pageNumber}&pageSize=${pageSize}&Role=${Role}&SortOrder=${sortOrder}&culture=en`
+    `/admin/userlist?pageNumber=${pageNumber}&pageSize=${pageSize}&Role=${role}&SortOrder=${sortOrder}&culture=en`
   );
   return response.data;
 };

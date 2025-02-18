@@ -3,30 +3,27 @@ import { useEffect, useState, Suspense, lazy } from "react";
 import ButtonComponent from "../../shared/components/Buttoncomponent";
 import { useSelector } from "react-redux";
 
-// Lazy load all list components
 const AdminList = lazy(() => import("./Admin/Admin-list"));
 const RecyclerList = lazy(() => import("./Recycler/Recycler-List"));
 const CollecterList = lazy(() => import("./Collecter/Collecter-List"));
 const RolesList = lazy(() => import("./Admin And Roles/Roles-List"));
 
 function UserManagement() {
-  // State to track which button is selected
   const [selectedRole, setSelectedRole] = useState("Admin");
   const translations = useSelector((state) => state.settings.translations);
 
   useEffect(() => {
     document.title = "User Management | Recycle Management ";
-    console.log("hello");
   }, []);
 
   const renderSelectedComponent = () => {
     switch (selectedRole) {
       case "Admin":
-        return <AdminList Role="Admin" />;
+        return <AdminList role="Admin" />;
       case "Recycler":
-        return <RecyclerList Role="Recycler" />;
+        return <RecyclerList role="Recycler" />;
       case "Collector":
-        return <CollecterList Role="Collector" />;
+        return <CollecterList role="Collector" />;
       case "Roles":
         return <RolesList />;
       default:

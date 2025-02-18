@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
+import { memo, useState } from "react";
 import { useSelector } from "react-redux";
 import {
   iconDelete,
@@ -8,35 +8,32 @@ import {
   iconRightArrow,
 } from "../../../../assets/images/icons";
 import ProfilePic from "../../../../shared/components/ProfilePic";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { deleteUser } from "../../../../query/users/deleteUser/deleteUser.query";
 import { ReactToastify } from "../../../../shared/utils";
-import { usersList } from "../../../../query/users/getusers/getUsers.query";
 import CustomTable from "../../../../shared/components/CustomTable";
 import Pagination from "../../../../shared/components/CustomPagination";
 import { useNavigate } from "react-router-dom";
 import { route } from "../../../../shared/constants/AllRoutes";
+import useUserList from "../../../../shared/hooks/useUserList";
 
-const RecyclerList = ({ Role }) => {
+const RecyclerList = ({ role }) => {
   const translations = useSelector((state) => state.settings.translations);
   const [pageSize, setPageSize] = useState(10);
   const [pageNumber, setPageNumber] = useState(1);
   const [isDescendingOrder, setIsdescendingOrder] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const currentRole = "Recycler";
   const navigate = useNavigate();
 
-  const { data, isLoading, isError, refetch } = useQuery({
-    queryKey: ["userList", pageNumber, pageSize, isDescendingOrder, Role],
-    queryFn: () =>
-      usersList({
-        pageNumber,
-        pageSize,
-        isDescendingOrder,
-        currentRole,
-        Role,
-      }),
-    keepPreviousData: true,
+  const {
+    data: userListData,
+    isLoading,
+    refetch,
+  } = useUserList({
+    role,
+    pageSize,
+    pageNumber,
+    isDescendingOrder,
   });
 
   const { mutate: deleteUserMutation, isPending: isDeleteUser } = useMutation({
@@ -113,12 +110,15 @@ const RecyclerList = ({ Role }) => {
     },
   ];
 
-  const tableData = data?.data?.items || [];
-  const filteredData = tableData.filter((user) =>
-    user.userName.toLowerCase().includes(searchQuery)
+  const tableData = userListData?.data?.items || [];
+  const filteredData = tableData.filter(
+    (user) =>
+      user.userName.toLowerCase().includes(searchQuery) ||
+      user.email.toLowerCase().includes(searchQuery) ||
+      user.phoneNumber.toLowerCase().includes(searchQuery)
   );
 
-  const totalPages = Math.ceil(data?.data?.totalRecords / pageSize);
+  const totalPages = Math.ceil(userListData?.data?.totalRecords / pageSize);
 
   return (
     <div>
@@ -177,4 +177,4 @@ const RecyclerList = ({ Role }) => {
   );
 };
 
-export default RecyclerList;
+export default memo(RecyclerList);

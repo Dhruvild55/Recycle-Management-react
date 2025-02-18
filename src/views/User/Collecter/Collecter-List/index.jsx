@@ -17,8 +17,9 @@ import Pagination from "../../../../shared/components/CustomPagination";
 import { useState } from "react";
 import { route } from "../../../../shared/constants/AllRoutes";
 import { useNavigate } from "react-router-dom";
+import useUserList from "../../../../shared/hooks/useUserList";
 
-const CollecterList = ({ Role }) => {
+const CollecterList = ({ role }) => {
   const translations = useSelector((state) => state.settings.translations);
   const [pageSize, setPageSize] = useState(10);
   const [pageNumber, setPageNumber] = useState(1);
@@ -26,16 +27,15 @@ const CollecterList = ({ Role }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
 
-  const { data, isLoading, isError, refetch } = useQuery({
-    queryKey: ["userList", pageNumber, pageSize, isDescendingOrder, Role],
-    queryFn: () =>
-      usersList({
-        pageNumber,
-        pageSize,
-        isDescendingOrder,
-        Role,
-      }),
-    keepPreviousData: true,
+  const {
+    data: userListData,
+    isLoading,
+    refetch,
+  } = useUserList({
+    role,
+    pageSize,
+    pageNumber,
+    isDescendingOrder,
   });
 
   const { mutate: deleteUserMutation, isPending: isDeleteUser } = useMutation({
@@ -113,12 +113,15 @@ const CollecterList = ({ Role }) => {
     },
   ];
 
-  const tableData = data?.data?.items || [];
-  const filteredData = tableData.filter((user) =>
-    user.userName.toLowerCase().includes(searchQuery)
+  const tableData = userListData?.data?.items || [];
+  const filteredData = tableData.filter(
+    (user) =>
+      user.userName.toLowerCase().includes(searchQuery) ||
+      user.email.toLowerCase().includes(searchQuery) ||
+      user.phoneNumber.toLowerCase().includes(searchQuery)
   );
 
-  const totalPages = Math.ceil(data?.data?.totalRecords / pageSize);
+  const totalPages = Math.ceil(userListData?.data?.totalRecords / pageSize);
 
   return (
     <div>
