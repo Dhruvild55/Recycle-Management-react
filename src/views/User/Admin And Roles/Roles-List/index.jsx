@@ -7,14 +7,16 @@ import { route } from "../../../../shared/constants/AllRoutes";
 import { useNavigate } from "react-router-dom";
 import { FaPlus } from "react-icons/fa";
 import { Loader } from "../../../../shared/components/Loader";
+import { useSelector } from "react-redux";
 
 const RolesList = () => {
   const navigate = useNavigate();
+  const translations = useSelector((state) => state.settings.translations);
   const rolesColumns = [
-    { key: "roles", label: "Roles" },
+    { key: "roles", label: "roles" },
     {
       key: "action",
-      label: "Action",
+      label: "action",
     },
   ];
   // get admin roles api
@@ -29,14 +31,14 @@ const RolesList = () => {
   return (
     <>
       <div className="userList-header">
-        <label>Roles and Permissions</label>
+        <label>{translations.pageTitles.roles_and_permissions}</label>
         <div></div>
         <button
           onClick={() => navigate(route.NotFoundPage)}
           className="add-btn"
         >
           {" "}
-          Add Roles <FaPlus style={{ fontSize: "15px" }} />
+          {translations.add_roles} <FaPlus style={{ fontSize: "15px" }} />
         </button>
       </div>
       <Table responsive>
@@ -50,7 +52,7 @@ const RolesList = () => {
                   padding: item.key === "action" ? "16px 60px" : "16px 60px",
                 }}
               >
-                {item.label}
+                {translations.tableFields[item.label]}
               </th>
             ))}
           </tr>

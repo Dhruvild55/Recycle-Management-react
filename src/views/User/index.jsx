@@ -11,6 +11,8 @@ const RolesList = lazy(() => import("./Admin And Roles/Roles-List"));
 function UserManagement() {
   const [selectedRole, setSelectedRole] = useState("Admin");
   const translations = useSelector((state) => state.settings.translations);
+  const { admin, recycler, collector, admin_rols_and_Permissions } =
+    translations.userManagementTopBtn;
 
   useEffect(() => {
     document.title = "User Management | Recycle Management ";
@@ -36,22 +38,22 @@ function UserManagement() {
       <div className="common-main-section">
         <div className="userManagement-top-section">
           <ButtonComponent
-            label={translations.admin}
+            label={admin}
             onClick={() => setSelectedRole("Admin")}
             className={`btn${selectedRole === "Admin" ? " selected" : ""}`}
           />
           <ButtonComponent
-            label={translations.recycler}
+            label={recycler}
             onClick={() => setSelectedRole("Recycler")}
             className={`btn${selectedRole === "Recycler" ? " selected" : ""}`}
           />
           <ButtonComponent
-            label={translations.collector}
+            label={collector}
             onClick={() => setSelectedRole("Collector")}
             className={`btn${selectedRole === "Collector" ? " selected" : ""}`}
           />
           <ButtonComponent
-            label={translations.admin_rols_and_Permissions}
+            label={admin_rols_and_Permissions}
             onClick={() => setSelectedRole("Roles")}
             className={`btn${selectedRole === "Roles" ? " selected" : ""}`}
           />

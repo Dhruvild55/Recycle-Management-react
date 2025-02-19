@@ -123,7 +123,9 @@ const RecyclerList = ({ role }) => {
   return (
     <div>
       <div className="userList-header">
-        <label className="primary-title">{translations.list_of_recycler}</label>
+        <label className="primary-title">
+          {translations.pageTitles.list_of_recycler}
+        </label>
         <div>
           <input
             className="search-input"

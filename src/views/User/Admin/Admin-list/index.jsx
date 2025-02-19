@@ -129,7 +129,9 @@ const AdminList = ({ role }) => {
   return (
     <div>
       <div className="userList-header">
-        <label className="primary-title">{translations.list_of_admin}</label>
+        <label className="primary-title">
+          {translations.pageTitles.list_of_admin}
+        </label>
         <div>
           <input
             className="search-input"

@@ -11,7 +11,7 @@ function CustomTable({ headers, data, isLoading }) {
       <thead>
         <tr>
           {headers.map((header) => (
-            <th key={header.key}>{translations[header.label]}</th>
+            <th key={header.key}>{translations.tableFields[header.label]}</th>
           ))}
         </tr>
       </thead>

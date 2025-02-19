@@ -151,8 +151,8 @@ export default function AddUserPage() {
           <form className="form" onSubmit={handleSubmit(onSubmit)}>
             <div className="form-group">
               <InputField
-                label={language.first_Name}
-                placeholder={language.first_Name}
+                label={language.formFields.first_Name}
+                placeholder={language.formFields.first_Name}
                 type="text"
                 register={register}
                 errors={errors}
@@ -160,8 +160,8 @@ export default function AddUserPage() {
                 validation={validationRules.firstName}
               />
               <InputField
-                label={language.last_name}
-                placeholder={language.last_name}
+                label={language.formFields.last_name}
+                placeholder={language.formFields.last_name}
                 type="text"
                 register={register}
                 errors={errors}

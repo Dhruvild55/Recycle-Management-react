@@ -1,40 +1,51 @@
 {
-  "dashboard": "仪表板",
-  "user_management": "用户管理",
-  "campaign_Management": "活动管理",
-  "app_content_Management": "应用内容管理",
-  "collaction_Management": "馆藏管理",
-  "rewards_Management": "奖励管理",
-  "collection_service_management": "催收服务管理",
-  "report": "报告",
-  "add_campaign": "Add Campaign",
-  "update_campaign": "Update Campaign",
-  "settings": "设置",
-
-  "admin": "行政",
-  "recycler": "回收商",
-  "collector": "集电极",
-  "admin_rols_and_Permissions": "管理员角色和权限",
+  "sidebar": {
+    "dashboard": "仪表板",
+    "user_management": "用户管理",
+    "campaign_Management": "活动管理",
+    "app_content_Management": "应用内容管理",
+    "collaction_Management": "馆藏管理",
+    "rewards_Management": "奖励管理",
+    "collection_service_management": "催收服务管理",
+    "report": "报告",
+    "add_campaign": "Add Campaign",
+    "update_campaign": "Update Campaign",
+    "settings": "设置"
+  },
+  "userManagementTopBtn": {
+    "admin": "行政",
+    "recycler": "回收商",
+    "collector": "集电极",
+    "admin_rols_and_Permissions": "管理员角色和权限"
+  },
 
   "add_admin": "添加管理员",
-  "list_of_admin": "管理员名单",
-  "list_of_recycler": "回收商名单",
-  "list_of_collector": "收藏家名单",
+  "add_roles": "添加角色",
+
+  "pageTitles": {
+    "roles_and_permissions": "角色和权限",
+    "list_of_admin": "管理员名单",
+    "list_of_recycler": "回收商名单",
+    "list_of_collector": "收藏家名单",
+    "personal_information": "个人信息"
+  },
 
   "filter": "筛选",
   "showing_entries": "显示 10 条条目",
 
-  "user_id": "用户身份",
-  "name": "姓名",
-  "roles": "角色",
-  "phone_no": "电话号码",
-  "email": "电子邮件",
-  "last_login": "上次登录",
-  "action": "行动",
-  "category": "类别",
-  "status": "地位",
-  "state": "状态",
-  "location": "地点",
+  "tableFields": {
+    "user_id": "用户身份",
+    "name": "姓名",
+    "roles": "角色",
+    "phone_no": "电话号码",
+    "email": "电子邮件",
+    "last_login": "上次登录",
+    "action": "行动",
+    "category": "类别",
+    "status": "地位",
+    "state": "状态",
+    "location": "地点"
+  },
 
   "previous": "以前的",
   "next": "下一个",

@@ -1,39 +1,52 @@
 {
-  "dashboard": "Papan Pemuka",
-  "user_management": "Pengurusan Pengguna",
-  "campaign_Management": "Pengurusan Kempen",
-  "app_content_Management": "Pengurusan Kandungan Apl",
-  "collaction_Management": "Pengurusan Koleksi",
-  "rewards_Management": "Pengurusan Ganjaran",
-  "collection_service_management": "Pengurusan Perkhidmatan Kutipan",
-  "report": "Laporan",
-  "add_campaign": "Add Campaign",
-  "update_campaign": "Update Campaign",
-  "settings": "tetapan",
+  "sidebar": {
+    "dashboard": "Papan Pemuka",
+    "user_management": "Pengurusan Pengguna",
+    "campaign_Management": "Pengurusan Kempen",
+    "app_content_Management": "Pengurusan Kandungan Apl",
+    "collaction_Management": "Pengurusan Koleksi",
+    "rewards_Management": "Pengurusan Ganjaran",
+    "collection_service_management": "Pengurusan Perkhidmatan Kutipan",
+    "report": "Laporan",
+    "add_campaign": "Add Campaign",
+    "update_campaign": "Update Campaign",
+    "settings": "tetapan"
+  },
 
-  "admin": "Admin",
-  "recycler": "Pengitar semula",
-  "collector": "Pengumpul",
-  "admin_rols_and_Permissions": "Peranan dan Keizinan Pentadbir",
+  "userManagementTopBtn": {
+    "admin": "Admin",
+    "recycler": "Pengitar semula",
+    "collector": "Pengumpul",
+    "admin_rols_and_Permissions": "Peranan dan Keizinan Pentadbir"
+  },
 
   "add_admin": "Tambah Admin",
-  "list_of_admin": "Senarai Admin",
-  "list_of_recycler": "Senarai Kitar Semula",
-  "list_of_collector": "Senarai Pengumpul",
+  "add_roles": "Tambah Peranan",
+
+  "pageTitles": {
+    "roles_and_permissions": "Peranan Dan Kebenaran",
+    "list_of_admin": "Senarai Admin",
+    "list_of_recycler": "Senarai Kitar Semula",
+    "list_of_collector": "Senarai Pengumpul",
+    "personal_information": "Maklumat Peribadi"
+  },
+
   "filter": "Penapis",
   "showing_entries": "MENUNJUKKAN 10 PENYERTAAN",
 
-  "user_id": "Id Pengguna",
-  "name": "Nama",
-  "roles": "Peranan",
-  "phone_no": "No telefon",
-  "email": "E-mel",
-  "last_login": "Log Masuk Terakhir",
-  "action": "Tindakan",
-  "category": "kategori",
-  "status": "Status",
-  "state": "negeri",
-  "location": "Lokasi",
+  "tableFields": {
+    "user_id": "Id Pengguna",
+    "name": "Nama",
+    "roles": "Peranan",
+    "phone_no": "No telefon",
+    "email": "E-mel",
+    "last_login": "Log Masuk Terakhir",
+    "action": "Tindakan",
+    "category": "kategori",
+    "status": "Status",
+    "state": "negeri",
+    "location": "Lokasi"
+  },
 
   "previous": "Sebelumnya",
   "next": "Seterusnya",

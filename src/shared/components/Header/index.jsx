@@ -83,13 +83,13 @@ function Header({ toggleSidebar, isCollapsed, selectedMenu }) {
           </div>
           <div>
             <span style={{ fontSize: "24px", fontWeight: "600" }}>
-              {translations[selectedMenu.name]}
+              {translations.sidebar[selectedMenu.name]}
             </span>
             {/* <BreadCrumbs /> */}
           </div>
         </div>
         <div className="header-right">
-          <select
+          {/* <select
             className="dropdown-section"
             onChange={(e) => handleLanguageChange(e)}
             value={selectedLanguage}
@@ -97,7 +97,7 @@ function Header({ toggleSidebar, isCollapsed, selectedMenu }) {
             {SUPPORTED_LANGUAGES.map((items) => (
               <option key={items.identifire}>{items.identifire}</option>
             ))}
-          </select>
+          </select> */}
           <div>
             <img src={iconBell} />
           </div>

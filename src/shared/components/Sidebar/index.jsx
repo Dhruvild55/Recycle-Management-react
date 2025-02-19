@@ -63,7 +63,7 @@ const Sidebar = ({ isCollapsed, setSelectedMenu, selectedMenu }) => {
                   }}
                 >
                   {icon}
-                  {translations[name]}
+                  {translations.sidebar[name]}
                   {children && (
                     <span className="caret-icon">
                       {openMenus[name] ? (
@@ -90,7 +90,7 @@ const Sidebar = ({ isCollapsed, setSelectedMenu, selectedMenu }) => {
                         to={childPath}
                         onClick={() => handleMenuSelect(childName)}
                       >
-                        {translations[childName]}
+                        {translations.sidebar[childName]}
                       </Link>
                     </li>
                   ))}
@@ -101,7 +101,7 @@ const Sidebar = ({ isCollapsed, setSelectedMenu, selectedMenu }) => {
         </ul>
         <div className="settings-section">
           <SettingIcon color="#1F7F82" />
-          <label>{translations.settings}</label>
+          <label>{translations.sidebar.settings}</label>
         </div>
       </nav>
     </div>

@@ -127,7 +127,7 @@ const CollecterList = ({ role }) => {
     <div>
       <div className="userList-header">
         <label className="primary-title">
-          {translations.list_of_collector}
+          {translations.pageTitles.list_of_collector}
         </label>
         <div>
           <input

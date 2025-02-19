@@ -1,41 +1,59 @@
 {
-  "dashboard": "Dashboard",
-  "user_management": "User Management",
-  "app_content_Management": "App Content Management",
-  "collaction_Management": "Collection Management",
-  "rewards_Management": "Rewards Management",
-  "campaign_Management": "Campaign Management",
-  "collection_service_management": "Collection Service Management",
-  "report": "Report",
-  "add_campaign": "Add Campaign",
-  "update_campaign": "Update Campaign",
-  "settings": "Settings",
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "user_management": "User Management",
+    "app_content_Management": "App Content Management",
+    "collaction_Management": "Collection Management",
+    "rewards_Management": "Rewards Management",
+    "campaign_Management": "Campaign Management",
+    "collection_service_management": "Collection Service Management",
+    "report": "Report",
+    "add_campaign": "Add Campaign",
+    "update_campaign": "Update Campaign",
+    "settings": "Settings"
+  },
 
-  "admin": "Admin",
-  "recycler": "Recycler",
-  "collector": "Collector",
-  "admin_rols_and_Permissions": "Admin Roles and Permissions",
+  "userManagementTopBtn": {
+    "admin": "Admin",
+    "recycler": "Recycler",
+    "collector": "Collector",
+    "admin_rols_and_Permissions": "Admin Roles and Permissions"
+  },
+
+  "tableFields": {
+    "user_id": "User Id",
+    "name": "Name",
+    "roles": "Roles",
+    "phone_no": "Phone No.",
+    "email": "Email",
+    "last_login": "Last Login",
+    "action": "Action",
+    "category": "Category",
+    "status": "Status",
+    "state": "State",
+    "location": "Location"
+  },
 
   "add_admin": "Add Admin",
+  "add_roles": "Add Roles",
 
-  "list_of_admin": "List Of Admin",
-  "list_of_recycler": "List of Recycler",
-  "list_of_collector": "List of Collector",
+  "pageTitles": {
+    "roles_and_permissions": "Roles And Permissions",
+    "list_of_admin": "List Of Admin",
+    "list_of_recycler": "List of Recycler",
+    "list_of_collector": "List of Collector",
+    "personal_information": "Personal Information"
+  },
+
+  "formFields": {
+    "first_Name": "First Name",
+    "last_name": "Last Name",
+    "password": "Password",
+    "phone_number": "Phone Number"
+  },
 
   "filter": "Filter",
   "showing_entries": "SHOWING 10 ENTRIES",
-
-  "user_id": "User Id",
-  "name": "Name",
-  "roles": "Roles",
-  "phone_no": "Phone No.",
-  "email": "Email",
-  "last_login": "Last Login",
-  "action": "Action",
-  "category": "Category",
-  "status": "Status",
-  "state": "State",
-  "location": "Location",
 
   "previous": "Previous",
   "next": "Next",
@@ -50,10 +68,6 @@
   "deleteUser": "Delete User",
   "delete": "Delete",
 
-  "first_Name": "First Name",
-  "last_name": "Last Name",
-  "password": "Password",
-  "phone_number": "Phone Number",
   "business_registration_details": "Business Registration Details",
   "outlet_details": "Outlet Details",
   "submit": "Submit",
