@@ -1,29 +1,23 @@
+@use "../variable" as vars; // Reference variable file with namespace
+
 @mixin media-max($breakpoint) {
-  @if map-has-key($grid-breakpoints, $breakpoint) {
-    // Get the breakpoint value
-    $breakpoint-value: map-get($grid-breakpoints, $breakpoint);
-    // Write the media query
+  @if map-has-key(vars.$grid-breakpoints, $breakpoint) {
+    $breakpoint-value: map-get(vars.$grid-breakpoints, $breakpoint);
     @media (max-width: $breakpoint-value) {
       @content;
     }
-    // If the breakpoint doesn't exist in the map
   } @else {
-    // Log a warning
     @warn 'Invalid breakpoint: #{$breakpoint}.';
   }
 }
 
 @mixin media-min($breakpoint) {
-  @if map-has-key($grid-breakpoints, $breakpoint) {
-    // Get the breakpoint value
-    $breakpoint-value: map-get($grid-breakpoints, $breakpoint);
-    // Write the media query
+  @if map-has-key(vars.$grid-breakpoints, $breakpoint) {
+    $breakpoint-value: map-get(vars.$grid-breakpoints, $breakpoint);
     @media (min-width: $breakpoint-value) {
       @content;
     }
-    // If the breakpoint doesn't exist in the map
   } @else {
-    // Log a warning
     @warn 'Invalid breakpoint: #{$breakpoint}.';
   }
 }

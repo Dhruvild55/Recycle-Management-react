@@ -8,11 +8,20 @@ $font-family: "Inter", sans-serif;
     display: flex;
     margin-top: 30px;
     flex-wrap: wrap;
+    @include media-max(sm) {
+      flex-direction: column;
+      justify-content: center;
+      align-content: center;
+    }
   }
   .chart-contant {
     margin-top: 30px;
     gap: 15px; // gap: 32px;
     display: flex;
+
+    @include media-max(sm) {
+      flex-direction: column;
+    }
   }
 
   .bottom-section {

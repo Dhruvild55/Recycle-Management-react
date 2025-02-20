@@ -82,7 +82,7 @@ function Header({ toggleSidebar, isCollapsed, selectedMenu }) {
             )}
           </div>
           <div>
-            <span style={{ fontSize: "24px", fontWeight: "600" }}>
+            <span className="title">
               {translations.sidebar[selectedMenu.name]}
             </span>
             {/* <BreadCrumbs /> */}

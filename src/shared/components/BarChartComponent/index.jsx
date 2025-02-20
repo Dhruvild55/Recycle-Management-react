@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
-import { Cell, Pie, PieChart } from "recharts";
+import { Cell, Pie, PieChart, ResponsiveContainer } from "recharts";
 import { iconDrop } from "../../../assets/images/icons";
 
-const BarChartComponent = ({ xPos, yPos }) => {
+const BarChartComponent = () => {
   const data = [
     { name: "Group A", value: 400 },
     { name: "Group B", value: 300 },
@@ -13,51 +13,89 @@ const BarChartComponent = ({ xPos, yPos }) => {
   const COLORS = ["#7CCBBC", "#1F7F82", "#B1D33A", "#ABEFC6"];
 
   return (
-    <div className="chart-section">
-      <div className="chart-box">
+    <div
+      className="chart-section"
+      style={{ position: "relative", width: "100%", maxWidth: "400px" }}
+    >
+      <div className="chart-box" style={{ position: "relative" }}>
         <h2>Material</h2>
-        {/* Pie Chart */}
-        <PieChart width={xPos} height={yPos}>
-          <Pie
-            data={data}
-            cx={110}
-            cy={100}
-            innerRadius={60}
-            outerRadius={93}
-            fill="#8884d8"
-            paddingAngle={0}
-            dataKey="value"
-          >
-            {data.map((entry, index) => (
-              <Cell
-                key={`cell-${index}`}
-                fill={COLORS[index % COLORS.length]}
-              />
-            ))}
-          </Pie>
-        </PieChart>
+        {/* Responsive Pie Chart */}
+        <ResponsiveContainer width="100%" height={200}>
+          <PieChart>
+            <Pie
+              data={data}
+              cx="50%"
+              cy="50%"
+              innerRadius="45%"
+              outerRadius="70%"
+              fill="#8884d8"
+              paddingAngle={0}
+              dataKey="value"
+            >
+              {data.map((entry, index) => (
+                <Cell
+                  key={`cell-${index}`}
+                  fill={COLORS[index % COLORS.length]}
+                />
+              ))}
+            </Pie>
+          </PieChart>
+        </ResponsiveContainer>
+
         {/* Centered Icon */}
-        <div>
-          <img
-            src={iconDrop}
-            style={{
-              position: "absolute",
-              left: "180px",
-              top: "53.5%",
-              transform: "translate(-50%, -50%)",
-              fontSize: "30px",
-              color: "#555",
-            }}
-          />
-        </div>
+        <img
+          src={iconDrop}
+          style={{
+            position: "absolute",
+            left: "50%",
+            top: "50%",
+            transform: "translate(116%, -50%)",
+            fontSize: "30px",
+            color: "#555",
+          }}
+          alt="Center Icon"
+        />
       </div>
-      <div className="chart-data">
-        <div>
-          <div className="data-rounded">11</div>
-          <h2>14567 </h2>
+
+      {/* Chart Data */}
+      <div
+        className="chart-data"
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          paddingTop: "10px",
+        }}
+      >
+        <div style={{ textAlign: "center" }}>
+          <div
+            className="data-rounded"
+            style={{
+              borderRadius: "50%",
+              backgroundColor: "#f0f0f0",
+              padding: "10px",
+              width: "40px",
+              height: "40px",
+              lineHeight: "40px",
+            }}
+          >
+            11
+          </div>
+          <h2>14567</h2>
         </div>
-        <div>
-          <div className="data-rounded">15</div>
+        <div style={{ textAlign: "center" }}>
+          <div
+            className="data-rounded"
+            style={{
+              borderRadius: "50%",
+              backgroundColor: "#f0f0f0",
+              padding: "10px",
+              width: "40px",
+              height: "40px",
+              lineHeight: "40px",
+            }}
+          >
+            15
+          </div>
           <h2>12340</h2>
         </div>
       </div>
@@ -66,6 +104,3 @@ const BarChartComponent = ({ xPos, yPos }) => {
 };
 
 export default BarChartComponent;
-
-// left: "45.5%",
-//               top: "53.5%",

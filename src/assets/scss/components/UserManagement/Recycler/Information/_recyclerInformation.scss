@@ -1,33 +1,24 @@
 .profile-body {
   display: flex;
-  gap: 40px;
-  @include media-max(xxl) {
-    gap: 10px;
-  }
+  gap: 60px;
+
   .recyclers-info-section {
     .recycler-details {
       display: flex;
-      gap: 20px;
+      gap: 60px;
 
       .recycle-info-details {
         display: flex;
       }
       .pointes-container {
-        background: url(/public/images/points-bg.png);
-        width: 300px;
-        height: 330px;
+        background: url(/public/images/pointes-card-image.png);
+        width: 318px;
+        height: 320px;
         background-repeat: no-repeat;
-        background-size: 240% 101%;
-        background-position: left bottom;
+        background-size: cover;
         border-radius: 10px;
 
         .pointes-sec {
-          background-image: url(/public/images/points-prize.png);
-          height: 330px;
-          width: 300px;
-          background-size: 105% 82%;
-          background-repeat: no-repeat;
-          background-position: -334% 217%;
           .top-section {
             padding: 40px 0px 0px 21px;
             p {

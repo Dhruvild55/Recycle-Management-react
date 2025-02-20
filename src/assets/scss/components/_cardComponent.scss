@@ -1,12 +1,12 @@
 .card-section {
   display: flex;
   gap: 20px;
-  justify-content: center; // Centers cards in container
+  justify-content: center;
 
   .card-box {
     height: 100%;
     width: 100%;
-    max-width: 260px;
+    min-width: 253px;
     min-height: 170px;
     border: none;
     padding: 30px;
@@ -26,12 +26,25 @@
       font-weight: 600;
       font-size: 14px;
       padding-bottom: 10px;
+
+      @include media-max(xl) {
+        font-size: 12px;
+        padding-bottom: 5px;
+      }
+      @include media-max(sm) {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
     }
 
     .card-value {
       color: #1f7f82 !important;
       font-size: 22px;
       font-weight: 600;
+
+      @include media-max(sm) {
+        font-size: 35px;
+      }
     }
 
     .card-inner-div {
@@ -48,6 +61,9 @@
 
       p {
         font-size: 12px;
+        @include media-max(sm) {
+          font-size: 20px;
+        }
       }
     }
   }

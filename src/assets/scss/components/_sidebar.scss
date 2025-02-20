@@ -16,6 +16,10 @@ $highlight-color: $table-header-background;
   left: 20px;
   flex-direction: column;
 
+  @include media-max(sm) {
+    display: none;
+  }
+
   @include media-max(xxl) {
     height: 75vh;
   }

@@ -25,28 +25,39 @@ $text-muted: #999999;
       padding: 2rem;
       border-radius: 20px;
       position: absolute;
-      left: 40%;
       width: 100%;
       max-width: 530px;
-      height: 590px;
-      position: absolute;
-      left: 55%;
-      @include media-min(xs) {
-        left: 0px;
+      height: 100%;
+      max-height: 590px;
+      position: relative;
+      left: 0%;
+
+      @include media-max(desktop-lg) {
+        left: 27%;
       }
-      @include media-min(sm) {
+      @include media-max(desktop-sm) {
         left: 15%;
       }
-      @include media-min(md) {
-        left: 30%;
+      @include media-max(tablet-lg) {
+        left: 10%;
       }
-      @include media-min(lg) {
-        left: 45%;
+      @include media-max(tablet) {
+        left: 5%;
       }
-      @include media-min(xl) {
-        left: 55%;
+      @include media-max(tablet-sm) {
+        padding: 1.5rem;
+        left: 0%;
       }
-
+      @include media-max(lg) {
+        padding: 1rem;
+        max-width: 340px;
+        max-height: 670px;
+      }
+      @include media-max(md) {
+        padding: 1rem;
+        max-width: 310px;
+        max-height: 670px;
+      }
       .login-header {
         display: flex;
         align-items: center;
@@ -58,11 +69,17 @@ $text-muted: #999999;
           color: #999999;
           font-weight: $fw-400;
         }
+
+        @include media-max(lg) {
+          flex-direction: column;
+          gap: 5px;
+          margin-bottom: 5px;
+        }
       }
 
       .form-container {
         width: 100%;
-        padding-top: 10px;
+        padding: 20px;
 
         .login-title {
           text-align: center;
@@ -77,13 +94,9 @@ $text-muted: #999999;
             font-weight: $fw-400;
           }
         }
-
         .login-form-group {
           margin-bottom: 15px;
 
-          @include media-max(xxl) {
-            padding: 15px;
-          }
           .form-group {
             margin-bottom: 1rem;
 
@@ -120,6 +133,11 @@ $text-muted: #999999;
             font-weight: 500;
             margin-bottom: 10px;
 
+            @include media-max(lg) {
+              flex-direction: column;
+              gap: 5px;
+              align-items: flex-start;
+            }
             .checkbox-section {
               display: flex;
               align-items: center;

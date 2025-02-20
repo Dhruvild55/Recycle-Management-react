@@ -1,8 +1,6 @@
-@import "./variable";
-@import "./common";
-
-//helpers
-@import "./helpers/media-queries";
+@use "./variable" as *;
+@use "./common" as *;
+@use "./helpers/media-queries" as *;
 
 // components
 @import "./components/header";

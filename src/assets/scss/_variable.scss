@@ -27,11 +27,24 @@ $fs-30: 30px;
 
 $grid-breakpoints: (
   xs: 0,
-  sm: 576px,
-  md: 767px,
-  lg: 992px,
-  xl: 1200px,
-  xxl: 1400px,
+  // Extra small devices
+  sm: 320px,
+  // Small Mobile (e.g., iPhone SE)
+  md: 375px,
+  // Medium Mobile (e.g., iPhone X, Galaxy S9)
+  lg: 425px,
+  // Large Mobile (e.g., Pixel 5)
+  tablet-sm: 600px,
+  // Small Tablets (e.g., Nexus 7, Kindle Fire)
+  tablet: 768px,
+  // Standard Tablets (e.g., iPad portrait mode)
+  tablet-lg: 1024px,
+  // Large Tablets (e.g., iPad landscape mode)
+  desktop-sm: 1280px,
+  // Small Desktops (e.g., laptops, smaller monitors)
+  desktop-md: 1440px,
+  // Medium Desktops (e.g., larger laptops, high-res monitors)
+  desktop-lg: 1920px // Large Desktops (e.g., Full HD screens),,,,,,,,,,,
 ) !default;
 
 .add-btn {
