@@ -6,6 +6,7 @@ import Sidebar from "../../shared/components/Sidebar";
 import useMediaQuery from "../../shared/hooks/useMediaQuery";
 import { Loader } from "../../shared/components/Loader";
 import Footer from "../../shared/components/Footer";
+import { bgFrame } from "../../assets/images";
 
 const MainLayout = ({ children }) => {
   const [selectedMenu, setSelectedMenu] = useState({});
@@ -17,7 +18,7 @@ const MainLayout = ({ children }) => {
   };
 
   return (
-    <div className="main-layout">
+    <div className="main-layout" style={{ backgroundImage: `url(${bgFrame})` }}>
       <Sidebar
         isCollapsed={sidebarVisible}
         setSelectedMenu={setSelectedMenu}

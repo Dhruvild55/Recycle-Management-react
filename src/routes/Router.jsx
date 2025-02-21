@@ -16,6 +16,9 @@ const AddUserPage = lazy(() => import("../views/User/Admin/Admin-add"));
 const RecyclerProfilePage = lazy(() =>
   import("../views/User/Recycler/recycler-profile")
 );
+const ViewRecyclerItemsPage = lazy(() =>
+  import("../views/User/Recycler/ViewRecycleritems")
+);
 const CollecterProfilePage = lazy(() =>
   import("../views/User/Collecter/collecter-profile")
 );
@@ -84,6 +87,11 @@ const RoutesDetails = [
       {
         path: route.editPermission(":role"),
         Component: AdminPermissionEditPage,
+        exact: true,
+      },
+      {
+        path: route.viewRecyclerItems,
+        Component: ViewRecyclerItemsPage,
         exact: true,
       },
       {

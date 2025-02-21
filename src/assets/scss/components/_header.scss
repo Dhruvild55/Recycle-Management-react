@@ -7,8 +7,10 @@
   justify-content: space-between;
   padding: 10px 30px 0 25px;
 
-  @include media-max(sm) {
-    flex-direction: row-reverse;
+  @include media-max(lg) {
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 40px;
   }
 
   transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
@@ -22,18 +24,19 @@
     align-items: center;
     gap: 10px;
 
-    @include media-max(sm) {
-      flex-direction: column;
-      gap: 0px;
-    }
     .title {
       font-size: 24px;
       font-weight: 600;
+      white-space: nowrap;
 
-      @include media-max(sm) {
-        font-size: 18px;
-        display: none;
+      @include media-max(lg) {
+        font-size: 20px;
       }
+    }
+    .title-sm {
+      font-size: 24px;
+      font-weight: 600;
+      white-space: nowrap;
     }
 
     .logo-text {
@@ -50,6 +53,13 @@
     gap: 10px;
     justify-items: center;
     align-items: center;
+
+    @include media-max(lg) {
+      justify-content: space-evenly;
+      .row {
+        margin-bottom: 0px !important;
+      }
+    }
 
     .dropdown-section {
       padding: 10px;

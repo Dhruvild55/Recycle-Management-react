@@ -16,7 +16,7 @@ $highlight-color: $table-header-background;
   left: 20px;
   flex-direction: column;
 
-  @include media-max(sm) {
+  @include media-max(lg) {
     display: none;
   }
 

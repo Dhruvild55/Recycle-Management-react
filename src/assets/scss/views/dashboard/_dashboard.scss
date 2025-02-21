@@ -7,19 +7,19 @@ $font-family: "Inter", sans-serif;
   .cards-container {
     display: flex;
     margin-top: 30px;
-    flex-wrap: wrap;
-    @include media-max(sm) {
-      flex-direction: column;
-      justify-content: center;
-      align-content: center;
-    }
   }
   .chart-contant {
     margin-top: 30px;
-    gap: 15px; // gap: 32px;
+    gap: 30px; // gap: 32px;
     display: flex;
+    .bar-chart {
+      width: 100%;
+      max-width: 266px;
+      border-radius: 20px;
+      border: 1px solid #abefc6;
+    }
 
-    @include media-max(sm) {
+    @include media-max(md) {
       flex-direction: column;
     }
   }

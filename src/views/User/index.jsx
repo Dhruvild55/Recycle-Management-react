@@ -2,6 +2,7 @@
 import { useEffect, useState, Suspense, lazy } from "react";
 import ButtonComponent from "../../shared/components/Buttoncomponent";
 import { useSelector } from "react-redux";
+import { useMediaQuery } from "@mui/material";
 
 const AdminList = lazy(() => import("./Admin/Admin-list"));
 const RecyclerList = lazy(() => import("./Recycler/Recycler-List"));
@@ -10,6 +11,8 @@ const RolesList = lazy(() => import("./Admin And Roles/Roles-List"));
 
 function UserManagement() {
   const [selectedRole, setSelectedRole] = useState("Admin");
+  const isMobile = useMediaQuery("(max-width: 425px)"); // Check screen size
+  console.log("isMobile", isMobile);
   const translations = useSelector((state) => state.settings.translations);
   const { admin, recycler, collector, admin_rols_and_Permissions } =
     translations.userManagementTopBtn;
@@ -37,27 +40,49 @@ function UserManagement() {
     <div className="userManagerment-section">
       <div className="common-main-section">
         <div className="userManagement-top-section">
-          <ButtonComponent
-            label={admin}
-            onClick={() => setSelectedRole("Admin")}
-            className={`btn${selectedRole === "Admin" ? " selected" : ""}`}
-          />
-          <ButtonComponent
-            label={recycler}
-            onClick={() => setSelectedRole("Recycler")}
-            className={`btn${selectedRole === "Recycler" ? " selected" : ""}`}
-          />
-          <ButtonComponent
-            label={collector}
-            onClick={() => setSelectedRole("Collector")}
-            className={`btn${selectedRole === "Collector" ? " selected" : ""}`}
-          />
-          <ButtonComponent
-            label={admin_rols_and_Permissions}
-            onClick={() => setSelectedRole("Roles")}
-            className={`btn${selectedRole === "Roles" ? " selected" : ""}`}
-          />
+          {isMobile ? (
+            // Dropdown for Mobile View
+            <select
+              className="dropdown"
+              value={selectedRole}
+              onChange={(e) => setSelectedRole(e.target.value)}
+            >
+              <option value="Admin">{admin}</option>
+              <option value="Recycler">{recycler}</option>
+              <option value="Collector">{collector}</option>
+              <option value="Roles">{admin_rols_and_Permissions}</option>
+            </select>
+          ) : (
+            // Buttons for Desktop View
+            <>
+              <ButtonComponent
+                label={admin}
+                onClick={() => setSelectedRole("Admin")}
+                className={`btn${selectedRole === "Admin" ? " selected" : ""}`}
+              />
+              <ButtonComponent
+                label={recycler}
+                onClick={() => setSelectedRole("Recycler")}
+                className={`btn${
+                  selectedRole === "Recycler" ? " selected" : ""
+                }`}
+              />
+              <ButtonComponent
+                label={collector}
+                onClick={() => setSelectedRole("Collector")}
+                className={`btn${
+                  selectedRole === "Collector" ? " selected" : ""
+                }`}
+              />
+              <ButtonComponent
+                label={admin_rols_and_Permissions}
+                onClick={() => setSelectedRole("Roles")}
+                className={`btn${selectedRole === "Roles" ? " selected" : ""}`}
+              />
+            </>
+          )}
         </div>
+
         <div className="userManagement-content-section">
           <Suspense fallback={<div>Loading...</div>}>
             {renderSelectedComponent()}

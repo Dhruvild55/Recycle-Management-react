@@ -19,9 +19,12 @@ import RewardsIcon from "../../../assets/images/icons/RewardsIcon";
 import SponserIcon from "../../../assets/images/icons/SponserIcon";
 import BinIcon from "../../../assets/images/icons/BinIcon";
 import ReportIcon from "../../../assets/images/icons/ReportIcon";
+import useMediaQuery from "../../hooks/useMediaQuery";
 
 function Header({ toggleSidebar, isCollapsed, selectedMenu }) {
   const dispatch = useDispatch();
+  const isMobile = useMediaQuery("(max-width: 425px)"); // Check screen size
+  console.log("isMobile", isMobile);
   const translations = useSelector((state) => state.settings.translations);
   const [selectedLanguage, setSelectedLanguage] = useState(
     localStorage.getItem("language") || "en"
@@ -59,75 +62,137 @@ function Header({ toggleSidebar, isCollapsed, selectedMenu }) {
   return (
     <>
       <header className={`header ${isCollapsed ? "shifted" : ""} `}>
-        <div className={`header-left `}>
-          <div>
-            {selectedMenu.name === "dashboard" ? (
-              <MenuIcon color="#181D27" />
-            ) : selectedMenu.name === "user_management" ? (
-              <UserIcon color="#181D27" />
-            ) : selectedMenu.name === "app_content_Management" ? (
-              <AppIcon color="#181D27" />
-            ) : selectedMenu.name === "collaction_Management" ? (
-              <CollectionIcon color="#181D27" />
-            ) : selectedMenu.name === "rewards_Management" ? (
-              <RewardsIcon color="#181D27" />
-            ) : selectedMenu.name === "campaign_Management" ? (
-              <SponserIcon color="#181D27" />
-            ) : selectedMenu.name === "collection_service_management" ? (
-              <BinIcon color="#181D27" />
-            ) : selectedMenu.name === "report" ? (
-              <ReportIcon color="#181D27" />
-            ) : (
-              ""
-            )}
-          </div>
-          <div>
-            <span className="title">
-              {translations.sidebar[selectedMenu.name]}
-            </span>
-            {/* <BreadCrumbs /> */}
-          </div>
-        </div>
-        <div className="header-right">
-          {/* <select
-            className="dropdown-section"
-            onChange={(e) => handleLanguageChange(e)}
-            value={selectedLanguage}
-          >
-            {SUPPORTED_LANGUAGES.map((items) => (
-              <option key={items.identifire}>{items.identifire}</option>
-            ))}
-          </select> */}
-          <div>
-            <img src={iconBell} />
-          </div>
-          <div className="profile">
-            <Dropdown>
-              <Dropdown.Toggle className="header-btn">
-                <ProfilePic size={40} image={data?.data?.user?.selfiePath} />
-                <label>{data?.data?.user?.firstName}</label>
-              </Dropdown.Toggle>
-              <Dropdown.Menu className="up-arrow">
-                <Dropdown.Item
-                // onClick={handleEditProfile}
-                >
-                  <i className="icon-account"></i>
-                  My Profile
-                </Dropdown.Item>
-                <Dropdown.Item
-                // onClick={handleChangePass}
-                >
-                  <i className="icon-lock"></i>
-                  Change Password
-                </Dropdown.Item>
-                <Dropdown.Item onClick={() => handleSignout()}>
-                  <i className="icon-logout"></i>
-                  Logout
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          </div>
-        </div>
+        {isMobile ? (
+          <>
+            <div className="header-right row m-0">
+              <div className="col-4">
+                <img src={iconBell} />
+              </div>
+              <div className="profile col-4 ps-3">
+                <Dropdown>
+                  <Dropdown.Toggle className="header-btn">
+                    <ProfilePic
+                      size={40}
+                      image={data?.data?.user?.selfiePath}
+                    />
+                    <label>{data?.data?.user?.firstName}</label>
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu className="up-arrow">
+                    <Dropdown.Item
+                    // onClick={handleEditProfile}
+                    >
+                      <i className="icon-account"></i>
+                      My Profile
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                    // onClick={handleChangePass}
+                    >
+                      <i className="icon-lock"></i>
+                      Change Password
+                    </Dropdown.Item>
+                    <Dropdown.Item onClick={() => handleSignout()}>
+                      <i className="icon-logout"></i>
+                      Logout
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </div>
+              <div className="col-4 d-flex justify-content-end">
+                {selectedMenu.name === "dashboard" ? (
+                  <MenuIcon color="#181D27" />
+                ) : selectedMenu.name === "user_management" ? (
+                  <UserIcon color="#181D27" />
+                ) : selectedMenu.name === "app_content_Management" ? (
+                  <AppIcon color="#181D27" />
+                ) : selectedMenu.name === "collaction_Management" ? (
+                  <CollectionIcon color="#181D27" />
+                ) : selectedMenu.name === "rewards_Management" ? (
+                  <RewardsIcon color="#181D27" />
+                ) : selectedMenu.name === "campaign_Management" ? (
+                  <SponserIcon color="#181D27" />
+                ) : selectedMenu.name === "collection_service_management" ? (
+                  <BinIcon color="#181D27" />
+                ) : selectedMenu.name === "report" ? (
+                  <ReportIcon color="#181D27" />
+                ) : (
+                  ""
+                )}
+              </div>
+            </div>
+            <div className={`header-left `}>
+              <div>
+                <span className="title-sm">
+                  {translations.sidebar[selectedMenu.name]}
+                </span>
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className={`header-left `}>
+              <div>
+                {selectedMenu.name === "dashboard" ? (
+                  <MenuIcon color="#181D27" />
+                ) : selectedMenu.name === "user_management" ? (
+                  <UserIcon color="#181D27" />
+                ) : selectedMenu.name === "app_content_Management" ? (
+                  <AppIcon color="#181D27" />
+                ) : selectedMenu.name === "collaction_Management" ? (
+                  <CollectionIcon color="#181D27" />
+                ) : selectedMenu.name === "rewards_Management" ? (
+                  <RewardsIcon color="#181D27" />
+                ) : selectedMenu.name === "campaign_Management" ? (
+                  <SponserIcon color="#181D27" />
+                ) : selectedMenu.name === "collection_service_management" ? (
+                  <BinIcon color="#181D27" />
+                ) : selectedMenu.name === "report" ? (
+                  <ReportIcon color="#181D27" />
+                ) : (
+                  ""
+                )}
+              </div>
+              <div>
+                <span className="title">
+                  {translations.sidebar[selectedMenu.name]}
+                </span>
+              </div>
+            </div>
+            <div className="header-right">
+              <div>
+                <img src={iconBell} />
+              </div>
+              <div className="profile">
+                <Dropdown>
+                  <Dropdown.Toggle className="header-btn">
+                    <ProfilePic
+                      size={40}
+                      image={data?.data?.user?.selfiePath}
+                    />
+                    <label>{data?.data?.user?.firstName}</label>
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu className="up-arrow">
+                    <Dropdown.Item
+                    // onClick={handleEditProfile}
+                    >
+                      <i className="icon-account"></i>
+                      My Profile
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                    // onClick={handleChangePass}
+                    >
+                      <i className="icon-lock"></i>
+                      Change Password
+                    </Dropdown.Item>
+                    <Dropdown.Item onClick={() => handleSignout()}>
+                      <i className="icon-logout"></i>
+                      Logout
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </div>
+            </div>
+          </>
+        )}
       </header>
     </>
   );

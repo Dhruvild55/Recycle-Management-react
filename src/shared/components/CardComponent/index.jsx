@@ -40,7 +40,7 @@ const CardComponent = () => {
           <h3 className="card-value">{item.value}</h3>
           <div className="card-inner-div">
             <div className="textValue-box">
-              <h4>{item.textValue}</h4>
+              <h6>{item.textValue}</h6>
             </div>
             <p>{item.text}</p>
           </div>

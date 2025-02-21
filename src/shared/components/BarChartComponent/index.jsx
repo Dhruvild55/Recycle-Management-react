@@ -1,8 +1,10 @@
 /* eslint-disable react/prop-types */
 import { Cell, Pie, PieChart, ResponsiveContainer } from "recharts";
 import { iconDrop } from "../../../assets/images/icons";
+import { BsCircleFill } from "react-icons/bs";
 
-const BarChartComponent = () => {
+const BarChartComponent = ({ isDashboard }) => {
+  console.log(isDashboard);
   const data = [
     { name: "Group A", value: 400 },
     { name: "Group B", value: 300 },
@@ -17,8 +19,10 @@ const BarChartComponent = () => {
       className="chart-section"
       style={{ position: "relative", width: "100%", maxWidth: "400px" }}
     >
+      <div className="chart-title">
+        <p>Oil Waste</p>
+      </div>
       <div className="chart-box" style={{ position: "relative" }}>
-        <h2>Material</h2>
         {/* Responsive Pie Chart */}
         <ResponsiveContainer width="100%" height={200}>
           <PieChart>
@@ -47,7 +51,7 @@ const BarChartComponent = () => {
           src={iconDrop}
           style={{
             position: "absolute",
-            left: "50%",
+            left: "38%",
             top: "50%",
             transform: "translate(116%, -50%)",
             fontSize: "30px",
@@ -56,49 +60,42 @@ const BarChartComponent = () => {
           alt="Center Icon"
         />
       </div>
-
-      {/* Chart Data */}
-      <div
-        className="chart-data"
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          paddingTop: "10px",
-        }}
-      >
-        <div style={{ textAlign: "center" }}>
-          <div
-            className="data-rounded"
-            style={{
-              borderRadius: "50%",
-              backgroundColor: "#f0f0f0",
-              padding: "10px",
-              width: "40px",
-              height: "40px",
-              lineHeight: "40px",
-            }}
-          >
-            11
+      {isDashboard && (
+        <div className="chart-data">
+          <div className="row">
+            <div className="col">
+              <p className="oil-value">14567</p>
+              <div className="oil-type-section">
+                <BsCircleFill style={{ fontSize: "8px", color: "#7CCBBC" }} />
+                <p className="oil-type">Coocking oil</p>
+              </div>
+            </div>
+            <div className="col">
+              <p className="oil-value">14567</p>
+              <div className="oil-type-section">
+                <BsCircleFill style={{ fontSize: "8px", color: "#7CCBBC" }} />
+                <p className="oil-type">Coocking oil</p>
+              </div>
+            </div>
           </div>
-          <h2>14567</h2>
-        </div>
-        <div style={{ textAlign: "center" }}>
-          <div
-            className="data-rounded"
-            style={{
-              borderRadius: "50%",
-              backgroundColor: "#f0f0f0",
-              padding: "10px",
-              width: "40px",
-              height: "40px",
-              lineHeight: "40px",
-            }}
-          >
-            15
+          <div className="row">
+            <div className="col">
+              <p className="oil-value">14567</p>
+              <div className="oil-type-section">
+                <BsCircleFill style={{ fontSize: "8px", color: "#7CCBBC" }} />
+                <p className="oil-type">Coocking oil</p>
+              </div>
+            </div>
+            <div className="col">
+              <p className="oil-value">14567</p>
+              <div className="oil-type-section">
+                <BsCircleFill style={{ fontSize: "8px", color: "#7CCBBC" }} />
+                <p className="oil-type">Coocking oil</p>
+              </div>
+            </div>
           </div>
-          <h2>12340</h2>
         </div>
-      </div>
+      )}
     </div>
   );
 };

@@ -17,7 +17,9 @@ const Dashboard = () => {
           </div>
           <div className="chart-contant">
             <MixedChart />
-            <BarChartComponent xPos={300} yPos={200} />
+            <div className="bar-chart">
+              <BarChartComponent isDashboard={true} />
+            </div>
           </div>
         </div>
       </div>

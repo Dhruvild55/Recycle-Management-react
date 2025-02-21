@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { Loader } from "../../../shared/components/Loader";
 import { useEffect } from "react";
 import { iconWorld } from "../../../assets/images/icons";
+import { bgFrame, bgImage } from "../../../assets/images";
 
 const CONSTANT = {
   DOC_TITLE: "Login | Recycle Management",
@@ -45,8 +46,11 @@ const Login = () => {
   };
 
   return (
-    <div className="login-page">
-      <div className="login-form-container">
+    <div className="login-page" style={{ backgroundImage: `url(${bgImage})` }}>
+      <div
+        className="login-form-container"
+        style={{ backgroundImage: `url(${bgFrame})` }}
+      >
         <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
           <div className="login-header">
             <div className="logo">
