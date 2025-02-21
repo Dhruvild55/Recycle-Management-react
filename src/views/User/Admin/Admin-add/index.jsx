@@ -13,6 +13,7 @@ import InputField from "../../../../shared/components/InputFieldComponent";
 import { createUser } from "../../../../query/users/createUsers/createUsers.query";
 import { validationRules } from "../../../../shared/constants/ValidationRules";
 import { Loader } from "../../../../shared/components/Loader";
+import { useMediaQuery } from "@mui/material";
 
 export default function AddUserPage() {
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ export default function AddUserPage() {
   const [showConformPassword, setShowConformPassword] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const fileInputRef = useRef(null);
+  const isMobile = useMediaQuery("(max-width: 425px)"); // Check screen size
 
   const {
     register,
@@ -66,39 +68,6 @@ export default function AddUserPage() {
     mutate(formData);
   };
 
-  const isValidName = (value) => {
-    if (/[^A-Za-z\s'-]/.test(value)) {
-      return `${language.pleaseEnterValidName}`;
-    }
-
-    // Check for excessive length
-    if (value.length < 2 || value.length > 50) {
-      return `${language.requireNameLength}`;
-    }
-
-    // Check for excessive repetition of the same character
-    if (/([a-zA-Z])\1{2,}/.test(value)) {
-      return `${language.pleaseEnterValidName}`;
-    }
-
-    // Ensure the name contains at least one vowel and one consonant
-    if (
-      !/[aeiouAEIOU]/.test(value) ||
-      !/[bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]/.test(value)
-    ) {
-      return `${language.pleaseEnterValidName}`;
-    }
-
-    const keyboardPatterns = ["asdf", "qwer", "zxcv"];
-    if (
-      keyboardPatterns.some((pattern) => value.toLowerCase().includes(pattern))
-    ) {
-      return `${language.pleaseEnterValidName}`;
-    }
-
-    return true;
-  };
-
   return (
     <div className="create-admin-section">
       <div className="common-main-section">
@@ -112,34 +81,71 @@ export default function AddUserPage() {
         </div>
         <div className="personal-info-section">
           <label className="primary-title">Personal Information</label>
-
           <div className="profile-photo-section">
-            <div className="profile-left">
-              <p className="profile-left-title">Your Photo</p>
-              <p>This will be displayed on your profile</p>
-            </div>
-            <div className="profile-center">
-              <ProfilePic
-                size={60}
-                image={
-                  selectedImage ? URL.createObjectURL(selectedImage) : null
-                }
-              />
-            </div>
-            <div className="photo-actions">
-              <button
-                className="delete-button"
-                onClick={() => setSelectedImage(null)}
-              >
-                Delete
-              </button>
-              <button
-                className="update-button"
-                onClick={() => fileInputRef.current.click()}
-              >
-                Update
-              </button>
-            </div>
+            {isMobile ? (
+              <>
+                <div className="profile-left">
+                  <p className="profile-left-title">Your Photo</p>
+                  <p>This will be displayed on your profile</p>
+                </div>
+                <div className="profile-sm">
+                  <div className="profile-center">
+                    <ProfilePic
+                      size={60}
+                      image={
+                        selectedImage
+                          ? URL.createObjectURL(selectedImage)
+                          : null
+                      }
+                    />
+                  </div>
+                  <div className="photo-actions">
+                    <button
+                      className="delete-button"
+                      onClick={() => setSelectedImage(null)}
+                    >
+                      Delete
+                    </button>
+                    <button
+                      className="update-button"
+                      onClick={() => fileInputRef.current.click()}
+                    >
+                      Update
+                    </button>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="profile-left">
+                  <p className="profile-left-title">Your Photo</p>
+                  <p>This will be displayed on your profile</p>
+                </div>
+                <div className="profile-center">
+                  <ProfilePic
+                    size={60}
+                    image={
+                      selectedImage ? URL.createObjectURL(selectedImage) : null
+                    }
+                  />
+                </div>
+                <div className="photo-actions">
+                  <button
+                    className="delete-button"
+                    onClick={() => setSelectedImage(null)}
+                  >
+                    Delete
+                  </button>
+                  <button
+                    className="update-button"
+                    onClick={() => fileInputRef.current.click()}
+                  >
+                    Update
+                  </button>
+                </div>
+              </>
+            )}
+
             <input
               type="file"
               accept="image/*"

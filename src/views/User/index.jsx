@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { useEffect, useState, Suspense, lazy } from "react";
 import ButtonComponent from "../../shared/components/Buttoncomponent";
 import { useSelector } from "react-redux";

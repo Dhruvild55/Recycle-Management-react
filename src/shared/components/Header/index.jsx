@@ -65,10 +65,10 @@ function Header({ toggleSidebar, isCollapsed, selectedMenu }) {
         {isMobile ? (
           <>
             <div className="header-right row m-0">
-              <div className="col-4">
+              <div className="col-3">
                 <img src={iconBell} />
               </div>
-              <div className="profile col-4 ps-3">
+              <div className="profile col-3 ps-3">
                 <Dropdown>
                   <Dropdown.Toggle className="header-btn">
                     <ProfilePic

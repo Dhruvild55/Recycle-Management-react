@@ -9,6 +9,7 @@
       display: flex;
       gap: 12%;
       align-items: center;
+      flex-wrap: wrap;
       .profile-left {
         .profile-left-title {
           font-size: 14px;
@@ -21,6 +22,7 @@
           margin-bottom: 0;
         }
       }
+
       .photo-actions {
         display: flex;
         gap: 10px;
@@ -37,6 +39,17 @@
           color: #3fb4b4;
         }
       }
+
+      .profile-sm {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+      }
+      @include media-max(lg) {
+        align-items: self-start;
+        gap: 20px;
+        margin-bottom: 30px;
+      }
     }
     .form {
       .form-group {
@@ -44,6 +57,9 @@
         flex-wrap: wrap;
         gap: 20px;
         margin-bottom: 15px;
+        @include media-max(lg) {
+          flex-direction: column;
+        }
 
         .input-field {
           position: relative;
@@ -63,6 +79,10 @@
             border: 1px solid #ccc;
             border-radius: 4px;
             width: 90%;
+
+            @include media-max(lg) {
+              width: 100%;
+            }
           }
           .eye-button {
             position: absolute;
@@ -75,8 +95,8 @@
             font-size: 18px;
             color: gray;
 
-            @include media-max(xxl) {
-              margin-left: 260px;
+            @include media-max(lg) {
+              margin-left: 230px;
             }
 
             &:hover {
@@ -108,6 +128,9 @@
         gap: 35%;
         flex-wrap: wrap;
         margin-bottom: 45px;
+        @include media-max(lg) {
+          flex-direction: column;
+        }
         .input-field {
           position: relative;
           flex: 1;
@@ -125,12 +148,18 @@
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
+            @include media-max(lg) {
+              width: 100%;
+            }
           }
           .conform-password-input {
             width: 90%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
+            @include media-max(lg) {
+              width: 100%;
+            }
           }
           .eye-button {
             margin-top: 49px;
@@ -142,8 +171,8 @@
             cursor: pointer;
             font-size: 18px;
             color: gray;
-            @include media-max(xxl) {
-              margin-left: 260px;
+            @include media-max(lg) {
+              margin-left: 230px;
             }
 
             &:hover {
@@ -156,129 +185,29 @@
         display: flex;
         margin-bottom: 20px;
         gap: 10px;
+        @include media-max(lg) {
+          flex-direction: column;
+        }
         .submit-button,
         .cancel-button {
           padding: 10px 20px;
           font-size: 16px;
           border-radius: 4px;
           cursor: pointer;
+          max-width: 400px;
+          width: 100%;
         }
-
         .submit-button {
           background-color: #3fb4b4;
           color: #fff;
           border: none;
-          width: 306px;
         }
 
         .cancel-button {
           background-color: #f8f9fa;
           border: 1px solid #ccc;
-          width: 306px;
         }
       }
     }
   }
 }
-
-// @media screen and (min-width: 1440px) and (max-height: 920px) {
-//   .personal-info-form {
-//     margin-left: 70px;
-//     width: 1050px;
-//   }
-// }
-
-// .user-form-header {
-//   font-size: 1.8rem;
-//   margin-bottom: 20px;
-//   text-align: center;
-// }
-
-// .user-form-group {
-//   margin-bottom: 20px;
-//   background-color: #007bff;
-
-//   label {
-//     font-weight: bold;
-//     margin-bottom: 8px;
-//     display: block;
-//     color: #555;
-//   }
-
-//   input,
-//   textarea,
-//   select {
-//     width: 100%;
-//     padding: 12px;
-//     border-radius: 6px;
-//     border: 1px solid #ccc;
-//     font-size: 14px;
-//     margin-bottom: 10px;
-//     transition: border-color 0.3s;
-
-//     &:focus {
-//       border-color: #007bff;
-//       outline: none;
-//     }
-//   }
-
-//   textarea {
-//     resize: vertical;
-//   }
-
-//   .error-message {
-//     color: red;
-//     font-size: 12px;
-//     margin-top: -5px;
-//   }
-// }
-
-// .user-form-name-section {
-//   display: flex;
-//   gap: 20px;
-//   margin-bottom: 20px;
-
-//   .user-form-group {
-//     flex: 1;
-//   }
-// }
-
-// .user-form-submit-btn {
-//   background-color: #007bff;
-//   padding: 12px 25px;
-//   border: none;
-//   color: white;
-//   border-radius: 6px;
-//   cursor: pointer;
-//   font-size: 16px;
-//   transition: background-color 0.2s ease;
-
-//   &:hover {
-//     background-color: #0056b3;
-//   }
-
-//   &:focus {
-//     outline: none;
-//   }
-// }
-
-// /* Responsive Design */
-// @media (max-width: 768px) {
-//   .user-form-container {
-//     margin: 10px;
-//     padding: 20px;
-//   }
-
-//   .user-form-header {
-//     font-size: 1.5rem;
-//   }
-
-//   .user-form-name-section {
-//     flex-direction: column;
-//   }
-
-//   .user-form-submit-btn {
-//     width: 100%;
-//     padding: 12px;
-//   }
-// }
