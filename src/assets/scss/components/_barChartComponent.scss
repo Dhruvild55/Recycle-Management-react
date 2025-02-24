@@ -1,5 +1,8 @@
 .chart-section {
   margin-top: 20px;
+  position: relative;
+  width: 100%;
+  max-width: 500px;
   .chart-title {
     padding-left: 20px;
   }
@@ -10,6 +13,8 @@
     overflow: hidden;
     display: flex;
     justify-content: center;
+    width: 100%;
+    max-width: 240px;
   }
   h2 {
     font-size: 15px;

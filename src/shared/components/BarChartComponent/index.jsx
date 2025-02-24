@@ -15,14 +15,11 @@ const BarChartComponent = ({ isDashboard }) => {
   const COLORS = ["#7CCBBC", "#1F7F82", "#B1D33A", "#ABEFC6"];
 
   return (
-    <div
-      className="chart-section"
-      style={{ position: "relative", width: "100%", maxWidth: "400px" }}
-    >
+    <div className="chart-section">
       <div className="chart-title">
         <p>Oil Waste</p>
       </div>
-      <div className="chart-box" style={{ position: "relative" }}>
+      <div className="chart-box">
         {/* Responsive Pie Chart */}
         <ResponsiveContainer width="100%" height={200}>
           <PieChart>

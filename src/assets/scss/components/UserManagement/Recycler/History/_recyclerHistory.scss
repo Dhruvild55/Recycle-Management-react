@@ -1,3 +1,43 @@
+.slider-container {
+  width: 100%; // Adjust width as per your need
+  max-width: 300px; // Maximum width of the slider
+  margin: 0 auto; // Center align
+
+  @include media-max(lg) {
+    height: 100%;
+    min-height: 280px;
+  }
+
+  .slick-dots {
+    bottom: -25px; // Adjust position of dots
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+
+    li {
+      button {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        border: 6px solid #1f7f82;
+        background-color: white;
+        transition: background-color 0.3s ease;
+      }
+      ::after {
+        content: "";
+      }
+      ::before {
+        content: "";
+      }
+
+      &.slick-active button {
+        background-color: #1f7f82; // Active dot color
+        width: 12px; // Slightly bigger size for active dot
+        height: 12px;
+      }
+    }
+  }
+}
 .next-pickup-card {
   display: flex;
   align-items: center;
@@ -6,8 +46,13 @@
   border-radius: 8px;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  max-width: 320px;
+  max-width: 310px;
   font-family: Arial, sans-serif;
+  @include media-max(lg) {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 40px;
+  }
 
   .icon {
     margin-right: 16px;
@@ -48,6 +93,8 @@
       font-size: 14px;
       color: #555;
       margin-bottom: 8px;
+      display: flex;
+      gap: 5px;
     }
 
     .date-time {

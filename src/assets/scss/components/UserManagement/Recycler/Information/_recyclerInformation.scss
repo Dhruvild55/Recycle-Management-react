@@ -1,24 +1,116 @@
-.profile-body {
+// .profile-body {
+//   display: flex;
+//   gap: 60px;
+
+//   @include media-max(lg) {
+//     flex-wrap: wrap;
+//   }
+
+//   .recyclers-info-section {
+//     display: flex;
+//     flex-direction: column;
+//     .recycler-details {
+//       display: flex;
+//       gap: 60px;
+
+//       .recycle-info-details {
+//         display: flex;
+//         max-width: 600px;
+//         width: 100%;
+//         border: 1px solid #146dc7;
+//       }
+//       .pointes-container {
+//         background: url(/public/images/pointes-card-image.png);
+//         background-repeat: no-repeat;
+//         background-size: cover;
+//         border-radius: 10px;
+
+//         .pointes-sec {
+//           .top-section {
+//             padding: 40px 0px 0px 21px;
+//             p {
+//               margin-bottom: 0px !important;
+//               font-size: 14px;
+//               font-weight: 400;
+//             }
+//           }
+//           .middle-section {
+//             padding-left: 20px;
+//             display: flex;
+//             align-items: center;
+//             gap: 15px;
+//             margin-bottom: 10px;
+
+//             h1 {
+//               margin-bottom: 0px !important;
+//               font-size: 30px !important;
+//             }
+//           }
+//           .bottom-section {
+//             padding-left: 20px;
+//             p {
+//               font-size: 12px;
+//               font-weight: 400;
+//               color: #1f7f82;
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+
+.recycler-information {
   display: flex;
-  gap: 60px;
+  gap: 30px;
 
-  .recyclers-info-section {
-    .recycler-details {
+  @include media-max(lg) {
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+  .information-details {
+    .center-section {
       display: flex;
-      gap: 60px;
-
-      .recycle-info-details {
-        display: flex;
+      flex-wrap: wrap;
+      @include media-max(lg) {
+        flex-direction: column;
       }
-      .pointes-container {
-        background: url(/public/images/pointes-card-image.png);
-        width: 318px;
-        height: 320px;
-        background-repeat: no-repeat;
+      .pie-chart-section {
+        display: inline-block;
+        padding: 10px;
+        max-width: 700px;
+        width: 57%;
+        .data-section {
+          display: flex;
+          gap: 30px;
+          margin-top: 20px;
+          .data-div {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            .round-icon {
+              background-color: #1f7f82;
+              border-radius: 20px;
+              text-align: center;
+              padding: 5px;
+              height: 35px;
+              width: 35px;
+              color: white;
+            }
+            p {
+              font-size: 14px;
+              font-weight: 400;
+              margin-bottom: 0px;
+            }
+          }
+        }
+      }
+      .points-container {
+        background-image: url("/images/pointes-card-image.png");
         background-size: cover;
-        border-radius: 10px;
-
-        .pointes-sec {
+        width: 320px;
+        height: 360px;
+        .points-sec {
           .top-section {
             padding: 40px 0px 0px 21px;
             p {

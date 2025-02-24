@@ -7,6 +7,9 @@ $font-family: "Inter", sans-serif;
   .cards-container {
     display: flex;
     margin-top: 30px;
+    @include media-max(lg) {
+      flex-direction: column;
+    }
   }
   .chart-contant {
     margin-top: 30px;
@@ -18,8 +21,13 @@ $font-family: "Inter", sans-serif;
       border-radius: 20px;
       border: 1px solid #abefc6;
     }
-
+    @include media-max(sm) {
+      flex-direction: column;
+    }
     @include media-max(md) {
+      flex-direction: column;
+    }
+    @include media-max(lg) {
       flex-direction: column;
     }
   }

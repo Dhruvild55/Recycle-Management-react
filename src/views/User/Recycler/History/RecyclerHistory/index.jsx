@@ -1,25 +1,42 @@
-import { iconMarkerPin, iconTruck } from "../../../../../assets/images/icons";
+import PickUpCard from "./PickupCard";
+import Slider from "react-slick";
 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import useMediaQuery from "../../../../../shared/hooks/useMediaQuery";
 const RecyclerHistory = () => {
+  const isMobile = useMediaQuery("(max-width: 425px)");
+  const settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
   return (
-    <div className="next-pickup-card">
-      <div className="icon">
-        <img src={iconTruck} alt="Truck Icon" />
-      </div>
-      <div className="content">
-        <div className="content-header">
-          <div className="title">Next Pickup</div>
-          <div className="status">On Schedule</div>
+    <>
+      {isMobile ? (
+        <div className="slider-container">
+          <Slider {...settings}>
+            <div>
+              <PickUpCard />
+            </div>
+            <div>
+              <PickUpCard />
+            </div>
+            <div>
+              <PickUpCard />
+            </div>
+          </Slider>
         </div>
-        <div className="location">
-          <img src={iconMarkerPin} /> Southpark Avenue
-        </div>
-        <div className="date-time">
-          <div className="date">14 Dec 2024</div>
-          <div className="time">6:00 - 6:30 PM</div>
-        </div>
-      </div>
-    </div>
+      ) : (
+        <>
+          <PickUpCard />
+          <PickUpCard />
+          <PickUpCard />
+        </>
+      )}
+    </>
   );
 };
 

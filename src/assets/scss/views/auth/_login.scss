@@ -41,6 +41,10 @@ $text-muted: #999999;
         left: 66%;
         transform: translateX(-50%);
       }
+      @include media-max(tablet-lg) {
+        transform: translateX(-50%);
+        max-height: 550px;
+      }
       @include media-max(tablet) {
         left: 56%;
         transform: translateX(-50%);
@@ -53,6 +57,14 @@ $text-muted: #999999;
         max-height: 670px;
         padding: 2rem;
         max-width: 360px;
+      }
+      @include media-max(md) {
+        padding: 2rem;
+        max-width: 330px;
+      }
+      @include media-max(sm) {
+        padding: 2rem;
+        max-width: 280px;
       }
 
       .login-header {

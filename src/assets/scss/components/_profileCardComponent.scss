@@ -1,16 +1,15 @@
 .user-card {
   height: 350px;
-  width: 320px;
+  width: 100%;
+  max-width: 320px;
   border: 1px solid #abefc6;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 54px;
 
-  @include media-max(xxl) {
-    width: 275px;
-  }
   .user-profile {
     padding-left: 10px;
     margin-bottom: 10px;
