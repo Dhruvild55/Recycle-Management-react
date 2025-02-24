@@ -16,8 +16,8 @@
 
     li {
       button {
-        width: 9px;
-        height: 9px;
+        width: 1px !important;
+        height: 1px;
         border-radius: 50%;
         border: 6px solid #1f7f82;
         background-color: white;
@@ -32,8 +32,8 @@
 
       &.slick-active button {
         background-color: #1f7f82; // Active dot color
-        width: 12px; // Slightly bigger size for active dot
-        height: 12px;
+        width: 1px; // Slightly bigger size for active dot
+        height: 1px;
       }
     }
   }
