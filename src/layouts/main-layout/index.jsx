@@ -40,8 +40,8 @@ const MainLayout = ({ children }) => {
           >
             {children}
           </Suspense>
-          <Footer />
         </div>
+        {/* <Footer /> */}
       </div>
     </div>
   );

@@ -7,12 +7,23 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 94%;
+  width: 100%;
+  max-width: 1155px;
+  position: relative;
+  top: 10%;
+  left: 1%;
+  @include media-max(lg) {
+    text-align: center;
+  }
 
   p {
     color: #ffffff;
     font-size: 15px;
     font-weight: $fw-400;
     margin-bottom: 0;
+
+    @include media-max(lg) {
+      font-size: 15px;
+    }
   }
 }

@@ -24,7 +24,7 @@ const RecyclerInformation = () => {
                   cx="50%" // Centering dynamically
                   cy="45%"
                   innerRadius={60}
-                  outerRadius={80}
+                  outerRadius={90}
                   fill="#8884d8"
                   paddingAngle={0}
                   dataKey="value"

@@ -1,40 +1,48 @@
 /* eslint-disable no-unused-vars */
-import { FaPlus } from "react-icons/fa6";
+import { FaPlus, FaTrash } from "react-icons/fa6";
 import { iconDelete, iconEdit } from "../../assets/images/icons";
-import CustomTable from "../../shared/components/CustomTable";
 import ProfilePic from "../../shared/components/ProfilePic";
 import { useNavigate } from "react-router-dom";
 import { route } from "../../shared/constants/AllRoutes";
+import CustomDataTable from "../../shared/components/CustomDataTable";
 
 const AppContentManagement = () => {
   const navigate = useNavigate();
-  const headres = [
+
+  const columns = [
     {
-      key: "wasteCategory",
-      label: "Waste Category",
-      render: (row) => (
-        <div className="d-flex align-items-center">
+      field: "wasteCategory",
+      headerName: "Waste Category",
+      width: 700,
+      renderCell: (params) => (
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
           <ProfilePic
             size={30}
-            userId={row.id}
-            image={row.selfiePath}
-            name={row.userName}
+            userId={params.id}
+            image={params.selfiePath}
+            name={params.userName}
           />
-          <span className="ms-2">{row.wasteCategory}</span>
+          <span>{params.row.wasteCategory}</span>
         </div>
       ),
     },
-    { key: "status", label: "Status" },
-    { key: "updated", label: "Updated" },
+    { field: "status", headerName: "Status", width: 100 },
+    { field: "updated", headerName: "Updated", width: 100 },
     {
-      key: "action",
-      label: "Action",
-      render: (row) => (
-        <div className="flex gap-2">
-          <button onClick={() => alert("Edit clicked")} className="action-btn">
+      field: "actions",
+      headerName: "Actions",
+      width: 100,
+      sortable: false,
+      renderCell: (params) => (
+        <div style={{ display: "flex", gap: "10px" }}>
+          <button
+            style={{ border: "none" }}
+            onClick={() => alert(`${params.row.wasteCategory}Edit clicked`)}
+            className="action-btn"
+          >
             <img src={iconEdit} />
           </button>
-          <button className="action-btn">
+          <button style={{ border: "none" }} className="action-btn">
             <img src={iconDelete} />
           </button>
         </div>
@@ -42,16 +50,64 @@ const AppContentManagement = () => {
     },
   ];
 
-  const data = [
-    { wasteCategory: "oil", status: "published", updated: "17/01/2024" },
-    { wasteCategory: "Metal", status: "published", updated: "17/01/2024" },
-    { wasteCategory: "Plastic", status: "published", updated: "17/01/2024" },
-    { wasteCategory: "Paper", status: "published", updated: "17/01/2024" },
-    { wasteCategory: "Glass", status: "published", updated: "17/01/2024" },
-    { wasteCategory: "Food waste", status: "published", updated: "17/01/2024" },
-    { wasteCategory: "textiles", status: "published", updated: "17/01/2024" },
+  const rows = [
+    {
+      id: 1,
+      wasteCategory: "oil",
+      status: "published",
+      updated: "17/01/2024",
+      actions: 35,
+    },
+    {
+      id: 2,
+      wasteCategory: "Metal",
+      status: "published",
+      updated: "17/01/2024",
+    },
+    {
+      id: 3,
+      wasteCategory: "Plastic",
+      status: "published",
+      updated: "17/01/2024",
+    },
+    {
+      id: 4,
+      wasteCategory: "Plastic",
+      status: "published",
+      updated: "17/01/2024",
+    },
+    {
+      id: 5,
+      wasteCategory: "Plastic",
+      status: "published",
+      updated: "17/01/2024",
+    },
+    {
+      id: 6,
+      wasteCategory: "Plastic",
+      status: "published",
+      updated: "17/01/2024",
+    },
+    {
+      id: 7,
+      wasteCategory: "Plastic",
+      status: "published",
+      updated: "17/01/2024",
+    },
+    {
+      id: 8,
+      wasteCategory: "Plastic",
+      status: "published",
+      updated: "17/01/2024",
+    },
+    {
+      id: 9,
+      wasteCategory: "Plastic",
+      status: "published",
+      updated: "17/01/2024",
+    },
   ];
-
+  const paginationModel = { page: 0, pageSize: 5 };
   return (
     <div className="appcontent-section">
       <div className="common-main-section" style={{ padding: "30px" }}>
@@ -61,7 +117,7 @@ const AppContentManagement = () => {
             Add Material <FaPlus style={{ fontSize: "15px" }} />
           </button>
         </div>
-        <CustomTable headers={headres} data={data} />
+        <CustomDataTable columns={columns} rows={rows} />
       </div>
       <div
         className="common-main-section"
@@ -78,7 +134,7 @@ const AppContentManagement = () => {
             Add Services <FaPlus style={{ fontSize: "15px" }} />
           </button>
         </div>
-        <CustomTable headers={headres} data={data} />
+        <CustomDataTable columns={columns} rows={rows} />
       </div>
     </div>
   );

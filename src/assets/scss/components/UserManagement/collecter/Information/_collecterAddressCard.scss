@@ -7,29 +7,30 @@
   margin: 10px auto;
   padding: 20px;
 
-  .image-container {
-    flex: 1;
-    img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
+  @include media-max(lg) {
+    flex-direction: column;
+    align-self: start;
   }
 
+  .image-container {
+    @include media-max(lg) {
+      height: auto;
+      width: 100px;
+    }
+  }
   .address-details {
-    flex: 1;
     padding: 16px;
     background-color: #f9f9f9;
 
     h2 {
       margin: 0 0 8px;
-      font-size: 14px;
+      font-size: 16px;
       color: #333;
     }
 
     p {
       margin: 4px 0;
-      font-size: 12px;
+      font-size: 14px;
       color: #555;
     }
   }

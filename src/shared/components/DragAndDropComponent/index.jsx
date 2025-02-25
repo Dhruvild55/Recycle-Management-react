@@ -11,7 +11,7 @@ const DragAndDropComponent = ({ image, onDrop }) => {
   });
   return (
     <div className="dropzon-group">
-      <div>
+      <div className="image-container">
         {image ? (
           <img src={image.preview} alt="Preview" className="preview" />
         ) : (

@@ -1,6 +1,11 @@
 .dropzon-group {
   display: flex;
   gap: 50px;
+
+  @include media-max(lg) {
+    gap: 20px;
+    flex-direction: column;
+  }
 }
 .dropzone {
   width: 82%;
@@ -9,6 +14,11 @@
   cursor: pointer;
   border-radius: 7px;
   border: 1px solid #e4e7ec;
+
+  @include media-max(lg) {
+    padding: 0px 0px 10px 10px;
+    width: 100%;
+  }
   label {
     font-size: 14px;
     font-weight: 400;
@@ -24,17 +34,30 @@
   width: 155px;
   height: 130px;
 }
-.image-bg {
-  max-width: 100%;
-  width: 155px;
-  height: 140px;
-  border-radius: 7px;
-  max-height: 200px;
-  background-color: #d2d2d2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #f9fafb;
-  font-size: 14px;
-  font-weight: 500;
+.image-container {
+  width: 100%;
+  max-width: 200px;
+
+  @include media-max(lg) {
+    max-width: 230px;
+    height: 140px;
+    align-items: center;
+  }
+  .image-bg {
+    width: 100%;
+    max-width: 155px;
+    height: 100%;
+    border-radius: 7px;
+    max-height: 200px;
+    background-color: #d2d2d2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f9fafb;
+    font-size: 14px;
+    font-weight: 500;
+    @include media-max(lg) {
+      max-width: 200px;
+    }
+  }
 }

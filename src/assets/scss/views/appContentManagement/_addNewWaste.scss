@@ -34,6 +34,9 @@
     display: flex;
     justify-content: flex-end;
     gap: 5px;
+    @include media-max(lg) {
+      flex-direction: column;
+    }
     .btn {
       border: 1px solid #d0d5dd;
       padding: 10px 25px 10px 20px;
