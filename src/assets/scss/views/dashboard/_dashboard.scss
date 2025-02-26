@@ -6,6 +6,7 @@ $font-family: "Inter", sans-serif;
 
   .cards-container {
     display: flex;
+    flex-direction: column;
     margin-top: 30px;
     @include media-max(lg) {
       flex-direction: column;

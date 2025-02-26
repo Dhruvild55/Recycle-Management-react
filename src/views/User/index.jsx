@@ -11,7 +11,6 @@ const RolesList = lazy(() => import("./Admin And Roles/Roles-List"));
 function UserManagement() {
   const [selectedRole, setSelectedRole] = useState("Admin");
   const isMobile = useMediaQuery("(max-width: 425px)"); // Check screen size
-  console.log("isMobile", isMobile);
   const translations = useSelector((state) => state.settings.translations);
   const { admin, recycler, collector, admin_rols_and_Permissions } =
     translations.userManagementTopBtn;
@@ -31,7 +30,7 @@ function UserManagement() {
       case "Roles":
         return <RolesList />;
       default:
-        return null;
+        return <AdminList role="Admin" />;
     }
   };
 

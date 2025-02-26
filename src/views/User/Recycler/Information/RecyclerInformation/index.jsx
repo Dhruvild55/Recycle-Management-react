@@ -1,5 +1,6 @@
 import { Cell, Pie, PieChart, ResponsiveContainer } from "recharts";
 import ProfileCardComponent from "../../../../../shared/components/ProfileCardComponent";
+import { iconDrop } from "../../../../../assets/images/icons";
 
 const RecyclerInformation = () => {
   const data = [
@@ -17,27 +18,42 @@ const RecyclerInformation = () => {
         <div className="center-section">
           <div className="pie-chart-section">
             <p>Material</p>
-            <ResponsiveContainer width="100%" height={200}>
-              <PieChart>
-                <Pie
-                  data={data}
-                  cx="50%" // Centering dynamically
-                  cy="45%"
-                  innerRadius={60}
-                  outerRadius={90}
-                  fill="#8884d8"
-                  paddingAngle={0}
-                  dataKey="value"
-                >
-                  {data.map((entry, index) => (
-                    <Cell
-                      key={`cell-${index}`}
-                      fill={COLORS[index % COLORS.length]}
-                    />
-                  ))}
-                </Pie>
-              </PieChart>
-            </ResponsiveContainer>
+            <div>
+              <ResponsiveContainer width="100%" height={200}>
+                <PieChart>
+                  <Pie
+                    data={data}
+                    cx="50%" // Centering dynamically
+                    cy="45%"
+                    innerRadius={60}
+                    outerRadius={90}
+                    fill="#8884d8"
+                    paddingAngle={0}
+                    dataKey="value"
+                  >
+                    {data.map((entry, index) => (
+                      <Cell
+                        key={`cell-${index}`}
+                        fill={COLORS[index % COLORS.length]}
+                      />
+                    ))}
+                  </Pie>
+                </PieChart>
+              </ResponsiveContainer>
+              <img
+                src={iconDrop}
+                style={{
+                  position: "absolute",
+                  left: "42%",
+                  top: "38%",
+                  transform: "translate(116%, -50%)",
+                  fontSize: "30px",
+                  color: "#555",
+                }}
+                alt="Center Icon"
+              />
+            </div>
+
             <div className="data-section">
               <div className="data-div">
                 <div className="round-icon">22</div>

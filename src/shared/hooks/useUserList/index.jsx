@@ -12,6 +12,8 @@ const useUserList = ({ role, pageSize, pageNumber, isDescendingOrder }) => {
         isDescendingOrder,
       }),
     keepPreviousData: true,
+    staleTime: 30000, // Cache results for 30 seconds
+    refetchOnWindowFocus: false, // Don't refetch when switching tabs
   });
 };
 

@@ -31,7 +31,27 @@
     "category": "Category",
     "status": "Status",
     "state": "State",
-    "location": "Location"
+    "location": "Location",
+
+    "id": "Id",
+    "material": "Material",
+    "volume": "Volume(kg)",
+    "pickup": "Pickup",
+    "points": "Est.Points",
+
+    "item": "Item",
+    "quantity": "Quantity",
+    "paymentType": "Payment Type",
+
+    "collectionId": "Collection Id",
+    "recyclerName": "Recycler Name",
+    "recyclerId": "Recycler Id",
+    "dateAndTime": "Date & Time",
+    "collectorName": "Collector Name",
+    "materialType": "Material Type",
+
+    "collectorId": "Collector Id",
+    "depotName": "Depot Name"
   },
 
   "add_admin": "Add Admin",

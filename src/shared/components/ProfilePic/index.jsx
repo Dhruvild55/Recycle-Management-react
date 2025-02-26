@@ -12,11 +12,7 @@ const ProfilePic = ({ size, image, name }) => {
   });
 
   return (
-    <Avatar
-      alt={name}
-      src={data || image || ""}
-      sx={{ width: size, height: size }}
-    />
+    <Avatar alt={name} src={image || ""} sx={{ width: size, height: size }} />
   );
 };
 

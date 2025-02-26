@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 import { useState, useRef } from "react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { data, useLocation, useNavigate } from "react-router-dom";
 import { ReactToastify } from "../../../../shared/utils";
 import { route } from "../../../../shared/constants/AllRoutes";
 import { useForm } from "react-hook-form";
@@ -17,6 +17,8 @@ import { useMediaQuery } from "@mui/material";
 
 export default function AddUserPage() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const queryClient = useQueryClient();
   const language = useSelector((store) => store.settings.translations);
   const [showPassword, setShowPassword] = useState(false);
   const [showConformPassword, setShowConformPassword] = useState(false);
@@ -35,10 +37,14 @@ export default function AddUserPage() {
     mutationFn: createUser,
     onSuccess: (data) => {
       ReactToastify(data?.message, "success");
+      if (location.state?.fromUserList) {
+        queryClient.invalidateQueries(["userList"]);
+      }
       navigate(route.userManagement);
     },
-    onError: () => {
-      ReactToastify("Unauthorized Token", "error");
+    onError: (error) => {
+      console.log(error);
+      ReactToastify(error?.response?.data?.message, "error");
     },
   });
 

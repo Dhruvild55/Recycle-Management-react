@@ -70,6 +70,19 @@
               background-color: #d9f0ff;
             }
           }
+          .view-button1 {
+            background-color: #ffefd9;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 10px;
+            text-align: center;
+
+            &:hover {
+              background-color: #ffefd9;
+            }
+          }
         }
 
         td[colspan="5"] {

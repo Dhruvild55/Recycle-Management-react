@@ -1,3 +1,4 @@
+@use "./helpers/media-queries" as *;
 .back-text {
   font-size: 12px;
   font-weight: 500;
@@ -18,4 +19,82 @@
   padding: 20px;
   background-color: white;
   border-radius: 20px;
+}
+.common-top-section {
+  padding: 15px;
+  display: flex;
+  gap: 20px;
+  background-color: #c9ffdf;
+  border-radius: 20px;
+  flex-wrap: wrap;
+  .btn {
+    border-radius: 7px;
+    padding: 5px 15px 5px 15px;
+    border: none;
+    font-size: 14px !important;
+    background-color: white;
+    &.selected {
+      background-color: #1f7f82;
+      color: white;
+    }
+  }
+  button:hover {
+    background-color: #1f7f82;
+    color: white;
+  }
+  .dropdown {
+    width: 100%;
+    max-width: 280px;
+    padding: 10px;
+    border: 1px solid #d4d4d4;
+    border-radius: 10px;
+    font-size: 14px;
+    background-color: white;
+    cursor: pointer;
+    outline: none;
+    appearance: none; // Removes default browser styles
+    background-image: url("/images/dropdownIcon.png"); // Add dropdown icon
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 14px;
+  }
+}
+.userList-header {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+  padding: 5px 15px 5px 15px;
+  gap: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+
+  div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .search-input {
+      width: 100%;
+      min-width: 670px;
+      padding: 10px 45px;
+      border: 1px solid #d4d4d4;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      background: url("/images/searchIcon.png") no-repeat 18px center;
+      background-size: 16px;
+      outline: none;
+      @include media-max(lg) {
+        min-width: 210px;
+      }
+    }
+
+    select {
+      padding: 6px 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 0.95rem;
+    }
+  }
 }

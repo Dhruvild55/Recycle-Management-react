@@ -1,6 +1,7 @@
+/* eslint-disable react/display-name */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
+import { memo, useState } from "react";
 import {
   iconDelete,
   iconEdit,
@@ -26,7 +27,6 @@ const AdminList = ({ role }) => {
   const navigate = useNavigate();
   const translations = useSelector((state) => state.settings.translations);
 
-  // show user data hook
   const {
     data: userListData,
     isLoading,
@@ -141,7 +141,12 @@ const AdminList = ({ role }) => {
             onChange={(e) => setSearchQuery(e.target.value.toLowerCase())}
           />
         </div>
-        <button onClick={() => navigate(route.addUser)} className="add-btn">
+        <button
+          onClick={() =>
+            navigate(route.addUser, { state: { fromUserList: true } })
+          }
+          className="add-btn"
+        >
           {" "}
           {translations.add_admin} <FaPlus style={{ fontSize: "15px" }} />
         </button>
@@ -160,7 +165,7 @@ const AdminList = ({ role }) => {
       <div className="table-footer">
         <div>
           <span className="back-text" style={{ color: "#181D27" }}>
-            {translations.showing_entries}
+            showing {userListData?.data?.items.length} entries
           </span>
           {"  "}
           <img src={iconRightArrow} />
@@ -189,4 +194,4 @@ const AdminList = ({ role }) => {
   );
 };
 
-export default AdminList;
+export default memo(AdminList);

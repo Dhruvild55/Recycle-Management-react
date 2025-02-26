@@ -106,15 +106,16 @@
 
           .phone-input {
             display: flex;
-            align-items: center;
-
-            .country-code {
-              margin-right: 10px;
-              padding: 10px;
-              background-color: #f8f9fa;
-              border: 1px solid #ccc;
-              border-radius: 4px;
-              width: 80px;
+            .input-tel {
+              display: flex;
+              .country-code {
+                margin-right: 10px;
+                padding: 10px;
+                background-color: #f8f9fa;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                width: 80px;
+              }
             }
 
             input {

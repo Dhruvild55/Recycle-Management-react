@@ -11,6 +11,8 @@ export const route = {
   addWaste: "/app-content-Management/add-waste",
   addGuidelines: "/app-content-Management/add-Guidelines",
   collectionManagement: "/collection-Management",
+  viewRecyclerCollection: "/collection-Management/view-recycler-collection",
+  viewCollectorCollection: "/collection-Management/view-collector-collection",
   rewardsManagement: "/rewards-Management",
   createCampaign: "/create-campaign",
   collectorServiceManagement: "/Collector-Service-Management",

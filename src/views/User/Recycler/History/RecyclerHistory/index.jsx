@@ -27,6 +27,18 @@ const RecyclerHistory = () => {
             <div>
               <PickUpCard />
             </div>
+            <div>
+              <PickUpCard />
+            </div>
+            <div>
+              <PickUpCard />
+            </div>
+            <div>
+              <PickUpCard />
+            </div>
+            <div>
+              <PickUpCard />
+            </div>
           </Slider>
         </div>
       ) : (

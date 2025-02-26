@@ -153,7 +153,7 @@ const CollecterList = ({ role }) => {
       <div className="table-footer">
         <div>
           <span className="back-text" style={{ color: "#181D27" }}>
-            {translations.showing_entries}
+            showing {userListData?.data?.items.length} entries
           </span>
           {"  "}
           <img src={iconRightArrow} />

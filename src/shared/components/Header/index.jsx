@@ -24,7 +24,6 @@ import useMediaQuery from "../../hooks/useMediaQuery";
 function Header({ toggleSidebar, isCollapsed, selectedMenu }) {
   const dispatch = useDispatch();
   const isMobile = useMediaQuery("(max-width: 425px)"); // Check screen size
-  console.log("isMobile", isMobile);
   const translations = useSelector((state) => state.settings.translations);
   const [selectedLanguage, setSelectedLanguage] = useState(
     localStorage.getItem("language") || "en"

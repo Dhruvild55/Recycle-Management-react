@@ -26,7 +26,7 @@ export const SidebarLinks = [
   },
   {
     name: "collaction_Management",
-    path: route.NotFoundPage,
+    path: route.collectionManagement,
     icon: <CollectionIcon color="#1F7F82" />,
   },
   {

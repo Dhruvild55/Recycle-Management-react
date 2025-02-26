@@ -8,20 +8,28 @@ const InputField = ({
   name,
   validation,
 }) => {
+  console.log(errors);
   return (
     <div className="input-field">
       <label>{label}</label>
       {type === "tel" ? (
         <div className="phone-input">
-          <select className="country-code">
-            <option>+60</option>
-          </select>
-          <input
-            className="phone-input-box"
-            type={type}
-            placeholder={placeholder}
-            {...register(name, validation)}
-          />
+          <div className="input-tel">
+            <select className="country-code">
+              <option>+60</option>
+            </select>
+            <input
+              className="phone-input-box"
+              type={type}
+              placeholder={placeholder}
+              {...register(name, validation)}
+            />
+          </div>
+          <div>
+            {errors && errors[name] && (
+              <p className="error-message">{errors[name].message}</p>
+            )}
+          </div>
         </div>
       ) : (
         <div>

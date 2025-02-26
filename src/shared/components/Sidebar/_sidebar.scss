@@ -80,7 +80,7 @@ $highlight-color: $table-header-background;
           background-color: $highlight-color;
           border-top-right-radius: 15px;
           border-bottom-right-radius: 15px;
-          width: $sidebar-width - 25px; // Adjust width without hardcoding
+          width: $sidebar-width - 15px; // Adjust width without hardcoding
         }
         a {
           display: block;
@@ -126,10 +126,11 @@ $highlight-color: $table-header-background;
       }
     }
     .settings-section {
-      margin-top: 40%;
-      padding: 32px 25px 32px 25px;
+      padding-left: 20px;
       display: flex;
       gap: 7px;
+      bottom: 20px;
+      position: absolute;
 
       .label {
         color: $sidebar-color;
@@ -167,10 +168,6 @@ $highlight-color: $table-header-background;
           }
         }
       }
-    }
-
-    .settings-section {
-      margin-top: 70%;
     }
   }
 }

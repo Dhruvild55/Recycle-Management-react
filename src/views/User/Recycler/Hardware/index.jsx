@@ -32,14 +32,14 @@ const HardwareTable = () => {
     },
   ];
   const headerData = [
-    { key: "item", label: "Item" },
-    { key: "category", label: "Category" },
-    { key: "quantity", label: "Quantity" },
-    { key: "paymentType", label: "Payment Type" },
-    { key: "status", label: "Status" },
+    { key: "item", label: "item" },
+    { key: "category", label: "category" },
+    { key: "quantity", label: "quantity" },
+    { key: "paymentType", label: "paymentType" },
+    { key: "status", label: "status" },
     {
       key: "action",
-      label: "Action",
+      label: "action",
       render: () => <button className="view-button">View</button>,
     },
   ];

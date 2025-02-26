@@ -2,15 +2,17 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Switch from "react-switch";
 import { getPermission } from "../../../../query/roles/getPermissions/getPermission.query";
 import { Loader } from "../../../../shared/components/Loader";
 import { updateRoles } from "../../../../query/roles/updateRoles/updateRoles.query";
+import { route } from "../../../../shared/constants/AllRoutes";
 
 const EditPermissions = () => {
   const { role } = useParams();
   const [permissions, setPermissions] = useState([]);
+  const navigate = useNavigate();
 
   const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ["getPermissions", role],
@@ -64,7 +66,12 @@ const EditPermissions = () => {
     <div className="permission-section">
       <div className="common-main-section">
         <div>
-          <button className="back-text">Back to Roles List</button>
+          <button
+            className="back-text"
+            onClick={() => navigate(route.userManagement)}
+          >
+            Back to Roles List
+          </button>
         </div>
         <div style={{ marginTop: "20px" }}>
           <p>Roles</p>

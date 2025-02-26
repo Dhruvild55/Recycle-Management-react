@@ -10,9 +10,12 @@ function CustomTable({ headers, data, isLoading }) {
     <Table responsive>
       <thead>
         <tr>
-          {headers.map((header) => (
-            <th key={header.key}>{translations.tableFields[header.label]}</th>
-          ))}
+          {headers.map((header) => {
+            console.log(header);
+            return (
+              <th key={header.key}>{translations.tableFields[header.label]}</th>
+            );
+          })}
         </tr>
       </thead>
       <tbody>

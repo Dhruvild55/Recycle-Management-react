@@ -8,7 +8,7 @@ const PrivateRoute = lazy(() => import("./PrivateRoutes"));
 const Login = lazy(() => import("../views/auth/login"));
 
 // Private Routes Files
-const Dashboard = lazy(() => import("../views/dashboard/"));
+const Dashboard = lazy(() => import("../views/dashboard"));
 
 // user
 const UserManagement = lazy(() => import("../views/User"));
@@ -36,6 +36,20 @@ const AddWeastePage = lazy(() =>
 
 const AddGuideLinePage = lazy(() =>
   import("../views/appContentManagement/addGuidelines")
+);
+// Collection Management
+const CollectionManagementPage = lazy(() =>
+  import("../views/collectionManagement")
+);
+const ViewRecyclerCollectionPage = lazy(() =>
+  import(
+    "../views/collectionManagement/Recycler-collection/RecyclerCollectionInfo"
+  )
+);
+const ViewCollectorCollectionPage = lazy(() =>
+  import(
+    "../views/collectionManagement/Collector-collection/CollectorCollectionInfo"
+  )
 );
 
 // collecterServiceManagement
@@ -92,6 +106,21 @@ const RoutesDetails = [
       {
         path: route.viewRecyclerItems,
         Component: ViewRecyclerItemsPage,
+        exact: true,
+      },
+      {
+        path: route.collectionManagement,
+        Component: CollectionManagementPage,
+        exact: true,
+      },
+      {
+        path: route.viewRecyclerCollection,
+        Component: ViewRecyclerCollectionPage,
+        exact: true,
+      },
+      {
+        path: route.viewCollectorCollection,
+        Component: ViewCollectorCollectionPage,
         exact: true,
       },
       {

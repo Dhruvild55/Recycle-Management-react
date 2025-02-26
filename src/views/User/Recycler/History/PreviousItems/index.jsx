@@ -40,14 +40,14 @@ const PreviousItems = () => {
   ];
 
   const headerData = [
-    { key: "id", label: "Id" },
-    { key: "material", label: "Material" },
-    { key: "volume", label: "Volume(kg)" },
-    { key: "pickup", label: "Pickup" },
-    { key: "points", label: "Est.Points" },
+    { key: "id", label: "id" },
+    { key: "material", label: "material" },
+    { key: "volume", label: "volume" },
+    { key: "pickup", label: "pickup" },
+    { key: "points", label: "points" },
     {
       key: "action",
-      label: "Action",
+      label: "action",
       render: () => <button className="view-button">View</button>,
     },
   ];
