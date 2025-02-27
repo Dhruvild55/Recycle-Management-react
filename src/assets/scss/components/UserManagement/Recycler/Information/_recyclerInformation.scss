@@ -1,96 +1,27 @@
-// .profile-body {
-//   display: flex;
-//   gap: 60px;
-
-//   @include media-max(lg) {
-//     flex-wrap: wrap;
-//   }
-
-//   .recyclers-info-section {
-//     display: flex;
-//     flex-direction: column;
-//     .recycler-details {
-//       display: flex;
-//       gap: 60px;
-
-//       .recycle-info-details {
-//         display: flex;
-//         max-width: 600px;
-//         width: 100%;
-//         border: 1px solid #146dc7;
-//       }
-//       .pointes-container {
-//         background: url(/public/images/pointes-card-image.png);
-//         background-repeat: no-repeat;
-//         background-size: cover;
-//         border-radius: 10px;
-
-//         .pointes-sec {
-//           .top-section {
-//             padding: 40px 0px 0px 21px;
-//             p {
-//               margin-bottom: 0px !important;
-//               font-size: 14px;
-//               font-weight: 400;
-//             }
-//           }
-//           .middle-section {
-//             padding-left: 20px;
-//             display: flex;
-//             align-items: center;
-//             gap: 15px;
-//             margin-bottom: 10px;
-
-//             h1 {
-//               margin-bottom: 0px !important;
-//               font-size: 30px !important;
-//             }
-//           }
-//           .bottom-section {
-//             padding-left: 20px;
-//             p {
-//               font-size: 12px;
-//               font-weight: 400;
-//               color: #1f7f82;
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
-
 .recycler-information {
   display: flex;
-  gap: 30px;
-
   @include media-max(lg) {
-    flex-wrap: wrap;
     flex-direction: column;
+    align-items: center;
   }
   .information-details {
     .center-section {
       display: flex;
-      @include media-max(lg) {
-        flex-direction: column;
-        align-items: center;
-      }
+      justify-content: space-around;
+      gap: 30px;
       .pie-chart-section {
         display: inline-block;
         padding: 10px;
-        max-width: 700px;
-        width: 57%;
+        width: 100%;
+        max-width: 300px;
         position: relative;
-
-        @include media-max(lg) {
-          display: flex;
-          width: 100%;
-          flex-direction: column;
-        }
         .data-section {
           display: flex;
           gap: 30px;
           margin-top: 20px;
+          @include media-max(lg) {
+            gap: 10px;
+          }
           .data-div {
             display: flex;
             gap: 10px;
@@ -115,8 +46,9 @@
       .points-container {
         background-image: url("/images/pointes-card-image.png");
         background-size: cover;
-        width: 320px;
+        width: 100%;
         height: 360px;
+        max-width: 320px;
         .points-sec {
           .top-section {
             padding: 40px 0px 0px 21px;

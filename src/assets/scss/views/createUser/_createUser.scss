@@ -106,6 +106,7 @@
 
           .phone-input {
             display: flex;
+            flex-direction: column;
             .input-tel {
               display: flex;
               .country-code {

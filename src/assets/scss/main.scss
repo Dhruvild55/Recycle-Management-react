@@ -14,6 +14,7 @@
 @import "../../shared/components/Footer/footer";
 @import "../../shared/components/CardComponent/cardComponent";
 @import "../../shared/components/DragAndDropComponent/dragAndDrop";
+@import "../../shared/components/CustomDataTable/customDataTable";
 
 // userManagement Components
 @import "./components/UserManagement/Recycler/Information/recyclerInformation";
@@ -35,6 +36,7 @@
 // Collecter Service Management
 @import "./views/CollecterServiceManagement/CollecterServiceList";
 
+@import "../../views/collectionManagement/Recycler-collection/RecyclerCollectionInfo/recyclerCollectionInfo";
 // views
 @import "./views/auth/login";
 @import "./views/dashboard/dashboard";

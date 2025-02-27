@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useSelector } from "react-redux";
 import { iconRightArrow } from "../../../../assets/images/icons";
 import CustomTable from "../../../../shared/components/CustomTable";
@@ -36,7 +37,7 @@ const RecyclerCollectionList = () => {
             {/* showing {userListData?.data?.items.length} entries */}
           </span>
           {"  "}
-          <img src={iconRightArrow} />
+          {/* <img src={iconRightArrow} /> */}
         </div>
         <div>
           {/* <Pagination

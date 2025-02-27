@@ -1,0 +1,74 @@
+// Global styles for DataGrid
+.custom-data-table {
+  .MuiDataGrid-root {
+    border: none !important; // Removes default border
+  }
+
+  .MuiDataGrid-cell:focus,
+  .MuiDataGrid-cell:focus-within {
+    outline: none !important; // Removes blue outline border
+    border: none !important; // Removes any border highlight
+  }
+  .MuiDataGrid-footerContainer {
+    display: none !important; // Hides the footer completely
+  }
+  .MuiDataGrid-filler {
+    border: none !important; // Removes border from the filler area
+  }
+
+  .MuiDataGrid-columnHeaders {
+    color: #333; // Header text color
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .MuiDataGrid-root .MuiDataGrid-container--top [role="row"] {
+    background-color: #c9ffdf;
+  }
+
+  .MuiDataGrid-columnSeparator {
+    display: none; // Removes the column separator line
+  }
+
+  .MuiDataGrid-row {
+    transition: background-color 0.3s ease;
+    &:hover {
+      background-color: none !important; // Custom hover color
+    }
+    &:focus-within,
+    &:focus {
+      outline: none !important; // Removes focus border
+    }
+  }
+
+  .MuiDataGrid-selectedRowCount {
+    display: none; // Hides the row selection count
+  }
+
+  .MuiCheckbox-root {
+    color: #dfdfdf !important; // Changes checkbox color
+  }
+
+  .MuiDataGrid-footerContainer {
+    background-color: #f5f5f5; // Background for footer
+    padding: 10px;
+  }
+
+  .MuiTablePagination-root {
+    font-size: 14px;
+  }
+
+  .MuiDataGrid-toolbarContainer {
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    display: none;
+  }
+
+  .MuiDataGrid-iconButtonContainer {
+    display: none; // Hides sorting icons if needed
+  }
+
+  .MuiDataGrid-overlay {
+    background-color: rgba(255, 255, 255, 0.8); // Custom overlay for loading
+  }
+}

@@ -6,6 +6,7 @@ import {
   iconDelete,
   iconProfile,
   iconRightArrow,
+  iconView,
 } from "../../../../assets/images/icons";
 import ProfilePic from "../../../../shared/components/ProfilePic";
 import { useMutation } from "@tanstack/react-query";
@@ -91,18 +92,17 @@ const RecyclerList = ({ role }) => {
       key: "action",
       label: "action",
       render: (row) => (
-        <div className="flex gap-2">
+        <div className="btn-section">
           <button
             onClick={() => navigate(route.viewRecycler(row.id))}
-            style={{
-              backgroundColor: "#D9F0FF",
-              padding: "5px 5px",
-              borderRadius: "10px",
-            }}
+            className="action-btn"
           >
-            <img src={iconProfile} />
+            <img src={iconView} />
           </button>
-          <button onClick={() => deleteUserMutation({ userId: row.id })}>
+          <button
+            onClick={() => deleteUserMutation({ userId: row.id })}
+            className="action-btn"
+          >
             <img src={iconDelete} />
           </button>
         </div>

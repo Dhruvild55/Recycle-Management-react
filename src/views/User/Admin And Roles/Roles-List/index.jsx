@@ -81,16 +81,19 @@ const RolesList = () => {
                 >
                   {row}
                 </td>
-                <td style={{ textAlign: "right", padding: "10px 50px" }}>
+                <td
+                  style={{ textAlign: "right", padding: "10px 50px" }}
+                  className="btn-section"
+                >
                   <button
                     onClick={() => handleEditPermission(row)}
-                    className="buttons"
+                    className="action-btn"
                   >
                     <img src={iconEdit} />
                   </button>
                   <button
                     onClick={() => alert("delete Clicked")}
-                    className="buttons"
+                    className="action-btn"
                   >
                     <img src={iconDelete} />
                   </button>

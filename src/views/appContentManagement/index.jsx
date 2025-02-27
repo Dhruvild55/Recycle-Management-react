@@ -34,15 +34,18 @@ const AppContentManagement = () => {
       width: 100,
       sortable: false,
       renderCell: (params) => (
-        <div style={{ display: "flex", gap: "10px" }}>
+        <div style={{ display: "flex", gap: "5px" }}>
           <button
-            style={{ border: "none" }}
+            style={{ border: "none", margin: "0px" }}
             onClick={() => alert(`${params.row.wasteCategory}Edit clicked`)}
             className="action-btn"
           >
             <img src={iconEdit} />
           </button>
-          <button style={{ border: "none" }} className="action-btn">
+          <button
+            className="action-btn"
+            style={{ border: "none", margin: "0px" }}
+          >
             <img src={iconDelete} />
           </button>
         </div>
@@ -56,7 +59,6 @@ const AppContentManagement = () => {
       wasteCategory: "oil",
       status: "published",
       updated: "17/01/2024",
-      actions: 35,
     },
     {
       id: 2,

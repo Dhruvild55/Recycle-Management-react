@@ -36,6 +36,11 @@
           text-align: justify;
           vertical-align: middle;
 
+          .btn-section {
+            display: flex;
+            gap: 3px;
+          }
+
           .action-btn {
             transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
           }
@@ -54,34 +59,6 @@
           button {
             background-color: transparent;
             border: none;
-          }
-
-          .view-button {
-            background-color: #d9f0ff;
-            color: #008adf;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 12px;
-            text-align: center;
-
-            &:hover {
-              background-color: #d9f0ff;
-            }
-          }
-          .view-button1 {
-            background-color: #ffefd9;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 10px;
-            text-align: center;
-
-            &:hover {
-              background-color: #ffefd9;
-            }
           }
         }
 

@@ -1,6 +1,6 @@
 // collectionData.js
 import ProfilePic from "../../shared/components/ProfilePic";
-import { iconDelete, iconEdit, iconView } from "../../assets/images/icons";
+import { iconDelete, iconView } from "../../assets/images/icons";
 
 // Headers for Collector Collection List
 export const collectorCollectionHeaders = [
@@ -27,7 +27,7 @@ export const collectorCollectionHeaders = [
       <div className="flex gap-2">
         <button
           onClick={() => alert("This page is under Development!")}
-          className="view-button1"
+          className="action-btn"
         >
           <img src={iconView} />
         </button>
@@ -66,7 +66,7 @@ export const recyclerCollectionHeaders = [
           onClick={() => alert("This page is under Development!")}
           className="action-btn"
         >
-          <img src={iconEdit} />
+          <img src={iconView} />
         </button>
         <button className="action-btn">
           <img src={iconDelete} />

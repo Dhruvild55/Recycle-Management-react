@@ -108,7 +108,7 @@ const AdminList = ({ role }) => {
       key: "action",
       label: "action",
       render: (row) => (
-        <div className="flex gap-2">
+        <div className="btn-section">
           <button
             onClick={() => alert("This page is under Development!")}
             className="action-btn"

@@ -6,29 +6,19 @@ const CustomDataTable = ({
   columns,
   rows,
   pageSizeOptions = [5, 10],
-  height = 400,
+  height = 320,
 }) => {
   const paginationModel = { page: 0, pageSize: 5 };
 
   return (
-    <Paper sx={{ height, width: "100%" }}>
+    <Paper sx={{ height, width: "100%" }} className="custom-data-table">
       <DataGrid
         rows={rows}
         columns={columns}
         initialState={{ pagination: { paginationModel } }}
         pageSizeOptions={pageSizeOptions}
         checkboxSelection
-        sx={{
-          border: 0,
-          "& .MuiDataGrid-columnHeaders": {
-            color: "black",
-            fontSize: "16px",
-            fontWeight: "bold",
-          },
-          "& .MuiDataGrid-container--top [role=row]": {
-            backgroundColor: "#C9FFDF",
-          },
-        }}
+        hideFooter={true}
       />
     </Paper>
   );
