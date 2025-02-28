@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import ProfilePic from "../../../../shared/components/ProfilePic";
 
 const RecyclerCollectionInfo = () => {
@@ -44,13 +45,13 @@ const RecyclerCollectionInfo = () => {
       <img src={material.image} alt={material.type} />
       <div className="card-content">
         <p>
-          <strong>Collection ID</strong> {material.id}
+          <span>Collection ID</span> <span>{material.id}</span>
         </p>
         <p>
-          <strong>Material Type</strong> {material.type}
+          <span>Material Type</span> <span>{material.type}</span>
         </p>
         <p>
-          <strong>Material Weight (kg)</strong> {material.weight}
+          <span>Material Weight (kg)</span> <span>{material.weight}</span>
         </p>
       </div>
     </div>
@@ -68,7 +69,7 @@ const RecyclerCollectionInfo = () => {
           <h1 className="primary-title">Recycler Collection Information</h1>
         </div>
         <div className="recycler-collection row">
-          <div className="recycler-info col-lg-8 col-sm-12">
+          <div className="recycler-info col-lg-8">
             <div className="profile-section">
               <ProfilePic size={100} />
             </div>
@@ -94,11 +95,11 @@ const RecyclerCollectionInfo = () => {
             </div>
           </div>
           {/* Collector Section */}
-          <div className="collector-section col-lg-4  col-sm-12">
+          <div className="collector-section col-lg-4 ">
             <p>Collector</p>
             <div className="collector-card">
               <ProfilePic size={55} />
-              <div className="collector-info">
+              <div className="collector-info ">
                 <p className="name">{collector.name}</p>
                 <p className="id">Collector ID: {collector.collectorId}</p>
               </div>

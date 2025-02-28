@@ -11,7 +11,11 @@ const CustomDataTable = ({
   const paginationModel = { page: 0, pageSize: 5 };
 
   return (
-    <Paper sx={{ height, width: "100%" }} className="custom-data-table">
+    <Paper
+      sx={{ height, width: "100%" }}
+      elevation={0}
+      className="custom-data-table"
+    >
       <DataGrid
         rows={rows}
         columns={columns}

@@ -13,6 +13,7 @@ const Dashboard = lazy(() => import("../views/dashboard"));
 // user
 const UserManagement = lazy(() => import("../views/User"));
 const AddUserPage = lazy(() => import("../views/User/Admin/Admin-add"));
+
 const RecyclerProfilePage = lazy(() =>
   import("../views/User/Recycler/recycler-profile")
 );
@@ -22,21 +23,19 @@ const ViewRecyclerItemsPage = lazy(() =>
 const CollecterProfilePage = lazy(() =>
   import("../views/User/Collecter/collecter-profile")
 );
-
 const AdminPermissionEditPage = lazy(() =>
   import("../views/User/Admin And Roles/edit-admin-permission")
 );
-
 const AppcontantManagementPage = lazy(() =>
   import("../views/appContentManagement/")
 );
 const AddWeastePage = lazy(() =>
   import("../views/appContentManagement/addNewWaste")
 );
-
 const AddGuideLinePage = lazy(() =>
   import("../views/appContentManagement/addGuidelines")
 );
+
 // Collection Management
 const CollectionManagementPage = lazy(() =>
   import("../views/collectionManagement")
@@ -52,11 +51,16 @@ const ViewCollectorCollectionPage = lazy(() =>
   )
 );
 
+//* Rewards Management
+const RewardsManagementPage = lazy(() => import("../views/rewardsManagement"));
+const AddRewardsPage = lazy(() =>
+  import("../views/rewardsManagement/ProductManagement/AddRewards")
+);
+
 // collecterServiceManagement
 const CollecterServiceManagementPage = lazy(() =>
   import("../views/CollectorServiceManagement/NewCollecterPermissionList")
 );
-
 const ViewCollecterInformationPage = lazy(() =>
   import("../views/CollectorServiceManagement/ViewCollecterInformation")
 );
@@ -84,9 +88,11 @@ const RoutesDetails = [
     props: {},
     isPrivateRoute: true,
     children: [
+      //Dashboard
       { path: route.dashboard, Component: Dashboard, exact: true },
-      { path: route.userManagement, Component: UserManagement, exact: true },
 
+      // user Management
+      { path: route.userManagement, Component: UserManagement, exact: true },
       { path: route.addUser, Component: AddUserPage, exact: true },
       {
         path: route.viewRecycler(`:id`),
@@ -108,6 +114,8 @@ const RoutesDetails = [
         Component: ViewRecyclerItemsPage,
         exact: true,
       },
+
+      // Collection Management
       {
         path: route.collectionManagement,
         Component: CollectionManagementPage,
@@ -123,6 +131,8 @@ const RoutesDetails = [
         Component: ViewCollectorCollectionPage,
         exact: true,
       },
+
+      // Collection Service Management
       {
         path: route.collectorServiceManagement,
         Component: CollecterServiceManagementPage,
@@ -133,6 +143,19 @@ const RoutesDetails = [
         Component: ViewCollecterInformationPage,
         exact: true,
       },
+      //* Rewards Management
+      {
+        path: route.rewardsManagement,
+        Component: RewardsManagementPage,
+        exact: true,
+      },
+      {
+        path: route.addRewards,
+        Component: AddRewardsPage,
+        exact: true,
+      },
+
+      // App Content Management
       {
         path: route.appContentManagement,
         Component: AppcontantManagementPage,

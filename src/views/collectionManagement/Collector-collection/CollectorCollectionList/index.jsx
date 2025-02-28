@@ -5,8 +5,10 @@ import {
   collectorCollectionData,
   collectorCollectionHeaders,
 } from "../../confige";
+import { useNavigate } from "react-router-dom";
 
 const CollectorCollectionList = () => {
+  const navigate = useNavigate();
   const translations = useSelector((state) => state.settings.translations);
 
   return (
@@ -28,7 +30,7 @@ const CollectorCollectionList = () => {
         </div>
       </div>
       <CustomTable
-        headers={collectorCollectionHeaders}
+        headers={collectorCollectionHeaders(navigate)}
         data={collectorCollectionData}
       />
       <div className="table-footer">

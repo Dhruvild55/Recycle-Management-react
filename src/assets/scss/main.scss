@@ -1,5 +1,6 @@
 @use "./variable" as *;
 @use "./helpers/media-queries" as *;
+@use "./helpers/button" as *;
 @use "./common" as *;
 
 // components
@@ -16,7 +17,7 @@
 @import "../../shared/components/DragAndDropComponent/dragAndDrop";
 @import "../../shared/components/CustomDataTable/customDataTable";
 
-// userManagement Components
+// userManagement
 @import "./components/UserManagement/Recycler/Information/recyclerInformation";
 @import "./components/UserManagement/Recycler/Information/businessRegister";
 @import "./components/UserManagement/Recycler/Information/businessAddress";
@@ -37,6 +38,11 @@
 @import "./views/CollecterServiceManagement/CollecterServiceList";
 
 @import "../../views/collectionManagement/Recycler-collection/RecyclerCollectionInfo/recyclerCollectionInfo";
+@import "../../views/collectionManagement/Collector-collection/CollectorCollectionInfo/collectorcollectionInfo";
+
+// Rewards Management
+@import "../../views/rewardsManagement/ProductManagement/AddRewards/addRewards";
+
 // views
 @import "./views/auth/login";
 @import "./views/dashboard/dashboard";

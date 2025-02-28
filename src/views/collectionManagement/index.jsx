@@ -1,8 +1,8 @@
-import { useMediaQuery } from "@mui/material";
 import { Suspense, useState } from "react";
 import ButtonComponent from "../../shared/components/Buttoncomponent";
 import RecyclerCollectionList from "./Recycler-collection/RecyclerCollectionList";
 import CollectorCollectionList from "./Collector-collection/CollectorCollectionList";
+import useMediaQuery from "../../shared/hooks/useMediaQuery";
 
 const CollectionManagement = () => {
   const [selectedRole, setSelectedRole] = useState("recyler-collection");

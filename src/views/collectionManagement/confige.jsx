@@ -1,9 +1,10 @@
 // collectionData.js
 import ProfilePic from "../../shared/components/ProfilePic";
 import { iconDelete, iconView } from "../../assets/images/icons";
+import { route } from "../../shared/constants/AllRoutes";
 
 // Headers for Collector Collection List
-export const collectorCollectionHeaders = [
+export const collectorCollectionHeaders = (navigate) => [
   { key: "collectionId", label: "collectionId" },
   {
     key: "collectorName",
@@ -26,7 +27,7 @@ export const collectorCollectionHeaders = [
     render: () => (
       <div className="flex gap-2">
         <button
-          onClick={() => alert("This page is under Development!")}
+          onClick={() => navigate(route.viewCollectorCollection)}
           className="action-btn"
         >
           <img src={iconView} />
@@ -40,7 +41,7 @@ export const collectorCollectionHeaders = [
 ];
 
 // Headers for Recycler Collection List
-export const recyclerCollectionHeaders = [
+export const recyclerCollectionHeaders = (navigate) => [
   { key: "collectionId", label: "collectionId" },
   {
     key: "recyclerName",
@@ -60,19 +61,21 @@ export const recyclerCollectionHeaders = [
   {
     key: "action",
     label: "action",
-    render: () => (
-      <div className="flex gap-2">
-        <button
-          onClick={() => alert("This page is under Development!")}
-          className="action-btn"
-        >
-          <img src={iconView} />
-        </button>
-        <button className="action-btn">
-          <img src={iconDelete} />
-        </button>
-      </div>
-    ),
+    render: () => {
+      return (
+        <div className="flex gap-2">
+          <button
+            onClick={() => navigate(route.viewRecyclerCollection)}
+            className="action-btn"
+          >
+            <img src={iconView} />
+          </button>
+          <button className="action-btn">
+            <img src={iconDelete} />
+          </button>
+        </div>
+      );
+    },
   },
 ];
 

@@ -1,0 +1,43 @@
+.form-group {
+  margin-bottom: 1rem;
+
+  label {
+    display: block;
+    font-weight: 500;
+    color: #344054;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+
+  input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #d5d7da;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #333;
+    transition: border-color 0.3s;
+
+    &:focus {
+      border-color: #1f7f82;
+      outline: none;
+      box-shadow: 0 0 5px rgba(31, 127, 130, 0.3);
+    }
+  }
+}
+
+.form-actions {
+  display: flex;
+  margin-bottom: 20px;
+  gap: 10px;
+  justify-content: flex-end;
+  @include media-max(lg) {
+    flex-direction: column;
+  }
+  .submit-button {
+    @include button-style(#3fb4b4, #fff);
+  }
+  .cancel-button {
+    @include button-style(#f8f9fa, #000, 1px solid #ccc);
+  }
+}

@@ -7,6 +7,7 @@ export { default as iconProfile } from "./ProfileIcon.png";
 export { default as iconDelete } from "./deleteIcon.png";
 export { default as iconEdit } from "./editIcon.png";
 export { default as iconView } from "./yellowViewIcon.png";
+export { default as iconEye } from "./eye-icon.png";
 
 export { default as iconMenu } from "./menuIcon.svg";
 export { default as iconUser } from "./userIcon.svg";

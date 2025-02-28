@@ -31,7 +31,7 @@ export const SidebarLinks = [
   },
   {
     name: "rewards_Management",
-    path: route.NotFoundPage,
+    path: route.rewardsManagement,
     icon: <RewardsIcon color="#1F7F82" />,
   },
   {

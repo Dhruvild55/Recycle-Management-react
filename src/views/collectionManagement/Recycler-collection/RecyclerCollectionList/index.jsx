@@ -2,12 +2,14 @@
 import { useSelector } from "react-redux";
 import { iconRightArrow } from "../../../../assets/images/icons";
 import CustomTable from "../../../../shared/components/CustomTable";
+import { useNavigate } from "react-router-dom";
 import {
   recyclerCollectionData,
   recyclerCollectionHeaders,
 } from "../../confige";
 
 const RecyclerCollectionList = () => {
+  const navigate = useNavigate();
   const translations = useSelector((state) => state.settings.translations);
   return (
     <>
@@ -28,7 +30,7 @@ const RecyclerCollectionList = () => {
         </div>
       </div>
       <CustomTable
-        headers={recyclerCollectionHeaders}
+        headers={recyclerCollectionHeaders(navigate)}
         data={recyclerCollectionData}
       />
       <div className="table-footer">
