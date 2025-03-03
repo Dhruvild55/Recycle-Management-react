@@ -1,0 +1,60 @@
+.form-container-rewards {
+  display: flex;
+  gap: 30px;
+  margin-top: 30px;
+  align-items: stretch;
+
+  @include media-max(lg) {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .fields-section {
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    width: 100%; // Ensure full width
+
+    @include media-max(lg) {
+      grid-template-columns: 1fr;
+    }
+
+    .fields-group {
+      display: flex;
+      flex-direction: column;
+
+      label {
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 5px;
+      }
+
+      input,
+      select,
+      textarea {
+        padding: 10px;
+        border: 1px solid #d5d7da;
+        border-radius: 8px;
+        font-size: 14px;
+        background: #f9f9f9;
+        cursor: not-allowed;
+        width: 100%;
+      }
+
+      textarea {
+        resize: none;
+        height: 120px;
+      }
+    }
+
+    .full-width {
+      grid-column: span 2;
+
+      @include media-max(lg) {
+        grid-column: span 1; // Ensures full width on small screens // Ensures full width on small screens
+      }
+    }
+  }
+}

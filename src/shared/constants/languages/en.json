@@ -55,7 +55,11 @@
 
     "reward": "Reward",
     "points-pt": "Points(pts)",
-    "validity": "Validity (days)"
+    "validity": "Validity (days)",
+
+    "reward-name": "Reward Name",
+    "user-name": "User Name",
+    "point-spent": "Point spent"
   },
 
   "add_admin": "Add Admin",

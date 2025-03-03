@@ -1,7 +1,8 @@
 import { iconDelete, iconEdit, iconEye } from "../../../assets/images/icons";
 import ProfilePic from "../../../shared/components/ProfilePic";
+import { route } from "../../../shared/constants/AllRoutes";
 
-export const headers = [
+export const headers = (navigate) => [
   {
     key: "reward",
     label: "reward",
@@ -27,7 +28,10 @@ export const headers = [
           <button className="action-btn">
             <img src={iconEdit} />
           </button>
-          <button className="action-btn">
+          <button
+            className="action-btn"
+            onClick={() => navigate(route.viewReward)}
+          >
             <img src={iconEye} />
           </button>
           <button className="action-btn">

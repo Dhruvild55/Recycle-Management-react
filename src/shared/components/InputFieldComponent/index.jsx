@@ -35,7 +35,10 @@ const InputField = ({
       ) : type === "select" ? (
         /* Handle Dropdown Input */
         <>
-          <select {...(register ? register(name, validation) : {})}>
+          <select
+            className="roles-input"
+            {...(register ? register(name, validation) : {})}
+          >
             {options?.map((option, index) => (
               <option key={index} value={option.value}>
                 {option.label}

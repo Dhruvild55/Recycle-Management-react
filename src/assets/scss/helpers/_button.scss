@@ -15,4 +15,8 @@
   cursor: pointer;
   max-width: $width;
   width: 100%;
+
+  @media (max-width: 1024px) {
+    max-width: 100%;
+  }
 }

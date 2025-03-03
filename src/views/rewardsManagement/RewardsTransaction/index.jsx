@@ -1,17 +1,15 @@
-import { FaPlus } from "react-icons/fa6";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import CustomTable from "../../../shared/components/CustomTable";
 import { data, headers } from "./confige";
-import { useNavigate } from "react-router-dom";
-import { route } from "../../../shared/constants/AllRoutes";
 
-const ProductManagement = () => {
+const RewardTransaction = () => {
   const translations = useSelector((state) => state.settings.translations);
   const navigate = useNavigate();
   return (
     <>
       <div className="userList-header">
-        <label className="primary-title">List of Reward</label>
+        <label className="primary-title">List of Reward Transaction</label>
         <div>
           <input
             className="search-input"
@@ -25,14 +23,10 @@ const ProductManagement = () => {
             <option>All</option>
           </select>
         </div>
-        <button className="add-btn" onClick={() => navigate(route.addRewards)}>
-          {" "}
-          Add Reward <FaPlus style={{ fontSize: "15px" }} />
-        </button>
       </div>
       <CustomTable headers={headers(navigate)} data={data} />
     </>
   );
 };
 
-export default ProductManagement;
+export default RewardTransaction;

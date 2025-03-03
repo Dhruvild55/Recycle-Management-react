@@ -72,6 +72,7 @@ $text-muted: #999999;
         align-items: center;
         justify-content: space-between;
         margin-bottom: 10px;
+        align-items: baseline;
         @include media-max(lg) {
           flex-direction: column;
         }

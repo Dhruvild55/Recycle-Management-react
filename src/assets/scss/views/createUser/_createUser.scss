@@ -60,70 +60,6 @@
         @include media-max(lg) {
           flex-direction: column;
         }
-
-        .input-field {
-          position: relative;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-
-          label {
-            margin-bottom: 5px;
-            font-weight: 500;
-            font-size: 14px;
-          }
-
-          input,
-          select {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            width: 90%;
-
-            @include media-max(lg) {
-              width: 100%;
-            }
-          }
-          .eye-button {
-            position: absolute;
-            margin-top: 49px;
-            margin-left: 280px;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 18px;
-            color: gray;
-
-            @include media-max(lg) {
-              margin-left: 230px;
-            }
-
-            &:hover {
-              color: #3fb4b4;
-            }
-          }
-
-          .phone-input {
-            display: flex;
-            flex-direction: column;
-            .input-tel {
-              display: flex;
-              .country-code {
-                margin-right: 10px;
-                padding: 10px;
-                background-color: #f8f9fa;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-                width: 80px;
-              }
-            }
-
-            input {
-              flex: 0.85;
-            }
-          }
-        }
       }
       .form-group-last {
         display: flex;
@@ -132,55 +68,6 @@
         margin-bottom: 45px;
         @include media-max(lg) {
           flex-direction: column;
-        }
-        .input-field {
-          position: relative;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-
-          label {
-            margin-bottom: 5px;
-            font-weight: 500;
-            font-size: 14px;
-          }
-
-          .roles-input {
-            width: 85%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            @include media-max(lg) {
-              width: 100%;
-            }
-          }
-          .conform-password-input {
-            width: 90%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            @include media-max(lg) {
-              width: 100%;
-            }
-          }
-          .eye-button {
-            margin-top: 49px;
-            margin-left: 280px;
-            position: absolute;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 18px;
-            color: gray;
-            @include media-max(lg) {
-              margin-left: 230px;
-            }
-
-            &:hover {
-              color: #3fb4b4;
-            }
-          }
         }
       }
       .form-actions {

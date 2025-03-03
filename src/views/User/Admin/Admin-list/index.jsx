@@ -62,9 +62,9 @@ const AdminList = ({ role }) => {
   const tableData = userListData?.data?.items || [];
   const filteredData = tableData.filter(
     (user) =>
-      user.userName.toLowerCase().includes(searchQuery) ||
-      user.email.toLowerCase().includes(searchQuery) ||
-      user.phoneNumber.toLowerCase().includes(searchQuery)
+      user?.userName?.toLowerCase().includes(searchQuery) ||
+      user?.email?.toLowerCase().includes(searchQuery) ||
+      user?.phoneNumber?.toLowerCase().includes(searchQuery)
   );
 
   const totalPages = Math.ceil(userListData?.data?.totalRecords / pageSize);

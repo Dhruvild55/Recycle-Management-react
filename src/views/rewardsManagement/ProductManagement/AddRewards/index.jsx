@@ -10,7 +10,7 @@ const AddRewards = () => {
       <div style={{ marginTop: "20px", marginBottom: "20px" }}>
         <h1 className="primary-title">Add New Product</h1>
       </div>
-      <form className="add-reward-form" style={{ padding: "20px" }}>
+      <form className="add-reward-form">
         <div style={{ marginTop: "10px" }}>
           <DragAndDropComponent />
         </div>
@@ -51,7 +51,7 @@ const AddRewards = () => {
           </div>
           <div style={{ marginTop: "20px" }}>
             <InputField
-              label="Product Description"
+              label="Type Here"
               type="textarea"
               name="description"
               placeholder="Enter product details"

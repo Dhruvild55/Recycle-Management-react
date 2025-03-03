@@ -2,20 +2,25 @@ import { Suspense, useState } from "react";
 import useMediaQuery from "../../shared/hooks/useMediaQuery";
 import ButtonComponent from "../../shared/components/Buttoncomponent";
 import ProductManagement from "./ProductManagement";
+import RewardTransaction from "./RewardsTransaction";
+import SettingFiatAndPoints from "./SettingFiatAndPoints";
+import CashReward from "./CashReward";
 
 const RewardsManagement = () => {
   const [selectedTab, setSelectedTab] = useState("product-management");
   const isMobile = useMediaQuery("(max-width: 425px)");
 
   const renderSelectedComponent = () => {
+    console.log(selectedTab);
     switch (selectedTab) {
       case "product-management":
         return <ProductManagement />;
       case "rewards-transaction":
-        return "";
-      case "":
-        return "";
-
+        return <RewardTransaction />;
+      case "fiat-points-deno":
+        return <SettingFiatAndPoints />;
+      case "cash-reward":
+        return <CashReward />;
       default:
         return null;
     }

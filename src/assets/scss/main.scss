@@ -16,6 +16,7 @@
 @import "../../shared/components/CardComponent/cardComponent";
 @import "../../shared/components/DragAndDropComponent/dragAndDrop";
 @import "../../shared/components/CustomDataTable/customDataTable";
+@import "../../shared/components/InputFieldComponent/inputField";
 
 // userManagement
 @import "./components/UserManagement/Recycler/Information/recyclerInformation";
@@ -40,8 +41,10 @@
 @import "../../views/collectionManagement/Recycler-collection/RecyclerCollectionInfo/recyclerCollectionInfo";
 @import "../../views/collectionManagement/Collector-collection/CollectorCollectionInfo/collectorcollectionInfo";
 
-// Rewards Management
+//* Rewards Management
 @import "../../views/rewardsManagement/ProductManagement/AddRewards/addRewards";
+@import "../../views/rewardsManagement/ProductManagement/ViewRewards/viewRewards";
+@import "../../views/rewardsManagement/SettingFiatAndPoints/settingsfiatAndPoints";
 
 // views
 @import "./views/auth/login";
