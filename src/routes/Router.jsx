@@ -68,6 +68,10 @@ const ViewfiatAndDenominationsPage = lazy(() =>
   import("../views/rewardsManagement/SettingFiatAndPoints")
 );
 
+const RewardsDetailsPage = lazy(() =>
+  import("../views/rewardsManagement/CashReward/CashRewardsDetails")
+);
+
 // collecterServiceManagement
 const CollecterServiceManagementPage = lazy(() =>
   import("../views/CollectorServiceManagement/NewCollecterPermissionList")
@@ -180,6 +184,12 @@ const RoutesDetails = [
         Component: ViewfiatAndDenominationsPage,
         exact: true,
       },
+      {
+        path: route.rewardsDetails,
+        Component: RewardsDetailsPage,
+        exact: true,
+      },
+
       // App Content Management
       {
         path: route.appContentManagement,

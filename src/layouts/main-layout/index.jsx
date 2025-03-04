@@ -41,7 +41,7 @@ const MainLayout = ({ children }) => {
             {children}
           </Suspense>
         </div>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </div>
   );

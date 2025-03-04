@@ -29,6 +29,7 @@ export const route = {
   viewReward: "/rewards-Management/view-rewards",
   viewRewardsTransaction: "/rewards-Management/view-transaction",
   viewFiatPoints: "/rewards-Management/fiat-denominations-management",
+  rewardsDetails: "/rewards-Management/rewards-details",
 
   //* Sponser Management
   createCampaign: "/create-campaign",

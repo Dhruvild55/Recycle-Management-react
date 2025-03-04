@@ -34,9 +34,9 @@
     flex-direction: column;
   }
   .submit-button {
-    @include button-style(#3fb4b4, #fff);
+    @include button-style(#3fb4b4, #fff, none, 100px);
   }
   .cancel-button {
-    @include button-style(#f8f9fa, #000, 1px solid #ccc);
+    @include button-style(#f8f9fa, #000, 1px solid #ccc, 100px);
   }
 }

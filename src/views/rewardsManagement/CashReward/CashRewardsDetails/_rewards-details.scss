@@ -1,0 +1,118 @@
+.title {
+  font-size: 14px;
+  font-weight: 600;
+}
+.fields-section {
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  width: 100%; // Ensure full width
+
+  @include media-max(lg) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .fields-group {
+    label {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+    input,
+    select,
+    textarea {
+      padding: 10px;
+      border: 1px solid #d5d7da;
+      border-radius: 8px;
+      font-size: 14px;
+      background: #f9f9f9;
+      cursor: not-allowed;
+      width: 100%;
+    }
+  }
+}
+.fields-section-1 {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+
+  @include media-max(lg) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .fields-group {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+
+    input {
+      padding: 10px;
+      border: 1px solid #d5d7da;
+      border-radius: 8px;
+      font-size: 16px;
+      background: #f9f9f9;
+      width: 100%;
+      font-weight: 400;
+      cursor: not-allowed;
+    }
+  }
+
+  & > :nth-child(1),
+  & > :nth-child(2),
+  & > :nth-child(3),
+  & > :nth-child(4) {
+    grid-column: span 1;
+
+    @include media-max(lg) {
+      grid-column: span 2;
+    }
+  }
+  .third-row {
+    display: grid;
+    grid-template-columns: 30% 30% 37%;
+    gap: 15px;
+    grid-column: span 2;
+
+    @include media-max(lg) {
+      grid-column: span 1;
+      grid-template-columns: 100%;
+    }
+  }
+
+  .address {
+    grid-column: span 2;
+  }
+}
+.userDetails-section {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+
+  @include media-max(lg) {
+    flex-direction: column;
+  }
+  .fields-section {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+.actions {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  .form-actions {
+    justify-content: flex-start;
+    .cancel-button {
+      @include button-style(#f8f9fa, #000, 1px solid #ccc, 310px);
+    }
+    .submit-button {
+      @include button-style(#3fb4b4, #fff, none, 310px);
+    }
+  }
+}
