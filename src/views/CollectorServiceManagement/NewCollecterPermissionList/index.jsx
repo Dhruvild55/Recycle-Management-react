@@ -1,25 +1,16 @@
+import { useNavigate } from "react-router-dom";
 import CustomTable from "../../../shared/components/CustomTable";
+import { data, headers } from "./configue";
 
 const NewCollecterPermissionList = () => {
-  const collectorColumns = [
-    { key: "id", label: "UserId" },
-    { key: "firstname", label: "Name" },
-    { key: "reqDate", label: "Request date" },
-    { key: "reqType", label: "Request Type" },
-    { key: "phoneNo", label: "Phone.No" },
-    { key: "state", label: "State" },
-    { key: "status", label: "Status" },
-    { key: "action", label: "Action" },
-  ];
+  const navigate = useNavigate();
   return (
     <>
-      <div className="collecter-list-section">
-        <div className="collecterList-section">
-          <div className="collecterList-header">
-            <label>New Collector Permission</label>
-          </div>
-          <CustomTable headers={collectorColumns} />
-        </div>
+      <div className="common-main-section">
+        <label className="primary-title" style={{ marginBottom: "20px" }}>
+          New Collector Permission
+        </label>
+        <CustomTable headers={headers(navigate)} data={data} />
       </div>
     </>
   );

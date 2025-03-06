@@ -72,12 +72,12 @@ const RewardsDetailsPage = lazy(() =>
   import("../views/rewardsManagement/CashReward/CashRewardsDetails")
 );
 
-// collecterServiceManagement
+//* collecterServiceManagement
 const CollecterServiceManagementPage = lazy(() =>
   import("../views/CollectorServiceManagement/NewCollecterPermissionList")
 );
-const ViewCollecterInformationPage = lazy(() =>
-  import("../views/CollectorServiceManagement/ViewCollecterInformation")
+const CollectorRequestDetailsPage = lazy(() =>
+  import("../views/CollectorServiceManagement/CollectorRequestDetails")
 );
 
 const CampaignCreate = lazy(() =>
@@ -147,15 +147,15 @@ const RoutesDetails = [
         exact: true,
       },
 
-      // Collection Service Management
+      //* Collection Service Management
       {
         path: route.collectorServiceManagement,
         Component: CollecterServiceManagementPage,
         exact: true,
       },
       {
-        path: route.viewCollecterServiceInformation,
-        Component: ViewCollecterInformationPage,
+        path: route.collectorRequestDetails,
+        Component: CollectorRequestDetailsPage,
         exact: true,
       },
       //* Rewards Management

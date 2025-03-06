@@ -36,8 +36,8 @@ export const route = {
 
   //* Collection Service Management
   collectorServiceManagement: "/Collector-Service-Management",
-  viewCollecterServiceInformation:
-    "/Collector-Service-Management/Collecter-Information",
+  collectorRequestDetails:
+    "/Collector-Service-Management/Collecter-request-details",
 
   // * Not Found Page
   NotFoundPage: "/not-found",

@@ -13,7 +13,7 @@ const CONSTANT = {
   SIGN_IN: "Sign In",
   EMAIL_ADDRESS: "Email",
   PASSWORD: "Password",
-  LOGIN: "Login",
+  LOGIN: "Sign in",
 };
 
 const Login = () => {
@@ -58,7 +58,7 @@ const Login = () => {
             </div>
             <div>
               <p>
-                Let’s jump to our website!{"  "}
+                Let’s jump to our website! &nbsp; &nbsp;
                 <img src={iconWorld} alt="World Icon" />
               </p>
             </div>
@@ -66,7 +66,7 @@ const Login = () => {
           <div className="form-container">
             <div className="login-title">
               <h2>Hi Admin</h2>
-              <p>Welcome to login Fathopes Energy for Admin</p>
+              <p>Welcome to Login Fathopes Energy for Admin.</p>
             </div>
             <div className="login-form-group">
               <div className="form-group">
@@ -75,7 +75,13 @@ const Login = () => {
                   id="email"
                   type="email"
                   placeholder="Email"
-                  {...register("email", { required: "Email is required" })}
+                  {...register("email", {
+                    required: "Email is required",
+                    maxLength: {
+                      value: 100,
+                      message: "Email cannot exceed 100 characters",
+                    },
+                  })}
                 />
                 {errors.email && (
                   <span className="error">{errors.email.message}</span>
@@ -89,7 +95,25 @@ const Login = () => {
                   placeholder="Password"
                   {...register("password", {
                     required: "Password is required",
+                    // minLength: {
+                    //   value: 8,
+                    //   message: "Password must be at least 8 characters long",
+                    // },
+                    maxLength: {
+                      value: 50,
+                      message: "Password cannot exceed 50 characters",
+                    },
+                    validate: (value) => {
+                      if (!/[a-z]/.test(value)) {
+                        return "Password must contain at least one lowercase letter";
+                      }
+                      if (!/[A-Z]/.test(value)) {
+                        return "Password must contain at least one uppercase letter";
+                      }
+                      return true;
+                    },
                   })}
+                  onPaste={(e) => e.preventDefault()}
                 />
                 {errors.password && (
                   <span className="error">{errors.password.message}</span>
@@ -101,7 +125,9 @@ const Login = () => {
                   <label htmlFor="remember">Remember for 30 days</label>
                 </div>
                 <div>
-                  <p>Forgot Password</p>
+                  <p style={{ fontWeight: "600", fontSize: "14px" }}>
+                    Forgot password
+                  </p>
                 </div>
               </div>
             </div>

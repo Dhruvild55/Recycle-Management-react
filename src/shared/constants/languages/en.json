@@ -59,7 +59,10 @@
 
     "reward-name": "Reward Name",
     "user-name": "User Name",
-    "point-spent": "Point spent"
+    "point-spent": "Point spent",
+
+    "reqData": "Request Data",
+    "reqType": "Request Type"
   },
 
   "add_admin": "Add Admin",

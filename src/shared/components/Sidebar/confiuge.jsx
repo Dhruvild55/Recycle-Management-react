@@ -41,7 +41,7 @@ export const SidebarLinks = [
   },
   {
     name: "collection_service_management",
-    path: route.NotFoundPage,
+    path: route.collectorServiceManagement,
     icon: <BinIcon color="#1F7F82" />,
   },
   {

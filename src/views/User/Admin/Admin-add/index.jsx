@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useState, useRef } from "react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSelector } from "react-redux";
 import { data, useLocation, useNavigate } from "react-router-dom";
 import { ReactToastify } from "../../../../shared/utils";
@@ -14,6 +14,7 @@ import { createUser } from "../../../../query/users/createUsers/createUsers.quer
 import { validationRules } from "../../../../shared/constants/ValidationRules";
 import { Loader } from "../../../../shared/components/Loader";
 import { useMediaQuery } from "@mui/material";
+import { getRoles } from "../../../../query/roles/getRoles/getRoles.query";
 
 export default function AddUserPage() {
   const navigate = useNavigate();
@@ -32,6 +33,13 @@ export default function AddUserPage() {
     watch,
     formState: { errors },
   } = useForm();
+
+  const { data: rolesData, isLoading: isRolesLoading } = useQuery({
+    queryKey: ["rolesList"],
+    queryFn: getRoles,
+  });
+
+  console.log(rolesData?.data);
 
   const { mutate, isPending } = useMutation({
     mutationFn: createUser,
@@ -245,12 +253,11 @@ export default function AddUserPage() {
                   })}
                   className="roles-input"
                 >
-                  <option value="admin">Admin</option>
-                  <option value="super Admin">Super Admin</option>
-                  <option value="b2b Collector">B2B COLLECTOR</option>
-                  <option value="b2b Recycler">B2B RECYCLER</option>
-                  <option value="b2c Collector">B2C COLLECTOR</option>
-                  <option value="b2c Recycler">B2C RECYCLER</option>
+                  {rolesData?.data?.map((role) => (
+                    <option key={role} value={role}>
+                      {role}
+                    </option>
+                  ))}
                 </select>
                 {errors.roles && (
                   <p className="error-message">{errors.roles.message}</p>

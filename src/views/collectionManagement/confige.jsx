@@ -108,6 +108,16 @@ export const collectorCollectionData = [
     depotName: "ABCd",
     materialType: "Plastic/Oil W..",
   },
+  {
+    collectionId: "DEL-1133002",
+    recyclerName: "Rohit",
+    collectorId: "09CCINCIW",
+    dateAndTime: "Mon., 13/01/2025",
+    state: "Melaka",
+    depotName: "ABCd",
+    materialType: "Plastic/Oil W..",
+  },
+
   // Add more data objects as needed
 ];
 
@@ -131,14 +141,6 @@ export const recyclerCollectionData = [
     collectorName: "Ahmad Marwan",
     materialType: "Plastic/Oil W..",
   },
-  {
-    collectionId: "DEL-1133002",
-    recyclerName: "Rohit",
-    recyclerId: "09CCINCIW",
-    dateAndTime: "Mon., 13/01/2025",
-    state: "Melaka",
-    collectorName: "Ahmad Marwan",
-    materialType: "Plastic/Oil W..",
-  },
+
   // Add more data objects as needed
 ];
