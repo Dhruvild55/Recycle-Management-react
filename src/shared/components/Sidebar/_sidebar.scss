@@ -39,10 +39,11 @@ $highlight-color: $table-header-background;
   }
 
   .sidebar-nav {
-    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 85%;
     margin-top: 80px;
     overflow-y: auto;
-    height: calc(100vh - 150px);
     scrollbar-width: thin;
     scrollbar-color: $sidebar-color $sidebar-bg;
 
@@ -66,6 +67,7 @@ $highlight-color: $table-header-background;
 
     ul {
       padding: 0;
+      flex-grow: 1;
 
       .menu-item {
         display: flex;
@@ -146,11 +148,11 @@ $highlight-color: $table-header-background;
     }
 
     .settings-section {
-      padding-left: 20px;
       display: flex;
+      align-items: center;
+      padding: 15px 20px;
+      margin-top: auto; // Push to the bottom dynamically
       gap: 7px;
-      bottom: 20px;
-      position: absolute;
 
       .label {
         color: $sidebar-color;

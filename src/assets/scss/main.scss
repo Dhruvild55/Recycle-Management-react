@@ -47,6 +47,10 @@
 @import "../../views/rewardsManagement/SettingFiatAndPoints/settingsfiatAndPoints";
 @import "../../views/rewardsManagement/CashReward/CashRewardsDetails/rewards-details";
 
+//* colllector service Management
+
+@import "../../views/CollectorServiceManagement/CollectorRequestDetails/collectioRequestDetails";
+
 // views
 @import "./views/auth/login";
 @import "./views/dashboard/dashboard";

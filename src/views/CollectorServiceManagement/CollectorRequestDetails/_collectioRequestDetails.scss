@@ -1,0 +1,35 @@
+.main-section {
+  margin-top: 30px !important;
+  .profile-section {
+    width: 30.333333%;
+  }
+  .details-section {
+    .information {
+      .left-section {
+        margin-left: 15px;
+        width: 48%;
+        .row {
+          .heading {
+            font-size: 14px;
+            font-weight: 500;
+            color: rgba(24, 29, 39, 1);
+          }
+          .detail {
+            font-size: 14px;
+            font-weight: 400;
+            color: rgba(24, 29, 39, 1);
+            ul {
+              padding-inline-start: 0px;
+              li {
+                list-style-type: none;
+              }
+            }
+          }
+        }
+      }
+      .right-section {
+        width: 48%;
+      }
+    }
+  }
+}

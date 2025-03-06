@@ -25,8 +25,7 @@ const Sidebar = ({ isCollapsed, setSelectedMenu, selectedMenu }) => {
   const toggleMenu = useCallback(
     (name) => {
       setOpenMenus((prev) => ({
-        ...prev,
-        [name]: !prev[name],
+        [name]: !prev[name], // Toggle only the selected menu
       }));
     },
     [setOpenMenus]
