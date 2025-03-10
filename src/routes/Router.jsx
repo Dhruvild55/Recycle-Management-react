@@ -12,6 +12,8 @@ const Dashboard = lazy(() => import("../views/dashboard"));
 
 // user
 const UserManagement = lazy(() => import("../views/User"));
+
+const RecyclerList = lazy(() => import("../views/User/Recycler/Recycler-List"));
 const AddUserPage = lazy(() => import("../views/User/Admin/Admin-add"));
 
 const RecyclerProfilePage = lazy(() =>
@@ -19,6 +21,10 @@ const RecyclerProfilePage = lazy(() =>
 );
 const ViewRecyclerItemsPage = lazy(() =>
   import("../views/User/Recycler/ViewRecycleritems")
+);
+
+const ViewPreviousItemsDetails = lazy(() =>
+  import("../views/User/Recycler/History/PreviousItems/viewPreviousItems")
 );
 const CollecterProfilePage = lazy(() =>
   import("../views/User/Collecter/collecter-profile")
@@ -108,6 +114,7 @@ const RoutesDetails = [
 
       // user Management
       { path: route.userManagement, Component: UserManagement, exact: true },
+      { path: route.recyclerList, Component: RecyclerList, exact: true },
       { path: route.addUser, Component: AddUserPage, exact: true },
       {
         path: route.viewRecycler(`:id`),
@@ -127,6 +134,11 @@ const RoutesDetails = [
       {
         path: route.viewRecyclerItems,
         Component: ViewRecyclerItemsPage,
+        exact: true,
+      },
+      {
+        path: route.itemsDetails,
+        Component: ViewPreviousItemsDetails,
         exact: true,
       },
 

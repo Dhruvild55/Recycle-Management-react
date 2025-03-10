@@ -32,8 +32,10 @@ export default function AddUserPage() {
     handleSubmit,
     watch,
     formState: { errors },
+    reset, // Add this line
   } = useForm();
 
+  console.log(errors);
   const { data: rolesData, isLoading: isRolesLoading } = useQuery({
     queryKey: ["rolesList"],
     queryFn: getRoles,
@@ -189,8 +191,8 @@ export default function AddUserPage() {
                 validation={validationRules.lastName}
               />
               <InputField
-                label="Username"
-                placeholder="username"
+                label={language.formFields.username}
+                placeholder={language.formFields.username}
                 type="text"
                 register={register}
                 errors={errors}
@@ -199,8 +201,8 @@ export default function AddUserPage() {
             </div>
             <div className="form-group">
               <InputField
-                label="phone number"
-                placeholder="Phone Number"
+                label={language.formFields.phone_number}
+                placeholder={language.formFields.phone_number}
                 type="tel"
                 register={register}
                 errors={errors}
@@ -209,7 +211,7 @@ export default function AddUserPage() {
               />
 
               <InputField
-                label="email"
+                label={language.formFields.email}
                 placeholder="Enter Your Email"
                 type="email"
                 register={register}
@@ -218,77 +220,52 @@ export default function AddUserPage() {
                 validation={validationRules.email}
               />
 
-              <div className="input-field">
-                <label>Password</label>
-                <input
-                  type={showPassword ? "text" : "password"}
-                  placeholder="Create a password"
-                  {...register("password", {
-                    required: "Password is required",
-                    minLength: {
-                      value: 8,
-                      message: "Must be at least 8 characters",
-                    },
-                  })}
-                />
-                <button
-                  type="button"
-                  className="eye-button"
-                  onClick={() => setShowPassword(!showPassword)}
-                >
-                  {showPassword ? <FiEye /> : <FiEyeOff />}
-                </button>
-                {errors.password && (
-                  <p className="error-message">{errors.password.message}</p>
-                )}
-              </div>
+              <InputField
+                label={language.formFields.password}
+                placeholder="Create a password"
+                type="password"
+                register={register}
+                errors={errors}
+                name="password"
+                validation={{
+                  required: "Password is required",
+                  minLength: {
+                    value: 8,
+                    message: "Must be at least 8 characters",
+                  },
+                }}
+              />
             </div>
 
             <div className="form-group-last">
-              <div className="input-field">
-                <label>Roles</label>
-                <select
-                  {...register("roles", {
-                    required: "Role selection is required",
-                  })}
-                  className="roles-input"
-                >
-                  {rolesData?.data?.map((role) => (
-                    <option key={role} value={role}>
-                      {role}
-                    </option>
-                  ))}
-                </select>
-                {errors.roles && (
-                  <p className="error-message">{errors.roles.message}</p>
-                )}
-              </div>
+              <InputField
+                label={language.formFields.roles}
+                type="select"
+                register={register}
+                errors={errors}
+                name="roles"
+                options={rolesData?.data?.map((role) => ({
+                  value: role,
+                  label: role,
+                }))} // Dynamically pass roles
+                validation={{
+                  required: "Role selection is required",
+                }}
+              />
 
-              <div className="input-field">
-                <label>Confirm Password</label>
-                <input
-                  type={showConformPassword ? "text" : "password"}
-                  placeholder="Confirm your password"
-                  {...register("confirmPassword", {
-                    required: "Confirm Password is required",
-                    validate: (value) =>
-                      value === watch("password") || "Passwords do not match",
-                  })}
-                  className="conform-password-input"
-                />
-                <button
-                  type="button"
-                  className="eye-button"
-                  onClick={() => setShowConformPassword(!showConformPassword)}
-                >
-                  {showConformPassword ? <FiEye /> : <FiEyeOff />}
-                </button>
-                {errors.confirmPassword && (
-                  <p className="error-message">
-                    {errors.confirmPassword.message}
-                  </p>
-                )}
-              </div>
+              <InputField
+                label={language.formFields.confirm_password}
+                placeholder="Confirm your password"
+                type="password"
+                register={register}
+                errors={errors}
+                name="confirmPassword"
+                validation={{
+                  required: "Confirm Password is required",
+                  validate: (value) =>
+                    value === watch("password") || "Passwords do not match",
+                }}
+              />
             </div>
 
             <div className="form-actions">
@@ -303,7 +280,14 @@ export default function AddUserPage() {
                   "Submit"
                 )}
               </button>
-              <button type="button" className="cancel-button">
+              <button
+                type="button"
+                className="cancel-button"
+                onClick={() => {
+                  reset();
+                  setSelectedImage(null);
+                }}
+              >
                 Cancel
               </button>
             </div>

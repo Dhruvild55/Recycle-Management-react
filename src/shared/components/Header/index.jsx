@@ -8,7 +8,11 @@ import { useEffect, useState } from "react";
 import BreadCrumbs from "../BreadCrumbs";
 import ProfilePic from "../ProfilePic";
 import { Dropdown, OverlayTrigger } from "react-bootstrap";
-import { iconBell, iconMenu } from "../../../assets/images/icons";
+import {
+  iconBell,
+  iconCarrateDown,
+  iconMenu,
+} from "../../../assets/images/icons";
 import { getProfile } from "../../../query/profile/getProfile/getProfile.query";
 import { useQuery } from "@tanstack/react-query";
 import MenuIcon from "../../../assets/images/icons/menuIcon";
@@ -162,23 +166,25 @@ function Header({ toggleSidebar, isCollapsed, selectedMenu }) {
               </div>
               <div className="profile">
                 <Dropdown>
-                  <Dropdown.Toggle className="header-btn">
+                  <Dropdown.Toggle
+                    as="div"
+                    className="header-btn custom-dropdown"
+                  >
                     <ProfilePic
                       size={40}
                       image={data?.data?.user?.selfiePath}
                     />
                     <label>{data?.data?.user?.firstName}</label>
+                    <img src={iconCarrateDown} />
+                    {/* Custom caret icon */}
                   </Dropdown.Toggle>
+
                   <Dropdown.Menu className="up-arrow">
-                    <Dropdown.Item
-                    // onClick={handleEditProfile}
-                    >
+                    <Dropdown.Item>
                       <i className="icon-account"></i>
                       My Profile
                     </Dropdown.Item>
-                    <Dropdown.Item
-                    // onClick={handleChangePass}
-                    >
+                    <Dropdown.Item>
                       <i className="icon-lock"></i>
                       Change Password
                     </Dropdown.Item>

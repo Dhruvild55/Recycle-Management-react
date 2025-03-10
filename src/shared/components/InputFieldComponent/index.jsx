@@ -1,4 +1,7 @@
 /* eslint-disable react/prop-types */
+import { useState } from "react";
+import { FiEye, FiEyeOff } from "react-icons/fi";
+
 const InputField = ({
   label,
   placeholder,
@@ -7,15 +10,17 @@ const InputField = ({
   errors,
   name,
   validation,
-  options, // New prop for dropdown options
-  rows, // New prop for textarea rows
+  options, // For dropdowns
+  rows, // For textareas
 }) => {
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
     <div className="input-field">
       <label>{label}</label>
 
-      {/* Handle Telephone Input */}
       {type === "tel" ? (
+        /* Handle Telephone Input */
         <div className="phone-input">
           <div className="input-tel">
             <select className="country-code">
@@ -23,7 +28,7 @@ const InputField = ({
             </select>
             <input
               className="phone-input-box"
-              type={type}
+              type="tel"
               placeholder={placeholder}
               {...register(name, validation)}
             />
@@ -35,10 +40,7 @@ const InputField = ({
       ) : type === "select" ? (
         /* Handle Dropdown Input */
         <>
-          <select
-            className="roles-input"
-            {...(register ? register(name, validation) : {})}
-          >
+          <select className="roles-input" {...register(name, validation)}>
             {options?.map((option, index) => (
               <option key={index} value={option.value}>
                 {option.label}
@@ -54,21 +56,32 @@ const InputField = ({
         <div>
           <textarea
             placeholder={placeholder}
-            rows={rows || 4} // Default to 4 rows if not provided
-            {...(register ? register(name, validation) : {})}
+            rows={rows || 4}
+            {...register(name, validation)}
           />
           {errors?.[name] && (
             <p className="error-message">{errors[name].message}</p>
           )}
         </div>
       ) : (
-        /* Handle Default Input */
-        <div>
+        /* Handle Default and Password Input */
+        <div className="password-wrapper">
           <input
             placeholder={placeholder}
-            type={type}
-            {...(register ? register(name, validation) : {})}
+            type={
+              type === "password" ? (showPassword ? "text" : "password") : type
+            }
+            {...register(name, validation)}
           />
+          {type === "password" && (
+            <button
+              type="button"
+              className="eye-button"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <FiEye /> : <FiEyeOff />}
+            </button>
+          )}
           {errors?.[name] && (
             <p className="error-message">{errors[name].message}</p>
           )}
@@ -79,7 +92,3 @@ const InputField = ({
 };
 
 export default InputField;
-
-// width: 100%;
-//     padding: 10px;
-//     border-radius: 5px;

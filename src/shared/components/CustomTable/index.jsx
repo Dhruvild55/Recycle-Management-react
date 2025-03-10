@@ -39,7 +39,15 @@ function CustomTable({ headers, data, isLoading }) {
         ) : (
           <tr>
             <td colSpan="7" className="no-user">
-              <p>No user Found</p>
+              <p
+                style={{
+                  fontSize: "20px",
+                  marginBottom: "0px",
+                  fontWeight: "600",
+                }}
+              >
+                No user Found
+              </p>
             </td>
           </tr>
         )}

@@ -23,15 +23,13 @@ const RecyclerProfile = () => {
     <div className="user-profile-section">
       <div className="common-main-section">
         <div className="header-section">
-          <div>
-            <button
-              className="back-text"
-              onClick={() => navigate(route.userManagement)}
-            >
-              &larr; BACK
-            </button>
-          </div>
-          <div className="actions">
+          <button
+            className="back-text"
+            onClick={() => navigate(route.userManagement)}
+          >
+            &larr; BACK
+          </button>
+          <div className="right-section">
             <img src={iconDelete} alt="delete icon" />
             <span>Deactivate Account</span>
           </div>

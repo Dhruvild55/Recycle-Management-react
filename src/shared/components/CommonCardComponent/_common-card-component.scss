@@ -1,0 +1,33 @@
+.card-section-1 {
+  .card {
+    width: 100%;
+    max-width: 335px !important;
+    border: none !important;
+
+    padding: 0px !important;
+    overflow: hidden;
+    box-shadow: none !important;
+
+    &__image {
+      width: 100%;
+      height: 217px;
+      border-radius: 12px;
+    }
+
+    &__content {
+      padding-top: 25px;
+    }
+
+    &__title {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+
+    &__description {
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(24, 29, 39, 1);
+    }
+  }
+}

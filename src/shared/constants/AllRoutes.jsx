@@ -6,10 +6,13 @@ export const route = {
   dashboard: "/dashboard",
 
   //* user Management
-  userManagement: "/user-Management",
+  userManagement: "/user-Management/admin",
+  recyclerList: "/user-Management/recycler",
+  collectorList: "/user-Management/collector",
   addUser: "/user-Management/admin/add",
   viewRecycler: (id) => `/user-Management/view-recycler/${id}`,
   viewRecyclerItems: `/user-Management/view-recycler-items`,
+  itemsDetails: "/user-Management/view-item-details",
   viewCollector: (id) => `/user-Management/view-collector/${id}`,
   editPermission: (role) => `/user-Management/edit-permission/${role}`,
 

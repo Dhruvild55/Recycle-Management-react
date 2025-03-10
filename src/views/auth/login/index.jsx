@@ -84,7 +84,12 @@ const Login = () => {
                   })}
                 />
                 {errors.email && (
-                  <span className="error">{errors.email.message}</span>
+                  <span
+                    className="error"
+                    style={{ color: "red", fontSize: "12px" }}
+                  >
+                    {errors.email.message}
+                  </span>
                 )}
               </div>
               <div className="form-group">
@@ -116,7 +121,12 @@ const Login = () => {
                   onPaste={(e) => e.preventDefault()}
                 />
                 {errors.password && (
-                  <span className="error">{errors.password.message}</span>
+                  <span
+                    className="error"
+                    style={{ color: "red", fontSize: "12px" }}
+                  >
+                    {errors.password.message}
+                  </span>
                 )}
               </div>
               <div className="login-checkbox">

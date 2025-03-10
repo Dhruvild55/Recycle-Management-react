@@ -2,12 +2,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import { memo, useState } from "react";
-import {
-  iconDelete,
-  iconEdit,
-  iconRightArrow,
-} from "../../../../assets/images/icons";
-import ProfilePic from "../../../../shared/components/ProfilePic";
+import { iconRightArrow } from "../../../../assets/images/icons";
 import { ReactToastify } from "../../../../shared/utils";
 import { deleteUser } from "../../../../query/users/deleteUser/deleteUser.query";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -18,12 +13,15 @@ import { route } from "../../../../shared/constants/AllRoutes";
 import Pagination from "../../../../shared/components/CustomPagination";
 import CustomTable from "../../../../shared/components/CustomTable";
 import useUserList from "../../../../shared/hooks/useUserList";
+import { headers } from "./confige";
 
 const AdminList = ({ role }) => {
   const [pageSize, setPageSize] = useState(10);
   const [pageNumber, setPageNumber] = useState(1);
   const [isDescendingOrder, setIsdescendingOrder] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedRole, setSelectedRole] = useState("All");
+
   const navigate = useNavigate();
   const translations = useSelector((state) => state.settings.translations);
 
@@ -50,81 +48,24 @@ const AdminList = ({ role }) => {
     },
   });
 
-  const formatDate = (dateTimeString) => {
-    const isoString = dateTimeString.replace(" ", "T");
-    const date = new Date(isoString);
-    if (isNaN(date.getTime())) {
-      return "";
-    }
-    return date.toISOString().split("T")[0];
-  };
-
   const tableData = userListData?.data?.items || [];
-  const filteredData = tableData.filter(
-    (user) =>
+  const filteredData = tableData.filter((user) => {
+    const matchesSearch =
       user?.userName?.toLowerCase().includes(searchQuery) ||
       user?.email?.toLowerCase().includes(searchQuery) ||
-      user?.phoneNumber?.toLowerCase().includes(searchQuery)
-  );
+      user?.phoneNumber?.toLowerCase().includes(searchQuery);
+
+    const matchesRole =
+      selectedRole === "All" || user?.roles?.includes(selectedRole);
+
+    return matchesSearch && matchesRole;
+  });
 
   const totalPages = Math.ceil(userListData?.data?.totalRecords / pageSize);
 
-  const adminColumns = [
-    {
-      key: "id",
-      label: "user_id",
-      render: (row) =>
-        row.id.length > 10 ? `${row.id.slice(0, 10)}...` : row.id,
-    },
-    {
-      key: "userName",
-      label: "name",
-      render: (row) => (
-        <div className="d-flex align-items-center">
-          <ProfilePic
-            size={30}
-            userId={row.id}
-            image={row.selfiePath}
-            name={row.userName}
-          />
-          <span className="ms-2">{row.userName}</span>
-        </div>
-      ),
-    },
-    { key: "roles", label: "roles" },
-    { key: "phoneNumber", label: "phone_no" },
-    { key: "email", label: "email" },
-    {
-      key: "lastLoginDate",
-      label: "last_login",
-      render: (row) => (
-        <div className="d-flex align-items-center">
-          <span>{row.lastLoginDay}</span>{" "}
-          <span className="ms-2">{formatDate(row.lastLoginDate)}</span>
-        </div>
-      ),
-    },
-    {
-      key: "action",
-      label: "action",
-      render: (row) => (
-        <div className="btn-section">
-          <button
-            onClick={() => alert("This page is under Development!")}
-            className="action-btn"
-          >
-            <img src={iconEdit} />
-          </button>
-          <button
-            onClick={() => deleteUserMutation({ userId: row.id })}
-            className="action-btn"
-          >
-            <img src={iconDelete} />
-          </button>
-        </div>
-      ),
-    },
-  ];
+  const handleFilterChange = (e) => {
+    setSelectedRole(e.target.value);
+  };
 
   return (
     <div>
@@ -152,35 +93,25 @@ const AdminList = ({ role }) => {
         </button>
         <div>
           <label className="back-text">{translations.filter}:</label>
-          <select>
-            <option>All</option>
+          <select value={selectedRole} onChange={handleFilterChange}>
+            <option value="All">All</option>
+            <option value="Admin">Admin</option>
+            <option value="Super Admin">Super Admin</option>
           </select>
         </div>
       </div>
       <CustomTable
-        headers={adminColumns}
+        headers={headers(deleteUserMutation)}
         data={filteredData}
         isLoading={isLoading}
       />
       <div className="table-footer">
         <div>
           <span className="back-text" style={{ color: "#181D27" }}>
-            showing {userListData?.data?.items.length} entries
+            {translations.showing} {filteredData.length} {translations.entries}
           </span>
           {"  "}
           <img src={iconRightArrow} />
-          {/* <span>{translations.show} </span>
-          <select
-            value={pageSize}
-            onChange={(e) => setPageSize(Number(e.target.value))}
-          >
-            {[10, 25, 50, 100].map((size) => (
-              <option key={size} value={size}>
-                {size}
-              </option>
-            ))}
-          </select>
-          <span>{translations.entries}</span> */}
         </div>
         <div>
           <Pagination

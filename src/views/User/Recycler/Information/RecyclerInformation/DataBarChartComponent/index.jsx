@@ -4,9 +4,10 @@ import { iconDrop } from "../../../../../../assets/images/icons";
 const DataBarChartComponent = () => {
   const data = [
     { name: "Group A", value: 400 },
-    { name: "Group B", value: 300 },
+    { name: "Group B", value: 100 },
     { name: "Group C", value: 300 },
     { name: "Group D", value: 200 },
+    { name: "Group E", value: 50 },
   ];
   const COLORS = ["#7CCBBC", "#1F7F82", "#B1D33A", "#ABEFC6"];
   return (

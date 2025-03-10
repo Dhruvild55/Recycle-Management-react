@@ -22,7 +22,7 @@ const AddGuidelines = () => {
             <label className="primary-title">Guidelines</label>
           </div>
           <div className="right-section">
-            <span>Filter :</span>
+            <span>FILTER:</span>
             <select>
               <option>Oil Waste</option>
             </select>

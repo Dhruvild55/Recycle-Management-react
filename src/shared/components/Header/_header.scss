@@ -79,7 +79,7 @@
         color: black;
         background-color: transparent;
         border: none !important;
-        gap: 5px;
+        gap: 10px;
 
         &:active,
         &:focus,
@@ -91,6 +91,10 @@
         &:disabled {
           background-color: transparent;
         }
+      }
+      .dropdown-toggle::after {
+        display: none !important;
+        content: none !important;
       }
     }
   }

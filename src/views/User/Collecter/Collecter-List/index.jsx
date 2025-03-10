@@ -18,7 +18,7 @@ import Pagination from "../../../../shared/components/CustomPagination";
 import { useState } from "react";
 import { route } from "../../../../shared/constants/AllRoutes";
 import { useNavigate } from "react-router-dom";
-import useUserList from "../../../../shared/hooks/useUserList";
+import { getCollectorList } from "../../../../query/users/getCollectorList/getCollector.query";
 
 const CollecterList = ({ role }) => {
   const translations = useSelector((state) => state.settings.translations);
@@ -32,7 +32,7 @@ const CollecterList = ({ role }) => {
     data: userListData,
     isLoading,
     refetch,
-  } = useUserList({
+  } = getCollectorList({
     role,
     pageSize,
     pageNumber,
@@ -153,22 +153,10 @@ const CollecterList = ({ role }) => {
       <div className="table-footer">
         <div>
           <span className="back-text" style={{ color: "#181D27" }}>
-            showing {userListData?.data?.items.length} entries
+            {translations.showing} {filteredData.length} {translations.entries}
           </span>
           {"  "}
           <img src={iconRightArrow} />
-          {/* <span>{translations.show} </span>
-          <select
-            value={pageSize}
-            onChange={(e) => setPageSize(Number(e.target.value))}
-          >
-            {[10, 25, 50, 100].map((size) => (
-              <option key={size} value={size}>
-                {size}
-              </option>
-            ))}
-          </select>
-          <span>{translations.entries}</span> */}
         </div>
         <div>
           <Pagination

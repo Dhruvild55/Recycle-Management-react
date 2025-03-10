@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { usersList } from "../../../query/users/getusers/getUsers.query";
+import { getAdminList } from "../../../query/users/getAdminList/getAdmin.query";
 
 const useUserList = ({ role, pageSize, pageNumber, isDescendingOrder }) => {
   return useQuery({
     queryKey: ["userList", role, pageSize, pageNumber, isDescendingOrder],
     queryFn: () =>
-      usersList({
+      getAdminList({
         role,
         pageSize,
         pageNumber,

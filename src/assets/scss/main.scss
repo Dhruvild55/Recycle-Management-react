@@ -17,6 +17,8 @@
 @import "../../shared/components/DragAndDropComponent/dragAndDrop";
 @import "../../shared/components/CustomDataTable/customDataTable";
 @import "../../shared/components/InputFieldComponent/inputField";
+@import "../../shared/components/CommonCardComponent/common-card-component";
+@import "../../shared/components/ChipComponent/chipComponent";
 
 // userManagement
 @import "./components/UserManagement/Recycler/Information/recyclerInformation";
@@ -29,6 +31,8 @@
 @import "./components/UserManagement/collecter/Information/collecterInformation";
 @import "./components/UserManagement/collecter/Information/collecterAddressCard";
 @import "./components/UserManagement/collecter/Information/storageDetails";
+
+@import "../../views/User/Recycler/History/PreviousItems/viewPreviousItems/viewPreviousItem";
 
 // App content Management
 @import "./views/appContentManagement/appContantList";

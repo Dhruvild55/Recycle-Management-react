@@ -17,11 +17,11 @@
     "admin": "Admin",
     "recycler": "Recycler",
     "collector": "Collector",
-    "admin_rols_and_Permissions": "Admin Roles and Permissions"
+    "admin_rols_and_Permissions": "Admin Roles & Permissions"
   },
 
   "tableFields": {
-    "user_id": "User Id",
+    "user_id": "User ID",
     "name": "Name",
     "roles": "Roles",
     "phone_no": "Phone No.",
@@ -70,7 +70,7 @@
 
   "pageTitles": {
     "roles_and_permissions": "Roles And Permissions",
-    "list_of_admin": "List Of Admin",
+    "list_of_admin": "List Of admin",
     "list_of_recycler": "List of Recycler",
     "list_of_collector": "List of Collector",
     "personal_information": "Personal Information"
@@ -80,11 +80,18 @@
     "first_Name": "First Name",
     "last_name": "Last Name",
     "password": "Password",
-    "phone_number": "Phone Number"
+    "phone_number": "Phone Number",
+    "confirm_password": "Confirm Password",
+    "username": "Username",
+    "roles": "Roles",
+
+    "email": "Email"
   },
 
-  "filter": "Filter",
-  "showing_entries": "SHOWING 10 ENTRIES",
+  "showing": "SHOWING",
+  "entries": "ENTRIES",
+
+  "filter": "FILTER",
 
   "previous": "Previous",
   "next": "Next",
