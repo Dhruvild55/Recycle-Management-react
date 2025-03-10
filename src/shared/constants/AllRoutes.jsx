@@ -7,13 +7,19 @@ export const route = {
 
   //* user Management
   userManagement: "/user-Management/admin",
-  recyclerList: "/user-Management/recycler",
-  collectorList: "/user-Management/collector",
   addUser: "/user-Management/admin/add",
-  viewRecycler: (id) => `/user-Management/view-recycler/${id}`,
+
+  //! User Management Recycler
+  recyclerList: "/user-Management/recycler",
+  viewRecycler: (id) => `/user-Management/recycler/view-recycler/${id}`,
   viewRecyclerItems: `/user-Management/view-recycler-items`,
   itemsDetails: "/user-Management/view-item-details",
+
+  //! User Management Collector
+  collectorList: "/user-Management/collector",
   viewCollector: (id) => `/user-Management/view-collector/${id}`,
+
+  //! User Management Roles and Permission
   editPermission: (role) => `/user-Management/edit-permission/${role}`,
 
   //* App Content Management

@@ -11,9 +11,9 @@ const Login = lazy(() => import("../views/auth/login"));
 const Dashboard = lazy(() => import("../views/dashboard"));
 
 // user
-const UserManagement = lazy(() => import("../views/User"));
+const UserManagement = lazy(() => import("../views/User/Admin/AdminList"));
 
-const RecyclerList = lazy(() => import("../views/User/Recycler/Recycler-List"));
+const RecyclerList = lazy(() => import("../views/User/Recycler/RecyclerList"));
 const AddUserPage = lazy(() => import("../views/User/Admin/Admin-add"));
 
 const RecyclerProfilePage = lazy(() =>

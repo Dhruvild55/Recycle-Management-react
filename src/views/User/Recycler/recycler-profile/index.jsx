@@ -9,7 +9,6 @@ import BusinessAddress from "../Information/BusinessAddress";
 import BusinessRegistration from "../Information/BusinessRegistration";
 import PreviousItems from "../History/PreviousItems";
 import { useNavigate } from "react-router-dom";
-import { route } from "../../../../shared/constants/AllRoutes";
 
 const RecyclerProfile = () => {
   const [selectedButton, setSelectedButton] = useState("recycler-information");
@@ -23,10 +22,7 @@ const RecyclerProfile = () => {
     <div className="user-profile-section">
       <div className="common-main-section">
         <div className="header-section">
-          <button
-            className="back-text"
-            onClick={() => navigate(route.userManagement)}
-          >
+          <button className="back-text" onClick={() => navigate(-1)}>
             &larr; BACK
           </button>
           <div className="right-section">
