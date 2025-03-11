@@ -9,7 +9,6 @@ const CollectionManagement = () => {
   const isMobile = useMediaQuery("(max-width: 425px)");
 
   const renderSelectedComponent = () => {
-    console.log(selectedRole);
     switch (selectedRole) {
       case "recyler-collection":
         return <RecyclerCollectionList />;

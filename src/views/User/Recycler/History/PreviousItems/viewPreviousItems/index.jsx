@@ -1,11 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import ChipComponent from "../../../../../../shared/components/ChipComponent";
 
 const ViewPreviousItems = () => {
+  const navigate = useNavigate();
   return (
     <div className="common-main-section">
       <div className="header-section">
         <div>
-          <button className="back-text">&larr; BACK</button>
+          <button className="back-text" onClick={() => navigate(-1)}>
+            &larr; BACK
+          </button>
         </div>
       </div>
       <h1

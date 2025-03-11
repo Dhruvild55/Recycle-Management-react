@@ -11,7 +11,7 @@ export const headers = (navigate) => [
     render: (row) => {
       return (
         <div className="d-flex align-items-center">
-          <ProfilePic size={30} />
+          <ProfilePic size={30} isChange={false} />
           <span className="ms-2">{row.name}</span>
         </div>
       );

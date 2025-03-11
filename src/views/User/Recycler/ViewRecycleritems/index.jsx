@@ -1,8 +1,13 @@
+import { useNavigate } from "react-router-dom";
+
 const ViewRecyclerItems = () => {
+  const navigate = useNavigate();
   return (
     <>
       <div className="common-main-section">
-        <h1 className="back-text">Back</h1>
+        <h1 className="back-text" onClick={() => navigate(-1)}>
+          Back
+        </h1>
         <div className="" style={{ marginTop: "20px" }}>
           <p className="primary-title">DEL-12345</p>
         </div>

@@ -11,13 +11,12 @@ function UserManagementTopSection({ translations }) {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Determine selected role based on current route
   const getSelectedRole = () => {
     if (location.pathname === route.recyclerList) return "Recycler";
     if (location.pathname === route.userManagement) return "Admin";
     if (location.pathname === route.collectorList) return "Collector";
-    if (location.pathname === route.rolesManagement) return "Roles";
-    return "Admin"; // Default to Admin
+    if (location.pathname === route.rolesList) return "Roles";
+    return "Admin";
   };
 
   const selectedRole = getSelectedRole();
@@ -25,19 +24,17 @@ function UserManagementTopSection({ translations }) {
   return (
     <div className="userManagement-top-section">
       {isMobile ? (
-        // Dropdown for Mobile View
         <select
           className="dropdown"
           value={selectedRole}
           onChange={(e) => navigate(route[e.target.value])}
         >
-          <option value="userManagement">{admin}</option>
-          <option value="recyclerList">{recycler}</option>
-          <option value="collectorList">{collector}</option>
-          <option value="rolesManagement">{admin_rols_and_Permissions}</option>
+          <option value="Admin">{admin}</option>
+          <option value="Recycler">{recycler}</option>
+          <option value="Collector">{collector}</option>
+          <option value="Roles">{admin_rols_and_Permissions}</option>
         </select>
       ) : (
-        // Buttons for Desktop View
         <>
           <ButtonComponent
             label={admin}
@@ -56,7 +53,7 @@ function UserManagementTopSection({ translations }) {
           />
           <ButtonComponent
             label={admin_rols_and_Permissions}
-            onClick={() => navigate(route.rolesManagement)}
+            onClick={() => navigate(route.rolesList)}
             className={`btn${selectedRole === "Roles" ? " selected" : ""}`}
           />
         </>

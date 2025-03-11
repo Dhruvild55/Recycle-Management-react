@@ -26,8 +26,10 @@ const Login = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isDirty },
-  } = useForm();
+    formState: { errors, isDirty, isSubmitted },
+  } = useForm({
+    mode: "onSubmit", // Ensures errors appear on submit immediately
+  });
 
   const { mutate, isPending } = useMutation({
     mutationFn: loginUser,
@@ -83,13 +85,8 @@ const Login = () => {
                     },
                   })}
                 />
-                {errors.email && (
-                  <span
-                    className="error"
-                    style={{ color: "red", fontSize: "12px" }}
-                  >
-                    {errors.email.message}
-                  </span>
+                {errors.email && isSubmitted && (
+                  <span className="error">{errors.email.message}</span>
                 )}
               </div>
               <div className="form-group">
@@ -100,10 +97,6 @@ const Login = () => {
                   placeholder="Password"
                   {...register("password", {
                     required: "Password is required",
-                    // minLength: {
-                    //   value: 8,
-                    //   message: "Password must be at least 8 characters long",
-                    // },
                     maxLength: {
                       value: 50,
                       message: "Password cannot exceed 50 characters",
@@ -120,13 +113,8 @@ const Login = () => {
                   })}
                   onPaste={(e) => e.preventDefault()}
                 />
-                {errors.password && (
-                  <span
-                    className="error"
-                    style={{ color: "red", fontSize: "12px" }}
-                  >
-                    {errors.password.message}
-                  </span>
+                {errors.password && isSubmitted && (
+                  <span className="error">{errors.password.message}</span>
                 )}
               </div>
               <div className="login-checkbox">

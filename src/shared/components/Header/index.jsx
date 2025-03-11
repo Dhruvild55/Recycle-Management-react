@@ -54,7 +54,6 @@ function Header({ toggleSidebar, isCollapsed, selectedMenu }) {
   };
 
   const formatTitle = (name) => {
-    console.log(name);
     if (name) {
       return name
         .replace(/_/g, " ") // Replace "_" with space
@@ -77,6 +76,7 @@ function Header({ toggleSidebar, isCollapsed, selectedMenu }) {
                     <ProfilePic
                       size={40}
                       image={data?.data?.user?.selfiePath}
+                      isChange={false}
                     />
                     <label>{data?.data?.user?.firstName}</label>
                   </Dropdown.Toggle>
@@ -173,6 +173,7 @@ function Header({ toggleSidebar, isCollapsed, selectedMenu }) {
                     <ProfilePic
                       size={40}
                       image={data?.data?.user?.selfiePath}
+                      isChange={false}
                     />
                     <label>{data?.data?.user?.firstName}</label>
                     <img src={iconCarrateDown} />

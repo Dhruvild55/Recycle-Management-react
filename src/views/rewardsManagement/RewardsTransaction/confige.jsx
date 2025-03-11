@@ -9,7 +9,7 @@ export const headers = (navigate) => [
     render: (row) => {
       return (
         <div className="d-flex  align-items-center">
-          <ProfilePic />
+          <ProfilePic isChange={false} />
           <span className="ms-2">{row.rewardName}</span>
         </div>
       );
@@ -21,7 +21,7 @@ export const headers = (navigate) => [
     render: (row) => {
       return (
         <div className="d-flex  align-items-center">
-          <ProfilePic />
+          <ProfilePic isChange={false} />
           <span className="ms-2">{row.userName}</span>
         </div>
       );

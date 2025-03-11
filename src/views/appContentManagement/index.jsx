@@ -21,6 +21,7 @@ const AppContentManagement = () => {
             userId={params.id}
             image={params.selfiePath}
             name={params.userName}
+            isChange={false}
           />
           <span>{params.row.wasteCategory}</span>
         </div>

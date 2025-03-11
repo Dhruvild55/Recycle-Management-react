@@ -20,6 +20,7 @@ export const route = {
   viewCollector: (id) => `/user-Management/view-collector/${id}`,
 
   //! User Management Roles and Permission
+  rolesList: "/user-Management/Roles",
   editPermission: (role) => `/user-Management/edit-permission/${role}`,
 
   //* App Content Management

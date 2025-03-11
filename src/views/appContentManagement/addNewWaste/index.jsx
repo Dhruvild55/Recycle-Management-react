@@ -1,8 +1,10 @@
 import { useState } from "react";
 import DragAndDropComponent from "../../../shared/components/DragAndDropComponent";
+import { useNavigate } from "react-router-dom";
 
 const AddNewWaste = () => {
   const [wasteName, setWasteName] = useState("");
+  const navigate = useNavigate();
   const [image, setImage] = useState(null);
 
   const onDrop = (acceptedFiles) => {
@@ -20,9 +22,11 @@ const AddNewWaste = () => {
 
   return (
     <div className="common-main-section">
-      <div className="main-section">
+      <div className="main-section" style={{ marginTop: "0px" }}>
         <div>
-          <button className="back-text">Back</button>
+          <button className="back-text" onClick={() => navigate(-1)}>
+            Back
+          </button>
         </div>
         <div className="title-section">
           <label className="primary-title">Add New Waste</label>

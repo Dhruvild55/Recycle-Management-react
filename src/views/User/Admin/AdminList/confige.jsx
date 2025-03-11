@@ -10,7 +10,7 @@ const formatDate = (dateTimeString) => {
   return date.toISOString().split("T")[0];
 };
 
-export const headers = (deleteUserMutation) => [
+export const headers = (navigate, deleteUserMutation) => [
   {
     key: "id",
     label: "user_id",
@@ -21,7 +21,6 @@ export const headers = (deleteUserMutation) => [
     key: "userName",
     label: "name",
     render: (row) => {
-      console.log(row);
       return (
         <div className="d-flex align-items-center">
           <ProfilePic
@@ -29,6 +28,7 @@ export const headers = (deleteUserMutation) => [
             userId={row.id}
             image={row.selfiePath}
             name={row.userName}
+            isChange={false}
           />
           <span className="ms-2">{row.firstName}</span>{" "}
           <span className="ms-2">{row.lastName}</span>

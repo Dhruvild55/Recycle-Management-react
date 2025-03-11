@@ -11,7 +11,7 @@ export const collectorCollectionHeaders = (navigate) => [
     label: "collectorName",
     render: (row) => (
       <div className="d-flex align-items-center">
-        <ProfilePic size={30} />{" "}
+        <ProfilePic size={30} isChange={false} />{" "}
         <span className="ms-2">{row.recyclerName}</span>
       </div>
     ),
@@ -48,7 +48,7 @@ export const recyclerCollectionHeaders = (navigate) => [
     label: "recyclerName",
     render: (row) => (
       <div className="d-flex align-items-center">
-        <ProfilePic size={30} />{" "}
+        <ProfilePic size={30} isChange={false} />{" "}
         <span className="ms-2">{row.recyclerName}</span>
       </div>
     ),

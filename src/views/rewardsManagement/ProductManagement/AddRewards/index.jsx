@@ -1,11 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import DragAndDropComponent from "../../../../shared/components/DragAndDropComponent";
 import InputField from "../../../../shared/components/InputFieldComponent";
 
 const AddRewards = () => {
+  const navigate = useNavigate();
   return (
     <div className="common-main-section">
       <div className="header-section">
-        <button className="back-text">&larr; BACK </button>
+        <button className="back-text" onClick={() => navigate(-1)}>
+          &larr; BACK{" "}
+        </button>
       </div>
       <div style={{ marginTop: "20px", marginBottom: "20px" }}>
         <h1 className="primary-title">Add New Product</h1>

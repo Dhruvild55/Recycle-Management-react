@@ -12,7 +12,7 @@ const ViewRewards = () => {
       </div>
       <div className="form-container-rewards">
         <div className="image-section" style={{ paddingTop: "20px" }}>
-          <ProfilePic size={210} />
+          <ProfilePic size={210} isChange={false} />
         </div>
         <div className="fields-section">
           <div className="fields-group">

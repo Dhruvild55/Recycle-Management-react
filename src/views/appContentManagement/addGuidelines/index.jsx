@@ -1,9 +1,11 @@
 import { useState } from "react";
 import DragAndDropComponent from "../../../shared/components/DragAndDropComponent";
 import { iconEdit } from "../../../assets/images/icons";
+import { useNavigate } from "react-router-dom";
 
 const AddGuidelines = () => {
   const [image, setImage] = useState(null);
+  const navigate = useNavigate();
 
   const onDrop = (acceptedFiles) => {
     const file = acceptedFiles[0];
@@ -16,7 +18,9 @@ const AddGuidelines = () => {
   return (
     <div className="common-main-section">
       <div className="main-section">
-        <button className="back-text">Back</button>
+        <button className="back-text" onClick={() => navigate(-1)}>
+          Back
+        </button>
         <div className="guidelines-header">
           <div className="left-section">
             <label className="primary-title">Guidelines</label>

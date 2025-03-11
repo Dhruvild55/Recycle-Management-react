@@ -4,7 +4,6 @@ import ButtonComponent from "../../../../shared/components/Buttoncomponent";
 import CollecterInformation from "../Information/CollecterInformation";
 import StorageInformation from "../Information/StorageInformation";
 import { useNavigate } from "react-router-dom";
-import { route } from "../../../../shared/constants/AllRoutes";
 
 const CollecterProfile = () => {
   const [selectedButton, setSelectedButton] = useState("collecter-information");
@@ -17,10 +16,7 @@ const CollecterProfile = () => {
       <div className="common-main-section">
         <div className="header-section">
           <div className="left-side">
-            <button
-              className="back-text"
-              onClick={() => navigate(route.userManagement)}
-            >
+            <button className="back-text" onClick={() => navigate(-1)}>
               &larr; BACK
             </button>
           </div>

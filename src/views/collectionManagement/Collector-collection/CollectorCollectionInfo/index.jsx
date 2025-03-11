@@ -1,7 +1,9 @@
 /* eslint-disable react/prop-types */
+import { useNavigate } from "react-router-dom";
 import ProfilePic from "../../../../shared/components/ProfilePic";
 
 const CollectorCollectionInfo = () => {
+  const navigate = useNavigate();
   const materials = [
     {
       id: "09CINCW",
@@ -54,7 +56,9 @@ const CollectorCollectionInfo = () => {
       <div className="common-main-section">
         <div className="header-section">
           <div>
-            <button className="back-text">&larr; BACK</button>
+            <button className="back-text" onClick={() => navigate(-1)}>
+              &larr; BACK
+            </button>
           </div>
         </div>
         <div style={{ marginTop: "20px", marginBottom: "20px" }}>

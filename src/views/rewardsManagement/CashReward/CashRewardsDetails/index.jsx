@@ -101,7 +101,7 @@ const CashRewardsDetails = () => {
         <p className="primary-title">User Detail</p>
         <div className="userDetails-section" style={{ display: "flex" }}>
           <div className="profile-section">
-            <ProfilePic size={180} />
+            <ProfilePic size={180} isChange={false} />
           </div>
           <div className="fields-section">
             <div className="fields-group">

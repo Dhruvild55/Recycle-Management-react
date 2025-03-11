@@ -8,7 +8,7 @@ export const headers = [
     render: (row) => {
       return (
         <div className="d-flex  align-items-center">
-          <ProfilePic />
+          <ProfilePic isChange={false} />
           <span className="ms-2">{row.userName}</span>
         </div>
       );

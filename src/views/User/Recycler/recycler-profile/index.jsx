@@ -26,8 +26,9 @@ const RecyclerProfile = () => {
             &larr; BACK
           </button>
           <div className="right-section">
-            <img src={iconDelete} alt="delete icon" />
-            <span>Deactivate Account</span>
+            <button className="" style={{ border: "none" }}>
+              <img src={iconDelete} alt="delete icon" /> Deactivate Account
+            </button>
           </div>
         </div>
         <div className="tabs-section">

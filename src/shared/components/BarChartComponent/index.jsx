@@ -4,7 +4,6 @@ import { iconDrop } from "../../../assets/images/icons";
 import { BsCircleFill } from "react-icons/bs";
 
 const BarChartComponent = ({ isDashboard }) => {
-  console.log(isDashboard);
   const data = [
     { name: "Group A", value: 400 },
     { name: "Group B", value: 300 },

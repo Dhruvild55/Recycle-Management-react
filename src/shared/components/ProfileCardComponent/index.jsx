@@ -4,7 +4,7 @@ const ProfileCardComponent = () => {
   return (
     <div className="user-card">
       <div className="user-profile">
-        <ProfilePic size={100} />
+        <ProfilePic size={100} isChange={true} />
       </div>
       <div className="user-info">
         <h2>Dhruvil</h2>

@@ -41,8 +41,6 @@ export default function AddUserPage() {
     queryFn: getRoles,
   });
 
-  console.log(rolesData?.data);
-
   const { mutate, isPending } = useMutation({
     mutationFn: createUser,
     onSuccess: (data) => {
@@ -88,10 +86,7 @@ export default function AddUserPage() {
     <div className="create-admin-section">
       <div className="common-main-section">
         <div className="header-contant">
-          <button
-            className="back-text"
-            onClick={() => navigate(route.userManagement)}
-          >
+          <button className="back-text" onClick={() => navigate(-1)}>
             &larr; BACK
           </button>
         </div>
@@ -108,6 +103,7 @@ export default function AddUserPage() {
                   <div className="profile-center">
                     <ProfilePic
                       size={60}
+                      isChange={false}
                       image={
                         selectedImage
                           ? URL.createObjectURL(selectedImage)
@@ -140,6 +136,7 @@ export default function AddUserPage() {
                 <div className="profile-center">
                   <ProfilePic
                     size={60}
+                    isChange={false}
                     image={
                       selectedImage ? URL.createObjectURL(selectedImage) : null
                     }

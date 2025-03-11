@@ -7,10 +7,9 @@ export const headers = (navigate) => [
     key: "reward",
     label: "reward",
     render: (row) => {
-      console.log(row);
       return (
         <div className="d-flex align-items-center">
-          <ProfilePic size={30} />
+          <ProfilePic size={30} isChange={false} />
           <span className="ms-2">{row.reward}</span>
         </div>
       );

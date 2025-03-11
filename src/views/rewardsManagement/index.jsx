@@ -11,7 +11,6 @@ const RewardsManagement = () => {
   const isMobile = useMediaQuery("(max-width: 425px)");
 
   const renderSelectedComponent = () => {
-    console.log(selectedTab);
     switch (selectedTab) {
       case "product-management":
         return <ProductManagement />;

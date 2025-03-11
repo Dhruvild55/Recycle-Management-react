@@ -2,7 +2,7 @@ import { iconDelete, iconView } from "../../../../assets/images/icons";
 import ProfilePic from "../../../../shared/components/ProfilePic";
 import { route } from "../../../../shared/constants/AllRoutes";
 
-export const collecterColumns = (navigate, deleteUserMutation) => [
+export const recyclerColumns = (navigate, deleteUserMutation) => [
   {
     key: "id",
     label: "user_id",
@@ -14,7 +14,7 @@ export const collecterColumns = (navigate, deleteUserMutation) => [
     label: "name",
     render: (row) => (
       <div className="d-flex align-items-center">
-        <ProfilePic size={30} userId={row.id} />
+        <ProfilePic size={30} userId={row.id} isChange={false} />
         <span className="ms-2">{row.firstName}</span>
       </div>
     ),

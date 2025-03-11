@@ -11,27 +11,38 @@ const Login = lazy(() => import("../views/auth/login"));
 const Dashboard = lazy(() => import("../views/dashboard"));
 
 // user
+// ! User Management -Admin
 const UserManagement = lazy(() => import("../views/User/Admin/AdminList"));
-
-const RecyclerList = lazy(() => import("../views/User/Recycler/RecyclerList"));
 const AddUserPage = lazy(() => import("../views/User/Admin/Admin-add"));
 
+// ! User Management -Recycler
+const RecyclerList = lazy(() => import("../views/User/Recycler/RecyclerList"));
 const RecyclerProfilePage = lazy(() =>
   import("../views/User/Recycler/recycler-profile")
 );
 const ViewRecyclerItemsPage = lazy(() =>
   import("../views/User/Recycler/ViewRecycleritems")
 );
-
 const ViewPreviousItemsDetails = lazy(() =>
   import("../views/User/Recycler/History/PreviousItems/viewPreviousItems")
+);
+
+// ! User Management -Collector
+const CollectorList = lazy(() =>
+  import("../views/User/Collecter/CollectorList")
 );
 const CollecterProfilePage = lazy(() =>
   import("../views/User/Collecter/collecter-profile")
 );
+
+// ! User Management - Roles And Permission
+const RolesList = lazy(() => import("../views/User/Admin And Roles/RolesList"));
+
 const AdminPermissionEditPage = lazy(() =>
   import("../views/User/Admin And Roles/edit-admin-permission")
 );
+
+// App Content Management
 const AppcontantManagementPage = lazy(() =>
   import("../views/appContentManagement/")
 );
@@ -114,8 +125,9 @@ const RoutesDetails = [
 
       // user Management
       { path: route.userManagement, Component: UserManagement, exact: true },
-      { path: route.recyclerList, Component: RecyclerList, exact: true },
       { path: route.addUser, Component: AddUserPage, exact: true },
+      { path: route.recyclerList, Component: RecyclerList, exact: true },
+      { path: route.collectorList, Component: CollectorList, exact: true },
       {
         path: route.viewRecycler(`:id`),
         Component: RecyclerProfilePage,
@@ -124,6 +136,11 @@ const RoutesDetails = [
       {
         path: route.viewCollector(`:id`),
         Component: CollecterProfilePage,
+        exact: true,
+      },
+      {
+        path: route.rolesList,
+        Component: RolesList,
         exact: true,
       },
       {

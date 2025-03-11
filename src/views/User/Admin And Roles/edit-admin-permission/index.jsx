@@ -66,11 +66,8 @@ const EditPermissions = () => {
     <div className="permission-section">
       <div className="common-main-section">
         <div>
-          <button
-            className="back-text"
-            onClick={() => navigate(route.userManagement)}
-          >
-            Back to Roles List
+          <button className="back-text" onClick={() => navigate(-1)}>
+            &larr; BACK TO ROLES LIST
           </button>
         </div>
         <div style={{ marginTop: "20px" }}>
@@ -108,7 +105,7 @@ const EditPermissions = () => {
                   </div>
                 </td>
               </tr>
-            ) : (
+            ) : permissions?.length > 0 ? (
               permissions?.map((row, index) => (
                 <tr key={index}>
                   <td
@@ -156,6 +153,20 @@ const EditPermissions = () => {
                   ))}
                 </tr>
               ))
+            ) : (
+              <tr>
+                <td colSpan="7" className="no-user">
+                  <p
+                    style={{
+                      fontSize: "20px",
+                      marginBottom: "0px",
+                      fontWeight: "600",
+                    }}
+                  >
+                    No Permission Found
+                  </p>
+                </td>
+              </tr>
             )}
             {}
           </tbody>

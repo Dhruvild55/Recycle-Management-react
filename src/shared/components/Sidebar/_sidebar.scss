@@ -74,17 +74,11 @@ $highlight-color: $table-header-background;
         align-items: flex-start;
         flex-direction: column;
         width: 100%;
-        max-width: $sidebar-width;
+        max-width: $sidebar-width - 15px;
+        border-top-right-radius: 100px;
+        border-bottom-right-radius: 100px;
         cursor: pointer;
         transition: background-color 0.3s ease-in-out;
-
-        // Hover effect applied to the entire .menu-item
-        &:hover {
-          background-color: $highlight-color;
-          border-top-right-radius: 100px;
-          border-bottom-right-radius: 100px;
-          width: $sidebar-width - 15px;
-        }
 
         a {
           display: block;
@@ -92,7 +86,7 @@ $highlight-color: $table-header-background;
           text-decoration: none;
           font-size: 14px;
           font-weight: $fw-400;
-          width: 100%;
+          width: $sidebar-width - 15px;
 
           .menu-header {
             display: flex;
@@ -101,7 +95,13 @@ $highlight-color: $table-header-background;
             width: 100%;
             padding: 10px 20px;
             gap: 10px;
-            transition: background-color 0.3s ease-in-out;
+
+            &:hover {
+              background-color: $highlight-color;
+              border-top-right-radius: 100px;
+              border-bottom-right-radius: 100px;
+              width: $sidebar-width - 15px;
+            }
 
             &.selected {
               background-color: $highlight-color;
@@ -133,14 +133,14 @@ $highlight-color: $table-header-background;
               font-size: 0.8rem;
               transition: background-color 0.3s ease-in-out;
 
-              &:hover {
-                background-color: lighten($highlight-color, 15%);
-              }
+              // &:hover {
+              //   background-color: lighten($highlight-color, 15%);
+              // }
 
-              &.selected {
-                background-color: $highlight-color;
-                border-radius: 10px;
-              }
+              // &.selected {
+              //   background-color: $highlight-color;
+              //   border-radius: 10px;
+              // }
             }
           }
         }

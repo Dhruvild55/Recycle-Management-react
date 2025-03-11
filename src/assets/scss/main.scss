@@ -2,6 +2,7 @@
 @use "./helpers/media-queries" as *;
 @use "./helpers/button" as *;
 @use "./common" as *;
+@import "@fontsource/inter"; /* Imports the default Inter font (400 weight) */
 
 // components
 @import "../../shared/components/Header/header";

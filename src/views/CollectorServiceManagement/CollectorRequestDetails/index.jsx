@@ -1,13 +1,17 @@
+import { useNavigate } from "react-router-dom";
 import CommonCardComponent from "../../../shared/components/CommonCardComponent";
 import ProfileCardComponent from "../../../shared/components/ProfileCardComponent";
 
 const CollectionRequestDetails = () => {
+  const navigate = useNavigate();
   return (
     <>
       <div className="common-main-section">
-        <div className="header-section">
+        <div className="header-section" style={{ marginBottom: "20px" }}>
           <div>
-            <button className="back-text">&larr; BACK</button>
+            <button className="back-text" onClick={() => navigate(-1)}>
+              &larr; BACK
+            </button>
           </div>
         </div>
         <div className="main-section row ">

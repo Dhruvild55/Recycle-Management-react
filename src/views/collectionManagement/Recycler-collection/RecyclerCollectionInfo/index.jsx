@@ -1,7 +1,9 @@
 /* eslint-disable react/prop-types */
+import { useNavigate } from "react-router-dom";
 import ProfilePic from "../../../../shared/components/ProfilePic";
 
 const RecyclerCollectionInfo = () => {
+  const navigate = useNavigate();
   const recycler = {
     name: "Suhaila Abd. Kareem",
     recyclerId: "09CCINCW",
@@ -62,7 +64,9 @@ const RecyclerCollectionInfo = () => {
         {/* Recycler Info Section */}
         <div className="header-section">
           <div>
-            <button className="back-text">&larr; BACK</button>
+            <button className="back-text" onClick={() => navigate(-1)}>
+              &larr; BACK
+            </button>
           </div>
         </div>
         <div style={{ marginTop: "20px", marginBottom: "20px" }}>
@@ -71,7 +75,7 @@ const RecyclerCollectionInfo = () => {
         <div className="recycler-collection row">
           <div className="recycler-info col-lg-8">
             <div className="profile-section">
-              <ProfilePic size={100} />
+              <ProfilePic size={100} isChange={false} />
             </div>
             <div className="details">
               <p>
@@ -98,7 +102,7 @@ const RecyclerCollectionInfo = () => {
           <div className="collector-section col-lg-4 ">
             <p>Collector</p>
             <div className="collector-card">
-              <ProfilePic size={55} />
+              <ProfilePic size={55} isChange={false} />
               <div className="collector-info ">
                 <p className="name">{collector.name}</p>
                 <p className="id">Collector ID: {collector.collectorId}</p>

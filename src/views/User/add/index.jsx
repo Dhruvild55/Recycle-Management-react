@@ -77,7 +77,7 @@ export default function AddUserPage() {
           <p>This will be displayed your profile</p>
         </div>
         <div className="profile=center">
-          <ProfilePic size={60} />
+          <ProfilePic size={60} isChange={false} />
         </div>
         <div className="photo-actions">
           <button className="delete-button">Delete</button>
