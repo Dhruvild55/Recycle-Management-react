@@ -17,15 +17,17 @@ const AddUserPage = lazy(() => import("../views/User/Admin/Admin-add"));
 
 // ! User Management -Recycler
 const RecyclerList = lazy(() => import("../views/User/Recycler/RecyclerList"));
-const RecyclerProfilePage = lazy(() =>
-  import("../views/User/Recycler/recycler-profile")
-);
-const ViewRecyclerItemsPage = lazy(() =>
-  import("../views/User/Recycler/ViewRecycleritems")
-);
 const ViewPreviousItemsDetails = lazy(() =>
   import("../views/User/Recycler/History/PreviousItems/viewPreviousItems")
 );
+
+// new
+const RecyclerDetails = lazy(() =>
+  import("../views/User/Recycler/Information")
+);
+const RecyclerHistory = lazy(() => import("../views/User/Recycler/History"));
+const RecyclerRewards = lazy(() => import("../views/User/Recycler/Rewards"));
+const RecyclerHardware = lazy(() => import("../views/User/Recycler/Hardware"));
 
 // ! User Management -Collector
 const CollectorList = lazy(() =>
@@ -128,11 +130,28 @@ const RoutesDetails = [
       { path: route.addUser, Component: AddUserPage, exact: true },
       { path: route.recyclerList, Component: RecyclerList, exact: true },
       { path: route.collectorList, Component: CollectorList, exact: true },
+
       {
-        path: route.viewRecycler(`:id`),
-        Component: RecyclerProfilePage,
+        path: route.recyclerDetails(`:id`),
+        Component: RecyclerDetails,
         exact: true,
       },
+      {
+        path: route.recyclerHistory(`:id`),
+        Component: RecyclerHistory,
+        exact: true,
+      },
+      {
+        path: route.recyclerRewards(":id"),
+        Component: RecyclerRewards,
+        exact: true,
+      },
+      {
+        path: route.recyclerHardware(":id"),
+        Component: RecyclerHardware,
+        exact: true,
+      },
+
       {
         path: route.viewCollector(`:id`),
         Component: CollecterProfilePage,
@@ -149,12 +168,7 @@ const RoutesDetails = [
         exact: true,
       },
       {
-        path: route.viewRecyclerItems,
-        Component: ViewRecyclerItemsPage,
-        exact: true,
-      },
-      {
-        path: route.itemsDetails,
+        path: route.viewHistoryItems(":id"),
         Component: ViewPreviousItemsDetails,
         exact: true,
       },

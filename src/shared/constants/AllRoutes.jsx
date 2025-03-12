@@ -11,9 +11,14 @@ export const route = {
 
   //! User Management Recycler
   recyclerList: "/user-Management/recycler",
-  viewRecycler: (id) => `/user-Management/recycler/view-recycler/${id}`,
-  viewRecyclerItems: `/user-Management/view-recycler-items`,
-  itemsDetails: "/user-Management/view-item-details",
+
+  // new
+  recyclerDetails: (id) => `/user-Management/recycler/details/${id}`,
+  recyclerHistory: (id) => `/user-Management/recycler/history/${id}`,
+  recyclerRewards: (id) => `/user-Management/recycler/rewards/${id}`,
+  recyclerHardware: (id) => `/user-Management/recycler/hardware/${id}`,
+  viewHistoryItems: (id) =>
+    `/user-Management/recycler/history/items-detail/${id}`,
 
   //! User Management Collector
   collectorList: "/user-Management/collector",

@@ -1,3 +1,7 @@
+import { useNavigate } from "react-router-dom";
+import { iconDelete } from "../../../../assets/images/icons";
+import RecyclerInfoTopSection from "../Component/RecyclerInfoTopSection";
+
 /* eslint-disable react/prop-types */
 const rewardsData = [
   {
@@ -59,12 +63,34 @@ const RewardItem = ({ reward }) => (
   </div>
 );
 
-const RewardsList = () => (
-  <div className="rewards-list">
-    {rewardsData.map((reward, index) => (
-      <RewardItem key={index} reward={reward} />
-    ))}
-  </div>
-);
+const RewardsList = () => {
+  const navigate = useNavigate();
+  return (
+    <div className="user-profile-section">
+      <div className="common-main-section">
+        <div className="header-section">
+          <button
+            className="back-text"
+            onClick={() => navigate("/user-Management/recycler")}
+          >
+            &larr; BACK
+          </button>
+          <div className="right-section">
+            <button className="" style={{ border: "none" }}>
+              <img src={iconDelete} alt="delete icon" /> Deactivate Account
+            </button>
+          </div>
+        </div>
+        <RecyclerInfoTopSection />
+        <label className="primary-title">Rewards History</label>
+        <div className="rewards-list">
+          {rewardsData.map((reward, index) => (
+            <RewardItem key={index} reward={reward} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default RewardsList;

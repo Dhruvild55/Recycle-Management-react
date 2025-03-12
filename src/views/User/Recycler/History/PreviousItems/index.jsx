@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import CustomTable from "../../../../../shared/components/CustomTable";
+import { route } from "../../../../../shared/constants/AllRoutes";
 
 const PreviousItems = () => {
+  const navigate = useNavigate();
   const rows = [
     {
       id: "DEL-1133002",
@@ -48,7 +51,17 @@ const PreviousItems = () => {
     {
       key: "action",
       label: "action",
-      render: () => <button className="view-button">View</button>,
+      render: (rows) => {
+        console.log(rows);
+        return (
+          <button
+            className="view-button"
+            onClick={() => navigate(route.viewHistoryItems(rows.id))}
+          >
+            View
+          </button>
+        );
+      },
     },
   ];
 
