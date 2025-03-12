@@ -1,4 +1,5 @@
-const BusinessRegistration = () => {
+/* eslint-disable react/prop-types */
+const BusinessRegistration = ({ businessDetails }) => {
   return (
     <div
       className="common-main-section"
@@ -12,16 +13,26 @@ const BusinessRegistration = () => {
             <input
               type="text"
               className="form-control"
-              value="Nasi Lemak Saleha"
+              value={businessDetails?.businessName}
+              readOnly
             />
           </div>
           <div className="col-md-4 mb-3">
             <label>Business category</label>
-            <input type="text" className="form-control" />
+            <input
+              type="text"
+              className="form-control"
+              value={businessDetails?.businessCategory}
+              readOnly
+            />
           </div>
           <div className="col-md-4 mb-3">
             <label>Business Registration Number</label>
-            <input type="text" className="form-control" />
+            <input
+              type="text"
+              className="form-control"
+              value={businessDetails?.businessRegistrationNumber}
+            />
           </div>
         </div>
       </form>

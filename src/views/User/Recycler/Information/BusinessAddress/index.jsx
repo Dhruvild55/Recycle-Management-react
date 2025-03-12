@@ -1,4 +1,19 @@
-const BusinessAddress = () => {
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
+const BusinessAddress = ({ businessDetailsData = {} }) => {
+  const {
+    city = "Subang Jaya",
+    countryCode = "N/A",
+    addressLine1 = "15-10/1",
+    addressLine2 = "Jalan Sentosa 39/2, USJ 15",
+    addressType = "N/A",
+    state = "Selangor",
+    zipCode = 403450,
+    lattitude = 3.152,
+    longitude = 101.615,
+  } = businessDetailsData;
+
+  const mapSrc = `https://maps.google.com/maps?q=${lattitude},${longitude}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
   return (
     <div
       className="common-main-section"
@@ -9,7 +24,12 @@ const BusinessAddress = () => {
         <div className="row">
           <div className="col-md-6 mb-3">
             <label htmlFor="unitNo">Unit No.</label>
-            <input type="text" className="form-control" value="15-10/1" />
+            <input
+              type="text"
+              className="form-control"
+              value={addressLine1}
+              readOnly
+            />
           </div>
           <div className="col-md-6 mb-3">
             <label htmlFor="address">Address</label>
@@ -17,7 +37,8 @@ const BusinessAddress = () => {
               type="text"
               id="address"
               className="form-control"
-              value="Jalan Sentosa 39/2, USJ 15"
+              value={addressLine2}
+              readOnly
             />
           </div>
         </div>
@@ -29,7 +50,8 @@ const BusinessAddress = () => {
               type="text"
               id="city"
               className="form-control"
-              value="Subang Jaya"
+              value={city}
+              readOnly
             />
           </div>
           <div className="col-md-6 mb-3">
@@ -38,7 +60,8 @@ const BusinessAddress = () => {
               type="text"
               id="state"
               className="form-control"
-              value="Selangor"
+              value={state}
+              readOnly
             />
           </div>
         </div>
@@ -49,7 +72,8 @@ const BusinessAddress = () => {
             type="text"
             id="postcode"
             className="form-control"
-            value="403450"
+            value={zipCode}
+            readOnly
           />
         </div>
         <div className="col-md-6 mb-3">
@@ -59,17 +83,14 @@ const BusinessAddress = () => {
             id="country"
             className="form-control"
             value="Malaysia"
+            readOnly
           />
         </div>
 
         <div className="row">
           <div className="col-12 mb-3">
             <div className="map-container">
-              <iframe
-                title="map"
-                src="https://maps.google.com/maps?q=Jalan%20Sentosa%2039/2,%20USJ%2015&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                allowFullScreen
-              ></iframe>
+              <iframe title="map" src={mapSrc} allowFullScreen></iframe>
             </div>
           </div>
         </div>

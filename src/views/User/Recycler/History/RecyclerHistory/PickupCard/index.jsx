@@ -1,9 +1,11 @@
+/* eslint-disable react/prop-types */
 import {
   iconMarkerPin,
   iconTruck,
 } from "../../../../../../assets/images/icons";
 
-const PickUpCard = () => {
+const PickUpCard = ({ data }) => {
+  console.log(data);
   return (
     <div className="next-pickup-card">
       <div className="icon">

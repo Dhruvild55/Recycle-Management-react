@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
-import axiosInstance from "../../../axios";
+
+import axiosInstance from "../../../../axios";
 
 export const getRecyclerList = async ({
   pageNumber,

@@ -1,4 +1,4 @@
-import { getRecyclerList } from "../../../../query/users/getRecyclerList/getRecycler.query";
+import { getRecyclerList } from "../../../../query/users/Recycler/getRecyclerList/getRecycler.query";
 import UserList from "../../Component/UserList";
 import { recyclerColumns } from "./configue";
 

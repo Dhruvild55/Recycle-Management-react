@@ -1,11 +1,24 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import RecyclerInfoTopSection from "../Component/RecyclerInfoTopSection";
 import { iconDelete } from "../../../../assets/images/icons";
 import RecyclerHistory from "./RecyclerHistory";
 import PreviousItems from "./PreviousItems";
+import { useQuery } from "@tanstack/react-query";
+import { getRecyclerHistory } from "../../../../query/users/Recycler/getRecyclerHistory/getRecyclerHistory.query";
 
 const RecyclerHistoryDetails = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
+
+  const { data } = useQuery({
+    queryKey: ["getRecyclerHistory", id],
+    queryFn: () => getRecyclerHistory({ id }),
+    staleTime: 30000,
+  });
+  console.log("previousData", data?.data);
+  const pastPickupData = data?.data?.pastPickups;
+  const nextPickupData = data?.data?.upcomingPickups;
+
   return (
     <div className="user-profile-section">
       <div className="common-main-section">
@@ -25,13 +38,11 @@ const RecyclerHistoryDetails = () => {
         <RecyclerInfoTopSection />
         <div className="recycler-history">
           <label className="primary-title">Recycler History</label>
-          <div className="card-wrapper">
-            <RecyclerHistory />
-          </div>
+          <RecyclerHistory upcommingPickUps={nextPickupData} />
         </div>
       </div>
       <div className="recycler-history">
-        <PreviousItems />
+        <PreviousItems pastPickUps={pastPickupData} />
       </div>
     </div>
   );

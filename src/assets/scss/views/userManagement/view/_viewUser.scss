@@ -70,8 +70,27 @@ $font-family: "Inter", sans-serif;
     .card-wrapper {
       padding: 10px;
       display: flex;
-      gap: 60px;
-      justify-content: space-between;
+      gap: 70px;
+      justify-content: flex-start; // Align items to the start
+      overflow-x: auto; // Enable horizontal scrolling
+      flex-wrap: nowrap; // Prevent wrapping
+      max-width: 100%; // Ensure it takes full width
+
+      scrollbar-width: thin;
+      scrollbar-color: $secondary-bg-color;
+
+      &::-webkit-scrollbar {
+        height: 6px;
+      }
+      &::-webkit-scrollbar-track {
+        background: #c9ffdf;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: $highlight-color;
+      }
+      &::-webkit-scrollbar-thumb:hover {
+        background: darken($highlight-color, 10%);
+      }
     }
   }
 

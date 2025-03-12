@@ -1,76 +1,65 @@
+/* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom";
-import CustomTable from "../../../../../shared/components/CustomTable";
 import { route } from "../../../../../shared/constants/AllRoutes";
+import { Table } from "react-bootstrap";
 
-const PreviousItems = () => {
+const PreviousItems = ({ pastPickUps = [] }) => {
   const navigate = useNavigate();
-  const rows = [
-    {
-      id: "DEL-1133002",
-      material: "Used Cooking Oil",
-      volume: 200,
-      pickup: "14 December 2024",
-      points: 178,
-    },
-    {
-      id: "DEL-1133002",
-      material: "Used Cooking Oil",
-      volume: 200,
-      pickup: "14 December 2024",
-      points: 178,
-    },
-    {
-      id: "DEL-1133002",
-      material: "Used Cooking Oil",
-      volume: 200,
-      pickup: "14 December 2024",
-      points: 178,
-    },
-    {
-      id: "DEL-1133002",
-      material: "Used Cooking Oil",
-      volume: 200,
-      pickup: "14 December 2024",
-      points: 178,
-    },
-    {
-      id: "DEL-1133002",
-      material: "Used Cooking Oil",
-      volume: 200,
-      pickup: "14 December 2024",
-      points: 178,
-    },
-  ];
 
   const headerData = [
-    { key: "id", label: "id" },
-    { key: "material", label: "material" },
-    { key: "volume", label: "volume" },
-    { key: "pickup", label: "pickup" },
-    { key: "points", label: "points" },
-    {
-      key: "action",
-      label: "action",
-      render: (rows) => {
-        console.log(rows);
-        return (
-          <button
-            className="view-button"
-            onClick={() => navigate(route.viewHistoryItems(rows.id))}
-          >
-            View
-          </button>
-        );
-      },
-    },
+    { key: "id", label: "ID" },
+    { key: "material", label: "Material" },
+    { key: "volume", label: "Volume (kg)" },
+    { key: "pickupDate", label: "Pickup Date" },
+    { key: "estPoints", label: "Points" },
+    { key: "action", label: "Action" },
   ];
 
   return (
-    <div className="common-main-section" style={{ marginTop: "10px" }}>
+    <div
+      className="common-main-section"
+      style={{ marginTop: "10px", maxHeight: "0px" }}
+    >
       <label className="primary-title" style={{ marginBottom: "20px" }}>
         Previous Items
       </label>
-      <CustomTable headers={headerData} data={rows} />
+
+      <Table responsive>
+        <thead>
+          <tr>
+            {headerData.map((header) => (
+              <th key={header.key}>{header.label}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {pastPickUps.length > 0 ? (
+            pastPickUps.map((item) => (
+              <tr key={item.id}>
+                <td>{item.id}</td>
+                <td>{item.material?.materialName || "N/A"}</td>
+                <td>{item.material?.weight || 0} kg</td>
+                <td>{item.pickupDate || "N/A"}</td>
+                <td>{item.estPoints || 0}</td>
+                <td>
+                  <button
+                    className="view-button"
+                    onClick={() => navigate(route.viewHistoryItems(item.id))}
+                  >
+                    View
+                  </button>
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan={headerData.length} style={{ textAlign: "center" }}>
+                No Data Available
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </Table>
     </div>
   );
 };

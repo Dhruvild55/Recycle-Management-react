@@ -1,15 +1,23 @@
+/* eslint-disable react/prop-types */
 import { Cell, Pie, PieChart, ResponsiveContainer } from "recharts";
 import { iconDrop } from "../../../../../../assets/images/icons";
 
-const DataBarChartComponent = () => {
-  const data = [
-    { name: "Group A", value: 400 },
-    { name: "Group B", value: 100 },
-    { name: "Group C", value: 300 },
-    { name: "Group D", value: 200 },
-    { name: "Group E", value: 50 },
+const DataBarChartComponent = ({ material = [] }) => {
+  const defaultData = [
+    { name: "Oil", value: 10 },
+    { name: "Paper", value: 15 },
   ];
+
+  const formattedMaterial =
+    Array.isArray(material) && material.length > 0 ? material : defaultData;
+
+  const data = formattedMaterial.map((item) => ({
+    name: item.materialTypeName || item.name,
+    value: item.totalWeight || item.value,
+  }));
+
   const COLORS = ["#7CCBBC", "#1F7F82", "#B1D33A", "#ABEFC6"];
+
   return (
     <>
       <p>Material</p>
@@ -18,7 +26,7 @@ const DataBarChartComponent = () => {
           <PieChart>
             <Pie
               data={data}
-              cx="50%" // Centering dynamically
+              cx="50%"
               cy="45%"
               innerRadius={60}
               outerRadius={90}
@@ -49,17 +57,22 @@ const DataBarChartComponent = () => {
         />
       </div>
 
+      {/* Legend Section */}
       <div className="data-section">
-        <div className="data-div">
-          <div className="round-icon">22</div>
-          <p>Clothing(kg)</p>
-        </div>
-        <div className="data-div">
-          <div className="round-icon">22</div>
-          <p>Used Cooking oil(kg)</p>
-        </div>
+        {data.map((item, index) => (
+          <div className="data-div" key={index}>
+            <div
+              className="round-icon"
+              style={{ backgroundColor: COLORS[index % COLORS.length] }}
+            >
+              {item.value}
+            </div>
+            <p>{item.name} (kg)</p>
+          </div>
+        ))}
       </div>
     </>
   );
 };
+
 export default DataBarChartComponent;

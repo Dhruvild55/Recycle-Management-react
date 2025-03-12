@@ -37,8 +37,6 @@ const UserList = ({
     refetchOnWindowFocus: false,
   });
 
-  console.log("Admin List", data);
-
   const { mutate: deleteUserMutation } = useMutation({
     mutationFn: deleteUser,
     onSuccess: (data) => {
