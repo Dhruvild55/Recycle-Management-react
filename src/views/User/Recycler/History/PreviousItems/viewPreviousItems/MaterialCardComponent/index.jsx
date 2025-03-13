@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import {
   Card,
   CardActionArea,
@@ -6,20 +7,42 @@ import {
   Typography,
 } from "@mui/material";
 
-const MaterialCardComponent = () => {
+const MaterialCardComponent = ({ items = {}, index }) => {
+  const { image = "/images/oilwaste.png", materialName = "Used Cooking Oil" } =
+    items;
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345, boxShadow: "none", width: "100%" }}>
       <CardActionArea>
         <CardMedia
+          sx={{ borderRadius: "12px" }}
           component="img"
           height="200"
-          image="/images/oilwaste.png"
-          alt="green iguana"
+          image={image}
+          alt={materialName}
         />
-        <CardContent>
-          <Typography variant="body2" sx={{ color: "text.secondary" }}>
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+        <CardContent
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+            padding: "16px 0px",
+          }}
+        >
+          <Typography
+            variant="body1"
+            sx={{
+              color: "#181D27",
+              fontSize: "20px",
+              fontWeight: "600",
+            }}
+          >
+            Item {index + 1}:
+          </Typography>
+          <Typography
+            variant="body2"
+            sx={{ color: "#535862", fontSize: "14px", fontWeight: "400" }}
+          >
+            {materialName}
           </Typography>
         </CardContent>
       </CardActionArea>

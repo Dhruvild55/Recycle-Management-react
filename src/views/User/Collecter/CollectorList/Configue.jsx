@@ -14,15 +14,22 @@ export const collecterColumns = (navigate, deleteUserMutation) => [
     label: "name",
     render: (row) => (
       <div className="d-flex align-items-center">
-        <ProfilePic size={30} userId={row.id} isChange={false} />
-        <span className="ms-2">{row.firstName}</span>
+        <ProfilePic
+          size={30}
+          userId={row.id}
+          isChange={false}
+          image={row.selfiePath}
+          name={row.userName}
+        />
+        <span className="ms-2">{row.firstName}</span>{" "}
+        <span className="ms-2">{row.lastName}</span>
       </div>
     ),
   },
   { key: "roles", label: "category" },
   { key: "email", label: "email" },
   { key: "phoneNumber", label: "phone_no" },
-  { key: "location", label: "location" },
+  { key: "city", label: "location" },
   {
     key: "isApprovedByAdmin",
     label: "status",

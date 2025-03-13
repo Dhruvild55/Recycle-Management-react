@@ -12,6 +12,7 @@ import CustomTable from "../../../../shared/components/CustomTable";
 import Pagination from "../../../../shared/components/CustomPagination";
 import { iconRightArrow } from "../../../../assets/images/icons";
 import { deleteUser } from "../../../../query/users/deleteUser/deleteUser.query";
+import useDebounce from "../../../../shared/hooks/useDebounce";
 
 const UserList = ({
   title,
@@ -28,10 +29,27 @@ const UserList = ({
   const [selectedRoleOpt, setSelectedRoleOpt] = useState("All");
   const navigate = useNavigate();
   const translations = useSelector((state) => state.settings.translations);
+  const combinedSearchTerm =
+    selectedRoleOpt === "All"
+      ? searchQuery.trim()
+      : `${searchQuery} ${selectedRoleOpt}`.trim();
+  const debouncedSearchQuery = useDebounce(combinedSearchTerm, 500);
 
   const { data, isPending, refetch } = useQuery({
-    queryKey: [queryKey, pageSize, pageNumber, isDescendingOrder],
-    queryFn: () => fetchFunction({ pageNumber, pageSize, isDescendingOrder }),
+    queryKey: [
+      queryKey,
+      pageSize,
+      pageNumber,
+      isDescendingOrder,
+      debouncedSearchQuery,
+    ],
+    queryFn: () =>
+      fetchFunction({
+        pageNumber,
+        pageSize,
+        isDescendingOrder,
+        searchTerm: debouncedSearchQuery,
+      }),
     keepPreviousData: true,
     staleTime: 30000,
     refetchOnWindowFocus: false,
@@ -49,17 +67,6 @@ const UserList = ({
   });
 
   const tableData = data?.data?.items || [];
-  const filteredData = tableData.filter((user) => {
-    const matchesSearch =
-      user?.userName?.toLowerCase().includes(searchQuery) ||
-      user?.email?.toLowerCase().includes(searchQuery) ||
-      user?.phoneNumber?.toLowerCase().includes(searchQuery);
-
-    const matchesRole =
-      selectedRoleOpt === "All" || user?.roles?.includes(selectedRoleOpt);
-
-    return matchesSearch && matchesRole;
-  });
 
   const totalPages = Math.ceil((data?.data?.totalRecords || 1) / pageSize);
 
@@ -105,14 +112,13 @@ const UserList = ({
         </div>
         <CustomTable
           headers={tableHeaders(navigate, deleteUserMutation)}
-          data={filteredData}
+          data={tableData}
           isLoading={isPending}
         />
         <div className="table-footer">
           <div>
             <span className="back-text" style={{ color: "#181D27" }}>
-              {translations.showing} {filteredData.length}{" "}
-              {translations.entries}{" "}
+              {translations.showing} {tableData.length} {translations.entries}{" "}
             </span>
             <img src={iconRightArrow} />
           </div>

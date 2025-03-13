@@ -16,10 +16,7 @@ const PreviousItems = ({ pastPickUps = [] }) => {
   ];
 
   return (
-    <div
-      className="common-main-section"
-      style={{ marginTop: "10px", maxHeight: "0px" }}
-    >
+    <div className="common-main-section" style={{ marginTop: "10px" }}>
       <label className="primary-title" style={{ marginBottom: "20px" }}>
         Previous Items
       </label>
@@ -44,6 +41,12 @@ const PreviousItems = ({ pastPickUps = [] }) => {
                 <td>
                   <button
                     className="view-button"
+                    style={{
+                      backgroundColor: "#D9F0FF",
+                      padding: "5px 10px",
+                      color: "#008ADF",
+                      borderRadius: "10px",
+                    }}
                     onClick={() => navigate(route.viewHistoryItems(item.id))}
                   >
                     View

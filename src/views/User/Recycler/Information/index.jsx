@@ -4,14 +4,16 @@ import { iconDelete } from "../../../../assets/images/icons";
 import RecyclerInformation from "./RecyclerInformation";
 import BusinessRegistration from "./BusinessRegistration";
 import BusinessAddress from "./BusinessAddress";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { getRecyclerDetails } from "../../../../query/users/Recycler/getRecyclerDataById/getRecyclerData.query";
+import { approveUsers } from "../../../../query/users/approveUser/approveUser.query";
+import { ReactToastify } from "../../../../shared/utils";
 
 const RecyclerInformationSection = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const { data } = useQuery({
+  const { data, refetch } = useQuery({
     queryKey: ["getRecyclerDetails", id],
     queryFn: () => getRecyclerDetails({ id }),
     staleTime: 30000,
@@ -33,6 +35,26 @@ const RecyclerInformationSection = () => {
     longitude: data?.data?.longitude,
   };
 
+  const approveUserMutation = useMutation({
+    mutationFn: approveUsers,
+    onSuccess: (data) => {
+      console.log("User approved successfully", data);
+      ReactToastify(data.message, "success");
+      refetch();
+    },
+    onError: (error) => {
+      console.error("Error approving user:", error);
+    },
+  });
+
+  const handleApproveUser = (id, isApprovedByAdmin) => {
+    const data = {
+      userId: id,
+      isApproved: !isApprovedByAdmin,
+    };
+    approveUserMutation.mutate(data);
+  };
+
   return (
     <div className="user-profile-section">
       <div className="common-main-section">
@@ -44,8 +66,31 @@ const RecyclerInformationSection = () => {
             &larr; BACK
           </button>
           <div className="right-section">
-            <button className="" style={{ border: "none" }}>
-              <img src={iconDelete} alt="delete icon" /> Deactivate Account
+            <button
+              className=""
+              style={{ border: "none" }}
+              onClick={() =>
+                handleApproveUser(
+                  businessDetails?.applicationUser?.id,
+                  businessDetails?.applicationUser?.isApprovedByAdmin
+                )
+              }
+            >
+              <img
+                src={
+                  businessDetails?.applicationUser?.isApprovedByAdmin
+                    ? iconDelete
+                    : ""
+                }
+                alt={
+                  businessDetails?.applicationUser?.isApprovedByAdmin
+                    ? iconDelete
+                    : ""
+                }
+              />{" "}
+              {businessDetails?.applicationUser?.isApprovedByAdmin
+                ? "Deactivate Account"
+                : "Activate Account"}
             </button>
           </div>
         </div>

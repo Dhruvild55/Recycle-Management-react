@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import {
   iconMarkerPin,
@@ -6,6 +7,8 @@ import {
 
 const PickUpCard = ({ data }) => {
   console.log(data);
+  const { address, estPoints, pickupDate, pickupDateTime, pickupTimeOnly } =
+    data;
   return (
     <div className="next-pickup-card">
       <div className="icon">
@@ -17,11 +20,11 @@ const PickUpCard = ({ data }) => {
           <div className="status">On Schedule</div>
         </div>
         <div className="location">
-          <img src={iconMarkerPin} /> Southpark Avenue
+          <img src={iconMarkerPin} /> {address}
         </div>
         <div className="date-time">
-          <div className="date">14 Dec 2024</div>
-          <div className="time">6:00 - 6:30 PM</div>
+          <div className="date">{pickupDate}</div>
+          <div className="time">{pickupTimeOnly}</div>
         </div>
       </div>
     </div>
