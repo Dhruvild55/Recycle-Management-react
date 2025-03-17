@@ -1,11 +1,8 @@
 /* eslint-disable react/prop-types */
 const BusinessRegistration = ({ businessDetails }) => {
   return (
-    <div
-      className="common-main-section"
-      style={{ marginTop: "10px", padding: "2rem", minHeight: "0px" }}
-    >
-      <label className="primary-title">Business Registration information</label>
+    <div>
+      <label className="primary-title">Business Registration Information</label>
       <form style={{ marginTop: "15px" }}>
         <div className="row">
           <div className="col-md-4 mb-3">

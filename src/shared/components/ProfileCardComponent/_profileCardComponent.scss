@@ -1,7 +1,7 @@
 .user-card {
-  height: 380px;
+  height: 415px;
   width: 100%;
-  max-width: 320px;
+  max-width: 350px;
   border: 1px solid #abefc6;
   border-radius: 10px;
   display: flex;
@@ -19,10 +19,12 @@
 
   .user-info {
     display: flex;
+    width: 280px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-bottom: 15px;
+    border-bottom: 1px solid #e9eaeb;
     h2 {
       font-size: 14px;
       font-weight: 700;
@@ -34,8 +36,10 @@
   }
   .user-since {
     display: flex;
+    width: 280px;
     flex-direction: column;
     justify-content: center;
+    border-bottom: 1px solid #e9eaeb;
     align-items: center;
     h2 {
       font-size: 14px;

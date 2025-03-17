@@ -20,16 +20,25 @@ const DataBarChartComponent = ({ material = [] }) => {
 
   return (
     <>
-      <p>Material</p>
-      <div>
-        <ResponsiveContainer width="80%" height={200}>
+      <div
+        style={{
+          border: "1px solid #E9EAEB",
+        }}
+      >
+        <p
+          className="heading-text"
+          style={{ paddingLeft: "20px", marginTop: "10px" }}
+        >
+          Material
+        </p>
+        <ResponsiveContainer width="100%" height={200}>
           <PieChart>
             <Pie
               data={data}
               cx="50%"
               cy="45%"
-              innerRadius={60}
-              outerRadius={90}
+              innerRadius={50}
+              outerRadius={80}
               fill="#8884d8"
               paddingAngle={0}
               dataKey="value"
@@ -47,8 +56,8 @@ const DataBarChartComponent = ({ material = [] }) => {
           src={iconDrop}
           style={{
             position: "absolute",
-            left: "31%",
-            top: "38%",
+            left: "42%",
+            top: "36%",
             transform: "translate(116%, -50%)",
             fontSize: "30px",
             color: "#555",
@@ -56,11 +65,50 @@ const DataBarChartComponent = ({ material = [] }) => {
           alt="Center Icon"
         />
       </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-around",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "15px",
+            marginTop: "20px",
+          }}
+        >
+          {data.map((item, index) => {
+            console.log(item);
+            return (
+              <>
+                <div
+                  className=""
+                  style={{
+                    width: "55px",
+                    backgroundColor: COLORS[index % COLORS.length],
+                    height: "55px",
+                    borderRadius: "30px",
+                    padding: "15px 17px 15px 17px",
+                    color: COLORS[index + (1 % COLORS.length)],
+                    fontSize: "16px",
+                    fontWeight: "600",
+                  }}
+                >
+                  {item.value}
+                </div>
+                <p style={{ marginBottom: "0px" }}>{item.name} (kg)</p>
+              </>
+            );
+          })}
+        </div>
+      </div>
 
       {/* Legend Section */}
-      <div className="data-section">
+      {/* <div className="data-section" style={{ display: "flex", gap: "20px"  }}>
         {data.map((item, index) => (
-          <div className="data-div" key={index}>
+          <div className="data-div" style={{ width: "30px" }} key={index}>
             <div
               className="round-icon"
               style={{ backgroundColor: COLORS[index % COLORS.length] }}
@@ -70,7 +118,7 @@ const DataBarChartComponent = ({ material = [] }) => {
             <p>{item.name} (kg)</p>
           </div>
         ))}
-      </div>
+      </div> */}
     </>
   );
 };

@@ -11,6 +11,8 @@ const ChipComponent = ({ label, color }) => {
         fontFamily: "Inter",
         padding: "4px 8px", // Adjust padding
         borderRadius: "16px", // Optional: Change border radius
+        fontSize: "12px",
+        fontWeight: "500",
         backgroundColor:
           color === "yellow" ? "#FFFAEB" : color === "green" ? "#ECFDF3" : "",
         color:

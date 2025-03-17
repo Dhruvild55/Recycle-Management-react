@@ -95,25 +95,28 @@ const RecyclerInformationSection = () => {
           </div>
         </div>
         <RecyclerInfoTopSection />
-        <div className="recycler-information-section">
-          <RecyclerInformation
-            businessDetails={businessDetails || {}}
-            materialData={materialCreates || {}}
-            fatLastData={fatLastUpdate}
-            fatPoints={fatPoints}
-            isPending={isPending}
-          />
-        </div>
+        <RecyclerInformation
+          businessDetails={businessDetails || {}}
+          materialData={materialCreates || {}}
+          fatLastData={fatLastUpdate}
+          fatPoints={fatPoints}
+          isPending={isPending}
+        />
       </div>
       <div
         className="common-main-section"
-        style={{ marginTop: "20px", minHeight: "0px" }}
+        style={{ marginTop: "30px", minHeight: "0px" }}
       >
         <div className="recycler-details">
           <BusinessRegistration businessDetails={businessDetails || {}} />
         </div>
       </div>
-      <BusinessAddress businessDetailsData={businessDetailsData} />
+      <div
+        className="common-main-section"
+        style={{ marginTop: "30px", minHeight: "0px" }}
+      >
+        <BusinessAddress businessDetailsData={businessDetailsData} />
+      </div>
     </div>
   );
 };

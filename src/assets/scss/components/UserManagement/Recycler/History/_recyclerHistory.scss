@@ -48,7 +48,6 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   max-width: 310px;
   flex-shrink: 0;
-  font-family: Arial, sans-serif;
   @include media-max(lg) {
     flex-direction: column;
     align-items: flex-start;
@@ -77,6 +76,7 @@
         font-size: 14px;
         font-weight: $fw-400;
         color: #333;
+        white-space: nowrap;
       }
 
       .status {
@@ -91,11 +91,13 @@
     }
 
     .location {
-      font-size: 14px;
-      color: #555;
       margin-bottom: 8px;
       display: flex;
       gap: 5px;
+      .locationImg {
+        font-size: 14px;
+        color: #555;
+      }
     }
 
     .date-time {

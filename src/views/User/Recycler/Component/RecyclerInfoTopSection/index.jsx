@@ -16,7 +16,7 @@ const RecyclerInfoTopSection = () => {
         }`}
       />
       <ButtonComponent
-        label="Recycler History"
+        label="Recycle History"
         onClick={() => navigate(`/user-Management/recycler/history/${id}`)}
         className={`btn${
           location.pathname.includes("/history") ? " selected" : ""

@@ -36,11 +36,11 @@ const RecyclerInformation = ({
       </div>
       <div className="information-details col-lg-8 col-sm-12">
         <label className="primary-title">Recycler Information</label>
-        <div className="center-section row">
-          <div className="pie-chart-section col-lg-7">
+        <div className="row">
+          <div className="pie-chart-section col-lg-6">
             <DataBarChartComponent material={materialData} />
           </div>
-          <div className="points-container col-lg-5">
+          <div className="points-container col-lg-6">
             <FatPointComponent fatLastUpdate={fatLastData} points={fatPoints} />
           </div>
         </div>

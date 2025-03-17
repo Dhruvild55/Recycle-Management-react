@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
-import ProfilePic from "../../../../../shared/components/ProfilePic";
+import FatPointComponent from "../../../../../shared/components/FatPointComponent";
+import ProfileCardComponent from "../../../../../shared/components/ProfileCardComponent";
 import CollecterAddressComponent from "../../CollecterAddressCard";
 
 const CollecterInformation = ({ userData }) => {
@@ -16,25 +17,14 @@ const CollecterInformation = ({ userData }) => {
     });
   };
   return (
-    <div className="collecter-container">
-      <div className="user-card">
-        <div className="user-profile">
-          <ProfilePic size={100} isChange={true} image={userData?.selfiePath} />
-        </div>
-        <div className="user-info">
-          <h2>{userData?.userName}</h2>
-          <h3>{userData?.email}</h3>
-          <h3>{userData?.phoneNumber}</h3>
-        </div>
-        <div className="user-since">
-          <h2>Collector Since:</h2>
-          <h3>{formatDate(userData?.collectorSince, true)}</h3>
-        </div>
+    <div className="collecter-container row">
+      <div className="col-lg-4">
+        <ProfileCardComponent />
       </div>
-      <div className="collecter-info">
+      <div className="collecter-info col-lg-8">
         <label className="primary-title">Collecter Information</label>
-        <div className="collecter-details">
-          <div className="collecter-address">
+        <div className="collecter-details row">
+          <div className="collecter-address col-lg-6">
             <CollecterAddressComponent />
             <div className="extra-details">
               <div className="row">
@@ -55,17 +45,8 @@ const CollecterInformation = ({ userData }) => {
               </div>
             </div>
           </div>
-          <div className="points-container">
-            <div className="top-section">
-              <p>Fat Pointes</p>
-            </div>
-            <div className="middle-section">
-              <img src="/images/points-badge.png" />
-              <h1 className="points-text">{userData?.userTotalEstPoints}</h1>
-            </div>
-            <div className="bottom-section">
-              <p>Last updated {userData?.estPointsLastUpdate}</p>
-            </div>
+          <div className="col-lg-6">
+            <FatPointComponent />
           </div>
         </div>
       </div>

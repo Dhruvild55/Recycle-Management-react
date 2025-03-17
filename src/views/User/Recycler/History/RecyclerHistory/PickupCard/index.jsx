@@ -4,6 +4,7 @@ import {
   iconMarkerPin,
   iconTruck,
 } from "../../../../../../assets/images/icons";
+import ChipComponent from "../../../../../../shared/components/ChipComponent";
 
 const PickUpCard = ({ data }) => {
   console.log(data);
@@ -17,10 +18,10 @@ const PickUpCard = ({ data }) => {
       <div className="content">
         <div className="content-header">
           <div className="title">Next Pickup</div>
-          <div className="status">On Schedule</div>
+          <ChipComponent label="On Schedule" color="green" />
         </div>
         <div className="location">
-          <img src={iconMarkerPin} /> {address}
+          <img src={iconMarkerPin} className="locationImg" /> {address}
         </div>
         <div className="date-time">
           <div className="date">{pickupDate}</div>

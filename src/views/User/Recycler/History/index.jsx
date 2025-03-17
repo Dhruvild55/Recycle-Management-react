@@ -36,11 +36,6 @@ const RecyclerHistoryDetails = () => {
           >
             &larr; BACK
           </button>
-          <div className="right-section">
-            <button className="" style={{ border: "none" }}>
-              <img src={iconDelete} alt="delete icon" /> Deactivate Account
-            </button>
-          </div>
         </div>
         <RecyclerInfoTopSection />
         {isPending && (

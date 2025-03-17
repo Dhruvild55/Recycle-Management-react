@@ -1,40 +1,35 @@
 import { lazy } from "react";
 
-const ADMIN_Path = "../views/User/Admin";
-const RECYCLER_PATH = "../views/User/Recycler";
-const COLLECTOR_PATH = "../views/User/Collecter";
-
 //* Public Routes Files
 const AuthRoutes = {
-  Login: () => lazy(() => import("../views/auth/login")),
+  Login: lazy(() => import("../views/auth/login")),
 };
 
 // * Private Route
 const Dashboard = {
-  Dashboard: () => lazy(() => import("../views/dashboard")),
+  Dashboard: lazy(() => import("../views/dashboard")),
 };
 
 const UserManagement = {
   Admin: {
-    List: () => lazy(() => import(`${ADMIN_Path}/AdminList`)),
-    Add: () => lazy(() => import(`${ADMIN_Path}/Admin-add`)),
+    List: lazy(() => import(`../views/User/Admin/AdminList`)),
+    Add: lazy(() => import(`../views/User/Admin/Admin-add`)),
   },
   Recycler: {
-    List: () => lazy(() => import(`${RECYCLER_PATH}/RecyclerList`)),
-    Details: () => lazy(() => import(`${RECYCLER_PATH}/Information`)),
-    History: () => lazy(() => import(`${RECYCLER_PATH}/History`)),
-    Rewards: () => lazy(() => import(`${RECYCLER_PATH}/Rewards`)),
-    Hardware: () => lazy(() => import(`${RECYCLER_PATH}/Hardware`)),
-    ViewHistory: () =>
-      lazy(() =>
-        import(`${RECYCLER_PATH}/History/PreviousItems/viewPreviousItems`)
-      ),
+    List: lazy(() => import(`../views/User/Recycler/RecyclerList`)),
+    Details: lazy(() => import(`../views/User/Recycler/Information`)),
+    History: lazy(() => import(`../views/User/Recycler/History`)),
+    Rewards: lazy(() => import(`../views/User/Recycler/Rewards`)),
+    Hardware: lazy(() => import(`../views/User/Recycler/Hardware`)),
+    ViewHistory: lazy(() =>
+      import(`../views/User/Recycler/History/PreviousItems/viewPreviousItems`)
+    ),
   },
   Collector: {
-    List: () => lazy(() => import(`${COLLECTOR_PATH}/CollectorList`)),
-    Details: () => lazy(() => import(`${COLLECTOR_PATH}/Information`)),
-    PickupHistory: () => lazy(() => import(`${COLLECTOR_PATH}/PickupHistory`)),
-    Clearance: () => lazy(() => import(`${COLLECTOR_PATH}/Clearance`)),
+    List: lazy(() => import(`../views/User/Collecter/CollectorList`)),
+    Details: lazy(() => import(`../views/User/Collecter/Information`)),
+    PickupHistory: lazy(() => import(`../views/User/Collecter/PickupHistory`)),
+    Clearance: lazy(() => import(`../views/User/Collecter/Clearance`)),
   },
 };
 
