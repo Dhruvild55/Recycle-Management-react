@@ -56,7 +56,7 @@ export const collecterColumns = (navigate, deleteUserMutation) => [
     render: (row) => (
       <div className="btn-section">
         <button
-          onClick={() => navigate(route.viewCollector(row.id))}
+          onClick={() => navigate(route.collectorDetails(row.id))}
           className="action-btn"
         >
           <img src={iconView} />

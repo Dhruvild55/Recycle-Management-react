@@ -1,8 +1,8 @@
 .storage-details-card-list {
   display: grid;
-  // grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 16px;
-  padding: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 30px;
+  // /* padding: 16px;
 }
 
 .storage-details-card {
@@ -11,18 +11,17 @@
   justify-content: space-between;
   border: 1px solid #abefc6;
   border-radius: 12px;
-  padding: 16px;
+  padding: 25px;
   background-color: #f9f9f9;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  font-family: Arial, sans-serif;
 
   @include media-max(lg) {
     flex-direction: column-reverse;
   }
 
   .card-content {
-    flex: 1;
-    margin-right: 16px;
+    // flex: 1;
+    // margin-right: 16px;
 
     .date {
       font-size: 14px;
@@ -51,7 +50,8 @@
   }
 
   .image-container {
-    flex-shrink: 0;
+    // flex-shrink: 0;
+    margin-right: 45px;
 
     img {
       width: 180px;

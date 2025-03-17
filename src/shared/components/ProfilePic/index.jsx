@@ -11,10 +11,11 @@ const ProfilePic = ({ size, image, name, isChange }) => {
     queryFn: () => getFilePath({ image }),
     enabled: !!image,
   });
+  console.log(data);
 
   return (
     <div>
-      <Avatar alt={name} src={image || ""} sx={{ width: size, height: size }} />
+      <Avatar alt={name} src={data || ""} sx={{ width: size, height: size }} />
       {isChange && (
         <div
           style={{

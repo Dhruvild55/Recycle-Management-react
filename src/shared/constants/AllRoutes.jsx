@@ -11,8 +11,6 @@ export const route = {
 
   //! User Management Recycler
   recyclerList: "/user-Management/recycler",
-
-  // new
   recyclerDetails: (id) => `/user-Management/recycler/details/${id}`,
   recyclerHistory: (id) => `/user-Management/recycler/history/${id}`,
   recyclerRewards: (id) => `/user-Management/recycler/rewards/${id}`,
@@ -22,7 +20,10 @@ export const route = {
 
   //! User Management Collector
   collectorList: "/user-Management/collector",
-  viewCollector: (id) => `/user-Management/view-collector/${id}`,
+  collectorDetails: (id) => `/user-Management/collector/details/${id}`,
+  collectorPickupHistory: (id) =>
+    `/user-Management/collector/pickupHistory/${id}`,
+  collectorClearance: (id) => `/user-Management/collector/clearance/${id}`,
 
   //! User Management Roles and Permission
   rolesList: "/user-Management/Roles",

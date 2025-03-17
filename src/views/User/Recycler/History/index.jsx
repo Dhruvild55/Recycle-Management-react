@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useNavigate, useParams } from "react-router-dom";
 import RecyclerInfoTopSection from "../Component/RecyclerInfoTopSection";
 import { iconDelete } from "../../../../assets/images/icons";
@@ -5,20 +6,26 @@ import RecyclerHistory from "./RecyclerHistory";
 import PreviousItems from "./PreviousItems";
 import { useQuery } from "@tanstack/react-query";
 import { getRecyclerHistory } from "../../../../query/users/Recycler/getRecyclerHistory/getRecyclerHistory.query";
+import { Loader } from "../../../../shared/components/Loader";
+import { useState } from "react";
 
 const RecyclerHistoryDetails = () => {
   const navigate = useNavigate();
+  const [pageSize, setPageSize] = useState(5);
+  const [pageNumber, setPageNumber] = useState(1);
+
   const { id } = useParams();
 
-  const { data } = useQuery({
-    queryKey: ["getRecyclerHistory", id],
-    queryFn: () => getRecyclerHistory({ id }),
+  const { data, isPending } = useQuery({
+    queryKey: ["getRecyclerHistory", id, pageSize, pageNumber],
+    queryFn: () => getRecyclerHistory({ id, pageSize, pageNumber }),
     staleTime: 30000,
   });
   console.log("previousData", data?.data);
   const pastPickupData = data?.data?.pastPickups;
   const nextPickupData = data?.data?.upcomingPickups;
-
+  const pagination = data?.data?.pagination;
+  const totalPages = Math.ceil((pagination?.totalPastPickups || 1) / pageSize);
   return (
     <div className="user-profile-section">
       <div className="common-main-section">
@@ -36,13 +43,32 @@ const RecyclerHistoryDetails = () => {
           </div>
         </div>
         <RecyclerInfoTopSection />
+        {isPending && (
+          <div
+            className="container-fluid"
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "40vh",
+            }}
+          >
+            <Loader animation="border" width="50px" height="50px" />
+          </div>
+        )}
         <div className="recycler-history">
           <label className="primary-title">Recycler History</label>
           <RecyclerHistory upcommingPickUps={nextPickupData} />
         </div>
       </div>
       <div className="recycler-history">
-        <PreviousItems pastPickUps={pastPickupData} />
+        <PreviousItems
+          pastPickUps={pastPickupData}
+          isPending={isPending}
+          pageNumber={pageNumber}
+          totalPages={totalPages}
+          setPageNumber={setPageNumber}
+        />
       </div>
     </div>
   );

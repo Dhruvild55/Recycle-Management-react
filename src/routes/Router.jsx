@@ -1,41 +1,9 @@
 import { lazy } from "react";
 import { route } from "../shared/constants/AllRoutes";
+import { AuthRoutes, Dashboard, UserManagement } from "./lazyRoutes";
 
 const PublicRoute = lazy(() => import("./PublicRoutes"));
 const PrivateRoute = lazy(() => import("./PrivateRoutes"));
-
-// Public Routes Files
-const Login = lazy(() => import("../views/auth/login"));
-
-// Private Routes Files
-const Dashboard = lazy(() => import("../views/dashboard"));
-
-// user
-// ! User Management -Admin
-const UserManagement = lazy(() => import("../views/User/Admin/AdminList"));
-const AddUserPage = lazy(() => import("../views/User/Admin/Admin-add"));
-
-// ! User Management -Recycler
-const RecyclerList = lazy(() => import("../views/User/Recycler/RecyclerList"));
-const ViewPreviousItemsDetails = lazy(() =>
-  import("../views/User/Recycler/History/PreviousItems/viewPreviousItems")
-);
-
-// new
-const RecyclerDetails = lazy(() =>
-  import("../views/User/Recycler/Information")
-);
-const RecyclerHistory = lazy(() => import("../views/User/Recycler/History"));
-const RecyclerRewards = lazy(() => import("../views/User/Recycler/Rewards"));
-const RecyclerHardware = lazy(() => import("../views/User/Recycler/Hardware"));
-
-// ! User Management -Collector
-const CollectorList = lazy(() =>
-  import("../views/User/Collecter/CollectorList")
-);
-const CollecterProfilePage = lazy(() =>
-  import("../views/User/Collecter/collecter-profile")
-);
 
 // ! User Management - Roles And Permission
 const RolesList = lazy(() => import("../views/User/Admin And Roles/RolesList"));
@@ -112,8 +80,8 @@ const RoutesDetails = [
     props: {},
     isPrivateRoute: false,
     children: [
-      { path: "/login", Component: Login, exact: true },
-      { path: "/", Component: Login, exact: true },
+      { path: "/login", Component: AuthRoutes.Login(), exact: true },
+      { path: "/", Component: AuthRoutes.Login(), exact: true },
     ],
   },
   {
@@ -123,40 +91,79 @@ const RoutesDetails = [
     isPrivateRoute: true,
     children: [
       //Dashboard
-      { path: route.dashboard, Component: Dashboard, exact: true },
+      { path: route.dashboard, Component: Dashboard.Dashboard(), exact: true },
 
-      // user Management
-      { path: route.userManagement, Component: UserManagement, exact: true },
-      { path: route.addUser, Component: AddUserPage, exact: true },
-      { path: route.recyclerList, Component: RecyclerList, exact: true },
-      { path: route.collectorList, Component: CollectorList, exact: true },
+      {
+        path: route.userManagement,
+        Component: UserManagement.Admin.List(),
+        exact: true,
+      },
 
+      //! Admin Add
+      {
+        path: route.addUser,
+        Component: UserManagement.Admin.Add(),
+        exact: true,
+      },
+
+      //! Recycler List
+      {
+        path: route.recyclerList,
+        Component: UserManagement.Recycler.List(),
+        exact: true,
+      },
+      //! Recycler Details
       {
         path: route.recyclerDetails(`:id`),
-        Component: RecyclerDetails,
-        exact: true,
+        Component: UserManagement.Recycler.Details(),
       },
+      //! Recycler History
       {
         path: route.recyclerHistory(`:id`),
-        Component: RecyclerHistory,
+        Component: UserManagement.Recycler.History(),
         exact: true,
       },
+      {
+        path: route.viewHistoryItems(":id"),
+        Component: UserManagement.Recycler.ViewHistory(),
+        exact: true,
+      },
+      //! Recycler Rewards
       {
         path: route.recyclerRewards(":id"),
-        Component: RecyclerRewards,
+        Component: UserManagement.Recycler.Rewards(),
         exact: true,
       },
+      //! Recycler HardWare
       {
         path: route.recyclerHardware(":id"),
-        Component: RecyclerHardware,
+        Component: UserManagement.Recycler.Hardware(),
+        exact: true,
+      },
+
+      //! collectorList
+      {
+        path: route.collectorList,
+        Component: UserManagement.Collector.List(),
         exact: true,
       },
 
       {
-        path: route.viewCollector(`:id`),
-        Component: CollecterProfilePage,
+        path: route.collectorDetails(`:id`),
+        Component: UserManagement.Collector.Details(),
         exact: true,
       },
+      {
+        path: route.collectorPickupHistory(`:id`),
+        Component: UserManagement.Collector.PickupHistory(),
+        exact: true,
+      },
+      {
+        path: route.collectorClearance(`:id`),
+        Component: UserManagement.Collector.Clearance(),
+        exact: true,
+      },
+
       {
         path: route.rolesList,
         Component: RolesList,
@@ -165,11 +172,6 @@ const RoutesDetails = [
       {
         path: route.editPermission(":role"),
         Component: AdminPermissionEditPage,
-        exact: true,
-      },
-      {
-        path: route.viewHistoryItems(":id"),
-        Component: ViewPreviousItemsDetails,
         exact: true,
       },
 

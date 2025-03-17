@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useNavigate, useParams } from "react-router-dom";
 import ChipComponent from "../../../../../../shared/components/ChipComponent";
 import { useQuery } from "@tanstack/react-query";
@@ -8,7 +9,7 @@ const ViewPreviousItems = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const { data } = useQuery({
+  const { data, isPending } = useQuery({
     queryKey: ["previousItemsDetails"],
     queryFn: () => getRecyclerHistoryData({ id }),
   });
@@ -32,6 +33,7 @@ const ViewPreviousItems = () => {
         >
           {data?.data?.id}
         </h1>
+
         <div className="details-section row">
           <div className="item-detail col-lg-6">
             <p className="row">

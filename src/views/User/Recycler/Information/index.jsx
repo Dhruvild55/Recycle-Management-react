@@ -13,7 +13,7 @@ const RecyclerInformationSection = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const { data, refetch } = useQuery({
+  const { data, refetch, isPending } = useQuery({
     queryKey: ["getRecyclerDetails", id],
     queryFn: () => getRecyclerDetails({ id }),
     staleTime: 30000,
@@ -101,6 +101,7 @@ const RecyclerInformationSection = () => {
             materialData={materialCreates || {}}
             fatLastData={fatLastUpdate}
             fatPoints={fatPoints}
+            isPending={isPending}
           />
         </div>
       </div>

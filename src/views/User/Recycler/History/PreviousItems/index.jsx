@@ -2,9 +2,20 @@
 import { useNavigate } from "react-router-dom";
 import { route } from "../../../../../shared/constants/AllRoutes";
 import { Table } from "react-bootstrap";
+import { Loader } from "../../../../../shared/components/Loader";
+import Pagination from "../../../../../shared/components/CustomPagination";
+import { useSelector } from "react-redux";
+import { iconRightArrow } from "../../../../../assets/images/icons";
 
-const PreviousItems = ({ pastPickUps = [] }) => {
+const PreviousItems = ({
+  pastPickUps = [],
+  isPending,
+  pageNumber,
+  totalPages,
+  setPageNumber,
+}) => {
   const navigate = useNavigate();
+  const translations = useSelector((state) => state.settings.translations);
 
   const headerData = [
     { key: "id", label: "ID" },
@@ -30,7 +41,15 @@ const PreviousItems = ({ pastPickUps = [] }) => {
           </tr>
         </thead>
         <tbody>
-          {pastPickUps.length > 0 ? (
+          {isPending ? (
+            <tr>
+              <td colSpan="7">
+                <div className="loader-container">
+                  <Loader animation="border" width="15px" height="15px" />
+                </div>
+              </td>
+            </tr>
+          ) : pastPickUps.length > 0 ? (
             pastPickUps.map((item) => (
               <tr key={item.id}>
                 <td>{item.id}</td>
@@ -63,6 +82,19 @@ const PreviousItems = ({ pastPickUps = [] }) => {
           )}
         </tbody>
       </Table>
+      <div className="table-footer">
+        <div>
+          <span className="back-text" style={{ color: "#181D27" }}>
+            {translations.showing} {pastPickUps.length} {translations.entries}{" "}
+          </span>
+          <img src={iconRightArrow} />
+        </div>
+        <Pagination
+          currentPage={pageNumber}
+          totalPages={totalPages}
+          onPageChange={setPageNumber}
+        />
+      </div>
     </div>
   );
 };

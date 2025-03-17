@@ -29,10 +29,8 @@ const UserList = ({
   const [selectedRoleOpt, setSelectedRoleOpt] = useState("All");
   const navigate = useNavigate();
   const translations = useSelector((state) => state.settings.translations);
-  const combinedSearchTerm =
-    selectedRoleOpt === "All"
-      ? searchQuery.trim()
-      : `${searchQuery} ${selectedRoleOpt}`.trim();
+
+  const combinedSearchTerm = `${searchQuery}`.trim();
   const debouncedSearchQuery = useDebounce(combinedSearchTerm, 500);
 
   const { data, isPending, refetch } = useQuery({
@@ -67,6 +65,12 @@ const UserList = ({
   });
 
   const tableData = data?.data?.items || [];
+  const filteredData = tableData.filter((user) => {
+    const matchesRole =
+      selectedRoleOpt === "All" || user?.roles?.includes(selectedRoleOpt);
+
+    return matchesRole;
+  });
 
   const totalPages = Math.ceil((data?.data?.totalRecords || 1) / pageSize);
 
@@ -112,13 +116,14 @@ const UserList = ({
         </div>
         <CustomTable
           headers={tableHeaders(navigate, deleteUserMutation)}
-          data={tableData}
+          data={filteredData}
           isLoading={isPending}
         />
         <div className="table-footer">
           <div>
             <span className="back-text" style={{ color: "#181D27" }}>
-              {translations.showing} {tableData.length} {translations.entries}{" "}
+              {translations.showing} {filteredData.length}{" "}
+              {translations.entries}{" "}
             </span>
             <img src={iconRightArrow} />
           </div>

@@ -1,7 +1,7 @@
 import axiosInstance from "../../../../axios";
-export const getRecyclerHistory = async ({ id }) => {
+export const getRecyclerHistory = async ({ id, pageSize, pageNumber }) => {
   const response = await axiosInstance.get(
-    `/admin/getRecyclerPickupDropsHistory/${id}?culture=en`
+    `/admin/getRecyclerPickupDropsHistory/${id}?pageNumber=${pageNumber}&pageSize=${pageSize}&culture=en`
   );
   return response.data;
 };
