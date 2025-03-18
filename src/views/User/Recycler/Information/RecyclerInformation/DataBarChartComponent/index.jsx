@@ -80,7 +80,6 @@ const DataBarChartComponent = ({ material = [] }) => {
           }}
         >
           {data.map((item, index) => {
-            console.log(item);
             return (
               <>
                 <div
@@ -104,21 +103,6 @@ const DataBarChartComponent = ({ material = [] }) => {
           })}
         </div>
       </div>
-
-      {/* Legend Section */}
-      {/* <div className="data-section" style={{ display: "flex", gap: "20px"  }}>
-        {data.map((item, index) => (
-          <div className="data-div" style={{ width: "30px" }} key={index}>
-            <div
-              className="round-icon"
-              style={{ backgroundColor: COLORS[index % COLORS.length] }}
-            >
-              {item.value}
-            </div>
-            <p>{item.name} (kg)</p>
-          </div>
-        ))}
-      </div> */}
     </>
   );
 };

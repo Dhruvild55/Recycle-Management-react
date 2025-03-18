@@ -34,7 +34,7 @@ const RolesList = () => {
         <UserManagementTopSection
           translations={translations.userManagementTopBtn}
         />
-        <div className="userList-header">
+        <div className="common-page-toolbar">
           <label className="primary-title">
             {translations.pageTitles.roles_and_permissions}
           </label>

@@ -29,15 +29,27 @@ export const route = {
   rolesList: "/user-Management/Roles",
   editPermission: (role) => `/user-Management/edit-permission/${role}`,
 
-  //* App Content Management
-  appContentManagement: "/app-content-Management",
-  addWaste: "/app-content-Management/add-waste",
+  //! App Content Management
+  appContentManagement: {
+    MaterialAndServices: {
+      List: "/app-content-Management/material-services-management",
+      Add: "/app-content-Management/material-services-management/add",
+    },
+    BannerManagement: {
+      List: "/app-content-Management/banner-Management",
+    },
+  },
+  // appContentManagement: "/app-content-Management",
+  // addWaste: "/app-content-Management/add-waste",
   addGuidelines: "/app-content-Management/add-Guidelines",
 
-  //* Collection Management
-  collectionManagement: "/collection-Management",
-  viewRecyclerCollection: "/collection-Management/view-recycler-collection",
-  viewCollectorCollection: "/collection-Management/view-collector-collection",
+  //! Collection Management
+  recyclerCollection: "/collection-Management/recycler-collection",
+  viewRecyclerCollection:
+    "/collection-Management/recycler-collection/view-recycler-collection",
+  collectorCollection: "/Collection-Management/collector-collection",
+  viewCollectorCollection:
+    "/collection-Management/collector-collection/view-collector-collection",
 
   //* Rewards Management
   rewardsManagement: "/rewards-Management",

@@ -4,7 +4,6 @@ import { Loader } from "../Loader";
 import { useSelector } from "react-redux";
 
 function CustomTable({ headers, data, isLoading }) {
-  console.log(data);
   const translations = useSelector((state) => state.settings.translations);
 
   return (

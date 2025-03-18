@@ -46,7 +46,7 @@ export const recyclerColumns = (navigate, deleteUserMutation) => [
             borderRadius: "20px",
           }}
         ></div>
-        <span>{row.isApprovedByAdmin ? "Active" : "Not Active"}</span>
+        <span>{row.isApprovedByAdmin ? "Active" : "Suspanded"}</span>
       </div>
     ),
   },

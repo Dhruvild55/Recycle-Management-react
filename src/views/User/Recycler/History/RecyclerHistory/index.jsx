@@ -6,7 +6,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import useMediaQuery from "../../../../../shared/hooks/useMediaQuery";
 const RecyclerHistory = ({ upcommingPickUps = [] }) => {
-  console.log(upcommingPickUps);
   const isMobile = useMediaQuery("(max-width: 425px)");
   const settings = {
     dots: true,

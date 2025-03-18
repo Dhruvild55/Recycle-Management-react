@@ -1,6 +1,12 @@
 import { lazy } from "react";
 import { route } from "../shared/constants/AllRoutes";
-import { AuthRoutes, Dashboard, UserManagement } from "./lazyRoutes";
+import {
+  AppContentManagement,
+  AuthRoutes,
+  CollectionManagement,
+  Dashboard,
+  UserManagement,
+} from "./lazyRoutes";
 
 const PublicRoute = lazy(() => import("./PublicRoutes"));
 const PrivateRoute = lazy(() => import("./PrivateRoutes"));
@@ -12,26 +18,17 @@ const AdminPermissionEditPage = lazy(() =>
   import("../views/User/Admin And Roles/edit-admin-permission")
 );
 
-// App Content Management
-const AppcontantManagementPage = lazy(() =>
-  import("../views/appContentManagement/")
-);
+// // App Content Management
+// const AppcontantManagementPage = lazy(() =>
+//   import("../views/appContentManagement/")
+// );
 const AddWeastePage = lazy(() =>
-  import("../views/appContentManagement/addNewWaste")
+  import("../views/appContentManagement/MaterialAndServices/addNewWaste")
 );
 const AddGuideLinePage = lazy(() =>
   import("../views/appContentManagement/addGuidelines")
 );
 
-// Collection Management
-const CollectionManagementPage = lazy(() =>
-  import("../views/collectionManagement")
-);
-const ViewRecyclerCollectionPage = lazy(() =>
-  import(
-    "../views/collectionManagement/Recycler-collection/RecyclerCollectionInfo"
-  )
-);
 const ViewCollectorCollectionPage = lazy(() =>
   import(
     "../views/collectionManagement/Collector-collection/CollectorCollectionInfo"
@@ -98,14 +95,12 @@ const RoutesDetails = [
         Component: UserManagement.Admin.List,
         exact: true,
       },
-
       //! Admin Add
       {
         path: route.addUser,
         Component: UserManagement.Admin.Add,
         exact: true,
       },
-
       //! Recycler List
       {
         path: route.recyclerList,
@@ -175,15 +170,20 @@ const RoutesDetails = [
         exact: true,
       },
 
-      // Collection Management
+      //! Collection Management
       {
-        path: route.collectionManagement,
-        Component: CollectionManagementPage,
+        path: route.recyclerCollection,
+        Component: CollectionManagement.Recycler.List,
         exact: true,
       },
       {
         path: route.viewRecyclerCollection,
-        Component: ViewRecyclerCollectionPage,
+        Component: CollectionManagement.Recycler.Details,
+        exact: true,
+      },
+      {
+        path: route.collectorCollection,
+        Component: CollectionManagement.Collector.List,
         exact: true,
       },
       {
@@ -237,8 +237,18 @@ const RoutesDetails = [
 
       // App Content Management
       {
-        path: route.appContentManagement,
-        Component: AppcontantManagementPage,
+        path: route.appContentManagement.MaterialAndServices.List,
+        Component: AppContentManagement.MaterialAndeServices.List,
+        exact: true,
+      },
+      {
+        path: route.appContentManagement.MaterialAndServices.Add,
+        Component: AppContentManagement.MaterialAndeServices.Add,
+        exact: true,
+      },
+      {
+        path: route.appContentManagement.BannerManagement.List,
+        Component: AppContentManagement.BannerManagement.List,
         exact: true,
       },
       { path: route.addWaste, Component: AddWeastePage, exact: true },

@@ -6,7 +6,7 @@ const CollectorTopSection = () => {
   const { id } = useParams();
   const location = useLocation(); // Get current URL path
   return (
-    <div className="tabs-section">
+    <div className="common-tab-section" style={{ marginBottom: "20px" }}>
       <ButtonComponent
         label="Collector Information"
         onClick={() => navigate(`/user-Management/collector/details/${id}`)}

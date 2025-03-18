@@ -38,7 +38,6 @@ const RecyclerInformationSection = () => {
   const approveUserMutation = useMutation({
     mutationFn: approveUsers,
     onSuccess: (data) => {
-      console.log("User approved successfully", data);
       ReactToastify(data.message, "success");
       refetch();
     },

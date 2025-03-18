@@ -26,7 +26,7 @@ const RewardsManagement = () => {
   };
   return (
     <div className="common-main-section">
-      <div className="common-top-section">
+      <div className="common-tab-section">
         {isMobile ? (
           <select
             className="dropdown"

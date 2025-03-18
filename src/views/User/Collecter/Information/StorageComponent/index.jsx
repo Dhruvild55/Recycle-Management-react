@@ -58,7 +58,6 @@ const StorageAddressDetails = ({
   setPageNumber,
 }) => {
   const translations = useSelector((state) => state.settings.translations);
-  console.log(storageData);
   if (isPending) {
     return (
       <div
@@ -78,7 +77,6 @@ const StorageAddressDetails = ({
     <>
       <div className="storage-details-card-list">
         {storageData?.map((card, index) => {
-          console.log(card);
           return (
             <OilWasteCard
               key={index}

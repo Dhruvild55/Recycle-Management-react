@@ -32,5 +32,55 @@ const UserManagement = {
     Clearance: lazy(() => import(`../views/User/Collecter/Clearance`)),
   },
 };
+const CollectionManagement = {
+  Recycler: {
+    List: lazy(() =>
+      import(
+        `../views/collectionManagement/Recycler-collection/RecyclerCollectionList`
+      )
+    ),
+    Details: lazy(() =>
+      import(
+        `../views/collectionManagement/Recycler-collection/RecyclerCollectionInfo`
+      )
+    ),
+  },
+  Collector: {
+    List: lazy(() =>
+      import(
+        `../views/collectionManagement/Collector-collection/CollectorCollectionList`
+      )
+    ),
+    Details: lazy(() =>
+      import(
+        "../views/collectionManagement/Collector-collection/CollectorCollectionInfo"
+      )
+    ),
+  },
+};
 
-export { AuthRoutes, Dashboard, UserManagement };
+const AppContentManagement = {
+  MaterialAndeServices: {
+    List: lazy(() =>
+      import(
+        "../views/appContentManagement/MaterialAndServices/MaterialAndServiceList"
+      )
+    ),
+    Add: lazy(() =>
+      import("../views/appContentManagement/MaterialAndServices/addNewWaste")
+    ),
+  },
+  BannerManagement: {
+    List: lazy(() =>
+      import("../views/appContentManagement/BannerManagement/BannerList")
+    ),
+  },
+};
+
+export {
+  AuthRoutes,
+  Dashboard,
+  UserManagement,
+  CollectionManagement,
+  AppContentManagement,
+};

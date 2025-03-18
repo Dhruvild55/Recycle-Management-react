@@ -21,12 +21,12 @@ export const SidebarLinks = [
   },
   {
     name: "app_content_Management",
-    path: route.appContentManagement,
+    path: route.appContentManagement.MaterialAndServices.List,
     icon: <AppIcon color="#1F7F82" />,
   },
   {
     name: "collaction_Management",
-    path: route.collectionManagement,
+    path: route.recyclerCollection,
     icon: <CollectionIcon color="#1F7F82" />,
   },
   {

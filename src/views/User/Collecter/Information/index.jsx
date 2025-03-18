@@ -25,7 +25,6 @@ const CollecterProfile = () => {
   const storage = userData?.storage;
   const totalPages = Math.ceil((pagination?.totalRecords || 1) / pageSize);
 
-  console.log("collectorData", data?.data);
   const navigate = useNavigate();
   return (
     <div className="user-profile-section">

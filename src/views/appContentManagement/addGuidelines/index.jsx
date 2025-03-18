@@ -21,7 +21,10 @@ const AddGuidelines = () => {
         <button className="back-text" onClick={() => navigate(-1)}>
           Back
         </button>
-        <div className="guidelines-header">
+        <div
+          className="common-page-toolbar"
+          style={{ marginTop: "0px", padding: "7px" }}
+        >
           <div className="left-section">
             <label className="primary-title">Guidelines</label>
           </div>

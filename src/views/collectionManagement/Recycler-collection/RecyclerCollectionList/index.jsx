@@ -7,13 +7,15 @@ import {
   recyclerCollectionData,
   recyclerCollectionHeaders,
 } from "../../confige";
+import CollectionManagementTopSection from "../../Component/CollectionManagementTopSection";
 
 const RecyclerCollectionList = () => {
   const navigate = useNavigate();
   const translations = useSelector((state) => state.settings.translations);
   return (
-    <>
-      <div className="userList-header">
+    <div className="common-main-section">
+      <CollectionManagementTopSection />
+      <div className="common-page-toolbar">
         <label className="primary-title"> List of Recycler</label>
         <div>
           <input
@@ -29,6 +31,7 @@ const RecyclerCollectionList = () => {
           </select>
         </div>
       </div>
+
       <CustomTable
         headers={recyclerCollectionHeaders(navigate)}
         data={recyclerCollectionData}
@@ -49,7 +52,7 @@ const RecyclerCollectionList = () => {
           /> */}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

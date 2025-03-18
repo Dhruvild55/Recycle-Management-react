@@ -21,7 +21,6 @@ const RecyclerHistoryDetails = () => {
     queryFn: () => getRecyclerHistory({ id, pageSize, pageNumber }),
     staleTime: 30000,
   });
-  console.log("previousData", data?.data);
   const pastPickupData = data?.data?.pastPickups;
   const nextPickupData = data?.data?.upcomingPickups;
   const pagination = data?.data?.pagination;

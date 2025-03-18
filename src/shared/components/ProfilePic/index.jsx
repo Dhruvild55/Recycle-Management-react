@@ -11,7 +11,6 @@ const ProfilePic = ({ size, image, name, isChange }) => {
     queryFn: () => getFilePath({ image }),
     enabled: !!image,
   });
-  console.log(data);
 
   return (
     <div>

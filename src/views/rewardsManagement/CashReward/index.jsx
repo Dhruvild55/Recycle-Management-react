@@ -9,7 +9,7 @@ const CashReward = () => {
   const navigate = useNavigate();
   return (
     <>
-      <div className="userList-header">
+      <div className="common-page-toolbar">
         <label className="primary-title">List of Cash Reward</label>
         <div>
           <input

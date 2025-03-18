@@ -29,39 +29,6 @@ $font-family: "Inter", sans-serif;
     }
   }
 
-  .tabs-section {
-    background-color: $table-header-background;
-    padding: 10px;
-    border-radius: 10px;
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-
-    @include media-max(lg) {
-      flex-wrap: wrap;
-    }
-
-    button {
-      border: none;
-      border-radius: 7px;
-      padding: 5px 15px;
-      font-size: 14px;
-      font-weight: 500;
-      color: #181d27;
-      background-color: $primary-bg-color;
-      transition: background-color 0.3s ease;
-      &.selected {
-        background-color: $highlight-color;
-        color: $primary-bg-color;
-      }
-
-      &:hover {
-        background-color: $highlight-color;
-        color: $primary-bg-color;
-      }
-    }
-  }
-
   .recycler-history {
     h1 {
       font-size: 14px;

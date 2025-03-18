@@ -17,13 +17,15 @@
   font-weight: 500;
 }
 
+// white bg for section
 .common-main-section {
   padding: 40px 30px 10px 30px;
   background-color: white;
   border-radius: 20px;
   min-height: calc(100vh - 224px);
 }
-.common-top-section {
+// tab section
+.common-tab-section {
   padding: 15px;
   display: flex;
   gap: 20px;
@@ -62,7 +64,8 @@
     background-size: 14px;
   }
 }
-.userList-header {
+// header section . title , search bar , dropdown
+.common-page-toolbar {
   display: flex;
   align-items: center;
   text-align: center;

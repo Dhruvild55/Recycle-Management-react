@@ -22,7 +22,7 @@ function UserManagementTopSection({ translations }) {
   const selectedRole = getSelectedRole();
 
   return (
-    <div className="userManagement-top-section">
+    <div className="common-tab-section">
       {isMobile ? (
         <select
           className="dropdown"

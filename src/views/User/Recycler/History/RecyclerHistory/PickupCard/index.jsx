@@ -7,7 +7,6 @@ import {
 import ChipComponent from "../../../../../../shared/components/ChipComponent";
 
 const PickUpCard = ({ data }) => {
-  console.log(data);
   const { address, estPoints, pickupDate, pickupDateTime, pickupTimeOnly } =
     data;
   return (

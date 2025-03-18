@@ -7,7 +7,7 @@ const RecyclerInfoTopSection = () => {
   const location = useLocation(); // Get current URL path
 
   return (
-    <div className="tabs-section">
+    <div className="common-tab-section" style={{ marginBottom: "20px" }}>
       <ButtonComponent
         label="Recycler Information"
         onClick={() => navigate(`/user-Management/recycler/details/${id}`)}

@@ -14,7 +14,6 @@ const ViewPreviousItems = () => {
     queryFn: () => getRecyclerHistoryData({ id }),
   });
 
-  console.log("data", data?.data);
   const mapSrc = `https://maps.google.com/maps?q=${data?.data?.lattitude},${data?.data?.longitude}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
 
   return (

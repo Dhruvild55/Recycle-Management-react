@@ -35,7 +35,6 @@ export default function AddUserPage() {
     reset, // Add this line
   } = useForm();
 
-  console.log(errors);
   const { data: rolesData, isLoading: isRolesLoading } = useQuery({
     queryKey: ["rolesList"],
     queryFn: getRoles,
@@ -51,7 +50,6 @@ export default function AddUserPage() {
       navigate(route.userManagement);
     },
     onError: (error) => {
-      console.log(error);
       ReactToastify(error?.response?.data?.message, "error");
     },
   });

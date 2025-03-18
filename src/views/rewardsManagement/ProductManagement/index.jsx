@@ -10,7 +10,7 @@ const ProductManagement = () => {
   const navigate = useNavigate();
   return (
     <>
-      <div className="userList-header">
+      <div className="common-page-toolbar">
         <label className="primary-title">List of Reward</label>
         <div>
           <input

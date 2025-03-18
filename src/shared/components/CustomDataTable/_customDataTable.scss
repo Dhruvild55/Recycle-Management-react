@@ -15,11 +15,15 @@
   .MuiDataGrid-filler {
     border: none !important; // Removes border from the filler area
   }
-
+  .MuiDataGrid-columnHeaderTitle {
+    font-size: 14px;
+    font-weight: 600;
+    font-family: "Inter";
+  }
   .MuiDataGrid-columnHeaders {
     color: #333; // Header text color
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 14px;
+    font-weight: 600;
   }
   .MuiDataGrid-root .MuiDataGrid-container--top [role="row"] {
     background-color: #c9ffdf;

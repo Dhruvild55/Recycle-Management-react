@@ -54,7 +54,7 @@ const CollectorCollectionInfo = () => {
   return (
     <>
       <div className="common-main-section">
-        <div className="header-section">
+        <div className="common-page-toolbar">
           <div>
             <button className="back-text" onClick={() => navigate(-1)}>
               &larr; BACK

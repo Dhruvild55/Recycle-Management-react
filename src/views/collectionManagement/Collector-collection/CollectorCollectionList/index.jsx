@@ -1,20 +1,21 @@
 import { useSelector } from "react-redux";
-import { iconRightArrow } from "../../../../assets/images/icons";
 import CustomTable from "../../../../shared/components/CustomTable";
 import {
   collectorCollectionData,
   collectorCollectionHeaders,
 } from "../../confige";
 import { useNavigate } from "react-router-dom";
+import CollectionManagementTopSection from "../../Component/CollectionManagementTopSection";
 
 const CollectorCollectionList = () => {
   const navigate = useNavigate();
   const translations = useSelector((state) => state.settings.translations);
 
   return (
-    <>
-      <div className="userList-header">
-        <label className="primary-title"> List of Recycler</label>
+    <div className="common-main-section">
+      <CollectionManagementTopSection />
+      <div className="common-page-toolbar">
+        <label className="primary-title"> List of Collector</label>
         <div>
           <input
             className="search-input"
@@ -39,7 +40,7 @@ const CollectorCollectionList = () => {
             {/* showing {userListData?.data?.items.length} entries */}
           </span>
           {"  "}
-          <img src={iconRightArrow} />
+          {/* <img src={iconRightArrow} /> */}
         </div>
         <div>
           {/* <Pagination
@@ -49,7 +50,7 @@ const CollectorCollectionList = () => {
                 /> */}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

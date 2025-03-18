@@ -80,7 +80,7 @@ const UserList = ({
         <UserManagementTopSection
           translations={translations.userManagementTopBtn}
         />
-        <div className="userList-header">
+        <div className="common-page-toolbar">
           <label className="primary-title">{title}</label>
           <div>
             <input
