@@ -36,8 +36,8 @@ const CollecterProfile = () => {
             </button>
           </div>
           <div className="right-side">
-            <img src={iconDelete} />
-            <span>Suspend Collection Status</span>
+            <img src={iconDelete} style={{ cursor: "pointer" }} /> {"  "}
+            <span>Suspend Collector Status</span>
           </div>
         </div>
         <CollectorTopSection />

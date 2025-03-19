@@ -28,8 +28,20 @@ const CollecterInformation = ({ userData }) => {
             <CollecterAddressComponent />
             <div className="extra-details">
               <div className="row">
-                <p className="col-6">User Id</p>
-                <p className="col-6">
+                <p
+                  className="col-6"
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: "500",
+                    color: "#181D27",
+                  }}
+                >
+                  User Id
+                </p>
+                <p
+                  className="col-6"
+                  style={{ fontSize: "14px", fontWeight: "400" }}
+                >
                   {userData?.userId.length > 10
                     ? `${userData?.userId.slice(0, 10)}...`
                     : userData?.userId}

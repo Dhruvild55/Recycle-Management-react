@@ -235,20 +235,29 @@ const RoutesDetails = [
         exact: true,
       },
 
-      // App Content Management
+      // ! App Content Management
+      // * Materia And Service List
       {
         path: route.appContentManagement.MaterialAndServices.List,
         Component: AppContentManagement.MaterialAndeServices.List,
         exact: true,
       },
+      // * material and service add
       {
         path: route.appContentManagement.MaterialAndServices.Add,
         Component: AppContentManagement.MaterialAndeServices.Add,
         exact: true,
       },
+      // * Banner Management List
       {
         path: route.appContentManagement.BannerManagement.List,
         Component: AppContentManagement.BannerManagement.List,
+        exact: true,
+      },
+      // * Banner Management Add
+      {
+        path: route.appContentManagement.BannerManagement.Add,
+        Component: AppContentManagement.BannerManagement.Add,
         exact: true,
       },
       { path: route.addWaste, Component: AddWeastePage, exact: true },

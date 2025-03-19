@@ -1,10 +1,11 @@
+import { bannerImage } from "../../../../../assets/images";
 import { iconEdit } from "../../../../../assets/images/icons";
 
 const BannerComponent = () => {
   return (
     <div className="banner-component">
       <div className="img">
-        <img src="/images/image.png" alt="Banner" />
+        <img src={bannerImage} alt="Banner" />
       </div>
       <div className="details">
         <div className="title-section">
@@ -24,7 +25,7 @@ const BannerComponent = () => {
         </div>
         <div className="banner-status">
           <p className="status-label">Status :</p>
-          <div className="status-value">UnPublish</div>
+          <div className="status-value">Unpublish</div>
         </div>
       </div>
     </div>

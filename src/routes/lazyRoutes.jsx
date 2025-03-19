@@ -74,6 +74,9 @@ const AppContentManagement = {
     List: lazy(() =>
       import("../views/appContentManagement/BannerManagement/BannerList")
     ),
+    Add: lazy(() =>
+      import("../views/appContentManagement/BannerManagement/BannerAdd")
+    ),
   },
 };
 

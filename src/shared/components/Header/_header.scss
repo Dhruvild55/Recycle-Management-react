@@ -53,6 +53,7 @@
     gap: 10px;
     justify-items: center;
     align-items: center;
+    cursor: pointer;
 
     @include media-max(lg) {
       justify-content: space-evenly;

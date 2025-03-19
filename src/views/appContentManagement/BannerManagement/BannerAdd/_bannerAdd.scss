@@ -1,0 +1,72 @@
+/* Square border styling for radio input */
+.add-waste-form {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+
+  label {
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0px;
+    color: #344054;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border-radius: 7px;
+    border: 1px solid #d0d5dd;
+  }
+  .checkbox-group {
+    display: flex;
+    gap: 25px;
+  }
+  .form-check {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+    @include media-max(lg) {
+      flex-direction: column;
+    }
+    .btn {
+      border: 1px solid #d0d5dd;
+      padding: 10px 25px 10px 20px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    :hover {
+      background-color: #3fb4b4;
+      color: white;
+    }
+  }
+}
+
+.square-radio input[type="radio"] {
+  width: 25px;
+  height: 25px;
+  border-radius: 8px;
+  border: 2px solid #d0d5dd;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  display: inline-block;
+  position: relative;
+}
+
+/* Add checked effect */
+.square-radio input[type="radio"]:checked {
+  background-color: white; /* Fill color when selected */
+  border: 2px solid #d0d5dd;
+}
+.form-check-input:checked[type="radio"] {
+  --bs-form-check-bg-image: url("/images/redioIcon.png") !important;
+  background-size: 13px 13px; /* Set image width & height */
+  background-position: center; /* Center the image */
+}

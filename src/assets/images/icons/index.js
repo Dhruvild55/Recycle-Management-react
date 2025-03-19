@@ -25,3 +25,5 @@ export { default as iconTruck } from "./recycling-truck.png";
 export { default as iconMarkerPin } from "./markerPin.png";
 
 export { default as iconUpload } from "./uploadIcon.png";
+
+export { default as iconBack } from "./backIcon.png";

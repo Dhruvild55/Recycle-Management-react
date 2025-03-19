@@ -37,6 +37,7 @@ export const route = {
     },
     BannerManagement: {
       List: "/app-content-Management/banner-Management",
+      Add: "/app-content-Management/banner-Management/add",
     },
   },
   // appContentManagement: "/app-content-Management",

@@ -16,6 +16,7 @@
       display: flex;
       gap: 30px;
       align-items: center;
+      justify-content: space-between;
     }
 
     .sorting-priority {
@@ -40,6 +41,7 @@
     .banner-status {
       display: flex;
       align-items: center;
+      gap: 20px;
 
       .status-label {
         font-size: 12px;
