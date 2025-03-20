@@ -10,7 +10,8 @@
     "report": "Report",
     "add_campaign": "Add Campaign",
     "update_campaign": "Update Campaign",
-    "settings": "Settings"
+    "settings": "Settings",
+    "sponsor_Management": "Sponsor Management"
   },
 
   "userManagementTopBtn": {
@@ -19,7 +20,6 @@
     "collector": "Collector",
     "admin_rols_and_Permissions": "Admin Roles & Permissions"
   },
-
   "tableFields": {
     "user_id": "User ID",
     "name": "Name",
@@ -32,6 +32,8 @@
     "status": "Status",
     "state": "State",
     "location": "Location",
+
+    "._Commecnt": "remaining",
 
     "id": "Id",
     "material": "Material",
@@ -62,7 +64,11 @@
     "point-spent": "Point spent",
 
     "reqData": "Request Data",
-    "reqType": "Request Type"
+    "reqType": "Request Type",
+
+    "sponsor_name": "Sponsor Name",
+    "date_create": "Date Created",
+    "no_link_account": "No. of Link Account"
   },
 
   "add_admin": "Add Admin",

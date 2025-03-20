@@ -1,0 +1,17 @@
+.sponsor-info-section,
+.row {
+  margin-top: 20px;
+  align-items: center;
+  margin-bottom: 30px;
+  .col-lg-3 {
+    width: 22%;
+  }
+  .col-lg-9 {
+    .fields-section {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 15px;
+      width: 100%;
+    }
+  }
+}

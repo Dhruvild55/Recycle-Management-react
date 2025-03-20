@@ -35,8 +35,8 @@ export const SidebarLinks = [
     icon: <RewardsIcon color="#1F7F82" />,
   },
   {
-    name: "campaign_Management",
-    path: route.NotFoundPage,
+    name: "sponsor_Management",
+    path: route.sponsorManagement.List,
     icon: <SponserIcon color="#1F7F82" />,
   },
   {

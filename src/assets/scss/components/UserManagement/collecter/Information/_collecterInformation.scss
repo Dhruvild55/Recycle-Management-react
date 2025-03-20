@@ -6,6 +6,8 @@
 
   .collecter-info {
     .collecter-details {
+      display: flex;
+
       @include media-max(lg) {
         flex-direction: column;
       }

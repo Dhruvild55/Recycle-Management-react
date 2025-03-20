@@ -5,8 +5,8 @@ const CommonCardComponent = ({ image, title, description }) => {
       <div className="card">
         <img src={image} alt={title} className="card__image" />
         <div className="card__content">
-          <h3 className="card__title">{title}</h3>
-          <p className="card__description">{description}</p>
+          {title && <h3 className="card__title">{title}</h3>}
+          {description && <p className="card__description">{description}</p>}
         </div>
       </div>
     </div>

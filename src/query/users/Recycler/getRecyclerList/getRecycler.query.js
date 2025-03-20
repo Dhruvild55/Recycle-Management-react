@@ -7,11 +7,20 @@ export const getRecyclerList = async ({
   pageSize,
   searchTerm = "",
   isDescendingOrder,
+  role,
 }) => {
   const sortOrder = isDescendingOrder ? "email_desc" : "email_aesc";
-
+  console.log("role", role);
+  const roleData =
+    role === "B2B Recycler"
+      ? "B2B Recycler"
+      : role === "B2C Recycler"
+      ? "B2C Recycler"
+      : role === "All"
+      ? ""
+      : "";
   const response = await axiosInstance.get(
-    `/admin/getrecyclerlist?pageNumber=${pageNumber}&pageSize=${pageSize}&SortOrder=${sortOrder}&SearchTerm=${encodeURIComponent(
+    `/admin/getrecyclerlist?pageNumber=${pageNumber}&pageSize=${pageSize}&Role=${roleData}&SortOrder=${sortOrder}&SearchTerm=${encodeURIComponent(
       searchTerm
     )}&culture=en`
   );

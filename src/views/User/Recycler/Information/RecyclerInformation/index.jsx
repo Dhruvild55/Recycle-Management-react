@@ -32,6 +32,7 @@ const RecyclerInformation = ({
       <div className="col-lg-4 col-sm-12">
         <ProfileCardComponent
           userData={businessDetails?.applicationUser || {}}
+          isRecycler={true}
         />
       </div>
       <div className="information-details col-lg-8 col-sm-12">

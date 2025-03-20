@@ -19,13 +19,13 @@ const CollecterInformation = ({ userData }) => {
   return (
     <div className="collecter-container row">
       <div className="col-lg-4">
-        <ProfileCardComponent />
+        <ProfileCardComponent userData={userData} isRecycler={false} />
       </div>
       <div className="collecter-info col-lg-8">
         <label className="primary-title">Collecter Information</label>
         <div className="collecter-details row">
           <div className="collecter-address col-lg-6">
-            <CollecterAddressComponent />
+            <CollecterAddressComponent userData={userData} />
             <div className="extra-details">
               <div className="row">
                 <p
@@ -58,7 +58,10 @@ const CollecterInformation = ({ userData }) => {
             </div>
           </div>
           <div className="col-lg-6">
-            <FatPointComponent />
+            <FatPointComponent
+              fatLastUpdate={userData?.estPointsLastUpdate}
+              points={userData?.userTotalEstPoints}
+            />
           </div>
         </div>
       </div>

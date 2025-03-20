@@ -57,7 +57,7 @@ const DataBarChartComponent = ({ material = [] }) => {
           style={{
             position: "absolute",
             left: "42%",
-            top: "36%",
+            top: "43%",
             transform: "translate(116%, -50%)",
             fontSize: "30px",
             color: "#555",

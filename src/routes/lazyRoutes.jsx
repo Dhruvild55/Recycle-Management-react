@@ -80,10 +80,39 @@ const AppContentManagement = {
   },
 };
 
+const SponsorManagement = {
+  List: lazy(() => import("../views/sponsorManagement/SponsorManagementList")),
+  View: {
+    SponsorInfo: lazy(() =>
+      import(
+        "../views/sponsorManagement/SponsorManagementView/SponsorInformation"
+      )
+    ),
+    PartnerCatelogue: {
+      List: lazy(() =>
+        import(
+          "../views/sponsorManagement/SponsorManagementView/PartnerCatelogue/PartnerCatelogueList"
+        )
+      ),
+      Add: lazy(() =>
+        import(
+          "../views/sponsorManagement/SponsorManagementView/PartnerCatelogue/PartnerCatelogueAdd"
+        )
+      ),
+    },
+    RedimptionHistory: lazy(() =>
+      import(
+        "../views/sponsorManagement/SponsorManagementView/RedimptionHistory"
+      )
+    ),
+  },
+};
+
 export {
   AuthRoutes,
   Dashboard,
   UserManagement,
   CollectionManagement,
   AppContentManagement,
+  SponsorManagement,
 };

@@ -10,11 +10,14 @@ function CustomTable({ headers, data, isLoading }) {
     <Table responsive>
       <thead>
         <tr>
-          {headers.map((header) => {
-            return (
-              <th key={header.key}>{translations.tableFields[header.label]}</th>
-            );
-          })}
+          {headers.map((header) => (
+            <th
+              key={header.key}
+              style={header.width ? { width: `${header.width}px` } : {}}
+            >
+              {translations.tableFields[header.label]}
+            </th>
+          ))}
         </tr>
       </thead>
       <tbody>
@@ -27,10 +30,13 @@ function CustomTable({ headers, data, isLoading }) {
             </td>
           </tr>
         ) : data?.length > 0 ? (
-          data?.map((row, index) => (
+          data.map((row, index) => (
             <tr key={index}>
               {headers.map((header) => (
-                <td key={header.key}>
+                <td
+                  key={header.key}
+                  style={header.width ? { width: `${header.width}px` } : {}}
+                >
                   {header.render ? header.render(row) : row[header.key]}
                 </td>
               ))}

@@ -65,27 +65,33 @@ const InputField = ({
         </div>
       ) : (
         /* Handle Default and Password Input */
-        <div className="password-wrapper">
-          <input
-            placeholder={placeholder}
-            type={
-              type === "password" ? (showPassword ? "text" : "password") : type
-            }
-            {...register(name, validation)}
-          />
-          {type === "password" && (
-            <button
-              type="button"
-              className="eye-button"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? <FiEye /> : <FiEyeOff />}
-            </button>
-          )}
+        <>
+          <div className="password-wrapper">
+            <input
+              placeholder={placeholder}
+              type={
+                type === "password"
+                  ? showPassword
+                    ? "text"
+                    : "password"
+                  : type
+              }
+              {...register(name, validation)}
+            />
+            {type === "password" && (
+              <button
+                type="button"
+                className="eye-button"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <FiEye /> : <FiEyeOff />}
+              </button>
+            )}
+          </div>
           {errors?.[name] && (
             <p className="error-message">{errors[name].message}</p>
           )}
-        </div>
+        </>
       )}
     </div>
   );

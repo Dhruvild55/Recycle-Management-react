@@ -10,7 +10,8 @@
     "report": "报告",
     "add_campaign": "Add Campaign",
     "update_campaign": "Update Campaign",
-    "settings": "设置"
+    "settings": "设置",
+    "sponsor_Management": "赞助商管理"
   },
   "userManagementTopBtn": {
     "admin": "行政",

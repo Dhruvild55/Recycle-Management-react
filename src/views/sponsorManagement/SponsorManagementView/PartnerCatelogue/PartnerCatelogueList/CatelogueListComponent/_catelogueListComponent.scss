@@ -1,0 +1,37 @@
+.catelogues-list {
+  align-items: center;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 13%;
+    width: 80%;
+    height: 1px;
+    background-color: #ddd;
+    bottom: 0;
+  }
+
+  .catelogues-details {
+    .Catelogues-title {
+      width: 49.333333%;
+      p {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 0px;
+      }
+    }
+    .col-lg-2 {
+      .hedding {
+        font-size: 12px;
+        font-weight: 400;
+        margin-bottom: 0px;
+      }
+      .body {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 0px;
+      }
+    }
+  }
+}

@@ -6,14 +6,14 @@ import { Loader } from "../shared/components/Loader";
 function AllRoutes() {
   function allPaths(children) {
     return children?.map(
-      ({ path, Component, exact, props, children: child }, index) => {
+      ({ path, Component, exact, props, children: child }) => {
         return child?.length ? (
-          <Route element={<Component />} key={index}>
+          <Route element={<Component />} key={path || Math.random()}>
             {allPaths(child)}
           </Route>
         ) : (
           <Route
-            key={path}
+            key={path || Math.random()} // Ensure a unique key
             path={path}
             element={
               <Suspense
@@ -34,7 +34,7 @@ function AllRoutes() {
               </Suspense>
             }
             exact={exact}
-          ></Route>
+          />
         );
       }
     );
@@ -43,10 +43,10 @@ function AllRoutes() {
   return (
     <BrowserRouter>
       <Routes>
-        {Router?.map(({ isPrivateRoute, children, Component }) => {
+        {Router?.map(({ isPrivateRoute, children, Component }, index) => {
           return (
             <Route
-              key={isPrivateRoute ? "private" : "public"}
+              key={isPrivateRoute ? `private-${index}` : `public-${index}`} // Ensure unique keys
               element={<Component />}
             >
               {allPaths(children)}

@@ -14,11 +14,29 @@ const ChipComponent = ({ label, color }) => {
         fontSize: "12px",
         fontWeight: "500",
         backgroundColor:
-          color === "yellow" ? "#FFFAEB" : color === "green" ? "#ECFDF3" : "",
+          color === "yellow"
+            ? "#FFFAEB"
+            : color === "green"
+            ? "#ECFDF3"
+            : color === "blue"
+            ? "#EFF8FF"
+            : "",
         color:
-          color === "yellow" ? "#B54708" : color === "green" ? "#067647" : "",
+          color === "yellow"
+            ? "#B54708"
+            : color === "green"
+            ? "#067647"
+            : color === "blue"
+            ? "#175CD3"
+            : "",
         borderColor:
-          color === "yellow" ? "#FEDF89" : color === "green" ? "#ABEFC6" : "",
+          color === "yellow"
+            ? "#FEDF89"
+            : color === "green"
+            ? "#ABEFC6"
+            : color === "blue"
+            ? "#B2DDFF"
+            : "",
       }}
     />
   );

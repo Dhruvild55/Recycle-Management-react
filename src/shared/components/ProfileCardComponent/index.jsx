@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import ProfilePic from "../ProfilePic";
 
-const ProfileCardComponent = ({ userData = {} }) => {
+const ProfileCardComponent = ({ userData = {}, isRecycler }) => {
   const {
     email = "dd@gmail.com",
     lastName = "Dudhiya",
@@ -9,6 +9,7 @@ const ProfileCardComponent = ({ userData = {} }) => {
     selfiePath = "",
     lastLoginDate = "1st March 2025",
     phoneNumber = "5643123456",
+    collectorSince = "1st March 2025",
   } = userData;
   // Format createdAt date
   const formatDate = (dateString) => {
@@ -37,8 +38,17 @@ const ProfileCardComponent = ({ userData = {} }) => {
         <h3>{phoneNumber}</h3>
       </div>
       <div className="user-since">
-        <h2>Recycler Since:</h2>
-        <h3>{formatDate(lastLoginDate)}</h3>
+        {isRecycler ? (
+          <>
+            <h2>Recycler Since:</h2>
+            <h3>{formatDate(lastLoginDate)}</h3>
+          </>
+        ) : (
+          <>
+            <h2>Collector Since:</h2>
+            <h3>{formatDate(collectorSince)}</h3>
+          </>
+        )}
       </div>
     </div>
   );

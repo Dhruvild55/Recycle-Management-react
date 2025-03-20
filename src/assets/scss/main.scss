@@ -59,6 +59,10 @@
 
 @import "../../views/CollectorServiceManagement/CollectorRequestDetails/collectioRequestDetails";
 
+//! Sponsor Management
+@import "../../views//sponsorManagement/SponsorManagementView/SponsorInformation/sponsorSection";
+@import "../../views/sponsorManagement/SponsorManagementView/PartnerCatelogue/PartnerCatelogueList/CatelogueListComponent/catelogueListComponent";
+
 // views
 @import "./views/auth/login";
 @import "./views/dashboard/dashboard";

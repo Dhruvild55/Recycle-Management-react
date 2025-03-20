@@ -8,6 +8,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getCollectorDetails } from "../../../../query/users/getCollectorDataById/getCollectorData.query";
 import { Loader } from "../../../../shared/components/Loader";
 import { useState } from "react";
+import VehicleCardComponent from "./VehicleCardComponent";
 
 const CollecterProfile = () => {
   const { id } = useParams();
@@ -23,6 +24,7 @@ const CollecterProfile = () => {
   const userData = data?.data?.userData;
   const pagination = userData?.pagination;
   const storage = userData?.storage;
+  const vehicles = userData?.vehicles;
   const totalPages = Math.ceil((pagination?.totalRecords || 1) / pageSize);
 
   const navigate = useNavigate();
@@ -55,6 +57,44 @@ const CollecterProfile = () => {
           </div>
         ) : (
           <CollecterInformation userData={userData} />
+        )}
+      </div>
+      <div className="common-main-section" style={{ marginTop: "10px" }}>
+        <label className="primary-title">Vehicle Detail</label>
+        {isPending ? (
+          <div
+            className="container-fluid"
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "40vh",
+            }}
+          >
+            <Loader animation="border" width="50px" height="50px" />
+          </div>
+        ) : (
+          <div
+            className=""
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "30px",
+              marginTop: "20px",
+            }}
+          >
+            {vehicles?.map((vehicle, index) => (
+              <VehicleCardComponent
+                key={index}
+                brand={vehicle?.brand}
+                model={vehicle.model}
+                color={vehicle.color}
+                registrationNo={vehicle.registrationNo}
+                vehicleImgPath={vehicle.vehicleImgPath}
+                type={vehicle.type}
+              />
+            ))}
+          </div>
         )}
       </div>
       <div className="common-main-section" style={{ marginTop: "10px" }}>

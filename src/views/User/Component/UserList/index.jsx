@@ -40,6 +40,7 @@ const UserList = ({
       pageNumber,
       isDescendingOrder,
       debouncedSearchQuery,
+      selectedRoleOpt,
     ],
     queryFn: () =>
       fetchFunction({
@@ -47,9 +48,9 @@ const UserList = ({
         pageSize,
         isDescendingOrder,
         searchTerm: debouncedSearchQuery,
+        role: selectedRoleOpt,
       }),
     keepPreviousData: true,
-    staleTime: 30000,
     refetchOnWindowFocus: false,
   });
 
@@ -65,12 +66,7 @@ const UserList = ({
   });
 
   const tableData = data?.data?.items || [];
-  const filteredData = tableData.filter((user) => {
-    const matchesRole =
-      selectedRoleOpt === "All" || user?.roles?.includes(selectedRoleOpt);
-
-    return matchesRole;
-  });
+  console.log(selectedRoleOpt);
 
   const totalPages = Math.ceil((data?.data?.totalRecords || 1) / pageSize);
 
@@ -116,14 +112,13 @@ const UserList = ({
         </div>
         <CustomTable
           headers={tableHeaders(navigate, deleteUserMutation)}
-          data={filteredData}
+          data={tableData}
           isLoading={isPending}
         />
         <div className="table-footer">
           <div>
             <span className="back-text" style={{ color: "#181D27" }}>
-              {translations.showing} {filteredData.length}{" "}
-              {translations.entries}{" "}
+              {translations.showing} {tableData.length} {translations.entries}{" "}
             </span>
             <img src={iconRightArrow} />
           </div>

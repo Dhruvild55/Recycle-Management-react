@@ -5,6 +5,7 @@ import {
   AuthRoutes,
   CollectionManagement,
   Dashboard,
+  SponsorManagement,
   UserManagement,
 } from "./lazyRoutes";
 
@@ -265,6 +266,38 @@ const RoutesDetails = [
       //
       { path: route.createCampaign, Component: CampaignCreate, exact: true },
       { path: route.NotFoundPage, Component: PageNotFound, exact: true },
+
+      // ! sponsor Management
+      // * sponsor Management List
+      {
+        path: route.sponsorManagement.List,
+        Component: SponsorManagement.List,
+        exact: true,
+      },
+      // * sponsor Management View
+      {
+        path: route.sponsorManagement.View.SponsorInfo(":id"),
+        Component: SponsorManagement.View.SponsorInfo,
+        exact: true,
+      },
+      // * sponsor Management / PartnerCatelogue List
+      {
+        path: route.sponsorManagement.View.PartnerCatelogue.List(":id"),
+        Component: SponsorManagement.View.PartnerCatelogue.List,
+        exact: true,
+      },
+      // * sponsor Management / PartnerCatelogue Add
+      {
+        path: route.sponsorManagement.View.PartnerCatelogue.Add,
+        Component: SponsorManagement.View.PartnerCatelogue.Add,
+        exact: true,
+      },
+      // * sponsor Management / Redimption History
+      {
+        path: route.sponsorManagement.View.RedimptionHistory(":id"),
+        Component: SponsorManagement.View.RedimptionHistory,
+        exact: true,
+      },
     ],
   },
 ];

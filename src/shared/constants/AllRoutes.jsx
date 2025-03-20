@@ -60,7 +60,21 @@ export const route = {
   viewFiatPoints: "/rewards-Management/fiat-denominations-management",
   rewardsDetails: "/rewards-Management/rewards-details",
 
-  //* Sponser Management
+  //! Sponser Management
+  sponsorManagement: {
+    List: "/sponsor-Management/list",
+    View: {
+      SponsorInfo: (id) => `/sponsor-Management/list/view-sponsor-info/${id}`,
+      PartnerCatelogue: {
+        List: (id) => `/sponsor-Management/list/partner-catelogue/${id}`,
+        Add: "/sponsor-Management/list/partner-catelogue/add",
+        View: "/sponsor-Management/list/partner-catelogue/view",
+      },
+      RedimptionHistory: (id) =>
+        `/sponsor-Management/list/redimption-history/${id}`,
+    },
+  },
+
   createCampaign: "/create-campaign",
 
   //* Collection Service Management

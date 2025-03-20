@@ -2,18 +2,16 @@
 import { useState, useRef } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSelector } from "react-redux";
-import { data, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ReactToastify } from "../../../../shared/utils";
 import { route } from "../../../../shared/constants/AllRoutes";
 import { useForm } from "react-hook-form";
 import ProfilePic from "../../../../shared/components/ProfilePic";
-import { FiEyeOff } from "react-icons/fi";
-import { FiEye } from "react-icons/fi";
 import InputField from "../../../../shared/components/InputFieldComponent";
 import { createUser } from "../../../../query/users/createUsers/createUsers.query";
 import { validationRules } from "../../../../shared/constants/ValidationRules";
 import { Loader } from "../../../../shared/components/Loader";
-import { useMediaQuery } from "@mui/material";
+import { Avatar, useMediaQuery } from "@mui/material";
 import { getRoles } from "../../../../query/roles/getRoles/getRoles.query";
 
 export default function AddUserPage() {
@@ -21,8 +19,6 @@ export default function AddUserPage() {
   const location = useLocation();
   const queryClient = useQueryClient();
   const language = useSelector((store) => store.settings.translations);
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConformPassword, setShowConformPassword] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const fileInputRef = useRef(null);
   const isMobile = useMediaQuery("(max-width: 425px)"); // Check screen size
@@ -32,7 +28,7 @@ export default function AddUserPage() {
     handleSubmit,
     watch,
     formState: { errors },
-    reset, // Add this line
+    reset,
   } = useForm();
 
   const { data: rolesData, isLoading: isRolesLoading } = useQuery({
@@ -58,14 +54,23 @@ export default function AddUserPage() {
   const onFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
+      console.log("Selected file:", file);
       setSelectedImage(file);
+    }
+  };
+
+  // Open file dialog
+  const openFileDialog = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    } else {
+      console.error("File input reference is null");
     }
   };
 
   // Handle form submission
   const onSubmit = async (data) => {
     const formData = new FormData();
-
     formData.append("FirstName", data.firstName);
     formData.append("LastName", data.lastName);
     formData.append("Email", data.email);
@@ -91,72 +96,28 @@ export default function AddUserPage() {
         <div className="personal-info-section">
           <label className="primary-title">Personal Information</label>
           <div className="profile-photo-section">
-            {isMobile ? (
-              <>
-                <div className="profile-left">
-                  <p className="profile-left-title">Your Photo</p>
-                  <p>This will be displayed on your profile</p>
-                </div>
-                <div className="profile-sm">
-                  <div className="profile-center">
-                    <ProfilePic
-                      size={60}
-                      isChange={false}
-                      image={
-                        selectedImage
-                          ? URL.createObjectURL(selectedImage)
-                          : null
-                      }
-                    />
-                  </div>
-                  <div className="photo-actions">
-                    <button
-                      className="delete-button"
-                      onClick={() => setSelectedImage(null)}
-                    >
-                      Delete
-                    </button>
-                    <button
-                      className="update-button"
-                      onClick={() => fileInputRef.current.click()}
-                    >
-                      Update
-                    </button>
-                  </div>
-                </div>
-              </>
-            ) : (
-              <>
-                <div className="profile-left">
-                  <p className="profile-left-title">Your Photo</p>
-                  <p>This will be displayed on your profile</p>
-                </div>
-                <div className="profile-center">
-                  <ProfilePic
-                    size={60}
-                    isChange={false}
-                    image={
-                      selectedImage ? URL.createObjectURL(selectedImage) : null
-                    }
-                  />
-                </div>
-                <div className="photo-actions">
-                  <button
-                    className="delete-button"
-                    onClick={() => setSelectedImage(null)}
-                  >
-                    Delete
-                  </button>
-                  <button
-                    className="update-button"
-                    onClick={() => fileInputRef.current.click()}
-                  >
-                    Update
-                  </button>
-                </div>
-              </>
-            )}
-
+            <div className="profile-left">
+              <p className="profile-left-title">Your Photo</p>
+              <p>This will be displayed on your profile</p>
+            </div>
+            <div className="profile-center">
+              {}
+              <Avatar
+                src={selectedImage ? URL.createObjectURL(selectedImage) : null}
+                sx={{ width: 60, height: 60 }}
+              />
+            </div>
+            <div className="photo-actions">
+              <button
+                className="delete-button"
+                onClick={() => setSelectedImage(null)}
+              >
+                Delete
+              </button>
+              <button className="update-button" onClick={openFileDialog}>
+                Update
+              </button>
+            </div>
             <input
               type="file"
               accept="image/*"
