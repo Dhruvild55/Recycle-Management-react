@@ -19,10 +19,6 @@ const AdminPermissionEditPage = lazy(() =>
   import("../views/User/Admin And Roles/edit-admin-permission")
 );
 
-// // App Content Management
-// const AppcontantManagementPage = lazy(() =>
-//   import("../views/appContentManagement/")
-// );
 const AddWeastePage = lazy(() =>
   import("../views/appContentManagement/MaterialAndServices/addNewWaste")
 );

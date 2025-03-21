@@ -41,7 +41,7 @@
 
     .card-title {
       font-weight: 600;
-      font-size: 14px;
+      font-size: 16px;
       @include media-max(desktop-md) {
         font-size: 12px;
       }
@@ -52,7 +52,7 @@
 
     .card-value {
       color: #1f7f82 !important;
-      font-size: 22px;
+      font-size: 30px;
       font-weight: 600;
       @include media-max(desktop-md) {
         font-size: 20px;

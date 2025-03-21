@@ -11,7 +11,11 @@
     "add_campaign": "Add Campaign",
     "update_campaign": "Update Campaign",
     "settings": "Settings",
-    "sponsor_Management": "Sponsor Management"
+    "sponsor_Management": "Sponsor Management",
+
+    "._Comment": "Remaining",
+    "point_transaction_management": "Points Transaction Management",
+    "hardware_shop_Management": "Hardware shop Management"
   },
 
   "userManagementTopBtn": {
@@ -68,7 +72,9 @@
 
     "sponsor_name": "Sponsor Name",
     "date_create": "Date Created",
-    "no_link_account": "No. of Link Account"
+    "no_link_account": "No. of Link Account",
+
+    "collection": "Collection"
   },
 
   "add_admin": "Add Admin",

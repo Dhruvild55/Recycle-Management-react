@@ -1,7 +1,9 @@
 import AppIcon from "../../../assets/images/icons/AppIcon";
 import BinIcon from "../../../assets/images/icons/BinIcon";
 import CollectionIcon from "../../../assets/images/icons/CollectionIcon";
+import HardwareIcon from "../../../assets/images/icons/HardwareIcon";
 import MenuIcon from "../../../assets/images/icons/menuIcon";
+import PointsIcon from "../../../assets/images/icons/PointsIcon";
 import ReportIcon from "../../../assets/images/icons/ReportIcon";
 import RewardsIcon from "../../../assets/images/icons/RewardsIcon";
 import SponserIcon from "../../../assets/images/icons/SponserIcon";
@@ -43,6 +45,16 @@ export const SidebarLinks = [
     name: "collection_service_management",
     path: route.collectorServiceManagement,
     icon: <BinIcon color="#1F7F82" />,
+  },
+  {
+    name: "point_transaction_management",
+    path: "",
+    icon: <PointsIcon color="#1F7F82" />,
+  },
+  {
+    name: "hardware_shop_Management",
+    path: "",
+    icon: <HardwareIcon color="#1F7F82" />,
   },
   {
     name: "report",

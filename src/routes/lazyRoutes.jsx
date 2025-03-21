@@ -4,7 +4,6 @@ import { lazy } from "react";
 const AuthRoutes = {
   Login: lazy(() => import("../views/auth/login")),
 };
-
 // * Private Route
 const Dashboard = {
   Dashboard: lazy(() => import("../views/dashboard")),
