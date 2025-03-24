@@ -63,6 +63,8 @@
 @import "../../views//sponsorManagement/SponsorManagementView/SponsorInformation/sponsorSection";
 @import "../../views/sponsorManagement/SponsorManagementView/PartnerCatelogue/PartnerCatelogueList/CatelogueListComponent/catelogueListComponent";
 
+//! points transaction management
+@import "../../views/pointsTransactionManagement/components/DateRangPicker/datePicker";
 // views
 @import "./views/auth/login";
 @import "./views/dashboard/dashboard";

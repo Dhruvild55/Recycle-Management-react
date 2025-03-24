@@ -15,19 +15,16 @@ const SponsorManagement = () => {
 
   const totalPages = Math.ceil((sponsorList.length || 1) / pageSize);
 
-  console.log(translations);
   return (
     <div className="common-main-section">
       <div className="common-page-toolbar" style={{ marginTop: "0px" }}>
         <label className="primary-title"> List of Sponsor</label>
-        <div>
+        <div className="tool-section">
           <input
             className="search-input"
             type="text"
             placeholder={translations.search}
           />
-        </div>
-        <div>
           <label className="back-text">{translations.filter}:</label>
           <select>
             <option>All</option>

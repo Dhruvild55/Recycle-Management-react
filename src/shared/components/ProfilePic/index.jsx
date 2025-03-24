@@ -6,7 +6,6 @@ import { getFilePath } from "../../../query/getfilePath/filePath.query";
 import { iconCamara } from "../../../assets/images/icons";
 
 const ProfilePic = ({ size, image, name, isChange }) => {
-  console.log("image", image);
   const { data, isLoading } = useQuery({
     queryKey: ["filePath", image],
     queryFn: () => getFilePath({ image }),

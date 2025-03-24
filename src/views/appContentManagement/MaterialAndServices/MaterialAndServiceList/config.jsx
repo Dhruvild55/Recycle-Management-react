@@ -40,7 +40,6 @@ export const columns = (handleDelete) => [
     width: 100,
     sortable: false,
     renderCell: (params) => {
-      console.log(params);
       return (
         <>
           <div style={{ display: "flex", gap: "5px" }}>

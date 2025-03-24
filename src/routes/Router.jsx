@@ -5,6 +5,7 @@ import {
   AuthRoutes,
   CollectionManagement,
   Dashboard,
+  PointsTransactionManagement,
   SponsorManagement,
   UserManagement,
 } from "./lazyRoutes";
@@ -96,6 +97,12 @@ const RoutesDetails = [
       {
         path: route.addUser,
         Component: UserManagement.Admin.Add,
+        exact: true,
+      },
+      //! Admin Edit
+      {
+        path: route.editUser(":id"),
+        Component: UserManagement.Admin.Edit,
         exact: true,
       },
       //! Recycler List
@@ -293,6 +300,20 @@ const RoutesDetails = [
         path: route.sponsorManagement.View.RedimptionHistory(":id"),
         Component: SponsorManagement.View.RedimptionHistory,
         exact: true,
+      },
+
+      //! Points Transaction Management
+      //* Points Transaction Management / Earning List
+      {
+        path: route.pointsTransactionManagement.Earning.List,
+        Component: PointsTransactionManagement.Earning.List,
+        exact: true,
+      },
+      // * Points Transaction Management / Usage List
+      {
+        path: route.pointsTransactionManagement.Usage.List,
+        Component: PointsTransactionManagement.Usage.List,
+        exact: false,
       },
     ],
   },

@@ -66,7 +66,6 @@ const UserList = ({
   });
 
   const tableData = data?.data?.items || [];
-  console.log(selectedRoleOpt);
 
   const totalPages = Math.ceil((data?.data?.totalRecords || 1) / pageSize);
 
@@ -78,7 +77,7 @@ const UserList = ({
         />
         <div className="common-page-toolbar">
           <label className="primary-title">{title}</label>
-          <div>
+          <div className="tool-section">
             <input
               className="search-input"
               type="text"
@@ -87,6 +86,7 @@ const UserList = ({
               onChange={(e) => setSearchQuery(e.target.value.toLowerCase())}
             />
           </div>
+
           {addButton && (
             <button
               onClick={() => navigate(addButton.route)}
@@ -96,7 +96,7 @@ const UserList = ({
               <FaPlus style={{ fontSize: "15px" }} />
             </button>
           )}
-          <div>
+          <div className="tool-section">
             <label className="back-text">{translations.filter}:</label>
             <select
               value={selectedRoleOpt}

@@ -13,6 +13,7 @@ import { validationRules } from "../../../../shared/constants/ValidationRules";
 import { Loader } from "../../../../shared/components/Loader";
 import { Avatar, useMediaQuery } from "@mui/material";
 import { getRoles } from "../../../../query/roles/getRoles/getRoles.query";
+import { getProfile } from "../../../../query/profile/getProfile/getProfile.query";
 
 export default function AddUserPage() {
   const navigate = useNavigate();
@@ -22,6 +23,9 @@ export default function AddUserPage() {
   const [selectedImage, setSelectedImage] = useState(null);
   const fileInputRef = useRef(null);
   const isMobile = useMediaQuery("(max-width: 425px)"); // Check screen size
+  const userData = location.state?.userData || {}; // Fallback to empty object
+  console.log("userData", userData);
+  const { firstName, lastName, userName, selfiePath, roles } = userData;
 
   const {
     register,
@@ -29,25 +33,20 @@ export default function AddUserPage() {
     watch,
     formState: { errors },
     reset,
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      firstName: userData?.firstName || "",
+      lastName: userData?.lastName || "",
+      userName: userData?.userName || "",
+      phone: userData?.phone || "",
+      email: userData?.email || "",
+      roles: userData?.roles || "",
+    },
+  });
 
   const { data: rolesData, isLoading: isRolesLoading } = useQuery({
     queryKey: ["rolesList"],
     queryFn: getRoles,
-  });
-
-  const { mutate, isPending } = useMutation({
-    mutationFn: createUser,
-    onSuccess: (data) => {
-      ReactToastify(data?.message, "success");
-      if (location.state?.fromUserList) {
-        queryClient.invalidateQueries(["userList"]);
-      }
-      navigate(route.userManagement);
-    },
-    onError: (error) => {
-      ReactToastify(error?.response?.data?.message, "error");
-    },
   });
 
   // Handle file selection
@@ -70,18 +69,15 @@ export default function AddUserPage() {
   // Handle form submission
   const onSubmit = async (data) => {
     const formData = new FormData();
+    console.log("editData", data);
     formData.append("FirstName", data.firstName);
     formData.append("LastName", data.lastName);
-    formData.append("Email", data.email);
-    formData.append("Password", data.password);
-    formData.append("Phone", data.phone);
+    formData.append("userName", data.userName);
     formData.append("Role", data.roles);
 
     if (selectedImage) {
       formData.append("selfie", selectedImage);
     }
-
-    mutate(formData);
   };
 
   return (
@@ -154,43 +150,6 @@ export default function AddUserPage() {
                 name="userName"
               />
             </div>
-            <div className="form-group">
-              <InputField
-                label={language.formFields.phone_number}
-                placeholder={language.formFields.phone_number}
-                type="tel"
-                register={register}
-                errors={errors}
-                name="phone"
-                validation={validationRules.phone}
-              />
-
-              <InputField
-                label={language.formFields.email}
-                placeholder="Enter Your Email"
-                type="email"
-                register={register}
-                errors={errors}
-                name="email"
-                validation={validationRules.email}
-              />
-
-              <InputField
-                label={language.formFields.password}
-                placeholder="Create a password"
-                type="password"
-                register={register}
-                errors={errors}
-                name="password"
-                validation={{
-                  required: "Password is required",
-                  minLength: {
-                    value: 8,
-                    message: "Must be at least 8 characters",
-                  },
-                }}
-              />
-            </div>
 
             <div className="form-group-last">
               <InputField
@@ -207,29 +166,15 @@ export default function AddUserPage() {
                   required: "Role selection is required",
                 }}
               />
-
-              <InputField
-                label={language.formFields.confirm_password}
-                placeholder="Confirm your password"
-                type="password"
-                register={register}
-                errors={errors}
-                name="confirmPassword"
-                validation={{
-                  required: "Confirm Password is required",
-                  validate: (value) =>
-                    value === watch("password") || "Passwords do not match",
-                }}
-              />
             </div>
 
             <div className="form-actions">
               <button
                 type="submit"
                 className="submit-button"
-                disabled={isPending}
+                disabled={isRolesLoading}
               >
-                {isPending ? (
+                {isRolesLoading ? (
                   <Loader animation="border" width="20px" height="20px" />
                 ) : (
                   "Submit"

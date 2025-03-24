@@ -74,7 +74,10 @@
     "date_create": "Date Created",
     "no_link_account": "No. of Link Account",
 
-    "collection": "Collection"
+    "collection": "Collection",
+    "userType": "User Type",
+    "transaction_id": "Transaction ID",
+    "redemption_item": "Redemption Item"
   },
 
   "add_admin": "Add Admin",

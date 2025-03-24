@@ -1,5 +1,6 @@
 import { iconDelete, iconEdit } from "../../../../assets/images/icons";
 import ProfilePic from "../../../../shared/components/ProfilePic";
+import { route } from "../../../../shared/constants/AllRoutes";
 
 const formatDate = (dateTimeString) => {
   const isoString = dateTimeString.replace(" ", "T");
@@ -52,21 +53,25 @@ export const headers = (navigate, deleteUserMutation) => [
   {
     key: "action",
     label: "action",
-    render: (row) => (
-      <div className="btn-section">
-        <button
-          onClick={() => alert("This page is under Development!")}
-          className="action-btn"
-        >
-          <img src={iconEdit} />
-        </button>
-        <button
-          onClick={() => deleteUserMutation({ userId: row.id })}
-          className="action-btn"
-        >
-          <img src={iconDelete} />
-        </button>
-      </div>
-    ),
+    render: (row) => {
+      return (
+        <div className="btn-section">
+          <button
+            onClick={() =>
+              navigate(route.editUser(row.id), { state: { userData: row } })
+            }
+            className="action-btn"
+          >
+            <img src={iconEdit} />
+          </button>
+          <button
+            onClick={() => deleteUserMutation({ userId: row.id })}
+            className="action-btn"
+          >
+            <img src={iconDelete} />
+          </button>
+        </div>
+      );
+    },
   },
 ];

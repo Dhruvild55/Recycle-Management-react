@@ -24,6 +24,8 @@ import SponserIcon from "../../../assets/images/icons/SponserIcon";
 import BinIcon from "../../../assets/images/icons/BinIcon";
 import ReportIcon from "../../../assets/images/icons/ReportIcon";
 import useMediaQuery from "../../hooks/useMediaQuery";
+import PointsIcon from "../../../assets/images/icons/PointsIcon";
+import HardwareIcon from "../../../assets/images/icons/HardwareIcon";
 
 function Header({ toggleSidebar, isCollapsed, selectedMenu }) {
   const dispatch = useDispatch();
@@ -115,8 +117,12 @@ function Header({ toggleSidebar, isCollapsed, selectedMenu }) {
                   <SponserIcon color="#181D27" />
                 ) : selectedMenu.name === "collection_service_management" ? (
                   <BinIcon color="#181D27" />
+                ) : selectedMenu.name === "point_transaction_management" ? (
+                  <PointsIcon color="#181D27" />
                 ) : selectedMenu.name === "report" ? (
                   <ReportIcon color="#181D27" />
+                ) : selectedMenu.name === "hardware_shop_Management" ? (
+                  <HardwareIcon color="#181D27" />
                 ) : (
                   ""
                 )}
@@ -148,8 +154,12 @@ function Header({ toggleSidebar, isCollapsed, selectedMenu }) {
                   <SponserIcon color="#181D27" />
                 ) : selectedMenu.name === "collection_service_management" ? (
                   <BinIcon color="#181D27" />
+                ) : selectedMenu.name === "point_transaction_management" ? (
+                  <PointsIcon color="#181D27" />
                 ) : selectedMenu.name === "report" ? (
                   <ReportIcon color="#181D27" />
+                ) : selectedMenu.name === "hardware_shop_Management" ? (
+                  <HardwareIcon color="#181D27" />
                 ) : (
                   ""
                 )}

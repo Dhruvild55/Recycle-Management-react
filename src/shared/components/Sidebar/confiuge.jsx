@@ -48,7 +48,7 @@ export const SidebarLinks = [
   },
   {
     name: "point_transaction_management",
-    path: "",
+    path: route.pointsTransactionManagement.Earning.List,
     icon: <PointsIcon color="#1F7F82" />,
   },
   {

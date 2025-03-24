@@ -24,14 +24,12 @@ const RedimptionHistory = () => {
           style={{ marginTop: "20px", marginBottom: "30px" }}
         >
           <label className="primary-title"> Redemption History</label>
-          <div>
+          <div className="tool-section">
             <input
               className="search-input"
               type="text"
               placeholder={translations.search}
             />
-          </div>
-          <div>
             <label className="back-text">{translations.filter}:</label>
             <select>
               <option>All</option>

@@ -2,6 +2,8 @@
 import React, { Suspense } from "react";
 import "./App.css";
 import "@fontsource/inter";
+import "react-date-range/dist/styles.css"; // Main styles
+import "react-date-range/dist/theme/default.css"; // Theme styles
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import { Loader } from "./shared/components/Loader";

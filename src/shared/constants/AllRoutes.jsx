@@ -8,6 +8,7 @@ export const route = {
   //* user Management
   userManagement: "/user-Management/admin",
   addUser: "/user-Management/admin/add",
+  editUser: (id) => `/user-Management/admin/edit/${id}`,
 
   //! User Management Recycler
   recyclerList: "/user-Management/recycler",
@@ -76,6 +77,15 @@ export const route = {
   },
 
   createCampaign: "/create-campaign",
+
+  pointsTransactionManagement: {
+    Earning: {
+      List: "/points-transaction-management/earning",
+    },
+    Usage: {
+      List: "/points-transaction-management/usage",
+    },
+  },
 
   //* Collection Service Management
   collectorServiceManagement: "/Collector-Service-Management",

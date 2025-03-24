@@ -10,7 +10,6 @@ export const getRecyclerList = async ({
   role,
 }) => {
   const sortOrder = isDescendingOrder ? "email_desc" : "email_aesc";
-  console.log("role", role);
   const roleData =
     role === "B2B Recycler"
       ? "B2B Recycler"

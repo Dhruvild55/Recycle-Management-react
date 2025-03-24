@@ -13,6 +13,7 @@ const UserManagement = {
   Admin: {
     List: lazy(() => import(`../views/User/Admin/AdminList`)),
     Add: lazy(() => import(`../views/User/Admin/Admin-add`)),
+    Edit: lazy(() => import(`../views/User/Admin/Admin-edit`)),
   },
   Recycler: {
     List: lazy(() => import(`../views/User/Recycler/RecyclerList`)),
@@ -107,6 +108,16 @@ const SponsorManagement = {
   },
 };
 
+const PointsTransactionManagement = {
+  Earning: {
+    List: lazy(() =>
+      import("../views/pointsTransactionManagement/EarningSection")
+    ),
+  },
+  Usage: {
+    List: lazy(() => import("../views/pointsTransactionManagement/usage")),
+  },
+};
 export {
   AuthRoutes,
   Dashboard,
@@ -114,4 +125,5 @@ export {
   CollectionManagement,
   AppContentManagement,
   SponsorManagement,
+  PointsTransactionManagement,
 };

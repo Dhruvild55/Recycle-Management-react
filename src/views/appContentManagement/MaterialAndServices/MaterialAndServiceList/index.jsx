@@ -30,7 +30,6 @@ const MaterialAndeServicesList = () => {
   });
 
   const handleDelete = (id) => {
-    console.log(id);
     deleteMaterialId(id);
   };
 

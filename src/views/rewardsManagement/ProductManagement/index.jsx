@@ -12,14 +12,12 @@ const ProductManagement = () => {
     <>
       <div className="common-page-toolbar">
         <label className="primary-title">List of Reward</label>
-        <div>
+        <div className="tool-section">
           <input
             className="search-input"
             type="text"
             placeholder={translations.search}
           />
-        </div>
-        <div>
           <label className="back-text">{translations.filter}:</label>
           <select>
             <option>All</option>
