@@ -29,3 +29,5 @@ export { default as iconMarkerPin } from "./markerPin.png";
 export { default as iconUpload } from "./uploadIcon.png";
 
 export { default as iconBack } from "./backIcon.png";
+export { default as iconDoller } from "./dollerIcon.png";
+export { default as iconCoin } from "./coinIcon.png";

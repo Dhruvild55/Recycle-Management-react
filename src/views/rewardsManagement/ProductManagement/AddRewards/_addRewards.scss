@@ -1,42 +1,51 @@
-.form-group {
-  margin-bottom: 1rem;
+.add-reward-form {
+  display: flex;
+  flex-direction: column;
+
+  .form-group {
+    margin-bottom: 30px;
+  }
 
   label {
     display: block;
-    font-weight: 500;
-    color: #344054;
-    font-size: 14px;
     margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 500;
   }
 
-  input {
+  // Shared styles for input, select, and textarea
+  input[type="text"],
+  select,
+  textarea {
     width: 100%;
     padding: 8px;
-    border: 1px solid #d5d7da;
-    border-radius: 5px;
+    box-sizing: border-box;
+    border-radius: 7px;
+    border: 1px solid #d0d5dd;
     font-size: 14px;
-    color: #333;
-    transition: border-color 0.3s;
+    font-family: inherit;
+    resize: vertical; // Allow resizing for textarea
+  }
 
-    &:focus {
-      border-color: #1f7f82;
-      outline: none;
-      box-shadow: 0 0 5px rgba(31, 127, 130, 0.3);
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+
+    @include media-max(lg) {
+      flex-direction: column;
     }
-  }
-}
-.form-actions {
-  display: flex;
-  margin-bottom: 20px;
-  gap: 10px;
-  justify-content: flex-end;
-  @include media-max(lg) {
-    flex-direction: column;
-  }
-  .submit-button {
-    @include button-style(#3fb4b4, #fff, none, 100px);
-  }
-  .cancel-button {
-    @include button-style(#f8f9fa, #000, 1px solid #ccc, 100px);
+
+    .btn {
+      border: 1px solid #d0d5dd;
+      padding: 10px 25px 10px 20px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    :hover {
+      background-color: #3fb4b4;
+      color: white;
+    }
   }
 }

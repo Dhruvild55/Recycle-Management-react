@@ -77,7 +77,13 @@
     "collection": "Collection",
     "userType": "User Type",
     "transaction_id": "Transaction ID",
-    "redemption_item": "Redemption Item"
+    "redemption_item": "Redemption Item",
+    "product_name": "Product Name",
+    "price": "Price",
+    "current_stock": "Current Stock",
+    "order_id": "Order Id",
+    "customer_name": "Customer Name",
+    "order_status": "Order Status"
   },
 
   "add_admin": "Add Admin",

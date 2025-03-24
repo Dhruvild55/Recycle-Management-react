@@ -53,7 +53,7 @@ export const SidebarLinks = [
   },
   {
     name: "hardware_shop_Management",
-    path: "",
+    path: route.hardwareShopManagement.ProductListing.List,
     icon: <HardwareIcon color="#1F7F82" />,
   },
   {

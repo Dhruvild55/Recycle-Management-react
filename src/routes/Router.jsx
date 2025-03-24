@@ -5,6 +5,7 @@ import {
   AuthRoutes,
   CollectionManagement,
   Dashboard,
+  HardwareShopManagement,
   PointsTransactionManagement,
   SponsorManagement,
   UserManagement,
@@ -313,7 +314,33 @@ const RoutesDetails = [
       {
         path: route.pointsTransactionManagement.Usage.List,
         Component: PointsTransactionManagement.Usage.List,
-        exact: false,
+        exact: true,
+      },
+
+      // ! Hardware Shop Management
+      // * Hardware Shop Management / Product Listing
+      {
+        path: route.hardwareShopManagement.ProductListing.List,
+        Component: HardwareShopManagement.ProductListing.List,
+        exact: true,
+      },
+      // * Hardware Shop Management / Add Product
+      {
+        path: route.hardwareShopManagement.ProductListing.Add,
+        Component: HardwareShopManagement.ProductListing.Add,
+        exact: true,
+      },
+      // * Hardware shop Management / Product Details
+      {
+        path: route.hardwareShopManagement.ProductListing.Details(":id"),
+        Component: HardwareShopManagement.ProductListing.Details,
+        exact: true,
+      },
+      // * Hardware shop Management / Order History
+      {
+        path: route.hardwareShopManagement.OrderHistory.List,
+        Component: HardwareShopManagement.OrderHistory.List,
+        exact: true,
       },
     ],
   },

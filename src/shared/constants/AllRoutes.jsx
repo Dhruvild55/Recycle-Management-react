@@ -78,12 +78,25 @@ export const route = {
 
   createCampaign: "/create-campaign",
 
+  // ! Points Transaction Management
   pointsTransactionManagement: {
     Earning: {
       List: "/points-transaction-management/earning",
     },
     Usage: {
       List: "/points-transaction-management/usage",
+    },
+  },
+
+  //!Hardware Shop Management
+  hardwareShopManagement: {
+    ProductListing: {
+      List: "/hardware-shop-management/productListing",
+      Add: "/hardware-shop-management/add",
+      Details: (id) => `/hardware-shop-management/details/${id}`,
+    },
+    OrderHistory: {
+      List: "/hardware-shop-management/orderHistory",
     },
   },
 

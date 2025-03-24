@@ -118,6 +118,21 @@ const PointsTransactionManagement = {
     List: lazy(() => import("../views/pointsTransactionManagement/usage")),
   },
 };
+
+const HardwareShopManagement = {
+  ProductListing: {
+    List: lazy(() => import("../views/hardwareShopManagement/ProductListing")),
+    Add: lazy(() =>
+      import("../views/hardwareShopManagement/ProductListing/Add")
+    ),
+    Details: lazy(() =>
+      import("../views/hardwareShopManagement/ProductListing/Details")
+    ),
+  },
+  OrderHistory: {
+    List: lazy(() => import("../views/hardwareShopManagement/OrderHistory")),
+  },
+};
 export {
   AuthRoutes,
   Dashboard,
@@ -126,4 +141,5 @@ export {
   AppContentManagement,
   SponsorManagement,
   PointsTransactionManagement,
+  HardwareShopManagement,
 };

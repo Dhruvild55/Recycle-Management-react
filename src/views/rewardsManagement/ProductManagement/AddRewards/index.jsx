@@ -1,75 +1,141 @@
 import { useNavigate } from "react-router-dom";
 import DragAndDropComponent from "../../../../shared/components/DragAndDropComponent";
-import InputField from "../../../../shared/components/InputFieldComponent";
+import { useState } from "react";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { createReward } from "../../../../query/RewardsManagement/CreateReward/createReward.query";
+import { useForm } from "react-hook-form";
+import { getRewardsCategory } from "../../../../query/RewardsManagement/GetRewardsCategory/getRewardsCategory.query";
+import InputField from "./InputFeild";
 
 const AddRewards = () => {
   const navigate = useNavigate();
+  const [image, setImage] = useState(null);
+
+  // Initialize React Hook Form
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: createReward,
+    onSuccess: (data) => {
+      console.log("Reward Created Successfully:", data);
+      navigate("/rewards"); // Redirect after success
+    },
+    onError: (error) => {
+      console.error("Error creating reward:", error);
+    },
+  });
+
+  const { data: categoryData, isLoading: isCategoryLoading } = useQuery({
+    queryKey: ["getRewardsCategory"],
+    queryFn: getRewardsCategory, // FIXED: Removed () to avoid immediate execution
+  });
+
+  const onDrop = (acceptedFiles) => {
+    const file = acceptedFiles[0];
+    setImage(
+      Object.assign(file, {
+        preview: URL.createObjectURL(file),
+      })
+    );
+  };
+
+  const onSubmit = (data) => {
+    const formData = new FormData();
+    formData.append("RewardName", data.rewardName);
+    formData.append("Point", data.point);
+    formData.append("Validity", data.validity);
+    formData.append("RewardCategoryId", data.category);
+    formData.append("Description", data.shortDescription);
+    formData.append("RewardImg", image);
+
+    for (let [key, value] of formData.entries()) {
+      console.log(`${key}:`, value);
+    }
+    mutate(formData);
+  };
+
   return (
     <div className="common-main-section">
       <div className="header-section">
         <button className="back-text" onClick={() => navigate(-1)}>
-          &larr; BACK{" "}
+          &larr; BACK
         </button>
       </div>
       <div style={{ marginTop: "20px", marginBottom: "20px" }}>
         <h1 className="primary-title">Add New Product</h1>
       </div>
-      <form className="add-reward-form">
-        <div style={{ marginTop: "10px" }}>
-          <DragAndDropComponent />
+      <form className="add-reward-form" onSubmit={handleSubmit(onSubmit)}>
+        <div className="form-group-image" style={{ marginBottom: "20px" }}>
+          <DragAndDropComponent image={image} onDrop={onDrop} />
         </div>
-        <div className="form-group">
-          <div style={{ marginTop: "20px" }}>
-            <InputField
-              label="Reward Name"
-              placeholder="Type Here"
-              type="text"
-            />
-          </div>
-          <div style={{ marginTop: "20px" }}>
-            <InputField
-              label="point(pts)"
-              placeholder="Type Here"
-              type="text"
-            />
-          </div>
-          <div style={{ marginTop: "20px" }}>
-            <InputField
-              label="Validity(days)"
-              placeholder="Type Here"
-              type="text"
-            />
-          </div>
-          <div style={{ marginTop: "20px" }}>
-            <InputField
-              label="Rewards Category"
-              type="select"
-              name="category"
-              validation={{ required: "Category is required" }}
-              options={[
-                { value: "food", label: "Food & Beverage" },
-                { value: "electronics", label: "Electronics" },
-                { value: "fashion", label: "Fashion" },
-              ]}
-            />
-          </div>
-          <div style={{ marginTop: "20px" }}>
-            <InputField
-              label="Type Here"
-              type="textarea"
-              name="description"
-              placeholder="Enter product details"
-              rows={6}
-              validation={{ required: "Description is required" }}
-            />
-          </div>
-        </div>
+
+        <InputField
+          label="Reward Name"
+          name="rewardName"
+          register={register}
+          rules={{ required: "Reward Name is required" }}
+          errors={errors}
+          required
+        />
+        <InputField
+          label="Point(pts)"
+          name="point"
+          register={register}
+          type="text"
+          rules={{ required: "Points are required" }}
+          errors={errors}
+          required
+        />
+        <InputField
+          label="Validity (days)"
+          name="validity"
+          register={register}
+          type="text"
+          rules={{ required: "Validity is required" }}
+          errors={errors}
+          required
+        />
+        <InputField
+          label="Rewards Category"
+          name="category"
+          register={register}
+          type="select"
+          options={
+            isCategoryLoading
+              ? [{ value: "", label: "Loading categories..." }]
+              : categoryData?.data?.map((item) => ({
+                  value: item.categoryId,
+                  label: item.category,
+                }))
+          }
+          rules={{ required: "Category is required" }}
+          errors={errors}
+          required
+        />
+        <InputField
+          label="Reward Short Description"
+          name="shortDescription"
+          register={register}
+          type="textarea"
+          rules={{ required: "Description is required" }}
+          errors={errors}
+          required
+        />
+
         <div className="form-actions">
-          <button type="button" className="cancel-button">
+          <button
+            type="button"
+            className="cancel-button"
+            onClick={() => navigate(-1)}
+          >
             Cancel
           </button>
-          <button type="submit" className="submit-button">
-            Add
+          <button type="submit" className="submit-button" disabled={isPending}>
+            {isPending ? "Adding..." : "Add"}
           </button>
         </div>
       </form>
