@@ -144,6 +144,9 @@ const HardwareShopManagement = {
   OrderHistory: {
     List: lazy(() => import("../views/hardwareShopManagement/OrderHistory")),
   },
+  StockHistory: {
+    List: lazy(() => import("../views/hardwareShopManagement/StockHistory")),
+  },
 };
 export {
   AuthRoutes,

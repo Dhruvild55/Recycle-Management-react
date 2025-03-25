@@ -10,6 +10,8 @@ const TopSection = () => {
       return "ProductListing";
     if (location.pathname === route.hardwareShopManagement.OrderHistory.List)
       return "OrderHistory";
+    if (location.pathname === route.hardwareShopManagement.StockHistory.List)
+      return "StockHistory";
   };
   const selectedSection = getSelectedSection();
   return (
@@ -28,6 +30,13 @@ const TopSection = () => {
         onClick={() => navigate(route.hardwareShopManagement.OrderHistory.List)}
         className={`btn${
           selectedSection === "OrderHistory" ? " selected" : ""
+        }`}
+      />
+      <ButtonComponent
+        label="Stock History"
+        onClick={() => navigate(route.hardwareShopManagement.StockHistory.List)}
+        className={`btn${
+          selectedSection === "StockHistory" ? " selected" : ""
         }`}
       />
     </div>

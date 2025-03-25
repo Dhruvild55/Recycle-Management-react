@@ -41,8 +41,6 @@ export const route = {
       Add: "/app-content-Management/banner-Management/add",
     },
   },
-  // appContentManagement: "/app-content-Management",
-  // addWaste: "/app-content-Management/add-waste",
   addGuidelines: "/app-content-Management/add-Guidelines",
 
   //! Collection Management
@@ -54,9 +52,6 @@ export const route = {
     "/collection-Management/collector-collection/view-collector-collection",
 
   //* Rewards Management
-  // rewardsManagement: "/rewards-Management",
-  addRewards: "/rewards-Management/add",
-  viewReward: "/rewards-Management/view-rewards",
   viewRewardsTransaction: "/rewards-Management/view-transaction",
   viewFiatPoints: "/rewards-Management/fiat-denominations-management",
   rewardsDetails: "/rewards-Management/rewards-details",
@@ -106,6 +101,9 @@ export const route = {
     },
     OrderHistory: {
       List: "/hardware-shop-management/orderHistory",
+    },
+    StockHistory: {
+      List: "/hardware-shop-management/stockHistory",
     },
   },
 

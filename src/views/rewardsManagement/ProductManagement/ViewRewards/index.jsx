@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import ProfilePic from "../../../../shared/components/ProfilePic";
 import { useMutation, useQuery } from "@tanstack/react-query";

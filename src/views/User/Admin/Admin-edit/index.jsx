@@ -2,7 +2,7 @@
 import { useState, useRef } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { ReactToastify } from "../../../../shared/utils";
 import { route } from "../../../../shared/constants/AllRoutes";
 import { useForm } from "react-hook-form";
@@ -14,19 +14,19 @@ import { Loader } from "../../../../shared/components/Loader";
 import { Avatar, useMediaQuery } from "@mui/material";
 import { getRoles } from "../../../../query/roles/getRoles/getRoles.query";
 import { getProfile } from "../../../../query/profile/getProfile/getProfile.query";
+import { EditAdmin } from "../../../../query/users/Admin/edit/editAdmin.query";
 
 export default function AddUserPage() {
   const navigate = useNavigate();
+  const params = useParams();
   const location = useLocation();
-  const queryClient = useQueryClient();
   const language = useSelector((store) => store.settings.translations);
   const [selectedImage, setSelectedImage] = useState(null);
   const fileInputRef = useRef(null);
   const isMobile = useMediaQuery("(max-width: 425px)"); // Check screen size
   const userData = location.state?.userData || {}; // Fallback to empty object
-  console.log("userData", userData);
   const { firstName, lastName, userName, selfiePath, roles } = userData;
-
+  const { id } = params;
   const {
     register,
     handleSubmit,
@@ -47,6 +47,16 @@ export default function AddUserPage() {
   const { data: rolesData, isLoading: isRolesLoading } = useQuery({
     queryKey: ["rolesList"],
     queryFn: getRoles,
+  });
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: ({ id, updateData }) => EditAdmin(id, updateData),
+    onSuccess: (data) => {
+      console.log(data);
+    },
+    onError: (error) => {
+      console.log(error);
+    },
   });
 
   // Handle file selection
@@ -78,6 +88,7 @@ export default function AddUserPage() {
     if (selectedImage) {
       formData.append("selfie", selectedImage);
     }
+    mutate({ id, updateData: formData });
   };
 
   return (

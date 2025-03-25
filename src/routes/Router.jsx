@@ -336,6 +336,12 @@ const RoutesDetails = [
         Component: HardwareShopManagement.OrderHistory.List,
         exact: true,
       },
+      // * Hardware shop Management / Stock History
+      {
+        path: route.hardwareShopManagement.StockHistory.List,
+        Component: HardwareShopManagement.StockHistory.List,
+        exact: true,
+      },
     ],
   },
 ];
