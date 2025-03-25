@@ -33,7 +33,7 @@ export const SidebarLinks = [
   },
   {
     name: "rewards_Management",
-    path: route.rewardsManagement,
+    path: route.rewardsManagement.ProductManagement.List,
     icon: <RewardsIcon color="#1F7F82" />,
   },
   {

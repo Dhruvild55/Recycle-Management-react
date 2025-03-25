@@ -54,12 +54,21 @@ export const route = {
     "/collection-Management/collector-collection/view-collector-collection",
 
   //* Rewards Management
-  rewardsManagement: "/rewards-Management",
+  // rewardsManagement: "/rewards-Management",
   addRewards: "/rewards-Management/add",
   viewReward: "/rewards-Management/view-rewards",
   viewRewardsTransaction: "/rewards-Management/view-transaction",
   viewFiatPoints: "/rewards-Management/fiat-denominations-management",
   rewardsDetails: "/rewards-Management/rewards-details",
+
+  // ! Rewards Management
+  rewardsManagement: {
+    ProductManagement: {
+      List: "/rewards-management/product-management",
+      Add: "/rewards-management/product-management/add",
+      View: (id) => `/rewards-management/product-management/${id}`,
+    },
+  },
 
   //! Sponser Management
   sponsorManagement: {

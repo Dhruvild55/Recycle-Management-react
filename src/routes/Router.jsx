@@ -7,6 +7,7 @@ import {
   Dashboard,
   HardwareShopManagement,
   PointsTransactionManagement,
+  RewardsManagement,
   SponsorManagement,
   UserManagement,
 } from "./lazyRoutes";
@@ -35,13 +36,6 @@ const ViewCollectorCollectionPage = lazy(() =>
 );
 
 //* Rewards Management
-const RewardsManagementPage = lazy(() => import("../views/rewardsManagement"));
-const AddRewardsPage = lazy(() =>
-  import("../views/rewardsManagement/ProductManagement/AddRewards")
-);
-const ViewRewardsPage = lazy(() =>
-  import("../views/rewardsManagement/ProductManagement/ViewRewards")
-);
 
 const ViewRewardsTransactionPage = lazy(() =>
   import("../views/rewardsManagement/RewardsTransaction/ViewRewardsTransaction")
@@ -208,20 +202,20 @@ const RoutesDetails = [
         Component: CollectorRequestDetailsPage,
         exact: true,
       },
-      //* Rewards Management
+      //!  Rewards Management
       {
-        path: route.rewardsManagement,
-        Component: RewardsManagementPage,
+        path: route.rewardsManagement.ProductManagement.List,
+        Component: RewardsManagement.ProductManagement.List,
         exact: true,
       },
       {
-        path: route.addRewards,
-        Component: AddRewardsPage,
+        path: route.rewardsManagement.ProductManagement.Add,
+        Component: RewardsManagement.ProductManagement.Add,
         exact: true,
       },
       {
-        path: route.viewReward,
-        Component: ViewRewardsPage,
+        path: route.rewardsManagement.ProductManagement.View(":id"),
+        Component: RewardsManagement.ProductManagement.View,
         exact: true,
       },
       {

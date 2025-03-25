@@ -6,6 +6,8 @@ import { createReward } from "../../../../query/RewardsManagement/CreateReward/c
 import { useForm } from "react-hook-form";
 import { getRewardsCategory } from "../../../../query/RewardsManagement/GetRewardsCategory/getRewardsCategory.query";
 import InputField from "./InputFeild";
+import { ReactToastify } from "../../../../shared/utils";
+import { iconBack } from "../../../../assets/images/icons";
 
 const AddRewards = () => {
   const navigate = useNavigate();
@@ -22,16 +24,18 @@ const AddRewards = () => {
     mutationFn: createReward,
     onSuccess: (data) => {
       console.log("Reward Created Successfully:", data);
-      navigate("/rewards"); // Redirect after success
+      ReactToastify("Reward Created Successfully", "success");
+      navigate(-1);
     },
     onError: (error) => {
       console.error("Error creating reward:", error);
+      ReactToastify("Error creating reward", "error");
     },
   });
 
   const { data: categoryData, isLoading: isCategoryLoading } = useQuery({
     queryKey: ["getRewardsCategory"],
-    queryFn: getRewardsCategory, // FIXED: Removed () to avoid immediate execution
+    queryFn: getRewardsCategory,
   });
 
   const onDrop = (acceptedFiles) => {
@@ -62,7 +66,7 @@ const AddRewards = () => {
     <div className="common-main-section">
       <div className="header-section">
         <button className="back-text" onClick={() => navigate(-1)}>
-          &larr; BACK
+          <img src={iconBack} /> Back
         </button>
       </div>
       <div style={{ marginTop: "20px", marginBottom: "20px" }}>
@@ -127,14 +131,10 @@ const AddRewards = () => {
         />
 
         <div className="form-actions">
-          <button
-            type="button"
-            className="cancel-button"
-            onClick={() => navigate(-1)}
-          >
+          <button type="button" className="btn" onClick={() => navigate(-1)}>
             Cancel
           </button>
-          <button type="submit" className="submit-button" disabled={isPending}>
+          <button type="submit" className="btn" disabled={isPending}>
             {isPending ? "Adding..." : "Add"}
           </button>
         </div>

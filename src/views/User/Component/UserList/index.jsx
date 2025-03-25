@@ -83,7 +83,7 @@ const UserList = ({
               type="text"
               placeholder={translations.search}
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value.toLowerCase())}
+              onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
 

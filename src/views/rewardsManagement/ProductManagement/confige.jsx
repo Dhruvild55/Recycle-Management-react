@@ -4,32 +4,55 @@ import { route } from "../../../shared/constants/AllRoutes";
 
 export const headers = (navigate) => [
   {
-    key: "reward",
+    key: "rewardName",
     label: "reward",
     render: (row) => {
       return (
         <div className="d-flex align-items-center">
-          <ProfilePic size={30} isChange={false} />
-          <span className="ms-2">{row.reward}</span>
+          <ProfilePic size={30} isChange={false} image={row.rewardImgPath} />
+          <span className="ms-2">{row.rewardName}</span>
         </div>
       );
     },
   },
-  { key: "points", label: "points-pt" },
+  {
+    key: "point",
+    label: "points-pt",
+    render: (row) => {
+      return (
+        <div>
+          <span>{row.point} pts</span>
+        </div>
+      );
+    },
+  },
   { key: "validity", label: "validity" },
-  { key: "category", label: "category" },
+  { key: "rewardCategoryName", label: "category" },
   {
     key: "action",
     label: "action",
-    render: () => {
+    render: (row) => {
       return (
         <div className="flex gap-1">
-          <button className="action-btn">
+          <button
+            className="action-btn"
+            onClick={() =>
+              navigate(
+                route.rewardsManagement.ProductManagement.View(row.rewardId),
+                { state: { isEdit: true } }
+              )
+            }
+          >
             <img src={iconEdit} />
           </button>
           <button
             className="action-btn"
-            onClick={() => navigate(route.viewReward)}
+            onClick={() =>
+              navigate(
+                route.rewardsManagement.ProductManagement.View(row.rewardId),
+                { state: { isEdit: false } }
+              )
+            }
           >
             <img src={iconEye} />
           </button>

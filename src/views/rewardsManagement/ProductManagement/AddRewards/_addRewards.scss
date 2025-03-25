@@ -13,7 +13,6 @@
     font-weight: 500;
   }
 
-  // Shared styles for input, select, and textarea
   input[type="text"],
   select,
   textarea {
@@ -24,25 +23,21 @@
     border: 1px solid #d0d5dd;
     font-size: 14px;
     font-family: inherit;
-    resize: vertical; // Allow resizing for textarea
+    resize: vertical;
   }
-
   .form-actions {
     display: flex;
     justify-content: flex-end;
     gap: 5px;
-
     @include media-max(lg) {
       flex-direction: column;
     }
-
     .btn {
       border: 1px solid #d0d5dd;
       padding: 10px 25px 10px 20px;
       font-size: 16px;
       font-weight: 600;
     }
-
     :hover {
       background-color: #3fb4b4;
       color: white;
