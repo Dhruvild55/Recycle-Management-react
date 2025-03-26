@@ -41,15 +41,7 @@ const RecyclerHistoryDetails = () => {
         <div className="recycler-history">
           <label className="primary-title">Recycler History</label>
           {isPending && (
-            <div
-              className="container-fluid"
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                height: "40vh",
-              }}
-            >
+            <div className="loader-container">
               <Loader animation="border" width="50px" height="50px" />
             </div>
           )}

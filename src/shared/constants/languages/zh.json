@@ -92,5 +92,23 @@
   "uploadLogo": "上传标志",
   "uploadBanner": "上传横幅",
   "uploadExcelFiles": "上传Excel文件",
-  "isRequire": "是必须的"
+  "isRequire": "是必须的",
+
+  "addBanner": "添加横幅",
+  "bannerManagement": "横幅管理",
+  "sortingPriority": "排序优先级",
+  "addNewBanner": "添加新横幅",
+  "bannerDescription": "横幅说明",
+  "publish": "发布",
+  "unPublish": "取消发布",
+  "add": "添加",
+  "cancle": "取消",
+  "typehere": "在此输入",
+  "addNewEvent": "添加新事件",
+  "postCode": "邮政编码",
+  "state": "状态",
+  "eventDescription": "活动说明",
+  "eventManagement": "活动管理",
+  "addEvent": "添加事件",
+  "status": "地位"
 }

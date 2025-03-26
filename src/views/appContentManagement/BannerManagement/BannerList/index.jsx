@@ -8,29 +8,62 @@ import Pagination from "../../../../shared/components/CustomPagination";
 import { useState } from "react";
 import { route } from "../../../../shared/constants/AllRoutes";
 import { useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { getBannerList } from "../../../../query/AppContentManagement/BannerManagement/getAllBanner/getAllBanner.query";
+import SearchInput from "../../../../shared/components/SearchInput";
+import useDebounce from "../../../../shared/hooks/useDebounce";
+import FilterDropdown from "../../../../shared/components/FillerDropdown";
 
 const BannerList = () => {
   const translations = useSelector((state) => state.settings.translations);
+  const { filter, search, showing, entries, addBanner, bannerManagement } =
+    translations;
   const navigate = useNavigate();
-  const [pageSize, setPageSize] = useState(5);
+  const [pageSize, setPageSize] = useState(10);
   const [pageNumber, setPageNumber] = useState(1);
-  const totalRecords = 5;
-  const totalPages = Math.ceil((totalRecords || 1) / pageSize);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filterText, setFilter] = useState("All");
+
+  const combinedSearchTerm = `${searchTerm}`.trim();
+  const debouncedSearchQuery = useDebounce(combinedSearchTerm, 500);
+
+  //! get banner List API
+  const { data: bannerList, isPending } = useQuery({
+    queryKey: [
+      "getBannerList",
+      pageSize,
+      pageNumber,
+      debouncedSearchQuery,
+      filterText,
+    ],
+    queryFn: () =>
+      getBannerList({
+        pageSize,
+        pageNumber,
+        searchTerm: debouncedSearchQuery,
+        filterText,
+      }),
+  });
+
+  const totalPages = Math.ceil(
+    (bannerList?.data?.totalRecords || 1) / pageSize
+  );
   return (
     <div className="common-main-section">
       <AppContentManagementTopSection />
       <div className="common-page-toolbar">
-        <label className="primary-title">Benner Management</label>
+        <label className="primary-title">{bannerManagement}</label>
         <div className="tool-section">
-          <input
-            className="search-input"
-            type="text"
-            placeholder={translations.search}
+          <SearchInput placeholder={search} onSearch={setSearchTerm} />
+          <FilterDropdown
+            label={filter}
+            options={[
+              { value: "", label: "All" },
+              { value: "Publish", label: "Publish" },
+              { value: "Unpublish", label: "Unpublish" },
+            ]}
+            onFilterChange={setFilter}
           />
-          <label className="back-text">{translations.filter}:</label>
-          <select>
-            <option>All</option>
-          </select>
         </div>
         <button
           className="add-btn"
@@ -39,7 +72,7 @@ const BannerList = () => {
           }
         >
           {" "}
-          Add Banner <FaPlus style={{ fontSize: "15px" }} />
+          {addBanner} <FaPlus style={{ fontSize: "15px" }} />
         </button>
       </div>
       <div
@@ -48,16 +81,24 @@ const BannerList = () => {
           marginTop: "30px",
           display: "grid",
           gridTemplateColumns: "repeat(2, 1fr)",
-          columnGap: "10px", // Only affects columns
-          rowGap: "50px", // Controls spacing between rows
+          columnGap: "10px",
+          rowGap: "50px",
         }}
       >
-        <BannerComponent />
-        <BannerComponent />
-        <BannerComponent />
-        <BannerComponent />
-        <BannerComponent />
-        <BannerComponent />
+        {bannerList?.data?.items?.length > 0 ? (
+          bannerList?.data?.items?.map((items) => {
+            return <BannerComponent key={items.id} items={items} />;
+          })
+        ) : (
+          <div
+            style={{
+              display: "flex",
+              height: "200px",
+            }}
+          >
+            <label className="primary-title">Data is not Available</label>
+          </div>
+        )}
       </div>
       <div
         className="table-footer"
@@ -65,7 +106,7 @@ const BannerList = () => {
       >
         <div>
           <span className="back-text" style={{ color: "#181D27" }}>
-            {translations.showing} 10 {translations.entries}{" "}
+            {showing} {bannerList?.data?.items?.length} {entries}{" "}
           </span>
           <img src={iconRightArrow} />
         </div>

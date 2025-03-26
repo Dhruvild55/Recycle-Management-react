@@ -56,7 +56,9 @@ export const recyclerColumns = (navigate, deleteUserMutation) => [
     render: (row) => (
       <div className="btn-section">
         <button
-          onClick={() => navigate(route.recyclerDetails(row.id))}
+          onClick={() =>
+            navigate(route.userManagement.Recycler.Details(row.id))
+          }
           className="action-btn"
         >
           <img src={iconView} />

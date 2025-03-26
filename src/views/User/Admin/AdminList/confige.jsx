@@ -58,7 +58,9 @@ export const headers = (navigate, deleteUserMutation) => [
         <div className="btn-section">
           <button
             onClick={() =>
-              navigate(route.editUser(row.id), { state: { userData: row } })
+              navigate(route.userManagement.Admin.Edit(row.id), {
+                state: { userData: row },
+              })
             }
             className="action-btn"
           >

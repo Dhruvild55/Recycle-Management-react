@@ -6,24 +6,39 @@ export const route = {
   dashboard: "/dashboard",
 
   //* user Management
-  userManagement: "/user-Management/admin",
-  addUser: "/user-Management/admin/add",
-  editUser: (id) => `/user-Management/admin/edit/${id}`,
-
-  //! User Management Recycler
-  recyclerList: "/user-Management/recycler",
-  recyclerDetails: (id) => `/user-Management/recycler/details/${id}`,
-  recyclerHistory: (id) => `/user-Management/recycler/history/${id}`,
-  recyclerRewards: (id) => `/user-Management/recycler/rewards/${id}`,
-  recyclerHardware: (id) => `/user-Management/recycler/hardware/${id}`,
-  viewHistoryItems: (id) =>
-    `/user-Management/recycler/history/items-detail/${id}`,
+  userManagement: {
+    Admin: {
+      List: "/user-Management/admin",
+      Add: "/user-Management/admin/add",
+      Edit: (id) => `/user-Management/admin/edit/${id}`,
+    },
+    Recycler: {
+      List: "/user-Management/recycler",
+      Details: (id) => `/user-Management/recycler/details/${id}`,
+      History: (id) => `/user-Management/recycler/history/${id}`,
+      Rewards: (id) => `/user-Management/recycler/rewards/${id}`,
+      Hardware: (id) => `/user-Management/recycler/hardware/${id}`,
+      ViewHistory: (id) =>
+        `/user-Management/recycler/history/items-detail/${id}`,
+    },
+    Collector: {
+      List: "/user-Management/collector",
+      Details: {
+        Info: (id) => `/user-Management/collector/details/${id}`,
+        PickupHistory: {
+          List: (id) => `/user-Management/collector/pickupHistory/${id}`,
+          Details: (id) =>
+            `/user-Management/collector/pickupHistory/details/${id}`,
+        },
+      },
+    },
+  },
 
   //! User Management Collector
-  collectorList: "/user-Management/collector",
-  collectorDetails: (id) => `/user-Management/collector/details/${id}`,
-  collectorPickupHistory: (id) =>
-    `/user-Management/collector/pickupHistory/${id}`,
+  // collectorList: "/user-Management/collector",
+  // collectorDetails: (id) => `/user-Management/collector/details/${id}`,
+  // collectorPickupHistory: (id) =>
+  //   `/user-Management/collector/pickupHistory/${id}`,
   collectorClearance: (id) => `/user-Management/collector/clearance/${id}`,
 
   //! User Management Roles and Permission
@@ -37,8 +52,12 @@ export const route = {
       Add: "/app-content-Management/material-services-management/add",
     },
     BannerManagement: {
-      List: "/app-content-Management/banner-Management",
-      Add: "/app-content-Management/banner-Management/add",
+      List: "/app-content-management/banner-management",
+      Add: "/app-content-management/banner-management/add",
+    },
+    EventManagement: {
+      List: "/app-content-management/event-management",
+      Add: "/app-content-management/event-management/add",
     },
   },
   addGuidelines: "/app-content-Management/add-Guidelines",

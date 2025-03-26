@@ -9,6 +9,7 @@ import { getCollectorDetails } from "../../../../query/users/getCollectorDataByI
 import { Loader } from "../../../../shared/components/Loader";
 import { useState } from "react";
 import VehicleCardComponent from "./VehicleCardComponent";
+import { route } from "../../../../shared/constants/AllRoutes";
 
 const CollecterProfile = () => {
   const { id } = useParams();
@@ -33,7 +34,10 @@ const CollecterProfile = () => {
       <div className="common-main-section">
         <div className="header-section">
           <div className="left-side">
-            <button className="back-text" onClick={() => navigate(-1)}>
+            <button
+              className="back-text"
+              onClick={() => navigate(route.userManagement.Collector.List)}
+            >
               &larr; BACK
             </button>
           </div>
@@ -62,15 +66,7 @@ const CollecterProfile = () => {
       <div className="common-main-section" style={{ marginTop: "10px" }}>
         <label className="primary-title">Vehicle Detail</label>
         {isPending ? (
-          <div
-            className="container-fluid"
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              height: "40vh",
-            }}
-          >
+          <div className="loader-container">
             <Loader animation="border" width="50px" height="50px" />
           </div>
         ) : (

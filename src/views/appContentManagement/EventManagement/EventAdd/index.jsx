@@ -1,27 +1,30 @@
-import { useNavigate } from "react-router-dom";
-import DragAndDropComponent from "../../../../shared/components/DragAndDropComponent";
 import { useState } from "react";
-import { useForm, Controller } from "react-hook-form";
-import { Form } from "react-bootstrap";
-import { iconBack } from "../../../../assets/images/icons";
-import { useMutation } from "@tanstack/react-query";
-import { CreateBanner } from "../../../../query/AppContentManagement/BannerManagement/CreateBanner/createBanner.query";
-import { ReactToastify } from "../../../../shared/utils";
+import { Controller, useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { iconBack } from "../../../../assets/images/icons";
+import DragAndDropComponent from "../../../../shared/components/DragAndDropComponent";
+import { Form } from "react-bootstrap";
+import { createEvent } from "../../../../query/AppContentManagement/EventManagement/createEvent/createEvent.query";
+import { ReactToastify } from "../../../../shared/utils";
+import { useMutation } from "@tanstack/react-query";
 
-const BannerAdd = () => {
+const EventAdd = () => {
   const navigate = useNavigate();
   const translations = useSelector((state) => state.settings.translations);
   const {
-    addNewBanner,
+    addNewEvent,
+    postCode,
+    state,
+    eventDescription,
     sortingPriority,
-    bannerDescription,
     title,
     publish,
     unPublish,
     add,
     cancle,
     typehere,
+    isRequire,
   } = translations;
 
   const [image, setImage] = useState(null);
@@ -35,7 +38,7 @@ const BannerAdd = () => {
   } = useForm();
 
   const { mutate, isPending } = useMutation({
-    mutationFn: CreateBanner,
+    mutationFn: createEvent,
     onSuccess: (data) => {
       ReactToastify(data?.message, "success");
       navigate(-1);
@@ -61,6 +64,8 @@ const BannerAdd = () => {
     formData.append("SortingPriority", data.priority);
     formData.append("Description", data.description);
     formData.append("Status", data.status);
+    formData.append("State", data.state);
+    formData.append("Postcode", data.postCode);
     mutate(formData);
   };
 
@@ -76,7 +81,7 @@ const BannerAdd = () => {
         </button>
 
         <div className="title-section">
-          <label className="primary-title">{addNewBanner}</label>
+          <label className="primary-title">{addNewEvent}</label>
         </div>
 
         <form className="add-waste-form" onSubmit={handleSubmit(onSubmit)}>
@@ -102,7 +107,7 @@ const BannerAdd = () => {
             <input
               type="text"
               placeholder={typehere}
-              {...register("title", { required: "Title is required" })}
+              {...register("title", { required: `${title}  ${isRequire}` })}
             />
             {errors.title && (
               <p className="error-text">{errors.title.message}</p>
@@ -118,7 +123,7 @@ const BannerAdd = () => {
               type="number"
               placeholder={typehere}
               {...register("priority", {
-                required: "Sorting Priority is required",
+                required: `${sortingPriority}  ${isRequire}`,
                 min: { value: 1, message: "Minimum value is 1" },
                 max: { value: 100, message: "Maximum value is 100" },
               })}
@@ -127,17 +132,52 @@ const BannerAdd = () => {
               <p className="error-text">{errors.priority.message}</p>
             )}
           </div>
+          {/* State  Input */}
+          <div className="form-group">
+            <label>
+              {state}
+              <span className="required">*</span>
+            </label>
+            <input
+              type="text"
+              placeholder={typehere}
+              {...register("state", {
+                required: `${state}  ${isRequire}`,
+              })}
+            />
+            {errors.state && (
+              <p className="error-text">{errors.state.message}</p>
+            )}
+          </div>
+
+          {/* Postcode  Input */}
+          <div className="form-group">
+            <label>
+              {postCode}
+              <span className="required">*</span>
+            </label>
+            <input
+              type="text"
+              placeholder={typehere}
+              {...register("postCode", {
+                required: `${postCode}  ${isRequire}`,
+              })}
+            />
+            {errors.postCode && (
+              <p className="error-text">{errors.postCode.message}</p>
+            )}
+          </div>
 
           {/* Description Input */}
           <div className="form-group">
             <label>
-              {bannerDescription} <span className="required">*</span>
+              {eventDescription} <span className="required">*</span>
             </label>
             <input
               type="text"
               placeholder={typehere}
               {...register("description", {
-                required: "Description is required",
+                required: `${eventDescription}  ${isRequire}`,
               })}
             />
             {errors.description && (
@@ -151,7 +191,6 @@ const BannerAdd = () => {
               name="status"
               control={control}
               defaultValue="Publish"
-              rules={{ required: "Status is required" }}
               render={({ field }) => (
                 <>
                   <Form.Check
@@ -184,7 +223,7 @@ const BannerAdd = () => {
               {cancle}
             </button>
             <button type="submit" className="btn">
-              {isPending ? "Adding..." : add}
+              {add}
             </button>
           </div>
         </form>
@@ -193,4 +232,4 @@ const BannerAdd = () => {
   );
 };
 
-export default BannerAdd;
+export default EventAdd;

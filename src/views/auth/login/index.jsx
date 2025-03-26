@@ -38,9 +38,7 @@ const Login = () => {
       ReactToastify("Login successful", "success");
       navigate("/dashboard");
     },
-    onError: (error) => {
-      ReactToastify(error?.response?.data?.message || "Login failed", "error");
-    },
+    onError: (error) => {},
   });
 
   const onSubmit = (data) => {

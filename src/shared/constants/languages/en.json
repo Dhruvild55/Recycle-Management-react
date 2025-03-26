@@ -96,7 +96,9 @@
     "list_of_admin": "List Of admin",
     "list_of_recycler": "List of Recycler",
     "list_of_collector": "List of Collector",
-    "personal_information": "Personal Information"
+    "personal_information": "Personal Information",
+
+    ".Comment": "_Commect"
   },
 
   "formFields": {
@@ -154,5 +156,23 @@
   "uploadLogo": "Upload Logo",
   "uploadBanner": "Upload Banner",
   "uploadExcelFiles": "Upload Excel Files",
-  "isRequire": "is required"
+  "isRequire": "is required",
+
+  "addBanner": "Add Banner",
+  "bannerManagement": "Banner Management",
+  "sortingPriority": "Sorting Priority",
+  "addNewBanner": "Add New Banner",
+  "bannerDescription": "Banner Description",
+  "publish": "Publish",
+  "unPublish": "UnPublish",
+  "add": "Add",
+  "cancle": "Cancle",
+  "typehere": "Type Here",
+  "addNewEvent": "Add New Event",
+  "postCode": "Postcode",
+  "state": "State",
+  "eventDescription": "Event Description",
+  "eventManagement": "Event Management",
+  "addEvent": "Add Event",
+  "status": "Status"
 }

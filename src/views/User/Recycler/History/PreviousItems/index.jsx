@@ -66,7 +66,11 @@ const PreviousItems = ({
                       color: "#008ADF",
                       borderRadius: "10px",
                     }}
-                    onClick={() => navigate(route.viewHistoryItems(item.id))}
+                    onClick={() =>
+                      navigate(
+                        route.userManagement.Recycler.ViewHistory(item.id)
+                      )
+                    }
                   >
                     View
                   </button>

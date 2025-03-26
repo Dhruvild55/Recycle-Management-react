@@ -18,7 +18,7 @@ export const SidebarLinks = [
   },
   {
     name: "user_management",
-    path: route.userManagement,
+    path: route.userManagement.Admin.List,
     icon: <UserIcon color="#1F7F82" />,
   },
   {

@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import CollectorTopSection from "../Component/CollectorTopSection";
 import { iconDelete } from "../../../../assets/images/icons";
+import CustomTable from "../../../../shared/components/CustomTable";
+import { PickupHistoryData, pickupHistoryHeader } from "./config";
 
 const PickupHistory = () => {
   const navigate = useNavigate();
@@ -19,6 +21,13 @@ const PickupHistory = () => {
           </div>
         </div>
         <CollectorTopSection />
+        <div style={{ marginBottom: "10px" }}>
+          <label className="primary-title">List of Recycler</label>
+        </div>
+        <CustomTable
+          headers={pickupHistoryHeader(navigate)}
+          data={PickupHistoryData}
+        />
       </div>
     </div>
   );

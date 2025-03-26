@@ -5,8 +5,10 @@
   width: 480px;
 
   .img img {
-    max-width: 100px;
-    height: auto;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 10px;
+    width: 118px;
   }
 
   .details {
@@ -36,6 +38,25 @@
 
     .banner-description {
       font-size: 12px;
+      .description {
+        margin-bottom: 5px;
+      }
+    }
+    .state-details {
+      display: flex;
+      margin-bottom: 15px;
+      .details {
+        .title {
+          font-size: 12px;
+          font-weight: 600;
+          margin-bottom: 0px;
+        }
+        .data {
+          font-weight: 400;
+          font-size: 12px;
+          margin-bottom: 0px;
+        }
+      }
     }
 
     .banner-status {
@@ -55,8 +76,16 @@
         border-radius: 10px;
         font-size: 14px;
         font-weight: 500;
+
         text-align: center;
-        background-color: #c9ffdf;
+        &.dark {
+          background-color: #1f7f82;
+          color: #ffffff;
+        }
+        &.light {
+          background-color: #c9ffdf;
+          color: #181d27;
+        }
       }
     }
   }

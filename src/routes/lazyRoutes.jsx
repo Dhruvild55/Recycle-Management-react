@@ -29,6 +29,9 @@ const UserManagement = {
     List: lazy(() => import(`../views/User/Collecter/CollectorList`)),
     Details: lazy(() => import(`../views/User/Collecter/Information`)),
     PickupHistory: lazy(() => import(`../views/User/Collecter/PickupHistory`)),
+    ViewPickupHistory: lazy(() =>
+      import(`../views/User/Collecter/PickupHistory/PickupHistoryDetails`)
+    ),
     Clearance: lazy(() => import(`../views/User/Collecter/Clearance`)),
   },
 };
@@ -76,6 +79,14 @@ const AppContentManagement = {
     ),
     Add: lazy(() =>
       import("../views/appContentManagement/BannerManagement/BannerAdd")
+    ),
+  },
+  EventManagement: {
+    List: lazy(() =>
+      import("../views/appContentManagement/EventManagement/EventList")
+    ),
+    Add: lazy(() =>
+      import("../views/appContentManagement/EventManagement/EventAdd")
     ),
   },
 };

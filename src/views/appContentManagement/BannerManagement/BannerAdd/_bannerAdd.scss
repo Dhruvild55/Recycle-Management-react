@@ -11,12 +11,19 @@
     color: #344054;
   }
 
-  input[type="text"] {
+  input[type="text"],
+  input[type="number"] {
     width: 100%;
     padding: 8px;
     box-sizing: border-box;
     border-radius: 7px;
-    border: 1px solid #d0d5dd;
+    border: 1px solid #d5d7da;
+
+    &:focus {
+      border-color: #1f7f82;
+      outline: none;
+      box-shadow: 0 0 5px rgba(31, 127, 130, 0.3);
+    }
   }
   .checkbox-group {
     display: flex;
@@ -26,6 +33,10 @@
     display: flex;
     gap: 20px;
     align-items: center;
+  }
+  .error-text {
+    color: red;
+    font-size: 12px;
   }
 
   .form-actions {

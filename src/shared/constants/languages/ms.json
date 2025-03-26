@@ -91,5 +91,23 @@
   "uploadLogo": "Muat naik Logo",
   "uploadBanner": "Muat Naik Sepanduk",
   "uploadExcelFiles": "Muat naik Fail Excel",
-  "isRequire": "diperlukan"
+  "isRequire": "diperlukan",
+
+  "addBanner": "Tambah Sepanduk",
+  "bannerManagement": "Pengurusan Banner",
+  "sortingPriority": "Keutamaan Isih",
+  "addNewBanner": "Tambah Sepanduk Baharu",
+  "bannerDescription": "Penerangan Sepanduk",
+  "publish": "Terbitkan",
+  "unPublish": "NyahTerbitkan",
+  "add": "Tambah",
+  "cancle": "Cancle",
+  "typehere": "Taip Di Sini",
+  "addNewEvent": "Tambah Acara Baharu",
+  "postCode": "Poskod",
+  "state": "negeri",
+  "eventDescription": "Penerangan Peristiwa",
+  "eventManagement": "Pengurusan Acara",
+  "addEvent": "Tambah Acara",
+  "status": "Status"
 }

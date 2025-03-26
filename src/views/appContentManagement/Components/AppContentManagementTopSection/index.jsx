@@ -12,6 +12,8 @@ const AppContentManagementTopSection = () => {
       return "material-service-management";
     if (location.pathname === route.appContentManagement.BannerManagement.List)
       return "banner-management";
+    if (location.pathname === route.appContentManagement.EventManagement.List)
+      return "event-management";
   };
 
   const selectedSection = getSelectedSection();
@@ -33,6 +35,15 @@ const AppContentManagementTopSection = () => {
         }
         className={`btn${
           selectedSection === "banner-management" ? " selected" : ""
+        }`}
+      />
+      <ButtonComponent
+        label="Event Management"
+        onClick={() =>
+          navigate(route.appContentManagement.EventManagement.List)
+        }
+        className={`btn${
+          selectedSection === "event-management" ? " selected" : ""
         }`}
       />
     </div>

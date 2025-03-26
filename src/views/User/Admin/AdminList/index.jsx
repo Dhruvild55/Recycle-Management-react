@@ -11,7 +11,7 @@ const AdminList = () => {
       queryKey="adminList"
       fetchFunction={getAdminList}
       tableHeaders={headers}
-      addButton={{ route: route.addUser, label: "Add Admin" }}
+      addButton={{ route: route.userManagement.Admin.Add, label: "Add Admin" }}
       roleOptions={["Admin", "SuperAdmin", "All"]}
     />
   );

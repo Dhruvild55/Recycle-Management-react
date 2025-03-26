@@ -82,74 +82,82 @@ const RoutesDetails = [
     children: [
       //Dashboard
       { path: route.dashboard, Component: Dashboard.Dashboard, exact: true },
-
+      // ! User Management
+      // * Admin / List
       {
-        path: route.userManagement,
+        path: route.userManagement.Admin.List,
         Component: UserManagement.Admin.List,
         exact: true,
       },
-      //! Admin Add
+      //* Admin / Add
       {
-        path: route.addUser,
+        path: route.userManagement.Admin.Add,
         Component: UserManagement.Admin.Add,
         exact: true,
       },
-      //! Admin Edit
+      //* Admin Edit
       {
-        path: route.editUser(":id"),
+        path: route.userManagement.Admin.Edit(":id"),
         Component: UserManagement.Admin.Edit,
         exact: true,
       },
       //! Recycler List
       {
-        path: route.recyclerList,
+        path: route.userManagement.Recycler.List,
         Component: UserManagement.Recycler.List,
         exact: true,
       },
       //! Recycler Details
       {
-        path: route.recyclerDetails(`:id`),
+        path: route.userManagement.Recycler.Details(`:id`),
         Component: UserManagement.Recycler.Details,
       },
       //! Recycler History
       {
-        path: route.recyclerHistory(`:id`),
+        path: route.userManagement.Recycler.History(`:id`),
         Component: UserManagement.Recycler.History,
         exact: true,
       },
       {
-        path: route.viewHistoryItems(":id"),
+        path: route.userManagement.Recycler.ViewHistory(":id"),
         Component: UserManagement.Recycler.ViewHistory,
         exact: true,
       },
       //! Recycler Rewards
       {
-        path: route.recyclerRewards(":id"),
+        path: route.userManagement.Recycler.Rewards(":id"),
         Component: UserManagement.Recycler.Rewards,
         exact: true,
       },
       //! Recycler HardWare
       {
-        path: route.recyclerHardware(":id"),
+        path: route.userManagement.Recycler.Hardware(":id"),
         Component: UserManagement.Recycler.Hardware,
         exact: true,
       },
 
       //! collectorList
       {
-        path: route.collectorList,
+        path: route.userManagement.Collector.List,
         Component: UserManagement.Collector.List,
         exact: true,
       },
 
       {
-        path: route.collectorDetails(`:id`),
+        path: route.userManagement.Collector.Details.Info(`:id`),
         Component: UserManagement.Collector.Details,
         exact: true,
       },
       {
-        path: route.collectorPickupHistory(`:id`),
+        path: route.userManagement.Collector.Details.PickupHistory.List(`:id`),
         Component: UserManagement.Collector.PickupHistory,
+        exact: true,
+      },
+      {
+        path: route.userManagement.Collector.Details.PickupHistory.Details(
+          ":id"
+        ),
+        Component: UserManagement.Collector.ViewPickupHistory,
         exact: true,
       },
       {
@@ -259,6 +267,19 @@ const RoutesDetails = [
         Component: AppContentManagement.BannerManagement.Add,
         exact: true,
       },
+      // * Event Management / List
+      {
+        path: route.appContentManagement.EventManagement.List,
+        Component: AppContentManagement.EventManagement.List,
+        exact: true,
+      },
+      // * Event Management / Add
+      {
+        path: route.appContentManagement.EventManagement.Add,
+        Component: AppContentManagement.EventManagement.Add,
+        exact: true,
+      },
+
       { path: route.addWaste, Component: AddWeastePage, exact: true },
       { path: route.addGuidelines, Component: AddGuideLinePage, exact: true },
       //

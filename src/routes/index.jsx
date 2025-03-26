@@ -18,14 +18,7 @@ function AllRoutes() {
             element={
               <Suspense
                 fallback={
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      height: "100vh",
-                    }}
-                  >
+                  <div className="loader-container">
                     <Loader animation="border" width="50px" height="50px" />
                   </div>
                 }

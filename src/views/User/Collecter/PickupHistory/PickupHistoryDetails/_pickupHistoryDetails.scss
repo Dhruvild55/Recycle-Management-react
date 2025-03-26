@@ -1,0 +1,37 @@
+.pickupCollectorDetails,
+.row {
+  .recycler-info {
+    display: grid;
+    grid-template-columns: 150px auto; // Label and value columns
+    row-gap: 8px;
+    font-size: 14px;
+
+    @include media-max(lg) {
+      grid-template-columns: auto;
+      justify-items: center;
+      gap: 25px;
+      border-bottom: 1px solid #d4d4d4;
+      padding-bottom: 40px;
+    }
+
+    .details {
+      display: grid;
+      grid-template-columns: 150px auto; // Fixed width for labels, flexible width for values
+      row-gap: 8px;
+      align-items: center;
+
+      p {
+        display: contents;
+      }
+
+      span:first-child {
+        font-weight: 600;
+        color: #333;
+      }
+
+      span:last-child {
+        color: #555;
+      }
+    }
+  }
+}

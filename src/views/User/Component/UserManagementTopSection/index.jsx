@@ -12,9 +12,11 @@ function UserManagementTopSection({ translations }) {
   const navigate = useNavigate();
 
   const getSelectedRole = () => {
-    if (location.pathname === route.recyclerList) return "Recycler";
-    if (location.pathname === route.userManagement) return "Admin";
-    if (location.pathname === route.collectorList) return "Collector";
+    if (location.pathname === route.userManagement.Recycler.List)
+      return "Recycler";
+    if (location.pathname === route.userManagement.Admin.List) return "Admin";
+    if (location.pathname === route.userManagement.Collector.List)
+      return "Collector";
     if (location.pathname === route.rolesList) return "Roles";
     return "Admin";
   };
@@ -38,17 +40,17 @@ function UserManagementTopSection({ translations }) {
         <>
           <ButtonComponent
             label={admin}
-            onClick={() => navigate(route.userManagement)}
+            onClick={() => navigate(route.userManagement.Admin.List)}
             className={`btn${selectedRole === "Admin" ? " selected" : ""}`}
           />
           <ButtonComponent
             label={recycler}
-            onClick={() => navigate(route.recyclerList)}
+            onClick={() => navigate(route.userManagement.Recycler.List)}
             className={`btn${selectedRole === "Recycler" ? " selected" : ""}`}
           />
           <ButtonComponent
             label={collector}
-            onClick={() => navigate(route.collectorList)}
+            onClick={() => navigate(route.userManagement.Collector.List)}
             className={`btn${selectedRole === "Collector" ? " selected" : ""}`}
           />
           <ButtonComponent
