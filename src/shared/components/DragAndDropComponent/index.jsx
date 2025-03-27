@@ -24,7 +24,7 @@ const DragAndDropComponent = ({ image, onDrop }) => {
         <label>
           <span className="green-text">Click to upload</span> or drag and drop
         </label>
-        <small>SVG, PNG, or JPG (max. 800x400px)</small>
+        <small> Only Allow Excel (max. 800x400px)</small>
       </div>
     </div>
   );

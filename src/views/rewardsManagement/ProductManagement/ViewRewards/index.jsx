@@ -6,6 +6,8 @@ import { getRewardsDetails } from "../../../../query/RewardsManagement/getReward
 import { iconBack } from "../../../../assets/images/icons";
 import { useEffect, useState } from "react";
 import { updateReward } from "../../../../query/RewardsManagement/updateReward/updateReward.query";
+import { getRewardsCategory } from "../../../../query/RewardsManagement/GetRewardsCategory/getRewardsCategory.query";
+import { ReactToastify } from "../../../../shared/utils";
 
 const ViewRewards = () => {
   const navigate = useNavigate();
@@ -19,12 +21,18 @@ const ViewRewards = () => {
     queryFn: () => getRewardsDetails({ id }),
   });
 
+  const { data: categoryData, isLoading: isCategoryLoading } = useQuery({
+    queryKey: ["getRewardsCategory"],
+    queryFn: getRewardsCategory,
+  });
+
   const [formData, setFormData] = useState({
     rewardName: data?.data?.rewardName || "",
     validity: data?.data?.validity || "",
     point: data?.data?.point || "",
     rewardCategoryName: data?.data?.rewardCategoryName || "",
     description: data?.data?.description || "",
+    rewardCategoryId: data?.data?.rewardCategoryId || "",
   });
 
   useEffect(() => {
@@ -33,29 +41,53 @@ const ViewRewards = () => {
         rewardName: data.data.rewardName || "",
         validity: data.data.validity || "",
         point: data.data.point || "",
-        rewardCategoryName: data.data.rewardCategoryName || "",
+        rewardCategoryId: data.data.rewardCategoryId || "", // Set ID from API
+        rewardCategoryName: data.data.rewardCategoryName || "", // Set Name
         description: data.data.description || "",
       });
     }
   }, [data]);
 
+  console.log("formData", formData);
+
   const { mutate, isPending } = useMutation({
     mutationFn: ({ id, updatedData }) => updateReward(id, updatedData),
     onSuccess: (data) => {
-      console.log(data);
+      ReactToastify(data?.message, "success");
+      navigate(-1);
     },
     onError: (error) => {
       console.log(error);
     },
   });
 
-  // Handle input changes
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+
+    if (name === "rewardCategoryId") {
+      const selectedCategory = categoryData?.data?.find(
+        (cat) => cat.categoryId === value
+      );
+
+      setFormData({
+        ...formData,
+        rewardCategoryId: value,
+        rewardCategoryName: selectedCategory?.category || "", // Set category name
+      });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    mutate({ id, updatedData: formData });
+    const sendData = new FormData();
+    sendData.append("Description", formData?.description);
+    sendData.append("Point", formData?.point);
+    sendData.append("RewardName", formData?.rewardName);
+    sendData.append("RewardCategoryId", formData?.rewardCategoryId);
+    sendData.append("Validity", formData?.validity);
+    mutate({ id, updatedData: sendData });
   };
 
   return (
@@ -107,16 +139,30 @@ const ViewRewards = () => {
               readOnly={!isEdit}
             />
           </div>
-
           <div className="fields-group">
             <label>Reward Category</label>
             <select
-              name="rewardCategoryName"
-              value={formData.rewardCategoryName}
+              name="rewardCategoryId"
+              value={formData.rewardCategoryId}
               onChange={handleChange}
               disabled={!isEdit}
             >
-              <option>{formData.rewardCategoryName}</option>
+              {formData.rewardCategoryId && (
+                <option value={formData.rewardCategoryId}>
+                  {formData.rewardCategoryName}
+                </option>
+              )}
+
+              {categoryData?.data
+                ?.filter(
+                  (category) =>
+                    category.categoryId !== formData.rewardCategoryId
+                )
+                .map((category) => (
+                  <option key={category.categoryId} value={category.categoryId}>
+                    {category.category}
+                  </option>
+                ))}
             </select>
           </div>
 

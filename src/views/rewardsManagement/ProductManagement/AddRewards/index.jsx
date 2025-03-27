@@ -8,10 +8,16 @@ import { getRewardsCategory } from "../../../../query/RewardsManagement/GetRewar
 import InputField from "./InputFeild";
 import { ReactToastify } from "../../../../shared/utils";
 import { iconBack } from "../../../../assets/images/icons";
+import DragAndDropExcel from "./ExcelDragAndDropComponent";
 
 const AddRewards = () => {
   const navigate = useNavigate();
   const [image, setImage] = useState(null);
+  const [excelFile, setExcelFile] = useState(null);
+
+  const handleExcelUpload = (file) => {
+    setExcelFile(file);
+  };
 
   // Initialize React Hook Form
   const {
@@ -55,6 +61,7 @@ const AddRewards = () => {
     formData.append("RewardCategoryId", data.category);
     formData.append("Description", data.shortDescription);
     formData.append("RewardImg", image);
+    formData.append("BulkVoucher", excelFile);
 
     for (let [key, value] of formData.entries()) {
       console.log(`${key}:`, value);
@@ -129,6 +136,12 @@ const AddRewards = () => {
           errors={errors}
           required
         />
+        <div className="form-group-image" style={{ marginBottom: "20px" }}>
+          <label>
+            Bulk Upload<span style={{ color: "green" }}>*</span>
+          </label>
+          <DragAndDropExcel file={excelFile} onDrop={handleExcelUpload} />
+        </div>
 
         <div className="form-actions">
           <button type="button" className="btn" onClick={() => navigate(-1)}>

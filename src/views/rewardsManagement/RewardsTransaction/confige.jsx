@@ -1,6 +1,7 @@
 import ProfilePic from "../../../shared/components/ProfilePic";
 import { iconEye } from "../../../assets/images/icons";
 import { route } from "../../../shared/constants/AllRoutes";
+import ChipComponent from "../../../shared/components/ChipComponent";
 
 export const headers = (navigate) => [
   {
@@ -9,7 +10,7 @@ export const headers = (navigate) => [
     render: (row) => {
       return (
         <div className="d-flex  align-items-center">
-          <ProfilePic isChange={false} />
+          <ProfilePic isChange={false} image={row.rewardImg} />
           <span className="ms-2">{row.rewardName}</span>
         </div>
       );
@@ -21,7 +22,7 @@ export const headers = (navigate) => [
     render: (row) => {
       return (
         <div className="d-flex  align-items-center">
-          <ProfilePic isChange={false} />
+          <ProfilePic isChange={false} image={row.userImg} />
           <span className="ms-2">{row.userName}</span>
         </div>
       );
@@ -35,7 +36,16 @@ export const headers = (navigate) => [
     render: (row) => {
       return (
         <div>
-          <span>{row.status}</span>
+          <ChipComponent
+            label={row.status}
+            color={
+              row.status === "Redeemed"
+                ? "green"
+                : row.status === "Claimed"
+                ? "blue"
+                : "yellow"
+            }
+          />
         </div>
       );
     },
@@ -43,12 +53,14 @@ export const headers = (navigate) => [
   {
     key: "action",
     label: "action",
-    render: () => {
+    render: (row) => {
       return (
         <div>
           <button
             className="action-btn"
-            onClick={() => navigate(route.viewRewardsTransaction)}
+            onClick={() =>
+              navigate(route.rewardsManagement.RewardsTransaction.View(row.id))
+            }
           >
             <img src={iconEye} />
           </button>

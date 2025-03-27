@@ -10,12 +10,19 @@
   .input-section {
     display: flex;
     gap: 20px;
+    @include media-max(lg) {
+      flex-direction: column;
+    }
 
     input {
       width: 70%;
       border-radius: 8px;
       border: 1px solid #929292;
       padding: 10px;
+
+      @include media-max(lg) {
+        width: 100%;
+      }
     }
     .save-btn {
       padding: 10px 100px 10px 100px;

@@ -2,7 +2,7 @@ import { iconDelete, iconEdit, iconEye } from "../../../assets/images/icons";
 import ProfilePic from "../../../shared/components/ProfilePic";
 import { route } from "../../../shared/constants/AllRoutes";
 
-export const headers = (navigate) => [
+export const headers = (navigate, deleteReward) => [
   {
     key: "rewardName",
     label: "reward",
@@ -56,7 +56,10 @@ export const headers = (navigate) => [
           >
             <img src={iconEye} />
           </button>
-          <button className="action-btn">
+          <button
+            className="action-btn"
+            onClick={() => deleteReward(row.rewardId)}
+          >
             <img src={iconDelete} />
           </button>
         </div>

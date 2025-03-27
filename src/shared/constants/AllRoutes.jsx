@@ -82,6 +82,10 @@ export const route = {
       Add: "/rewards-management/product-management/add",
       View: (id) => `/rewards-management/product-management/${id}`,
     },
+    RewardsTransaction: {
+      List: "/rewards-management/rewards-transaction",
+      View: (id) => `/rewards-management/rewards-transaction/${id}`,
+    },
   },
 
   //! Sponser Management

@@ -37,9 +37,9 @@ const ViewCollectorCollectionPage = lazy(() =>
 
 //* Rewards Management
 
-const ViewRewardsTransactionPage = lazy(() =>
-  import("../views/rewardsManagement/RewardsTransaction/ViewRewardsTransaction")
-);
+// const ViewRewardsTransactionPage = lazy(() =>
+//   import("../views/rewardsManagement/RewardsTransaction/ViewRewardsTransaction")
+// );
 
 const ViewfiatAndDenominationsPage = lazy(() =>
   import("../views/rewardsManagement/SettingFiatAndPoints")
@@ -226,9 +226,16 @@ const RoutesDetails = [
         Component: RewardsManagement.ProductManagement.View,
         exact: true,
       },
+      // * Rewards Management / Rewards Transaction
       {
-        path: route.viewRewardsTransaction,
-        Component: ViewRewardsTransactionPage,
+        path: route.rewardsManagement.RewardsTransaction.List,
+        Component: RewardsManagement.RewardsTransaction.List,
+        exact: true,
+      },
+      // * Rewards Managemetn / View
+      {
+        path: route.rewardsManagement.RewardsTransaction.View(":id"),
+        Component: RewardsManagement.RewardsTransaction.View,
         exact: true,
       },
       {

@@ -132,12 +132,20 @@ const PointsTransactionManagement = {
 
 const RewardsManagement = {
   ProductManagement: {
-    List: lazy(() => import("../views/rewardsManagement")),
+    List: lazy(() => import("../views/rewardsManagement/ProductManagement")),
     Add: lazy(() =>
       import("../views/rewardsManagement/ProductManagement/AddRewards")
     ),
     View: lazy(() =>
       import("../views/rewardsManagement/ProductManagement/ViewRewards")
+    ),
+  },
+  RewardsTransaction: {
+    List: lazy(() => import("../views/rewardsManagement/RewardsTransaction")),
+    View: lazy(() =>
+      import(
+        "../views/rewardsManagement/RewardsTransaction/ViewRewardsTransaction"
+      )
     ),
   },
 };

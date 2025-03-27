@@ -23,6 +23,10 @@
   background-color: white;
   border-radius: 20px;
   min-height: calc(100vh - 224px);
+
+  @include media-max(lg) {
+    padding: 30px 20px 10px 20px;
+  }
 }
 // tab section
 .common-tab-section {
@@ -75,6 +79,11 @@
   margin-top: 20px;
   margin-bottom: 20px;
   flex-wrap: wrap;
+
+  @include media-max(lg) {
+    padding: 5px 0px 5px 0px;
+    gap: 20px;
+  }
 
   .tool-section {
     display: flex;
