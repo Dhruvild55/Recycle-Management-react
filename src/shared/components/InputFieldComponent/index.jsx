@@ -10,14 +10,14 @@ const InputField = ({
   errors,
   name,
   validation,
-  options, // For dropdowns
-  rows, // For textareas
+  options,
+  rows,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
     <div className="input-field">
-      <label>{label}</label>
+      <label htmlFor={name}>{label}</label>
 
       {type === "tel" ? (
         /* Handle Telephone Input */
@@ -64,10 +64,10 @@ const InputField = ({
           )}
         </div>
       ) : (
-        /* Handle Default and Password Input */
         <>
           <div className="password-wrapper">
             <input
+              id={name}
               placeholder={placeholder}
               type={
                 type === "password"

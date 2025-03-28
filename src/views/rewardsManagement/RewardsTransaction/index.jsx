@@ -52,7 +52,7 @@ const RewardTransaction = () => {
         <RewardManagementTopSection />
         <div className="common-page-toolbar">
           <label className="primary-title">List of Reward Transaction</label>
-          <div className="tool-section">
+          <div className="tool-section" style={{ gap: "110px" }}>
             <SearchInput placeholder={search} onSearch={setSearchTerm} />
             <FilterDropdown
               label={filter}

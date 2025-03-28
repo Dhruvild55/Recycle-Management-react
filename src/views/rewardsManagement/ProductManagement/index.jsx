@@ -15,43 +15,48 @@ import useDebounce from "../../../shared/hooks/useDebounce";
 import { deleteRewards } from "../../../query/RewardsManagement/DeleteReward/deleteRewards.query";
 import { ReactToastify } from "../../../shared/utils";
 import RewardManagementTopSection from "../Component/RewardManagementtopSection";
+import SearchInput from "../../../shared/components/SearchInput";
+import FilterDropdown from "../../../shared/components/FillerDropdown";
+import ButtonComponent from "../../../shared/components/Buttoncomponent";
+import TitleComponent from "../../../shared/components/TitleComponent";
 
 const ProductManagement = () => {
   const translations = useSelector((state) => state.settings.translations);
+  const { search, filter } = translations;
   const [pageSize, setPageSize] = useState(10);
   const [pageNumber, setPageNumber] = useState(1);
-  const [isDescendingOrder, setIsDescendingOrder] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selecteCategoryOpt, setSelectedCategoryOpt] = useState("All");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filterText, setFilter] = useState("");
   const navigate = useNavigate();
 
-  const combinedSearchTerm = `${searchQuery}`.trim();
+  const combinedSearchTerm = `${searchTerm}`.trim();
   const debouncedSearchQuery = useDebounce(combinedSearchTerm, 500);
 
+  // ! get Rewards Category API
   const { data: categoryData, isLoading: isCategoryLoading } = useQuery({
     queryKey: ["getRewardsCategory"],
     queryFn: getRewardsCategory,
   });
 
+  // ! get All Rewards API
   const { data, isPending, refetch } = useQuery({
     queryKey: [
       "getAllrewards",
       pageSize,
       pageNumber,
-      isDescendingOrder,
       debouncedSearchQuery,
-      selecteCategoryOpt,
+      filterText,
     ],
     queryFn: () =>
       getAllRewards({
         pageSize,
         pageNumber,
-        isDescendingOrder,
-        selecteCategoryOpt,
-        debouncedSearchQuery,
+        searchTerm: debouncedSearchQuery,
+        filterText,
       }),
   });
 
+  // ! Delete Rewards API
   const { mutate: deleteReward } = useMutation({
     mutationFn: deleteRewards,
     onSuccess: (data) => {
@@ -71,40 +76,29 @@ const ProductManagement = () => {
       <div className="common-main-section">
         <RewardManagementTopSection />
         <div className="common-page-toolbar">
-          <label className="primary-title">List of Reward</label>
+          <TitleComponent label="List of Rewards" />
           <div className="tool-section">
-            <input
-              className="search-input"
-              type="text"
-              placeholder={translations.search}
-              onChange={(e) => setSearchQuery(e.target.value)}
+            <SearchInput placeholder={search} onSearch={setSearchTerm} />
+            <FilterDropdown
+              label={filter}
+              options={[
+                { value: "", label: "All" },
+                ...(categoryData?.data?.map((category) => ({
+                  value: category.categoryId,
+                  label: category.category,
+                })) || []),
+              ]}
+              onFilterChange={setFilter}
             />
-            <label className="back-text">{translations.filter}:</label>
-            <select
-              value={selecteCategoryOpt}
-              onChange={(e) => setSelectedCategoryOpt(e.target.value)}
-            >
-              <option value="All">All</option>
-              {isCategoryLoading ? (
-                <option>Loading categories...</option>
-              ) : (
-                categoryData?.data?.map((category) => (
-                  <option key={category.categoryId} value={category.categoryId}>
-                    {category.category}
-                  </option>
-                ))
-              )}
-            </select>
           </div>
-          <button
+          <ButtonComponent
+            label="Add Reward"
             className="add-btn"
+            icon={<FaPlus style={{ fontSize: "15px" }} />}
             onClick={() =>
               navigate(route.rewardsManagement.ProductManagement.Add)
             }
-          >
-            {" "}
-            Add Reward <FaPlus style={{ fontSize: "15px" }} />
-          </button>
+          />
         </div>
         <CustomTable
           headers={headers(navigate, deleteReward)}

@@ -10,6 +10,10 @@ const RewardManagementTopSection = () => {
       return "productManagement";
     if (location.pathname === route.rewardsManagement.RewardsTransaction.List)
       return "rewardsTransaction";
+    if (location.pathname === route.rewardsManagement.FatPointAndPointDeno.View)
+      return "fatAndPointDeno";
+    if (location.pathname === route.rewardsManagement.CashReward.List)
+      return "cashrewards";
   };
   const selectedSection = getSelectedSection();
   return (
@@ -29,6 +33,20 @@ const RewardManagementTopSection = () => {
         className={`btn${
           selectedSection === "rewardsTransaction" ? " selected" : ""
         }`}
+      />
+      <ButtonComponent
+        label="Setting for Fiat and Points Deno"
+        onClick={() =>
+          navigate(route.rewardsManagement.FatPointAndPointDeno.View)
+        }
+        className={`btn${
+          selectedSection === "fatAndPointDeno" ? " selected" : ""
+        }`}
+      />
+      <ButtonComponent
+        label="Cash Reward"
+        onClick={() => navigate(route.rewardsManagement.CashReward.List)}
+        className={`btn${selectedSection === "cashrewards" ? " selected" : ""}`}
       />
     </div>
   );

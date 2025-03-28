@@ -14,6 +14,18 @@ const ViewRewardsTransaction = () => {
     queryFn: () => getRewardTransactionDetails(id),
   });
   console.log(data?.data);
+
+  const formatDate = (dateString) => {
+    if (!dateString || dateString === "0001-01-01T00:00:00") {
+      return "Not Available";
+    }
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "2-digit",
+    });
+  };
   return (
     <>
       <div className="common-main-section" style={{ minHeight: "450px" }}>
@@ -31,7 +43,7 @@ const ViewRewardsTransaction = () => {
           </div>
         ) : (
           <div className="form-container-rewards">
-            <div className="image-section" style={{ paddingTop: "20px" }}>
+            <div className="image-section">
               <ProfilePic
                 size={200}
                 isChange={false}
@@ -45,7 +57,11 @@ const ViewRewardsTransaction = () => {
               </div>
               <div className="fields-group">
                 <label>Redeem Date</label>
-                <input type="text" value={data?.data?.redeemDate} readOnly />
+                <input
+                  type="text"
+                  value={formatDate(data?.data?.redeemDate)}
+                  readOnly
+                />
               </div>
               <div className="fields-group">
                 <label>Point Spent</label>
@@ -57,7 +73,11 @@ const ViewRewardsTransaction = () => {
               </div>
               <div className="fields-group">
                 <label>Claimed Date</label>
-                <input type="text" value={data?.data?.claimedDate} readOnly />
+                <input
+                  type="text"
+                  value={formatDate(data?.data?.claimedDate)}
+                  readOnly
+                />
               </div>
               <div className="fields-group">
                 <label>Status</label>
@@ -65,7 +85,11 @@ const ViewRewardsTransaction = () => {
               </div>
               <div className="fields-group">
                 <label>Validity Date</label>
-                <input type="text" value={data?.data?.validityDate} readOnly />
+                <input
+                  type="text"
+                  value={formatDate(data?.data?.validityDate)}
+                  readOnly
+                />
               </div>
             </div>
           </div>

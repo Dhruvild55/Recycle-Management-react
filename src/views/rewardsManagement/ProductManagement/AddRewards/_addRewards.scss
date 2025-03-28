@@ -24,6 +24,11 @@
     font-size: 14px;
     font-family: inherit;
     resize: vertical;
+    &:focus {
+      border-color: #1f7f82;
+      outline: none;
+      box-shadow: 0 0 5px rgba(31, 127, 130, 0.3);
+    }
   }
   .form-actions {
     display: flex;

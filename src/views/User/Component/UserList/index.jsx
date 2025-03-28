@@ -13,6 +13,9 @@ import Pagination from "../../../../shared/components/CustomPagination";
 import { iconRightArrow } from "../../../../assets/images/icons";
 import { deleteUser } from "../../../../query/users/deleteUser/deleteUser.query";
 import useDebounce from "../../../../shared/hooks/useDebounce";
+import TitleComponent from "../../../../shared/components/TitleComponent";
+import ButtonComponent from "../../../../shared/components/Buttoncomponent";
+import FilterDropdown from "../../../../shared/components/FillerDropdown";
 
 const UserList = ({
   title,
@@ -26,7 +29,7 @@ const UserList = ({
   const [pageNumber, setPageNumber] = useState(1);
   const [isDescendingOrder, setIsDescendingOrder] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedRoleOpt, setSelectedRoleOpt] = useState("All");
+  const [filterText, setFilter] = useState("");
   const navigate = useNavigate();
   const translations = useSelector((state) => state.settings.translations);
 
@@ -40,7 +43,7 @@ const UserList = ({
       pageNumber,
       isDescendingOrder,
       debouncedSearchQuery,
-      selectedRoleOpt,
+      filterText,
     ],
     queryFn: () =>
       fetchFunction({
@@ -48,7 +51,7 @@ const UserList = ({
         pageSize,
         isDescendingOrder,
         searchTerm: debouncedSearchQuery,
-        role: selectedRoleOpt,
+        role: filterText,
       }),
     keepPreviousData: true,
     refetchOnWindowFocus: false,
@@ -76,7 +79,7 @@ const UserList = ({
           translations={translations.userManagementTopBtn}
         />
         <div className="common-page-toolbar">
-          <label className="primary-title">{title}</label>
+          <TitleComponent label={title} />
           <div className="tool-section">
             <input
               className="search-input"
@@ -88,16 +91,26 @@ const UserList = ({
           </div>
 
           {addButton && (
-            <button
+            <ButtonComponent
+              label={addButton.label}
               onClick={() => navigate(addButton.route)}
               className="add-btn"
-            >
-              {addButton.label}
-              <FaPlus style={{ fontSize: "15px" }} />
-            </button>
+              icon={<FaPlus style={{ fontSize: "15px" }} />}
+            />
           )}
           <div className="tool-section">
-            <label className="back-text">{translations.filter}:</label>
+            <FilterDropdown
+              label={translations.filter}
+              options={[
+                { value: "", label: "" },
+                ...(roleOptions.map((role) => ({
+                  value: role,
+                  label: role,
+                })) || []),
+              ]}
+              onFilterChange={setFilter}
+            />
+            {/* <label className="back-text">{translations.filter}:</label>
             <select
               value={selectedRoleOpt}
               onChange={(e) => setSelectedRoleOpt(e.target.value)}
@@ -107,7 +120,7 @@ const UserList = ({
                   {role}
                 </option>
               ))}
-            </select>
+            </select> */}
           </div>
         </div>
         <CustomTable

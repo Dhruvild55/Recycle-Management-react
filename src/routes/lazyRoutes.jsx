@@ -148,6 +148,15 @@ const RewardsManagement = {
       )
     ),
   },
+  FatAdnPointDeno: {
+    View: lazy(() => import("../views/rewardsManagement/SettingFiatAndPoints")),
+  },
+  CashReward: {
+    List: lazy(() => import("../views/rewardsManagement/CashReward")),
+    View: lazy(() =>
+      import("../views/rewardsManagement/CashReward/CashRewardsDetails")
+    ),
+  },
 };
 
 const HardwareShopManagement = {

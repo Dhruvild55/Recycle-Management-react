@@ -1,14 +1,58 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ProfilePic from "../../../../shared/components/ProfilePic";
+import { useQuery } from "@tanstack/react-query";
+import { getCashRewardsDetails } from "../../../../query/RewardsManagement/getCashRewardsDetails/getCashRewardsDetails.query";
+import { iconBack } from "../../../../assets/images/icons";
 
 const CashRewardsDetails = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
+
+  const { data: cashRewardsDetails, isPending } = useQuery({
+    queryKey: ["getCashRewardsDetails", id],
+    queryFn: () => getCashRewardsDetails(id),
+  });
+
+  if (isPending) {
+    return (
+      <div className="loading-container">
+        <p>Loading details...</p>
+      </div>
+    );
+  }
+
+  const details = cashRewardsDetails?.data;
+  if (!details) {
+    return (
+      <div className="error-container">
+        <p>No data found</p>
+      </div>
+    );
+  }
+
+  const {
+    accountHolderName,
+    accountNumber,
+    amountToReceive,
+    bankName,
+    cashBackLocation,
+    city,
+    country,
+    phoneNo,
+    phoneNo2,
+    pointsToConvert,
+    postCode,
+    recipientAddress,
+    userImg,
+    userName,
+  } = details;
+
   return (
     <>
       <div className="common-main-section">
         <div className="header-section">
           <button className="back-text" onClick={() => navigate(-1)}>
-            &larr; BACK
+            <img src={iconBack} alt="Back" /> Back
           </button>
         </div>
         <div style={{ marginTop: "20px", marginBottom: "20px" }}>
@@ -19,11 +63,11 @@ const CashRewardsDetails = () => {
           <div className="fields-section">
             <div className="fields-group">
               <label>Points to Convert </label>
-              <input type="text" value="5% Subway Discount" />
+              <input type="text" value={pointsToConvert} readOnly />
             </div>
             <div className="fields-group">
               <label>Amount to Receive</label>
-              <input type="text" value="5% Subway Discount" />
+              <input type="text" value={`RM ` + amountToReceive} readOnly />
             </div>
           </div>
         </div>
@@ -35,62 +79,55 @@ const CashRewardsDetails = () => {
               <input
                 type="text"
                 id="cashback"
-                value="Personal Account Ahmad Marwan"
+                value={cashBackLocation}
                 readOnly
               />
             </div>
-
             <div className="fields-group">
               <label htmlFor="holder-name">Account Holder Name</label>
               <input
                 type="text"
                 id="holder-name"
-                value="Ahmad Marwan"
+                value={accountHolderName}
                 readOnly
               />
             </div>
-
-            {/* Second row */}
             <div className="fields-group">
               <label htmlFor="bank-name">Bank Name</label>
-              <input type="text" id="bank-name" value="ABC Bank" readOnly />
+              <input type="text" id="bank-name" value={bankName} readOnly />
             </div>
-
             <div className="fields-group">
               <label htmlFor="account-number">Account Number</label>
               <input
                 type="text"
                 id="account-number"
-                value="123456789011"
+                value={accountNumber}
                 readOnly
               />
             </div>
-
-            {/* Third row with 3 custom columns */}
             <div className="third-row">
               <div className="fields-group">
                 <label htmlFor="postcode">Post Code</label>
-                <input type="text" id="postcode" value="450193" readOnly />
+                <input type="text" id="postcode" value={postCode} readOnly />
               </div>
-
               <div className="fields-group">
                 <label htmlFor="city">City</label>
-                <input type="text" id="city" value="Selangor" readOnly />
+                <input type="text" id="city" value={city} readOnly />
               </div>
-
               <div className="fields-group">
                 <label htmlFor="country">Country</label>
-                <input type="text" id="country" value="Malaysia" readOnly />
+                <input type="text" id="country" value={country} readOnly />
               </div>
             </div>
-
-            {/* Fourth row (full width) */}
-            <div className="fields-group address">
+            <div
+              className="fields-group address"
+              style={{ marginBottom: "30px" }}
+            >
               <label htmlFor="address">Recipient Address</label>
               <input
                 type="text"
                 id="address"
-                value="ABC Avenue, 123 Park, DEF 21/20 Selangor..."
+                value={recipientAddress}
                 readOnly
               />
             </div>
@@ -101,26 +138,23 @@ const CashRewardsDetails = () => {
         <p className="primary-title">User Detail</p>
         <div className="userDetails-section" style={{ display: "flex" }}>
           <div className="profile-section">
-            <ProfilePic size={180} isChange={false} />
+            <ProfilePic size={180} isChange={false} image={userImg} />
           </div>
           <div className="fields-section">
             <div className="fields-group">
-              <label htmlFor="postcode">Post Code</label>
-              <input type="text" id="postcode" value="450193" readOnly />
+              <label htmlFor="username">User Name</label>
+              <input type="text" id="username" value={userName} readOnly />
             </div>
-
             <div className="fields-group">
-              <label htmlFor="city">City</label>
-              <input type="text" id="city" value="Selangor" readOnly />
+              <label htmlFor="phone1">Phone No.</label>
+              <input type="text" id="phone1" value={phoneNo} readOnly />
             </div>
-
             <div className="fields-group">
-              <label htmlFor="country">Country</label>
-              <input type="text" id="country" value="Malaysia" readOnly />
+              <label htmlFor="phone2">Phone No.</label>
+              <input type="text" id="phone2" value={phoneNo2} readOnly />
             </div>
           </div>
         </div>
-
         <div className="actions">
           <p className="primary-title">Approval Convert2Cash</p>
           <div className="form-actions">

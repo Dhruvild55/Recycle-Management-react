@@ -85,7 +85,9 @@
     "customer_name": "Customer Name",
     "order_status": "Order Status",
     "stock_activity": "Stock Activity",
-    "total_stock": "Total Stock"
+    "total_stock": "Total Stock",
+    "pointToConvert": "Point to Convert",
+    "amountToReceive": "Amount to Receive"
   },
 
   "add_admin": "Add Admin",

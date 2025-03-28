@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useNavigate } from "react-router-dom";
 import { ReactToastify } from "../../../shared/utils";
 import { useMutation } from "@tanstack/react-query";
@@ -7,6 +8,7 @@ import { Loader } from "../../../shared/components/Loader";
 import { useEffect } from "react";
 import { iconWorld } from "../../../assets/images/icons";
 import { bgFrame, bgImage } from "../../../assets/images";
+import InputField from "../../../shared/components/InputFieldComponent";
 
 const CONSTANT = {
   DOC_TITLE: "Login | Recycle Management",
@@ -28,7 +30,7 @@ const Login = () => {
     handleSubmit,
     formState: { errors, isDirty, isSubmitted },
   } = useForm({
-    mode: "onSubmit", // Ensures errors appear on submit immediately
+    mode: "onSubmit",
   });
 
   const { mutate, isPending } = useMutation({
@@ -70,51 +72,49 @@ const Login = () => {
             </div>
             <div className="login-form-group">
               <div className="form-group">
-                <label htmlFor="email">{CONSTANT.EMAIL_ADDRESS}</label>
-                <input
-                  id="email"
-                  type="email"
+                <InputField
+                  label={CONSTANT.EMAIL_ADDRESS}
                   placeholder="Email"
-                  {...register("email", {
+                  type="email"
+                  name="email"
+                  register={register}
+                  errors={errors}
+                  validation={{
                     required: "Email is required",
                     maxLength: {
                       value: 100,
                       message: "Email cannot exceed 100 characters",
                     },
-                  })}
+                  }}
                 />
-                {errors.email && isSubmitted && (
-                  <span className="error">{errors.email.message}</span>
-                )}
               </div>
-              <div className="form-group">
-                <label htmlFor="password">{CONSTANT.PASSWORD}</label>
-                <input
-                  id="password"
-                  type="password"
-                  placeholder="Password"
-                  {...register("password", {
-                    required: "Password is required",
-                    maxLength: {
-                      value: 50,
-                      message: "Password cannot exceed 50 characters",
-                    },
-                    validate: (value) => {
-                      if (!/[a-z]/.test(value)) {
-                        return "Password must contain at least one lowercase letter";
-                      }
-                      if (!/[A-Z]/.test(value)) {
-                        return "Password must contain at least one uppercase letter";
-                      }
-                      return true;
-                    },
-                  })}
-                  onPaste={(e) => e.preventDefault()}
-                />
-                {errors.password && isSubmitted && (
-                  <span className="error">{errors.password.message}</span>
-                )}
-              </div>
+
+              {/* Password Input */}
+              <InputField
+                label={CONSTANT.PASSWORD}
+                placeholder="Password"
+                type="password"
+                name="password"
+                register={register}
+                errors={errors}
+                validation={{
+                  required: "Password is required",
+                  maxLength: {
+                    value: 50,
+                    message: "Password cannot exceed 50 characters",
+                  },
+                  validate: (value) => {
+                    if (!/[a-z]/.test(value)) {
+                      return "Password must contain at least one lowercase letter";
+                    }
+                    if (!/[A-Z]/.test(value)) {
+                      return "Password must contain at least one uppercase letter";
+                    }
+                    return true;
+                  },
+                }}
+              />
+
               <div className="login-checkbox">
                 <div className="checkbox-section">
                   <input type="checkbox" id="remember" />

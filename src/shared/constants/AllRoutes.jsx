@@ -86,6 +86,13 @@ export const route = {
       List: "/rewards-management/rewards-transaction",
       View: (id) => `/rewards-management/rewards-transaction/${id}`,
     },
+    FatPointAndPointDeno: {
+      View: "/rewards-management/fat-points",
+    },
+    CashReward: {
+      List: "/rewards-management/cash-reward",
+      View: (id) => `/rewards-management/cash-reward/${id}`,
+    },
   },
 
   //! Sponser Management

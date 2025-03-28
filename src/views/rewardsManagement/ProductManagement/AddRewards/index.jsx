@@ -5,10 +5,10 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { createReward } from "../../../../query/RewardsManagement/CreateReward/createReward.query";
 import { useForm } from "react-hook-form";
 import { getRewardsCategory } from "../../../../query/RewardsManagement/GetRewardsCategory/getRewardsCategory.query";
-import InputField from "./InputFeild";
 import { ReactToastify } from "../../../../shared/utils";
 import { iconBack } from "../../../../assets/images/icons";
 import DragAndDropExcel from "./ExcelDragAndDropComponent";
+import InputField from "../../../../shared/components/InputFieldComponent";
 
 const AddRewards = () => {
   const navigate = useNavigate();
@@ -83,59 +83,71 @@ const AddRewards = () => {
         <div className="form-group-image" style={{ marginBottom: "20px" }}>
           <DragAndDropComponent image={image} onDrop={onDrop} />
         </div>
-
-        <InputField
-          label="Reward Name"
-          name="rewardName"
-          register={register}
-          rules={{ required: "Reward Name is required" }}
-          errors={errors}
-          required
-        />
-        <InputField
-          label="Point(pts)"
-          name="point"
-          register={register}
-          type="text"
-          rules={{ required: "Points are required" }}
-          errors={errors}
-          required
-        />
-        <InputField
-          label="Validity (days)"
-          name="validity"
-          register={register}
-          type="text"
-          rules={{ required: "Validity is required" }}
-          errors={errors}
-          required
-        />
-        <InputField
-          label="Rewards Category"
-          name="category"
-          register={register}
-          type="select"
-          options={
-            isCategoryLoading
-              ? [{ value: "", label: "Loading categories..." }]
-              : categoryData?.data?.map((item) => ({
-                  value: item.categoryId,
-                  label: item.category,
-                }))
-          }
-          rules={{ required: "Category is required" }}
-          errors={errors}
-          required
-        />
-        <InputField
-          label="Reward Short Description"
-          name="shortDescription"
-          register={register}
-          type="textarea"
-          rules={{ required: "Description is required" }}
-          errors={errors}
-          required
-        />
+        <div className="form-group">
+          <InputField
+            label="Reward Name"
+            name="rewardName"
+            placeholder="Type here"
+            type="text"
+            register={register}
+            rules={{ required: "Reward Name is required" }}
+            errors={errors}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <InputField
+            label="Point(pts)"
+            name="point"
+            placeholder="Type here"
+            register={register}
+            type="number"
+            rules={{ required: "Points are required" }}
+            errors={errors}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <InputField
+            label="Validity (days)"
+            name="validity"
+            register={register}
+            type="number"
+            rules={{ required: "Validity is required" }}
+            errors={errors}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <InputField
+            label="Rewards Category"
+            name="category"
+            register={register}
+            type="select"
+            options={
+              isCategoryLoading
+                ? [{ value: "", label: "Loading categories..." }]
+                : categoryData?.data?.map((item) => ({
+                    value: item.categoryId,
+                    label: item.category,
+                  }))
+            }
+            rules={{ required: "Category is required" }}
+            errors={errors}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <InputField
+            label="Reward Short Description"
+            name="shortDescription"
+            register={register}
+            type="textarea"
+            rules={{ required: "Description is required" }}
+            errors={errors}
+            required
+          />
+        </div>
         <div className="form-group-image" style={{ marginBottom: "20px" }}>
           <label>
             Bulk Upload<span style={{ color: "green" }}>*</span>

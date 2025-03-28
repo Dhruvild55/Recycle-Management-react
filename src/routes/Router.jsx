@@ -41,13 +41,13 @@ const ViewCollectorCollectionPage = lazy(() =>
 //   import("../views/rewardsManagement/RewardsTransaction/ViewRewardsTransaction")
 // );
 
-const ViewfiatAndDenominationsPage = lazy(() =>
-  import("../views/rewardsManagement/SettingFiatAndPoints")
-);
+// const ViewfiatAndDenominationsPage = lazy(() =>
+//   import("../views/rewardsManagement/SettingFiatAndPoints")
+// );
 
-const RewardsDetailsPage = lazy(() =>
-  import("../views/rewardsManagement/CashReward/CashRewardsDetails")
-);
+// const RewardsDetailsPage = lazy(() =>
+//   import("../views/rewardsManagement/CashReward/CashRewardsDetails")
+// );
 
 //* collecterServiceManagement
 const CollecterServiceManagementPage = lazy(() =>
@@ -238,14 +238,22 @@ const RoutesDetails = [
         Component: RewardsManagement.RewardsTransaction.View,
         exact: true,
       },
+      // * Reward Management / Fat Points Deno
       {
-        path: route.viewFiatPoints,
-        Component: ViewfiatAndDenominationsPage,
+        path: route.rewardsManagement.FatPointAndPointDeno.View,
+        Component: RewardsManagement.FatAdnPointDeno.View,
         exact: true,
       },
+      // * Rewards Management / Cash Rewards
       {
-        path: route.rewardsDetails,
-        Component: RewardsDetailsPage,
+        path: route.rewardsManagement.CashReward.List,
+        Component: RewardsManagement.CashReward.List,
+        exact: true,
+      },
+      // * Rewards Management / Cash Rewards Details
+      {
+        path: route.rewardsManagement.CashReward.View(":id"),
+        Component: RewardsManagement.CashReward.View,
         exact: true,
       },
 

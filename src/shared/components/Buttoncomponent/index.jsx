@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
-const ButtonComponent = ({ label, onClick, className, disable }) => {
+const ButtonComponent = ({ label, onClick, className, disable, icon }) => {
   return (
     <div>
       <button onClick={onClick} className={className} disabled={disable}>
-        {label}
+        {label} {icon}
       </button>
     </div>
   );

@@ -4,13 +4,12 @@ import axiosInstance from "../../../axios";
 export const getAllRewards = async ({
   pageSize,
   pageNumber,
-  isDescendingOrder,
-  selecteCategoryOpt,
-  debouncedSearchQuery,
+  searchTerm,
+  filterText,
 }) => {
-  const category = selecteCategoryOpt === "All" ? " " : selecteCategoryOpt;
+  const category = filterText === "All" ? " " : filterText;
   const res = await axiosInstance.get(
-    `admin/get-All-Rewards?PageNumber=${pageNumber}&SearchTerm=${debouncedSearchQuery}&Filter=${category}&PageSize=${pageSize}&culture=en'`
+    `admin/get-All-Rewards?PageNumber=${pageNumber}&SearchTerm=${searchTerm}&Filter=${category}&PageSize=${pageSize}&culture=en'`
   );
   return res.data;
 };

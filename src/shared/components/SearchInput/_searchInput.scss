@@ -1,0 +1,14 @@
+.search-input {
+  width: 100%;
+  min-width: 575px;
+  padding: 10px 45px;
+  border: 1px solid #d4d4d4;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  background: url("/images/searchIcon.png") no-repeat 18px center;
+  background-size: 16px;
+  outline: none;
+  @include media-max(lg) {
+    min-width: 210px;
+  }
+}

@@ -1,3 +1,5 @@
+import RewardManagementTopSection from "../Component/RewardManagementtopSection";
+
 /* eslint-disable react/prop-types */
 const SettingFiatAndPoints = () => {
   const items = [
@@ -22,12 +24,18 @@ const SettingFiatAndPoints = () => {
     );
   };
   return (
-    <div className="fiat-points-section" style={{ marginTop: "30px" }}>
-      <h1 className="primary-title">Fiat and denomination Management</h1>
-      <div className="card-container">
-        {items.map((item) => (
-          <Card key={item.id} type={item.type} points={item.points} />
-        ))}
+    <div className="common-main-section">
+      <RewardManagementTopSection />
+      <div
+        className="fiat-points-section"
+        style={{ marginTop: "20px", marginBottom: "30px" }}
+      >
+        <h1 className="primary-title">Fiat and denomination Management</h1>
+        <div className="card-container">
+          {items.map((item) => (
+            <Card key={item.id} type={item.type} points={item.points} />
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -41,14 +41,12 @@ const ViewRewards = () => {
         rewardName: data.data.rewardName || "",
         validity: data.data.validity || "",
         point: data.data.point || "",
-        rewardCategoryId: data.data.rewardCategoryId || "", // Set ID from API
-        rewardCategoryName: data.data.rewardCategoryName || "", // Set Name
+        rewardCategoryId: data.data.rewardCategoryId || "",
+        rewardCategoryName: data.data.rewardCategoryName || "",
         description: data.data.description || "",
       });
     }
   }, [data]);
-
-  console.log("formData", formData);
 
   const { mutate, isPending } = useMutation({
     mutationFn: ({ id, updatedData }) => updateReward(id, updatedData),
@@ -69,13 +67,16 @@ const ViewRewards = () => {
         (cat) => cat.categoryId === value
       );
 
-      setFormData({
-        ...formData,
+      setFormData((prevData) => ({
+        ...prevData,
         rewardCategoryId: value,
-        rewardCategoryName: selectedCategory?.category || "", // Set category name
-      });
+        rewardCategoryName: selectedCategory?.category || "",
+      }));
     } else {
-      setFormData({ ...formData, [name]: value });
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
     }
   };
 
@@ -147,22 +148,12 @@ const ViewRewards = () => {
               onChange={handleChange}
               disabled={!isEdit}
             >
-              {formData.rewardCategoryId && (
-                <option value={formData.rewardCategoryId}>
-                  {formData.rewardCategoryName}
+              {/* Ensure there's a default option */}
+              {categoryData?.data?.map((category) => (
+                <option key={category.categoryId} value={category.categoryId}>
+                  {category.category}
                 </option>
-              )}
-
-              {categoryData?.data
-                ?.filter(
-                  (category) =>
-                    category.categoryId !== formData.rewardCategoryId
-                )
-                .map((category) => (
-                  <option key={category.categoryId} value={category.categoryId}>
-                    {category.category}
-                  </option>
-                ))}
+              ))}
             </select>
           </div>
 
