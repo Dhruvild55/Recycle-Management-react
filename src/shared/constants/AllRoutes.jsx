@@ -49,7 +49,18 @@ export const route = {
   appContentManagement: {
     MaterialAndServices: {
       List: "/app-content-Management/material-services-management",
-      Add: "/app-content-Management/material-services-management/add",
+      Add: {
+        MaterialType:
+          "/app-content-management/material-services-management/material-type",
+        CollectorGuidline:
+          "/app-content-management/material-services-management/collector-guideline",
+        RecyclerGuideline:
+          "/app-content-management/material-services-management/recycler-guideline",
+        CollectionIncentive:
+          "/app-content-management/material-services-management/collection-incentive",
+        TermsAndCondition:
+          "/app-content-management/material-services-management/terms&condition",
+      },
     },
     BannerManagement: {
       List: "/app-content-management/banner-management",

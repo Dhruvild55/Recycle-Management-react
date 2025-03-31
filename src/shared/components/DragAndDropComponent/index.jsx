@@ -3,6 +3,7 @@ import { useDropzone } from "react-dropzone";
 import { iconUpload } from "../../../assets/images/icons";
 
 const DragAndDropComponent = ({ image, onDrop }) => {
+  console.log(image);
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     accept: "image/*",
@@ -24,7 +25,7 @@ const DragAndDropComponent = ({ image, onDrop }) => {
         <label>
           <span className="green-text">Click to upload</span> or drag and drop
         </label>
-        <small> Only Allow Excel (max. 800x400px)</small>
+        <small> SVG, PNG, JPG or MP4 (max. 550kB)</small>
       </div>
     </div>
   );

@@ -1,29 +1,35 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Dropdown } from "react-bootstrap";
 import { iconCarrateDown } from "../../../assets/images/icons";
 
-const FilterDropdown = ({ label, options, onFilterChange }) => {
-  const [selectedOption, setSelectedOption] = useState("All"); // Default label
+const FilterDropdown = ({ label, options, onFilterChange, value }) => {
+  const [selectedOption, setSelectedOption] = useState("");
+
+  // Set default value when options are available
+  useEffect(() => {
+    if (options.length > 0 && !selectedOption) {
+      const defaultOption =
+        options.find((opt) => opt.value === value) || options[0];
+      setSelectedOption(defaultOption.label);
+      onFilterChange(defaultOption.value);
+    }
+  }, [options, value]);
 
   const handleSelect = (eventKey) => {
-    console.log(options);
     const selectedLabel = options.find(
       (option) => option.value == eventKey
     )?.label;
-
-    console.log("Found Option:", selectedLabel, eventKey);
-    console.log(selectedLabel);
     setSelectedOption(selectedLabel);
     onFilterChange(eventKey);
   };
 
   return (
     <div className="custom-dropdown">
-      <span className="dropdown-label">{label}:</span> {/* Separate Label */}
+      <span className="dropdown-label">{label}:</span>
       <Dropdown onSelect={handleSelect}>
         <Dropdown.Toggle className="dropdown-toggle" id="dropdown-custom">
-          {selectedOption} {/* Show selected option */}
+          {selectedOption || "Select an option"}
           <img
             src={iconCarrateDown}
             alt="Dropdown Icon"

@@ -5,6 +5,10 @@ import DragAndDropComponent from "../../../../shared/components/DragAndDropCompo
 import { useMutation } from "@tanstack/react-query";
 import { postMaterialData } from "../../../../query/AppContentManagement/MaterialAndServices/postMaterialData/postMaterialData.query";
 import { ReactToastify } from "../../../../shared/utils";
+import TopSection from "./Component/TopSection";
+import { iconBack } from "../../../../assets/images/icons";
+import InputField from "../../../../shared/components/InputFieldComponent";
+import TitleComponent from "../../../../shared/components/TitleComponent";
 
 const AddNewWaste = () => {
   const navigate = useNavigate();
@@ -36,6 +40,7 @@ const AddNewWaste = () => {
       console.log(errors);
     },
   });
+
   const onSubmit = async (data) => {
     const formData = new FormData();
     formData.append("WasteName", data.wasteName);
@@ -48,48 +53,59 @@ const AddNewWaste = () => {
   return (
     <div className="common-main-section">
       <div className="main-section" style={{ marginTop: "0px" }}>
-        <button className="back-text" onClick={() => navigate(-1)}>
-          &larr; BACK
+        <button
+          className="back-text"
+          style={{ marginBottom: "20px" }}
+          onClick={() => navigate(-1)}
+        >
+          <img src={iconBack} alt="Back" /> Back
         </button>
+        <TopSection />
         <div
           className="common-page-toolbar"
-          style={{ marginTop: "0px", padding: "7px" }}
+          style={{
+            marginTop: "10px",
+            padding: "7px 0px",
+            marginBottom: "10px",
+          }}
         >
-          <label className="primary-title">Add New Waste</label>
+          <TitleComponent label="Material Type" />
         </div>
-        <form className="add-waste-form" onSubmit={handleSubmit(onSubmit)}>
-          <div className="form-group">
-            <label htmlFor="wasteName">
-              Waste Name<span style={{ color: "green" }}>*</span>
-            </label>
-            <input
-              type="text"
-              id="wasteName"
-              {...register("wasteName", { required: "Waste Name is required" })}
-              placeholder="Type Here"
-            />
-            <p className="error">{errors.wasteName?.message}</p>
-          </div>
-          <div className="form-group">
-            <label htmlFor="wasteDetail">
-              Waste Description <span style={{ color: "green" }}>*</span>
-            </label>
-            <input
-              type="text"
-              id="wasteDetail"
-              {...register("wasteDetail", {
-                required: "Waste Description is required",
-              })}
-              placeholder="Type Here"
-            />
-            <p className="error">{errors.wasteDetail?.message}</p>
-          </div>
+        <form
+          className="add-waste-form"
+          style={{ padding: "0px" }}
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <InputField
+            label="Waste Name"
+            placeholder="Type Here"
+            type="text"
+            name="wasteName"
+            register={register}
+            errors={errors}
+            validation={{ required: "Waste Name is required" }}
+            isRequeirdLabel={true}
+          />
+
+          <InputField
+            label="Waste Description"
+            placeholder="Type Here"
+            type="textarea"
+            name="wasteDetail"
+            register={register}
+            errors={errors}
+            validation={{ required: "Waste Description is required" }}
+            rows={4}
+            isRequeirdLabel={true}
+          />
+
           <div className="form-group-image">
             <label>
               Cover Image <span style={{ color: "green" }}>*</span>
             </label>
             <DragAndDropComponent image={image} onDrop={onDrop} />
           </div>
+
           <div className="form-actions">
             <button type="button" className="btn" onClick={() => navigate(-1)}>
               Cancel

@@ -9,10 +9,15 @@ import { columns } from "./config";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getMaterialAndServices } from "../../../../query/AppContentManagement/MaterialAndServices/getMaterialAndServices/getMaterialAndServices.query";
 import { deleteMaterial } from "../../../../query/AppContentManagement/MaterialAndServices/deleteMaterial/deleteMaterial.query";
+import { useEffect } from "react";
 
 const MaterialAndeServicesList = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+
+  useEffect(() => {
+    document.title = "App Content Management | Recycler Management";
+  }, []);
   const { data, isPending } = useQuery({
     queryKey: ["materialAndService"],
     queryFn: getMaterialAndServices,
@@ -47,7 +52,9 @@ const MaterialAndeServicesList = () => {
         <button
           className="add-btn"
           onClick={() =>
-            navigate(route.appContentManagement.MaterialAndServices.Add)
+            navigate(
+              route.appContentManagement.MaterialAndServices.Add.MaterialType
+            )
           }
         >
           Add Material <FaPlus style={{ fontSize: "15px" }} />

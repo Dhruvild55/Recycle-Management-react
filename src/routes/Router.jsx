@@ -266,8 +266,40 @@ const RoutesDetails = [
       },
       // * material and service add
       {
-        path: route.appContentManagement.MaterialAndServices.Add,
-        Component: AppContentManagement.MaterialAndeServices.Add,
+        path: route.appContentManagement.MaterialAndServices.Add.MaterialType,
+        Component: AppContentManagement.MaterialAndeServices.Add.MaterialType,
+        exact: true,
+      },
+      // * Material And Services / CollectorGuidline
+      {
+        path: route.appContentManagement.MaterialAndServices.Add
+          .CollectorGuidline,
+        Component:
+          AppContentManagement.MaterialAndeServices.Add.CollectionGuidline,
+        exact: true,
+      },
+      // * Material And Services / RecyclerGuideline
+      {
+        path: route.appContentManagement.MaterialAndServices.Add
+          .RecyclerGuideline,
+        Component:
+          AppContentManagement.MaterialAndeServices.Add.RecyclerGuideline,
+        exact: true,
+      },
+      // * Material And Services / Collection Incentive
+      {
+        path: route.appContentManagement.MaterialAndServices.Add
+          .CollectionIncentive,
+        Component:
+          AppContentManagement.MaterialAndeServices.Add.CollectionIncentive,
+        exact: true,
+      },
+      // * Material And Services / TremsAndCondition
+      {
+        path: route.appContentManagement.MaterialAndServices.Add
+          .TermsAndCondition,
+        Component:
+          AppContentManagement.MaterialAndeServices.Add.TermsAndCondition,
         exact: true,
       },
       // * Banner Management List

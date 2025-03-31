@@ -12,12 +12,16 @@ const InputField = ({
   validation,
   options,
   rows,
+  isRequeirdLabel,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
     <div className="input-field">
-      <label htmlFor={name}>{label}</label>
+      <label htmlFor={name}>
+        {label}
+        {isRequeirdLabel ? <span style={{ color: "green" }}> *</span> : ""}
+      </label>
 
       {type === "tel" ? (
         /* Handle Telephone Input */

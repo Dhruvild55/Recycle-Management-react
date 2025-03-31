@@ -8,10 +8,14 @@ import {
   recyclerCollectionHeaders,
 } from "../../confige";
 import CollectionManagementTopSection from "../../Component/CollectionManagementTopSection";
+import { useEffect } from "react";
 
 const RecyclerCollectionList = () => {
   const navigate = useNavigate();
   const translations = useSelector((state) => state.settings.translations);
+  useEffect(() => {
+    document.title = "Collection Management | Recycler Management";
+  }, []);
   return (
     <div className="common-main-section">
       <CollectionManagementTopSection />

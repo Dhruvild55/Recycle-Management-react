@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { getAdminList } from "../../../../query/users/getAdminList/getAdmin.query";
 import { route } from "../../../../shared/constants/AllRoutes";
 import UserList from "../../Component/UserList";
@@ -5,6 +6,9 @@ import UserList from "../../Component/UserList";
 import { headers } from "./confige";
 
 const AdminList = () => {
+  useEffect(() => {
+    document.title = "User Management | Recycler Management";
+  }, []);
   return (
     <UserList
       title="List of Admin"

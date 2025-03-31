@@ -69,9 +69,31 @@ const AppContentManagement = {
         "../views/appContentManagement/MaterialAndServices/MaterialAndServiceList"
       )
     ),
-    Add: lazy(() =>
-      import("../views/appContentManagement/MaterialAndServices/addNewWaste")
-    ),
+    Add: {
+      MaterialType: lazy(() =>
+        import("../views/appContentManagement/MaterialAndServices/addNewWaste")
+      ),
+      CollectionGuidline: lazy(() =>
+        import(
+          "../views/appContentManagement/MaterialAndServices/addNewWaste/CollectorGuideline"
+        )
+      ),
+      RecyclerGuideline: lazy(() =>
+        import(
+          "../views/appContentManagement/MaterialAndServices/addNewWaste/RecyclerGuideline"
+        )
+      ),
+      CollectionIncentive: lazy(() =>
+        import(
+          "../views/appContentManagement/MaterialAndServices/addNewWaste/CollectionIncentive"
+        )
+      ),
+      TermsAndCondition: lazy(() =>
+        import(
+          "../views/appContentManagement/MaterialAndServices/addNewWaste/TermsAndCondition"
+        )
+      ),
+    },
   },
   BannerManagement: {
     List: lazy(() =>

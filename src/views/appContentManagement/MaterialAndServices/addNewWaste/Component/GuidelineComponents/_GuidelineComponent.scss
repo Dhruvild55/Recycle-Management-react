@@ -1,0 +1,11 @@
+.guideline-main-section {
+  .guideline-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .guideline-form {
+    display: flex;
+    flex-direction: column;
+  }
+}
