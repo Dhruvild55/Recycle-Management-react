@@ -111,6 +111,14 @@ const AppContentManagement = {
       import("../views/appContentManagement/EventManagement/EventAdd")
     ),
   },
+  BaseCollectionGuideline: {
+    List: lazy(() =>
+      import("../views/appContentManagement/BaseCollectorGuideline")
+    ),
+    Add: lazy(() =>
+      import("../views/appContentManagement/BaseCollectorGuideline/Add")
+    ),
+  },
 };
 
 const SponsorManagement = {

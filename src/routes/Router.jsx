@@ -179,7 +179,7 @@ const RoutesDetails = [
 
       //! Collection Management
       {
-        path: route.recyclerCollection,
+        path: route.collectionManagement.RecyclerCollection.List,
         Component: CollectionManagement.Recycler.List,
         exact: true,
       },
@@ -324,6 +324,18 @@ const RoutesDetails = [
       {
         path: route.appContentManagement.EventManagement.Add,
         Component: AppContentManagement.EventManagement.Add,
+        exact: true,
+      },
+      // * base Guideline / List
+      {
+        path: route.appContentManagement.BaseCollectorGuideline.List,
+        Component: AppContentManagement.BaseCollectionGuideline.List,
+        exact: true,
+      },
+      // * base Guideline / List
+      {
+        path: route.appContentManagement.BaseCollectorGuideline.Add,
+        Component: AppContentManagement.BaseCollectionGuideline.Add,
         exact: true,
       },
 

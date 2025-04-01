@@ -28,7 +28,7 @@ export const SidebarLinks = [
   },
   {
     name: "collaction_Management",
-    path: route.recyclerCollection,
+    path: route.collectionManagement.RecyclerCollection.List,
     icon: <CollectionIcon color="#1F7F82" />,
   },
   {

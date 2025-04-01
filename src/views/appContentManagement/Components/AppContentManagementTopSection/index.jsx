@@ -14,6 +14,11 @@ const AppContentManagementTopSection = () => {
       return "banner-management";
     if (location.pathname === route.appContentManagement.EventManagement.List)
       return "event-management";
+    if (
+      location.pathname ===
+      route.appContentManagement.BaseCollectorGuideline.List
+    )
+      return "baseCollectorGuideline";
   };
 
   const selectedSection = getSelectedSection();
@@ -44,6 +49,15 @@ const AppContentManagementTopSection = () => {
         }
         className={`btn${
           selectedSection === "event-management" ? " selected" : ""
+        }`}
+      />
+      <ButtonComponent
+        label="Base Collector Guideline"
+        onClick={() =>
+          navigate(route.appContentManagement.BaseCollectorGuideline.List)
+        }
+        className={`btn${
+          selectedSection === "baseCollectorGuideline" ? " selected" : ""
         }`}
       />
     </div>

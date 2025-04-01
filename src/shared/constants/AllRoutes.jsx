@@ -48,7 +48,7 @@ export const route = {
   //! App Content Management
   appContentManagement: {
     MaterialAndServices: {
-      List: "/app-content-Management/material-services-management",
+      List: "/app-content-management/material-services-management",
       Add: {
         MaterialType:
           "/app-content-management/material-services-management/material-type",
@@ -70,21 +70,27 @@ export const route = {
       List: "/app-content-management/event-management",
       Add: "/app-content-management/event-management/add",
     },
+    BaseCollectorGuideline: {
+      List: "/app-content-management/base-collector-guideline",
+      Add: "/app-content-management/base-collector-guideline/add",
+    },
   },
   addGuidelines: "/app-content-Management/add-Guidelines",
 
   //! Collection Management
-  recyclerCollection: "/collection-Management/recycler-collection",
+  // recyclerCollection: "/collection-Management/recycler-collection",
   viewRecyclerCollection:
     "/collection-Management/recycler-collection/view-recycler-collection",
   collectorCollection: "/Collection-Management/collector-collection",
   viewCollectorCollection:
     "/collection-Management/collector-collection/view-collector-collection",
 
-  //* Rewards Management
-  viewRewardsTransaction: "/rewards-Management/view-transaction",
-  viewFiatPoints: "/rewards-Management/fiat-denominations-management",
-  rewardsDetails: "/rewards-Management/rewards-details",
+  // ! Collection Management
+  collectionManagement: {
+    RecyclerCollection: {
+      List: "/collection-management/recycler-collection",
+    },
+  },
 
   // ! Rewards Management
   rewardsManagement: {

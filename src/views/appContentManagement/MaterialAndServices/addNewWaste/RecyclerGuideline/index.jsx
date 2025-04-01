@@ -11,6 +11,7 @@ import TopSection from "../Component/TopSection";
 import FilterDropdown from "../../../../../shared/components/FillerDropdown";
 import GuidelinesComponent from "../Component/GuidelineComponents";
 import { getRecyclerGuideline } from "../../../../../query/AppContentManagement/MaterialAndServices/getRecyclerGuideline/getrecyclerGuideline.query";
+import { route } from "../../../../../shared/constants/AllRoutes";
 
 const RecyclerGuideline = () => {
   const navigate = useNavigate();
@@ -47,14 +48,16 @@ const RecyclerGuideline = () => {
         <button
           className="back-text"
           style={{ marginBottom: "20px" }}
-          onClick={() => navigate(-1)}
+          onClick={() =>
+            navigate(route.appContentManagement.MaterialAndServices.List)
+          }
         >
           <img src={iconBack} alt="Back" /> Back
         </button>
         <TopSection />
         <div
           className="common-page-toolbar"
-          style={{ marginTop: "20px", padding: "7px" }}
+          style={{ marginTop: "20px", padding: "7px 0px" }}
         >
           <div className="left-section">
             <label className="primary-title" style={{ fontSize: "24px" }}>

@@ -18,7 +18,6 @@ const RecyclerCollectionList = () => {
   }, []);
   return (
     <div className="common-main-section">
-      <CollectionManagementTopSection />
       <div className="common-page-toolbar">
         <label className="primary-title"> List of Recycler</label>
         <div className="tool-section">

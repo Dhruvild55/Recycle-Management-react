@@ -1,10 +1,22 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import InputField from "../../../../../../shared/components/InputFieldComponent";
 import { useForm } from "react-hook-form";
-import { iconEdit } from "../../../../../../assets/images/icons";
+import { iconDelete, iconEdit } from "../../../../../../assets/images/icons";
+import { deleteGuideline } from "../../../../../../query/AppContentManagement/MaterialAndServices/DeleteGuideline/deleteGuideline.query";
+import { useMutation } from "@tanstack/react-query";
+import { ReactToastify } from "../../../../../../shared/utils";
 
-const ConditionComponent = ({ data, isLoading }) => {
+const ConditionComponent = ({
+  title,
+  id,
+  description,
+  isLoading,
+  isDelete,
+  refetch,
+}) => {
   console.log(isLoading);
   const [isEdit, setIsEdit] = useState(false);
 
@@ -14,6 +26,22 @@ const ConditionComponent = ({ data, isLoading }) => {
     setValue,
     formState: { errors },
   } = useForm();
+
+  const { mutate: deleteGuidelineId } = useMutation({
+    mutationFn: deleteGuideline,
+    onSuccess: (data) => {
+      ReactToastify(data?.message, "success");
+      refetch();
+    },
+    onError: (error) => {
+      console.log(error);
+      ReactToastify(error?.message, "error");
+    },
+  });
+
+  const handleDelete = (id) => {
+    deleteGuidelineId(id);
+  };
   return (
     <>
       {isLoading ? (
@@ -23,7 +51,7 @@ const ConditionComponent = ({ data, isLoading }) => {
           <div className="guideline-title">
             <span className="primary-title">
               {!isEdit ? (
-                data?.terms
+                title
               ) : (
                 <InputField
                   type="text"
@@ -41,6 +69,11 @@ const ConditionComponent = ({ data, isLoading }) => {
               >
                 <img src={iconEdit} />
               </button>
+              {isDelete && (
+                <button style={{ border: "none" }}>
+                  <img src={iconDelete} onClick={() => handleDelete(id)} />
+                </button>
+              )}
             </div>
           </div>
           <div className="add-waste-form" style={{ padding: "0px" }}>
@@ -61,7 +94,7 @@ const ConditionComponent = ({ data, isLoading }) => {
                   </button>
                 </form>
               ) : (
-                <p>{data?.description}</p>
+                <p>{description}</p>
               )}
             </div>
           </div>

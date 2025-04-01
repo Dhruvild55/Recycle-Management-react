@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getMaterialAndServicesById } from "../../../../../query/AppContentManagement/MaterialAndServices/getMaterialAndServiceNameById/materialAndServicesById.query";
 import { getCollectorGuideline } from "../../../../../query/AppContentManagement/MaterialAndServices/getCollectorGuideline/getcollectorGuideline.query";
+import { route } from "../../../../../shared/constants/AllRoutes";
 
 const CollectorGuideline = () => {
   const navigate = useNavigate();
@@ -47,14 +48,16 @@ const CollectorGuideline = () => {
         <button
           className="back-text"
           style={{ marginBottom: "20px" }}
-          onClick={() => navigate(-1)}
+          onClick={() =>
+            navigate(route.appContentManagement.MaterialAndServices.List)
+          }
         >
           <img src={iconBack} alt="Back" /> Back
         </button>
         <TopSection />
         <div
           className="common-page-toolbar"
-          style={{ marginTop: "20px", padding: "7px" }}
+          style={{ marginTop: "20px", padding: "7px 0px" }}
         >
           <div className="left-section">
             <label className="primary-title" style={{ fontSize: "24px" }}>

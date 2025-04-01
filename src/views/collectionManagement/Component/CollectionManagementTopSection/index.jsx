@@ -19,7 +19,9 @@ const CollectionManagementTopSection = () => {
     <div className="common-tab-section">
       <ButtonComponent
         label="Recyler Collection"
-        onClick={() => navigate(route.recyclerCollection)}
+        onClick={() =>
+          navigate(route.collectionManagement.RecyclerCollection.List)
+        }
         className={`btn${
           selectedSection === "recycler-collection" ? " selected" : ""
         }`}

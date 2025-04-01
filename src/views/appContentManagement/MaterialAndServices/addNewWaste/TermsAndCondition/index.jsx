@@ -10,6 +10,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getMaterialAndServicesById } from "../../../../../query/AppContentManagement/MaterialAndServices/getMaterialAndServiceNameById/materialAndServicesById.query";
 import { getTermsAndonditionbyId } from "../../../../../query/AppContentManagement/MaterialAndServices/getTermsAndConditionbyId/getTermsAndCondition.query";
 import ConditionComponent from "./ConditionComponent";
+import { route } from "../../../../../shared/constants/AllRoutes";
 
 const TermsAndCondition = () => {
   const navigate = useNavigate();
@@ -37,22 +38,22 @@ const TermsAndCondition = () => {
       enabled: !!filterText,
     });
 
-  console.log(termsAndCondition?.data);
-
   return (
     <>
       <div className="common-main-section">
         <button
           className="back-text"
           style={{ marginBottom: "20px" }}
-          onClick={() => navigate(-1)}
+          onClick={() =>
+            navigate(route.appContentManagement.MaterialAndServices.List)
+          }
         >
           <img src={iconBack} alt="Back" /> Back
         </button>
         <TopSection />
         <div
           className="common-page-toolbar"
-          style={{ marginTop: "20px", padding: "7px" }}
+          style={{ marginTop: "20px", padding: "7px 0px" }}
         >
           <div className="left-section">
             <label className="primary-title" style={{ fontSize: "24px" }}>
@@ -67,31 +68,36 @@ const TermsAndCondition = () => {
                 label: category.materilaName,
               })) || []
             }
-            value={filterText} // Set the default selected value
+            value={filterText}
             onFilterChange={setFilter}
           />
         </div>
         <ConditionComponent
           data={termsAndCondition?.data[0]}
           isLoading={isPending}
+          title={termsAndCondition?.data[0]?.terms}
+          description={termsAndCondition?.data[0]?.description}
         />
       </div>
-      {termsAndCondition?.data[1] && (
-        <div className="common-main-section" style={{ marginTop: "20px" }}>
-          <ConditionComponent
-            data={termsAndCondition?.data[1]}
-            isLoading={isPending}
-          />
-        </div>
-      )}
-      {termsAndCondition?.data[2] && (
-        <div className="common-main-section" style={{ marginTop: "20px" }}>
-          <ConditionComponent
-            data={termsAndCondition?.data[2]}
-            isLoading={isPending}
-          />
-        </div>
-      )}
+      {termsAndCondition?.data.slice(1).map((item, index) => {
+        return (
+          <div
+            className="common-main-section"
+            style={{
+              marginTop: "20px",
+              minHeight: "0px",
+              paddingBottom: "40px",
+            }}
+            key={index}
+          >
+            <ConditionComponent
+              title={item.terms}
+              description={item.description}
+              isLoading={isPending}
+            />
+          </div>
+        );
+      })}
     </>
   );
 };
