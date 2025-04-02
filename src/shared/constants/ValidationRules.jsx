@@ -41,3 +41,16 @@ export const validationRules = {
       value === watch("password") || "Passwords do not match",
   }),
 };
+
+export const formatDate = (dateString) => {
+  if (!dateString || dateString === "0001-01-01T00:00:00") {
+    return "Not Available";
+  }
+  const date = new Date(dateString);
+  return date.toLocaleDateString("en-US", {
+    weekday: "short",
+    year: "numeric",
+    month: "short",
+    day: "2-digit",
+  });
+};

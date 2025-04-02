@@ -1,125 +1,84 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { useNavigate } from "react-router-dom";
-import ProfilePic from "../../../../shared/components/ProfilePic";
+import { useNavigate, useParams } from "react-router-dom";
+import { iconBack } from "../../../../assets/images/icons";
+import TitleComponent from "../../../../shared/components/TitleComponent";
+import DetailsComponent from "./DetailsComponent";
+import { useQuery } from "@tanstack/react-query";
+import { RecyclerDetailsById } from "../../../../query/CollectionManagement/Recycler/GetRecyclerDetails/getRecyclerDetails.query";
+import { getFilePath } from "../../../../query/getfilePath/filePath.query";
 
 const RecyclerCollectionInfo = () => {
   const navigate = useNavigate();
-  const recycler = {
-    name: "Suhaila Abd. Kareem",
-    recyclerId: "09CCINCW",
-    collectionId: "CFT 00389V",
-    dateTime: "13/01/2025, 12:34pm",
-    address:
-      "15-10/1 Jalan Sentosa 39/2, Subang Jaya 403450 Selangor, Malaysia",
-    state: "Selangor",
-    imageUrl: "https://via.placeholder.com/80", // Replace with actual image URL
-  };
+  const params = useParams();
+  const { id } = params;
 
-  const materials = [
-    {
-      id: "09CINCW",
-      type: "Oil Waste",
-      weight: 125,
-      image: "/images/oilwaste.png",
-    },
-    {
-      id: "09CINCW",
-      type: "Clothing",
-      weight: 59,
-      image: "/images/oilwaste.png",
-    },
-    {
-      id: "09CINCW",
-      type: "Oil Waste",
-      weight: 125,
-      image: "/images/oilwaste.png",
-    },
-  ];
+  const { data, isPending } = useQuery({
+    queryKey: ["recyclerCollectionDetails", id],
+    queryFn: () => RecyclerDetailsById(id),
+  });
 
-  const collector = {
-    name: "Ahmad Marwan",
-    collectorId: "#SF0038",
-    imageUrl: "https://via.placeholder.com/50", // Replace with actual image URL
-  };
+  console.log("res", data?.data);
+  const recyclerCollectionData = data?.data;
+  const materialData = data?.data?.materils;
 
-  const MaterialCard = ({ material }) => (
-    <div className="material-card">
-      <img src={material.image} alt={material.type} />
-      <div className="card-content">
-        <p>
-          <span>Collection ID</span> <span>{material.id}</span>
-        </p>
-        <p>
-          <span>Material Type</span> <span>{material.type}</span>
-        </p>
-        <p>
-          <span>Material Weight (kg)</span> <span>{material.weight}</span>
-        </p>
+  const MaterialCard = ({ material }) => {
+    const { data: imgData } = useQuery({
+      queryKey: ["getWasteimg", material.img],
+      queryFn: () => getFilePath({ image: material.img }),
+      enabled: !!material.img,
+    });
+    return (
+      <div className="material-card">
+        <img src={imgData} alt={material.materialType} />
+        <div className="card-content row">
+          <div className="col-lg-6  mt-3 ">
+            <span>CollectionId</span>
+          </div>
+          <div className="col-lg-6 mt-3">
+            <span>{material.collectionId}</span>
+          </div>
+
+          <div className="col-lg-6  mt-3 ">
+            <span>Material Type</span>
+          </div>
+          <div className="col-lg-6 mt-3">
+            <span>{material.materialType}</span>
+          </div>
+          <div className="col-lg-6  mt-3 ps-3">
+            <span>Material Weight (kg)</span>
+          </div>
+          <div className="col-lg-6 mt-3">
+            <span>{material.collectionId}</span>
+          </div>
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
+
   return (
     <>
       <div className="common-main-section">
-        {/* Recycler Info Section */}
-        <div className="header-section">
-          <div>
-            <button className="back-text" onClick={() => navigate(-1)}>
-              &larr; BACK
-            </button>
-          </div>
+        <button className="back-text" onClick={() => navigate(-1)}>
+          <img src={iconBack} /> {"     "}
+          BACK
+        </button>
+        <div className="common-page-toolbar" style={{ padding: "7px 0px" }}>
+          <TitleComponent label="Recycler Collection Information" />
         </div>
-        <div style={{ marginTop: "20px", marginBottom: "20px" }}>
-          <h1 className="primary-title">Recycler Collection Information</h1>
-        </div>
-        <div className="recycler-collection row">
-          <div className="recycler-info col-lg-8">
-            <div className="profile-section">
-              <ProfilePic size={100} isChange={false} />
-            </div>
-            <div className="details">
-              <p>
-                <span>Recycler Name:</span> <span>{recycler.name}</span>
-              </p>
-              <p>
-                <span>Recycler ID:</span> <span>{recycler.recyclerId}</span>
-              </p>
-              <p>
-                <span>Collection ID:</span> <span>{recycler.collectionId}</span>
-              </p>
-              <p>
-                <span>Date & Time:</span> <span>{recycler.dateTime}</span>
-              </p>
-              <p>
-                <span>Address:</span> <span>{recycler.address}</span>
-              </p>
-              <p>
-                <span>State:</span> <span>{recycler.state}</span>
-              </p>
-            </div>
-          </div>
-          {/* Collector Section */}
-          <div className="collector-section col-lg-4 ">
-            <p>Collector</p>
-            <div className="collector-card">
-              <ProfilePic size={55} isChange={false} />
-              <div className="collector-info ">
-                <p className="name">{collector.name}</p>
-                <p className="id">Collector ID: {collector.collectorId}</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <DetailsComponent data={recyclerCollectionData} />
       </div>
       <div className="common-main-section" style={{ marginTop: "20px" }}>
         <h1 className="primary-title">Material Collection</h1>
         <div className="material-section">
-          <div className="material-collection">
-            <div className="collection-grid">
-              {materials.map((material, index) => (
+          <div className="collection-grid">
+            {materialData?.length > 0 ? (
+              materialData?.map((material, index) => (
                 <MaterialCard key={index} material={material} />
-              ))}
-            </div>
+              ))
+            ) : (
+              <p>No Data available</p>
+            )}
           </div>
         </div>
       </div>

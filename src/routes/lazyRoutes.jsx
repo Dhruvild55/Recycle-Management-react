@@ -119,6 +119,11 @@ const AppContentManagement = {
       import("../views/appContentManagement/BaseCollectorGuideline/Add")
     ),
   },
+  BaseCollectionTerms: {
+    List: lazy(() =>
+      import("../views/appContentManagement/BaseCollectorTermsAndCondition")
+    ),
+  },
 };
 
 const SponsorManagement = {

@@ -76,36 +76,43 @@ const CollectorGuideline = () => {
             onFilterChange={setFilter}
           />
         </div>
-        <GuidelinesComponent
-          data={collectorGuideline?.data?.[0]}
-          isLoading={isPending}
-          titleText="Step  1"
-          refetch={refetch}
-        />
+
+        {collectionGuidelinePending ? (
+          <p>Loading...</p>
+        ) : collectorGuideline?.data?.length > 0 ? (
+          <>
+            {/* First item */}
+            <GuidelinesComponent
+              data={collectorGuideline?.data?.[0]}
+              isLoading={isPending}
+              titleText="Step 1"
+              refetch={refetch}
+            />
+          </>
+        ) : (
+          <p style={{ textAlign: "center", marginTop: "20px" }}>
+            No Data Available
+          </p>
+        )}
       </div>
-      {collectorGuideline?.data?.[1] && (
+      {collectorGuideline?.data.slice(1).map((item, index) => (
         <div
           className="common-main-section"
-          style={{ marginTop: "20px", minHeight: "0px" }}
+          style={{
+            marginTop: "20px",
+            minHeight: "0px",
+            paddingBottom: "40px",
+          }}
+          key={index}
         >
           <GuidelinesComponent
-            data={collectorGuideline?.data?.[1]}
+            data={item}
             isLoading={isPending}
-            titleText="Step  2"
+            titleText={`Step ${index + 2}`}
             refetch={refetch}
           />
         </div>
-      )}
-      {collectorGuideline?.data?.[2] && (
-        <div className="common-main-section" style={{ marginTop: "20px" }}>
-          <GuidelinesComponent
-            data={collectorGuideline?.data?.[2]}
-            isLoading={isPending}
-            titleText="Step  3"
-            refetch={refetch}
-          />
-        </div>
-      )}
+      ))}
     </>
   );
 };

@@ -9,16 +9,19 @@ import { Table } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { Loader } from "../../shared/components/Loader";
 import ProfilePic from "../../shared/components/ProfilePic";
+import FilterDropdown from "../../shared/components/FillerDropdown";
 
 const Dashboard = () => {
   const [dashboardData, setDashboardData] = useState({});
+  const [filterText, setFilter] = useState();
+  const [filterRecycler, setFilterRecycler] = useState();
   const translations = useSelector((state) => state.settings.translations);
   useEffect(() => {
     document.title = "Dashboard | Recycle Management ";
   }, []);
   const { data, isPending } = useQuery({
-    queryKey: ["dashboard"],
-    queryFn: () => getDashboardData(),
+    queryKey: ["dashboard", filterText, filterRecycler],
+    queryFn: () => getDashboardData({ filterText, filterRecycler }),
   });
 
   useEffect(() => {
@@ -171,12 +174,15 @@ const Dashboard = () => {
               <div className="left-section">
                 <label className="primary-title">Top Collectors</label>
               </div>
-              <div className="right-section">
-                <span>FILTER:</span>
-                <select>
-                  <option>Oil Waste</option>
-                </select>
-              </div>
+              <FilterDropdown
+                label="Filter"
+                options={[
+                  { value: "by day", label: "by day" },
+                  { value: "by week", label: "by week" },
+                  { value: "by month", label: "by month" },
+                ]}
+                onFilterChange={setFilter}
+              />
             </div>
             <TableComponent headers={headres} data={topCollectors} />
           </div>
@@ -195,12 +201,15 @@ const Dashboard = () => {
               <div className="left-section">
                 <label className="primary-title">Top Recycler</label>
               </div>
-              <div className="right-section">
-                <span>FILTER:</span>
-                <select>
-                  <option>Oil Waste</option>
-                </select>
-              </div>
+              <FilterDropdown
+                label="Filter"
+                options={[
+                  { value: "by day", label: "by day" },
+                  { value: "by week", label: "by week" },
+                  { value: "by month", label: "by month" },
+                ]}
+                onFilterChange={setFilterRecycler}
+              />
             </div>
             <TableComponent headers={headres} data={topRecyclers} />
           </div>

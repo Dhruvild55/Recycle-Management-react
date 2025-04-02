@@ -81,7 +81,6 @@ const ConditionComponent = ({
               {isEdit ? (
                 <form onSubmit={handleSubmit(onSubmit)}>
                   {" "}
-                  {/* Submit on save */}
                   <InputField
                     type="textarea"
                     register={register}

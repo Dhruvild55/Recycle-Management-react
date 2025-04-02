@@ -76,36 +76,41 @@ const RecyclerGuideline = () => {
             onFilterChange={setFilter}
           />
         </div>
-        <GuidelinesComponent
-          data={recyclerGuideline?.data?.[0]}
-          isLoading={isPending}
-          titleText="Step  1"
-          refetch={refetch}
-        />
+        {recyclerGuidelinePending ? (
+          <p>Loading....</p>
+        ) : recyclerGuideline?.data?.length > 0 ? (
+          <>
+            <GuidelinesComponent
+              data={recyclerGuideline?.data?.[0]}
+              isLoading={isPending}
+              titleText="Step  1"
+              refetch={refetch}
+            />
+          </>
+        ) : (
+          <p style={{ textAlign: "center", marginTop: "20px" }}>
+            No Data Available
+          </p>
+        )}
       </div>
-      {recyclerGuideline?.data?.[1] && (
+      {recyclerGuideline?.data.slice(1).map((item, index) => (
         <div
           className="common-main-section"
-          style={{ marginTop: "20px", minHeight: "0px" }}
+          style={{
+            marginTop: "20px",
+            minHeight: "0px",
+            paddingBottom: "40px",
+          }}
+          key={index}
         >
           <GuidelinesComponent
-            data={recyclerGuideline?.data?.[1]}
+            data={item}
             isLoading={isPending}
-            titleText="Step  2"
+            titleText={`Step ${index + 2}`}
             refetch={refetch}
           />
         </div>
-      )}
-      {recyclerGuideline?.data?.[2] && (
-        <div className="common-main-section" style={{ marginTop: "20px" }}>
-          <GuidelinesComponent
-            data={recyclerGuideline?.data?.[2]}
-            isLoading={isPending}
-            titleText="Step  3"
-            refetch={refetch}
-          />
-        </div>
-      )}
+      ))}
     </>
   );
 };

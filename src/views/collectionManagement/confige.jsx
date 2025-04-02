@@ -2,6 +2,7 @@
 import ProfilePic from "../../shared/components/ProfilePic";
 import { iconDelete, iconView } from "../../assets/images/icons";
 import { route } from "../../shared/constants/AllRoutes";
+import { formatDate } from "../../shared/constants/ValidationRules";
 
 // Headers for Collector Collection List
 export const collectorCollectionHeaders = (navigate) => [
@@ -48,24 +49,44 @@ export const recyclerCollectionHeaders = (navigate) => [
     label: "recyclerName",
     render: (row) => (
       <div className="d-flex align-items-center">
-        <ProfilePic size={30} isChange={false} />{" "}
+        <ProfilePic size={30} isChange={false} image={row.imagePath} />{" "}
         <span className="ms-2">{row.recyclerName}</span>
       </div>
     ),
   },
-  { key: "recyclerId", label: "recyclerId" },
-  { key: "dateAndTime", label: "dateAndTime" },
+  {
+    key: "recyclerId",
+    label: "recyclerId",
+    render: (row) =>
+      row.recyclerId.length > 10
+        ? `${row.recyclerId.slice(0, 10)}...`
+        : row.recyclerId,
+  },
+
+  {
+    key: "timestamp",
+    label: "dateAndTime",
+    render: (row) => {
+      return <span>{formatDate(row.timestamp)}</span>;
+    },
+  },
   { key: "state", label: "state" },
   { key: "collectorName", label: "collectorName" },
   { key: "materialType", label: "materialType" },
   {
     key: "action",
     label: "action",
-    render: () => {
+    render: (row) => {
       return (
         <div className="flex gap-2">
           <button
-            onClick={() => navigate(route.viewRecyclerCollection)}
+            onClick={() =>
+              navigate(
+                route.collectionManagement.RecyclerCollection.Details(
+                  row.collectionId
+                )
+              )
+            }
             className="action-btn"
           >
             <img src={iconView} />

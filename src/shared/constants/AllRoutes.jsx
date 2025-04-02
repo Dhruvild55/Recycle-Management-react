@@ -74,13 +74,16 @@ export const route = {
       List: "/app-content-management/base-collector-guideline",
       Add: "/app-content-management/base-collector-guideline/add",
     },
+    BaseCollectorTerms: {
+      List: "/app-content-management/base-collector-terms",
+    },
   },
   addGuidelines: "/app-content-Management/add-Guidelines",
 
   //! Collection Management
   // recyclerCollection: "/collection-Management/recycler-collection",
-  viewRecyclerCollection:
-    "/collection-Management/recycler-collection/view-recycler-collection",
+  // viewRecyclerCollection:
+  //   "/collection-Management/recycler-collection/view-recycler-collection",
   collectorCollection: "/Collection-Management/collector-collection",
   viewCollectorCollection:
     "/collection-Management/collector-collection/view-collector-collection",
@@ -89,6 +92,7 @@ export const route = {
   collectionManagement: {
     RecyclerCollection: {
       List: "/collection-management/recycler-collection",
+      Details: (id) => `/collection-management/recycler-collection/${id}`,
     },
   },
 

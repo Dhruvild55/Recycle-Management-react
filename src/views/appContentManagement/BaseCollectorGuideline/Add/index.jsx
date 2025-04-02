@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useForm } from "react-hook-form";
 import { iconBack } from "../../../../assets/images/icons";
 import InputField from "../../../../shared/components/InputFieldComponent";

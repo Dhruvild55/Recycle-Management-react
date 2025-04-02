@@ -19,6 +19,10 @@ const AppContentManagementTopSection = () => {
       route.appContentManagement.BaseCollectorGuideline.List
     )
       return "baseCollectorGuideline";
+    if (
+      location.pathname === route.appContentManagement.BaseCollectorTerms.List
+    )
+      return "baseCollectorTerms";
   };
 
   const selectedSection = getSelectedSection();
@@ -58,6 +62,15 @@ const AppContentManagementTopSection = () => {
         }
         className={`btn${
           selectedSection === "baseCollectorGuideline" ? " selected" : ""
+        }`}
+      />
+      <ButtonComponent
+        label="Base Collector T&C"
+        onClick={() =>
+          navigate(route.appContentManagement.BaseCollectorTerms.List)
+        }
+        className={`btn${
+          selectedSection === "baseCollectorTerms" ? " selected" : ""
         }`}
       />
     </div>

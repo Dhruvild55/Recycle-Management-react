@@ -184,7 +184,7 @@ const RoutesDetails = [
         exact: true,
       },
       {
-        path: route.viewRecyclerCollection,
+        path: route.collectionManagement.RecyclerCollection.Details(":id"),
         Component: CollectionManagement.Recycler.Details,
         exact: true,
       },
@@ -332,10 +332,16 @@ const RoutesDetails = [
         Component: AppContentManagement.BaseCollectionGuideline.List,
         exact: true,
       },
-      // * base Guideline / List
+      // * base Guideline / Add
       {
         path: route.appContentManagement.BaseCollectorGuideline.Add,
         Component: AppContentManagement.BaseCollectionGuideline.Add,
+        exact: true,
+      },
+      // * base trems And Condition / Add
+      {
+        path: route.appContentManagement.BaseCollectorTerms.List,
+        Component: AppContentManagement.BaseCollectionTerms.List,
         exact: true,
       },
 
