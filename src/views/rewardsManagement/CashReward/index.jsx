@@ -51,7 +51,13 @@ const CashReward = () => {
       <div className="common-page-toolbar">
         <TitleComponent label="List of Cash Reward" />
         <div className="tool-section">
-          <SearchInput placeholder={search} onSearch={setSearchTerm} />
+          <SearchInput
+            placeholder="Search"
+            onSearch={(query) => {
+              setSearchTerm(query);
+              setPageNumber(1);
+            }}
+          />
           <FilterDropdown
             label={filter}
             options={[

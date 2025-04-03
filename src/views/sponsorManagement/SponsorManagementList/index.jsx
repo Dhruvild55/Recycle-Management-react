@@ -6,11 +6,15 @@ import { iconRightArrow } from "../../../assets/images/icons";
 import Pagination from "../../../shared/components/CustomPagination";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import SearchInput from "../../../shared/components/SearchInput";
+import FilterDropdown from "../../../shared/components/FillerDropdown";
 
 const SponsorManagement = () => {
   const translations = useSelector((state) => state.settings.translations);
   const [pageSize, setPageSize] = useState(5);
   const [pageNumber, setPageNumber] = useState(1);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filterText, setFilter] = useState("All");
   const navigate = useNavigate();
 
   const totalPages = Math.ceil((sponsorList.length || 1) / pageSize);
@@ -19,16 +23,23 @@ const SponsorManagement = () => {
     <div className="common-main-section">
       <div className="common-page-toolbar" style={{ marginTop: "0px" }}>
         <label className="primary-title"> List of Sponsor</label>
-        <div className="tool-section">
-          <input
-            className="search-input"
-            type="text"
-            placeholder={translations.search}
+        <div className="tool-section" style={{ gap: "40px" }}>
+          <SearchInput
+            placeholder="search"
+            onSearch={(query) => {
+              setSearchTerm(query);
+              setPageNumber(1);
+            }}
           />
-          <label className="back-text">{translations.filter}:</label>
-          <select>
-            <option>All</option>
-          </select>
+          <FilterDropdown
+            label={translations.filter}
+            options={[
+              { value: "", label: "All" },
+              { value: "Publish", label: "Publish" },
+              { value: "Unpublish", label: "Unpublish" },
+            ]}
+            onFilterChange={setFilter}
+          />
         </div>
       </div>
       <CustomTable headers={sponsorHeader(navigate)} data={sponsorList} />

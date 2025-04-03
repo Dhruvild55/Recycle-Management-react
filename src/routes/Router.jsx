@@ -29,12 +29,6 @@ const AddGuideLinePage = lazy(() =>
   import("../views/appContentManagement/addGuidelines")
 );
 
-const ViewCollectorCollectionPage = lazy(() =>
-  import(
-    "../views/collectionManagement/Collector-collection/CollectorCollectionInfo"
-  )
-);
-
 //* Rewards Management
 
 // const ViewRewardsTransactionPage = lazy(() =>
@@ -189,13 +183,13 @@ const RoutesDetails = [
         exact: true,
       },
       {
-        path: route.collectorCollection,
+        path: route.collectionManagement.CollectorCollection.List,
         Component: CollectionManagement.Collector.List,
         exact: true,
       },
       {
-        path: route.viewCollectorCollection,
-        Component: ViewCollectorCollectionPage,
+        path: route.collectionManagement.CollectorCollection.Details(":id"),
+        Component: CollectionManagement.Collector.Details,
         exact: true,
       },
 

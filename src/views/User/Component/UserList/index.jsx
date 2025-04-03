@@ -16,6 +16,7 @@ import useDebounce from "../../../../shared/hooks/useDebounce";
 import TitleComponent from "../../../../shared/components/TitleComponent";
 import ButtonComponent from "../../../../shared/components/Buttoncomponent";
 import FilterDropdown from "../../../../shared/components/FillerDropdown";
+import SearchInput from "../../../../shared/components/SearchInput";
 
 const UserList = ({
   title,
@@ -81,12 +82,12 @@ const UserList = ({
         <div className="common-page-toolbar">
           <TitleComponent label={title} />
           <div className="tool-section">
-            <input
-              className="search-input"
-              type="text"
-              placeholder={translations.search}
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+            <SearchInput
+              placeholder="Search"
+              onSearch={(query) => {
+                setSearchQuery(query);
+                setPageNumber(1);
+              }}
             />
           </div>
 

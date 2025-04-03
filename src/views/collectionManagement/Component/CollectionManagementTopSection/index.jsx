@@ -7,9 +7,13 @@ const CollectionManagementTopSection = () => {
   const location = useLocation();
 
   const getSelectedSection = () => {
-    if (location.pathname === route.recyclerCollection)
+    if (
+      location.pathname === route.collectionManagement.RecyclerCollection.List
+    )
       return "recycler-collection";
-    if (location.pathname === route.collectorCollection)
+    if (
+      location.pathname === route.collectionManagement.CollectorCollection.List
+    )
       return "collector-collection";
     return "recycler-collection";
   };
@@ -28,7 +32,9 @@ const CollectionManagementTopSection = () => {
       />
       <ButtonComponent
         label="Collector Collection"
-        onClick={() => navigate(route.collectorCollection)}
+        onClick={() =>
+          navigate(route.collectionManagement.CollectorCollection.List)
+        }
         className={`btn${
           selectedSection === "collector-collection" ? " selected" : ""
         }`}

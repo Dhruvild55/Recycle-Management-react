@@ -105,15 +105,19 @@ const ViewPreviousItems = () => {
           gap: "30px",
         }}
       >
-        {data?.data?.materials.map((items, index) => {
-          return (
-            <MaterialCardComponent
-              key={items.materialName}
-              items={items}
-              index={index}
-            />
-          );
-        })}
+        {data?.data?.materials.length > 0 ? (
+          data?.data?.materials.map((items, index) => {
+            return (
+              <MaterialCardComponent
+                key={items.materialName}
+                items={items}
+                index={index}
+              />
+            );
+          })
+        ) : (
+          <p>Material Data not available</p>
+        )}
       </div>
     </>
   );

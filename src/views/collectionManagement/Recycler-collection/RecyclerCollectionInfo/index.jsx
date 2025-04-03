@@ -29,27 +29,20 @@ const RecyclerCollectionInfo = () => {
       enabled: !!material.img,
     });
     return (
-      <div className="material-card">
-        <img src={imgData} alt={material.materialType} />
-        <div className="card-content row">
-          <div className="col-lg-6  mt-3 ">
-            <span>CollectionId</span>
+      <div className="collection-card">
+        <img src={imgData} alt="Oil Waste" className="collection-image" />
+        <div className="collection-details">
+          <div className="detail">
+            <span className="label">Collection ID</span>
+            <span className="value">{material.collectionId}</span>
           </div>
-          <div className="col-lg-6 mt-3">
-            <span>{material.collectionId}</span>
+          <div className="detail">
+            <span className="label">Material Type</span>
+            <span className="value">{material.materialType}</span>
           </div>
-
-          <div className="col-lg-6  mt-3 ">
-            <span>Material Type</span>
-          </div>
-          <div className="col-lg-6 mt-3">
-            <span>{material.materialType}</span>
-          </div>
-          <div className="col-lg-6  mt-3 ps-3">
-            <span>Material Weight (kg)</span>
-          </div>
-          <div className="col-lg-6 mt-3">
-            <span>{material.collectionId}</span>
+          <div className="detail">
+            <span className="label">Material Weight (kg)</span>
+            <span className="value">{material.weight}</span>
           </div>
         </div>
       </div>

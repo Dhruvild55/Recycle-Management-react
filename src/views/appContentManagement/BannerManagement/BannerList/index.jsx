@@ -54,7 +54,13 @@ const BannerList = () => {
       <div className="common-page-toolbar">
         <label className="primary-title">{bannerManagement}</label>
         <div className="tool-section">
-          <SearchInput placeholder={search} onSearch={setSearchTerm} />
+          <SearchInput
+            placeholder="Search"
+            onSearch={(query) => {
+              setSearchTerm(query);
+              setPageNumber(1);
+            }}
+          />
           <FilterDropdown
             label={filter}
             options={[

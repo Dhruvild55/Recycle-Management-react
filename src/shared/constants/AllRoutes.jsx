@@ -84,15 +84,19 @@ export const route = {
   // recyclerCollection: "/collection-Management/recycler-collection",
   // viewRecyclerCollection:
   //   "/collection-Management/recycler-collection/view-recycler-collection",
-  collectorCollection: "/Collection-Management/collector-collection",
-  viewCollectorCollection:
-    "/collection-Management/collector-collection/view-collector-collection",
+  // collectorCollection: "/Collection-Management/collector-collection",
+  // viewCollectorCollection:
+  //   "/collection-Management/collector-collection/view-collector-collection",
 
   // ! Collection Management
   collectionManagement: {
     RecyclerCollection: {
       List: "/collection-management/recycler-collection",
       Details: (id) => `/collection-management/recycler-collection/${id}`,
+    },
+    CollectorCollection: {
+      List: "/collection-management/collector-collection",
+      Details: (id) => `/collection-management/collector-collection/${id}`,
     },
   },
 

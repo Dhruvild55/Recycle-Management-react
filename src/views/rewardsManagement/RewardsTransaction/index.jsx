@@ -53,7 +53,13 @@ const RewardTransaction = () => {
         <div className="common-page-toolbar">
           <label className="primary-title">List of Reward Transaction</label>
           <div className="tool-section" style={{ gap: "110px" }}>
-            <SearchInput placeholder={search} onSearch={setSearchTerm} />
+            <SearchInput
+              placeholder="Search"
+              onSearch={(query) => {
+                setSearchTerm(query);
+                setPageNumber(1);
+              }}
+            />
             <FilterDropdown
               label={filter}
               options={[

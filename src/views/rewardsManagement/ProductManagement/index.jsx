@@ -23,7 +23,7 @@ import TitleComponent from "../../../shared/components/TitleComponent";
 const ProductManagement = () => {
   const translations = useSelector((state) => state.settings.translations);
   const { search, filter } = translations;
-  const [pageSize, setPageSize] = useState(10);
+  const [pageSize, setPageSize] = useState(2);
   const [pageNumber, setPageNumber] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterText, setFilter] = useState("");
@@ -78,7 +78,13 @@ const ProductManagement = () => {
         <div className="common-page-toolbar">
           <TitleComponent label="List of Rewards" />
           <div className="tool-section">
-            <SearchInput placeholder={search} onSearch={setSearchTerm} />
+            <SearchInput
+              placeholder="Search"
+              onSearch={(query) => {
+                setSearchTerm(query);
+                setPageNumber(1);
+              }}
+            />
             <FilterDropdown
               label={filter}
               options={[

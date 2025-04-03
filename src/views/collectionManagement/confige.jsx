@@ -13,22 +13,41 @@ export const collectorCollectionHeaders = (navigate) => [
     render: (row) => (
       <div className="d-flex align-items-center">
         <ProfilePic size={30} isChange={false} />{" "}
-        <span className="ms-2">{row.recyclerName}</span>
+        <span className="ms-2">{row.collectorName}</span>
       </div>
     ),
   },
-  { key: "collectorId", label: "collectorId" },
-  { key: "dateAndTime", label: "dateAndTime" },
+  {
+    key: "collectorId",
+    label: "collectorId",
+    render: (row) =>
+      row.collectorId.length > 10
+        ? `${row.collectorId.slice(0, 10)}...`
+        : row.collectorId,
+  },
+  {
+    key: "timestamp",
+    label: "dateAndTime",
+    render: (row) => {
+      return <span>{formatDate(row.timestamp)}</span>;
+    },
+  },
   { key: "depotName", label: "depotName" },
   { key: "state", label: "state" },
   { key: "materialType", label: "materialType" },
   {
     key: "action",
     label: "action",
-    render: () => (
+    render: (row) => (
       <div className="flex gap-2">
         <button
-          onClick={() => navigate(route.viewCollectorCollection)}
+          onClick={() =>
+            navigate(
+              route.collectionManagement.CollectorCollection.Details(
+                row.collectionId
+              )
+            )
+          }
           className="action-btn"
         >
           <img src={iconView} />
@@ -42,7 +61,7 @@ export const collectorCollectionHeaders = (navigate) => [
 ];
 
 // Headers for Recycler Collection List
-export const recyclerCollectionHeaders = (navigate) => [
+export const recyclerCollectionHeaders = (navigate, deleteMutate) => [
   { key: "collectionId", label: "collectionId" },
   {
     key: "recyclerName",
@@ -91,7 +110,10 @@ export const recyclerCollectionHeaders = (navigate) => [
           >
             <img src={iconView} />
           </button>
-          <button className="action-btn">
+          <button
+            className="action-btn"
+            onClick={() => deleteMutate(row.collectionId)}
+          >
             <img src={iconDelete} />
           </button>
         </div>

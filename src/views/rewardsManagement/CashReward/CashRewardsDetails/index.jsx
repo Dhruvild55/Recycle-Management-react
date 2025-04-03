@@ -1,8 +1,11 @@
 import { useNavigate, useParams } from "react-router-dom";
 import ProfilePic from "../../../../shared/components/ProfilePic";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { getCashRewardsDetails } from "../../../../query/RewardsManagement/getCashRewardsDetails/getCashRewardsDetails.query";
 import { iconBack } from "../../../../assets/images/icons";
+import { approveCashReward } from "../../../../query/RewardsManagement/ApproveCashRewardByAdmin/approveCashReward.query";
+import { Loader } from "../../../../shared/components/Loader";
+import { ReactToastify } from "../../../../shared/utils";
 
 const CashRewardsDetails = () => {
   const navigate = useNavigate();
@@ -12,6 +15,22 @@ const CashRewardsDetails = () => {
     queryKey: ["getCashRewardsDetails", id],
     queryFn: () => getCashRewardsDetails(id),
   });
+
+  const { mutate } = useMutation({
+    mutationFn: (data) => approveCashReward(id, data),
+    onSuccess: (data) => {
+      console.log(data);
+      ReactToastify(data?.message, "success");
+      navigate(-1);
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  const handleApproval = (isApproved) => {
+    mutate({ IsApprove: isApproved });
+  };
 
   if (isPending) {
     return (
@@ -158,10 +177,23 @@ const CashRewardsDetails = () => {
         <div className="actions">
           <p className="primary-title">Approval Convert2Cash</p>
           <div className="form-actions">
-            <button type="submit" className="submit-button">
-              Approve
+            <button
+              type="submit"
+              className="submit-button"
+              disabled={isPending}
+              onClick={() => handleApproval("Completed")}
+            >
+              {isPending ? (
+                <Loader animation="border" width="20px" height="20px" />
+              ) : (
+                "Accept"
+              )}
             </button>
-            <button type="button" className="cancel-button">
+            <button
+              type="button"
+              className="cancel-button"
+              onClick={() => handleApproval("Rejected")}
+            >
               Reject
             </button>
           </div>
