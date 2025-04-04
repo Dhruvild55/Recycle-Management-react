@@ -8,6 +8,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SearchInput from "../../../shared/components/SearchInput";
 import FilterDropdown from "../../../shared/components/FillerDropdown";
+import { useQuery } from "@tanstack/react-query";
+import { getSponsorList } from "../../../query/SponsorManagement/getSponsorList/getSponsorList.query";
+import useDebounce from "../../../shared/hooks/useDebounce";
 
 const SponsorManagement = () => {
   const translations = useSelector((state) => state.settings.translations);
@@ -17,7 +20,45 @@ const SponsorManagement = () => {
   const [filterText, setFilter] = useState("All");
   const navigate = useNavigate();
 
-  const totalPages = Math.ceil((sponsorList.length || 1) / pageSize);
+  const debouncedSearchQuery = useDebounce(searchTerm.trim(), 500);
+
+  const formatDate = (dateString) => {
+    if (!dateString || dateString.startsWith("0001-01-01")) {
+      return "Not Available";
+    }
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.toLocaleString("en-US", { month: "long" });
+    const year = date.getFullYear();
+    const getOrdinalSuffix = (n) => {
+      const s = ["th", "st", "nd", "rd"];
+      const v = n % 100;
+      return s[(v - 20) % 10] || s[v] || s[0];
+    };
+    return `${day}${getOrdinalSuffix(day)} ${month}, ${year}`;
+  };
+
+  const { data, isPending } = useQuery({
+    queryKey: [
+      "sponsorList",
+      pageNumber,
+      pageSize,
+      debouncedSearchQuery,
+      filterText,
+    ],
+    queryFn: () =>
+      getSponsorList({
+        pageNumber,
+        pageSize,
+        searchTerm: debouncedSearchQuery,
+        filterText,
+      }),
+    keepPreviousData: true,
+    refetchOnWindowFocus: false,
+  });
+
+  const sponsorData = data?.data?.items;
+  const totalPages = Math.ceil((data?.data?.totalRecords || 1) / pageSize);
 
   return (
     <div className="common-main-section">
@@ -33,20 +74,19 @@ const SponsorManagement = () => {
           />
           <FilterDropdown
             label={translations.filter}
-            options={[
-              { value: "", label: "All" },
-              { value: "Publish", label: "Publish" },
-              { value: "Unpublish", label: "Unpublish" },
-            ]}
+            options={[{ value: "", label: "All" }]}
             onFilterChange={setFilter}
           />
         </div>
       </div>
-      <CustomTable headers={sponsorHeader(navigate)} data={sponsorList} />
+      <CustomTable
+        headers={sponsorHeader(navigate, formatDate)}
+        data={sponsorData}
+      />
       <div className="table-footer">
         <div>
           <span className="back-text" style={{ color: "#181D27" }}>
-            {translations.showing} 10 {translations.entries}{" "}
+            {translations.showing} {sponsorData?.length} {translations.entries}{" "}
           </span>
           <img src={iconRightArrow} />
         </div>

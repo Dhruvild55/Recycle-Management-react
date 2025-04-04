@@ -20,10 +20,15 @@ export const collectorCollectionHeaders = (navigate) => [
   {
     key: "collectorId",
     label: "collectorId",
-    render: (row) =>
-      row.collectorId.length > 10
-        ? `${row.collectorId.slice(0, 10)}...`
-        : row.collectorId,
+    render: (row) => (
+      <div className="d-flex align-items-center">
+        {row.collectorId === null || row.collectorId === undefined
+          ? ""
+          : row.collectorId.length > 10
+          ? `${row.collectorId.slice(0, 10)}...`
+          : row.collectorId}
+      </div>
+    ),
   },
   {
     key: "timestamp",
@@ -76,10 +81,15 @@ export const recyclerCollectionHeaders = (navigate, deleteMutate) => [
   {
     key: "recyclerId",
     label: "recyclerId",
-    render: (row) =>
-      row.recyclerId.length > 10
-        ? `${row.recyclerId.slice(0, 10)}...`
-        : row.recyclerId,
+    render: (row) => (
+      <div className="d-flex align-items-center">
+        {row.recyclerId === null || row.recyclerId === undefined
+          ? ""
+          : row.recyclerId.length > 10
+          ? `${row.recyclerId.slice(0, 10)}...`
+          : row.recyclerId}
+      </div>
+    ),
   },
 
   {

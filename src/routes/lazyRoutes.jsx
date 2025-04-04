@@ -24,6 +24,7 @@ const UserManagement = {
     ViewHistory: lazy(() =>
       import(`../views/User/Recycler/History/PreviousItems/viewPreviousItems`)
     ),
+    PartnerPoints: lazy(() => import(`../views/User/Recycler/PartnerPoints`)),
   },
   Collector: {
     List: lazy(() => import(`../views/User/Collecter/CollectorList`)),

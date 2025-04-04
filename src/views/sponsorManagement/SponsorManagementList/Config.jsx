@@ -2,11 +2,11 @@ import { iconEye } from "../../../assets/images/icons";
 import ProfilePic from "../../../shared/components/ProfilePic";
 import { route } from "../../../shared/constants/AllRoutes";
 
-export const sponsorHeader = (navigate) => [
+export const sponsorHeader = (navigate, formatDate) => [
   {
     key: "sponsor_name",
     label: "sponsor_name",
-    width: "700",
+    width: "500",
     render: (row) => {
       return (
         <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
@@ -15,19 +15,34 @@ export const sponsorHeader = (navigate) => [
             userId={row.id}
             name={row.sponsor_name}
             isChange={false}
+            image={row.sponsorImg}
           />
-          <span>{row.sponsor_name}</span>
+          <span>{row.sponsorName}</span>
         </div>
       );
     },
   },
   {
-    key: "date_create",
+    key: "activationDate",
     label: "date_create",
+    render: (row) => {
+      return (
+        <span className="d-flex  justify-content-space-around ">
+          {formatDate(row.activationDate)}
+        </span>
+      );
+    },
   },
   {
-    key: "no_link_account",
+    key: "noOfLinkedAccount",
     label: "no_link_account",
+    render: (row) => {
+      return (
+        <span className="d-flex  justify-content-space-around">
+          {row.noOfLinkedAccount}
+        </span>
+      );
+    },
   },
   {
     key: "action",
@@ -37,7 +52,7 @@ export const sponsorHeader = (navigate) => [
         <button
           className="action-btn"
           onClick={() =>
-            navigate(route.sponsorManagement.View.SponsorInfo(row.id))
+            navigate(route.sponsorManagement.View.SponsorInfo(row.campaignId))
           }
         >
           <img src={iconEye} />

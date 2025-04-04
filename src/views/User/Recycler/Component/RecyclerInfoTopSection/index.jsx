@@ -36,6 +36,15 @@ const RecyclerInfoTopSection = () => {
           location.pathname.includes("/hardware") ? " selected" : ""
         }`}
       />
+      <ButtonComponent
+        label="List of Partner Points"
+        onClick={() =>
+          navigate(`/user-Management/recycler/partner-points/${id}`)
+        }
+        className={`btn${
+          location.pathname.includes("/partner-points") ? " selected" : ""
+        }`}
+      />
     </div>
   );
 };

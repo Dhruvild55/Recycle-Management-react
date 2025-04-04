@@ -27,7 +27,10 @@ const PreviousItems = ({
   ];
 
   return (
-    <div className="common-main-section" style={{ marginTop: "10px" }}>
+    <div
+      className="common-main-section"
+      style={{ marginTop: "10px", minHeight: "0px" }}
+    >
       <label className="primary-title" style={{ marginBottom: "20px" }}>
         Previous Items
       </label>

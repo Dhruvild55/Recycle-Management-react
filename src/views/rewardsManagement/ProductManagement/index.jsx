@@ -23,7 +23,7 @@ import TitleComponent from "../../../shared/components/TitleComponent";
 const ProductManagement = () => {
   const translations = useSelector((state) => state.settings.translations);
   const { search, filter } = translations;
-  const [pageSize, setPageSize] = useState(2);
+  const [pageSize, setPageSize] = useState(10);
   const [pageNumber, setPageNumber] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterText, setFilter] = useState("");

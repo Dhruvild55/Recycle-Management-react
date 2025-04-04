@@ -72,7 +72,9 @@ const Dashboard = () => {
               }}
             >
               {" "}
-              {row.collectionWeight}
+              {row?.collectionWeight % 1 === 0
+                ? row?.collectionWeight
+                : row?.collectionWeight.toFixed(2)}
               {"kg"}
             </p>
           </span>

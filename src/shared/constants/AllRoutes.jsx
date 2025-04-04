@@ -20,6 +20,7 @@ export const route = {
       Hardware: (id) => `/user-Management/recycler/hardware/${id}`,
       ViewHistory: (id) =>
         `/user-Management/recycler/history/items-detail/${id}`,
+      PartnerPoints: (id) => `/user-Management/recycler/partner-points/${id}`,
     },
     Collector: {
       List: "/user-Management/collector",

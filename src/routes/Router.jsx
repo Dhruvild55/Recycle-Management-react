@@ -101,32 +101,39 @@ const RoutesDetails = [
         Component: UserManagement.Recycler.List,
         exact: true,
       },
-      //! Recycler Details
+      //* Recycler Details
       {
         path: route.userManagement.Recycler.Details(`:id`),
         Component: UserManagement.Recycler.Details,
       },
-      //! Recycler History
+      // * Recycler History
       {
         path: route.userManagement.Recycler.History(`:id`),
         Component: UserManagement.Recycler.History,
         exact: true,
       },
+      // * recycler History Details
       {
         path: route.userManagement.Recycler.ViewHistory(":id"),
         Component: UserManagement.Recycler.ViewHistory,
         exact: true,
       },
-      //! Recycler Rewards
+      // * Recycler Rewards
       {
         path: route.userManagement.Recycler.Rewards(":id"),
         Component: UserManagement.Recycler.Rewards,
         exact: true,
       },
-      //! Recycler HardWare
+      // * Recycler HardWare
       {
         path: route.userManagement.Recycler.Hardware(":id"),
         Component: UserManagement.Recycler.Hardware,
+        exact: true,
+      },
+      // * Recycler Partner Points
+      {
+        path: route.userManagement.Recycler.PartnerPoints(":id"),
+        Component: UserManagement.Recycler.PartnerPoints,
         exact: true,
       },
 

@@ -6,6 +6,7 @@ export const headers = (navigate, deleteReward) => [
   {
     key: "rewardName",
     label: "reward",
+    width: "450",
     render: (row) => {
       return (
         <div className="d-flex align-items-center">
@@ -18,6 +19,7 @@ export const headers = (navigate, deleteReward) => [
   {
     key: "point",
     label: "points-pt",
+    width: "200",
     render: (row) => {
       return (
         <div>
@@ -26,11 +28,12 @@ export const headers = (navigate, deleteReward) => [
       );
     },
   },
-  { key: "validity", label: "validity" },
-  { key: "rewardCategoryName", label: "category" },
+  { key: "validity", label: "validity", width: "200" },
+  { key: "rewardCategoryName", label: "category", width: "300" },
   {
     key: "action",
     label: "action",
+    width: "200",
     render: (row) => {
       return (
         <div className="flex gap-1">

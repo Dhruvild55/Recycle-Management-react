@@ -15,10 +15,13 @@ const CardComponent = ({
         <h3 className="card-value">{isLoading ? 0 : totalUsers?.count ?? 0}</h3>
         <div className="card-inner-div">
           <div className="textValue-box">
-            <h6>
-              {(isLoading ? "--%" : `${totalUsers?.percentageChange}%`) ??
-                "--%"}
-            </h6>
+            <p>
+              {(isLoading
+                ? "--%"
+                : totalUsers?.percentageChange % 1 === 0
+                ? totalUsers?.percentageChange + "%"
+                : totalUsers?.percentageChange.toFixed(2) + "%") ?? "--%"}
+            </p>
           </div>
           <p>Compared last year</p>
         </div>
@@ -28,9 +31,13 @@ const CardComponent = ({
         <h3 className="card-value">{isLoading ? 0 : totalB2C?.count ?? 0}</h3>
         <div className="card-inner-div">
           <div className="textValue-box">
-            <h6>
-              {(isLoading ? "--%" : `${totalB2C?.percentageChange}%`) ?? "--%"}
-            </h6>
+            <p>
+              {(isLoading
+                ? "--%"
+                : totalB2C?.percentageChange % 1 === 0
+                ? totalB2C?.percentageChange + "%"
+                : totalB2C?.percentageChange.toFixed(2) + "%") ?? "--%"}
+            </p>
           </div>
           <p>Compared last year</p>
         </div>
@@ -40,9 +47,13 @@ const CardComponent = ({
         <h3 className="card-value">{isLoading ? 0 : totalB2B?.count ?? 0}</h3>
         <div className="card-inner-div">
           <div className="textValue-box">
-            <h6>
-              {(isLoading ? "--%" : `${totalB2B?.percentageChange}%`) ?? "--%"}
-            </h6>
+            <p>
+              {(isLoading
+                ? "--%"
+                : totalB2B?.percentageChange % 1 === 0
+                ? totalB2B?.percentageChange + "%"
+                : totalB2B?.percentageChange.toFixed(2) + "%") ?? "--%"}
+            </p>
           </div>
           <p>Compared last year</p>
         </div>
@@ -58,10 +69,10 @@ const CardComponent = ({
         </h3>
         <div className="card-inner-div">
           <div className="textValue-box">
-            <h6>
+            <p>
               {(isLoading ? "--%" : `${totalCollection?.percentageChange}%`) ??
                 "--%"}
-            </h6>
+            </p>
           </div>
           <p>Compared last year</p>
         </div>

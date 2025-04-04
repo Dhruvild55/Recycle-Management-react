@@ -11,10 +11,13 @@ const DataBarChartComponent = ({ material = [] }) => {
   const formattedMaterial =
     Array.isArray(material) && material.length > 0 ? material : defaultData;
 
-  const data = formattedMaterial.map((item) => ({
+  const allData = formattedMaterial.map((item) => ({
     name: item.materialTypeName || item.name,
     value: item.totalWeight || item.value,
   }));
+
+  // Limit to maximum of 2 items
+  const data = allData.slice(0, 2);
 
   const COLORS = ["#7CCBBC", "#1F7F82", "#B1D33A", "#ABEFC6"];
 
@@ -81,24 +84,29 @@ const DataBarChartComponent = ({ material = [] }) => {
         >
           {data.map((item, index) => {
             return (
-              <>
+              <div
+                key={index}
+                style={{ display: "flex", alignItems: "center", gap: "10px" }}
+              >
                 <div
-                  className=""
                   style={{
                     width: "55px",
                     backgroundColor: COLORS[index % COLORS.length],
                     height: "55px",
                     borderRadius: "30px",
-                    padding: "15px 17px 15px 17px",
+                    padding: "15px 17px",
                     color: COLORS[index + (1 % COLORS.length)],
                     fontSize: "16px",
                     fontWeight: "600",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
                   }}
                 >
                   {item.value}
                 </div>
                 <p style={{ marginBottom: "0px" }}>{item.name} (kg)</p>
-              </>
+              </div>
             );
           })}
         </div>
