@@ -50,10 +50,6 @@ const CollectionRequestDetails = () => {
                       <ul>
                         <li>Oil Waste</li>
                         <li>Plastic Waste</li>
-                        <li>Paper Waste</li>
-                        <li>Metal Waste</li>
-                        <li>Clothing</li>
-                        <li>Food Waste</li>
                       </ul>
                     </span>
                   </p>
@@ -63,32 +59,19 @@ const CollectionRequestDetails = () => {
                   </p>
                 </div>
                 <div className=" right-section col-lg-6 col-sm-12">
-                  <p>
-                    <strong className="heading">Unit No.</strong>{" "}
-                    <span>No. 15-10/1 </span>
-                  </p>
-                  <p>
-                    <strong>Address</strong>
-                    <span>Lorong Sentul 15/39, Taman Sentul Jaya</span>
-                  </p>
-                  <p>
-                    <strong>City</strong>
-                    <span>Simpang Ampat</span>
-                  </p>
-                  <div>
-                    <p>
-                      <strong>State / Province</strong>
-                      <span>Pulau Pinang</span>
-                    </p>
-                    <p>
-                      <strong>Postcode</strong>
-                      <span> 14100</span>
-                    </p>
+                  <div className="address-section">
+                    <img
+                      src="/images/addressimg-2.png"
+                      className="image-section"
+                    />
+                    <div className="address-details">
+                      <p>Collector Address</p>
+                      <span>
+                        15-10/1 Jalan Sentosa 39/2, Subang Jaya 403450 Selangor,
+                        Malaysia
+                      </span>
+                    </div>
                   </div>
-                  <p>
-                    <strong>Country</strong>
-                    <span>Malaysia</span>
-                  </p>
                 </div>
               </div>
             </div>

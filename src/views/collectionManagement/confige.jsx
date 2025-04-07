@@ -5,7 +5,7 @@ import { route } from "../../shared/constants/AllRoutes";
 import { formatDate } from "../../shared/constants/ValidationRules";
 
 // Headers for Collector Collection List
-export const collectorCollectionHeaders = (navigate) => [
+export const collectorCollectionHeaders = (navigate, deleteMutate) => [
   { key: "collectionId", label: "collectionId" },
   {
     key: "collectorName",
@@ -57,7 +57,10 @@ export const collectorCollectionHeaders = (navigate) => [
         >
           <img src={iconView} />
         </button>
-        <button className="action-btn">
+        <button
+          className="action-btn"
+          onClick={() => deleteMutate(row.collectionId)}
+        >
           <img src={iconDelete} />
         </button>
       </div>

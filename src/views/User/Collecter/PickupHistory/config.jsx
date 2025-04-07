@@ -2,7 +2,7 @@ import { iconDelete, iconView } from "../../../../assets/images/icons";
 import ProfilePic from "../../../../shared/components/ProfilePic";
 import { route } from "../../../../shared/constants/AllRoutes";
 
-export const pickupHistoryHeader = (navigate) => [
+export const pickupHistoryHeader = (navigate, formatDate, deleteMutate) => [
   { key: "collectionId", label: "collectionId" },
   {
     key: "recyclerName",
@@ -10,16 +10,26 @@ export const pickupHistoryHeader = (navigate) => [
     render: (row) => {
       return (
         <div className="d-flex align-items-center gap-2">
-          <ProfilePic />
+          <ProfilePic image={row.imagePath} />
           <span>{row.recyclerName}</span>
         </div>
       );
     },
   },
-  { key: "dateAndTime", label: "dateAndTime" },
+  {
+    key: "timestamp",
+    label: "dateAndTime",
+    render: (row) => {
+      return (
+        <div className="d-flex align-items-center gap-2">
+          <span>{formatDate(row.timestamp)}</span>
+        </div>
+      );
+    },
+  },
   { key: "depotName", label: "depotName" },
   { key: "state", label: "state" },
-  { key: "material_type", label: "materialType" },
+  { key: "materialType", label: "materialType" },
   {
     key: "action",
     label: "action",
@@ -39,7 +49,10 @@ export const pickupHistoryHeader = (navigate) => [
             <img src={iconView} />
           </button>
           <button className="action-btn">
-            <img src={iconDelete} />
+            <img
+              src={iconDelete}
+              onClick={() => deleteMutate(row.collectionId)}
+            />
           </button>
         </div>
       );

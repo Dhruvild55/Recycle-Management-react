@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { useNavigate, useParams } from "react-router-dom";
 import {
@@ -11,52 +12,7 @@ import { getRewardsData } from "../../../../query/users/Recycler/getRewardsList/
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import Pagination from "../../../../shared/components/CustomPagination";
-
-const formatDate = (dateString) => {
-  if (!dateString || dateString === "0001-01-01T00:00:00") {
-    return "Not Available";
-  }
-  const date = new Date(dateString);
-  return date
-    .toLocaleString("en-US", {
-      year: "2-digit",
-      month: "2-digit",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: false,
-    })
-    .replace(",", ""); // Removes the comma between date and time
-};
-
-const RewardItem = ({ reward }) => (
-  <div className="reward-item">
-    <div className="reward-details">
-      <div className="reward-image ">
-        <img src="/images/image.png" alt="Reward" />
-      </div>
-      <div className="rewards-title ">
-        <h3>{reward.rewardName}</h3>
-        <h2>Via rewards</h2>
-        <p>Claimed on {formatDate(reward?.claimedOn)}</p>
-      </div>
-    </div>
-    <div className="secondary-details">
-      <div className="">
-        <p>Status </p>
-        <h2>{reward?.status}</h2>
-      </div>
-      <div className="">
-        <p>Validity</p>
-        <h2>{reward?.validity}</h2>
-      </div>
-      <div className="">
-        <p>Point Spend </p>
-        <h2>{reward?.pointSpent}</h2>
-      </div>
-    </div>
-  </div>
-);
+import RewardsItemComponent from "./RewardsItemComponent";
 
 const RewardsList = () => {
   const navigate = useNavigate();
@@ -71,6 +27,7 @@ const RewardsList = () => {
     queryFn: () => getRewardsData({ id, pageSize, pageNumber }),
   });
   const totalPages = Math.ceil((data?.data?.totalRecords || 1) / pageSize);
+
   return (
     <div className="user-profile-section">
       <div className="common-main-section">
@@ -93,26 +50,30 @@ const RewardsList = () => {
         <div className="rewards-list">
           {data?.data?.items.length > 0 ? (
             data?.data?.items?.map((reward, index) => (
-              <RewardItem key={index} reward={reward} />
+              <RewardsItemComponent key={index} reward={reward} />
             ))
           ) : (
-            <p>No Data Available </p>
+            <div style={{ textAlign: "center" }}>
+              <p>No Data Available </p>
+            </div>
           )}
         </div>
-        <div className="table-footer">
-          <div>
-            <span className="back-text" style={{ color: "#181D27" }}>
-              {translations.showing} {data?.data?.items.length}{" "}
-              {translations.entries}{" "}
-            </span>
-            <img src={iconRightArrow} />
+        {data?.data?.items.length > 0 && (
+          <div className="table-footer">
+            <div>
+              <span className="back-text" style={{ color: "#181D27" }}>
+                {translations.showing} {data?.data?.items.length}{" "}
+                {translations.entries}{" "}
+              </span>
+              <img src={iconRightArrow} />
+            </div>
+            <Pagination
+              currentPage={pageNumber}
+              totalPages={totalPages}
+              onPageChange={setPageNumber}
+            />
           </div>
-          <Pagination
-            currentPage={pageNumber}
-            totalPages={totalPages}
-            onPageChange={setPageNumber}
-          />
-        </div>
+        )}
       </div>
     </div>
   );

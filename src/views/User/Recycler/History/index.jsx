@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useNavigate, useParams } from "react-router-dom";
 import RecyclerInfoTopSection from "../Component/RecyclerInfoTopSection";
-import { iconDelete } from "../../../../assets/images/icons";
+import { iconBack, iconDelete } from "../../../../assets/images/icons";
 import RecyclerHistory from "./RecyclerHistory";
 import PreviousItems from "./PreviousItems";
 import { useQuery } from "@tanstack/react-query";
@@ -33,7 +33,7 @@ const RecyclerHistoryDetails = () => {
             className="back-text"
             onClick={() => navigate("/user-Management/recycler")}
           >
-            &larr; BACK
+            <img src={iconBack} /> {"  "} BACK
           </button>
         </div>
         <RecyclerInfoTopSection />

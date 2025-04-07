@@ -1,67 +1,98 @@
-import { useNavigate } from "react-router-dom";
+/* eslint-disable react/prop-types */
+import { useNavigate, useParams } from "react-router-dom";
 import { iconBack } from "../../../../../assets/images/icons";
-import ProfilePic from "../../../../../shared/components/ProfilePic";
+import { useQuery } from "@tanstack/react-query";
+import { getCollectorPickupDetails } from "../../../../../query/users/Collector/getCollectorPickupDetails/getCollectorPickupDetails.query";
+import { getFilePath } from "../../../../../query/getfilePath/filePath.query";
+import CollectionDetailsComponent from "../../../../../shared/components/CollectionDetailsComponent";
 
 const PickupHistoryDetails = () => {
   const navigate = useNavigate();
-  const collector = {
-    name: "Suhaila Abd. Kareem",
-    recyclerId: "09CCINCW",
-    collectionId: "CFT 00389V",
-    dateTime: "13/01/2025, 12:34pm",
-    address:
-      "15-10/1 Jalan Sentosa 39/2, Subang Jaya 403450 Selangor, Malaysia",
-    state: "Selangor",
-    imageUrl: "https://via.placeholder.com/80", // Replace with actual image URL
+  const params = useParams();
+  const { id } = params;
+
+  const MaterialCard = ({ material }) => {
+    const { data: imgData } = useQuery({
+      queryKey: ["getWasteimg", material.img],
+      queryFn: () => getFilePath({ image: material.img }),
+      enabled: !!material.img,
+    });
+    return (
+      <div className="collection-card">
+        <img src={imgData} alt="Oil Waste" className="collection-image" />
+        <div className="collection-details">
+          <div className="detail">
+            <span className="label">Collection ID</span>
+            <span className="value">{material.collectionId}</span>
+          </div>
+          <div className="detail">
+            <span className="label">Material Type</span>
+            <span className="value">{material.materialType}</span>
+          </div>
+          <div className="detail">
+            <span className="label">Material Weight (kg)</span>
+            <span className="value">{material.weight}</span>
+          </div>
+        </div>
+      </div>
+    );
   };
 
+  const { data } = useQuery({
+    queryKey: ["getPickupDetails", id],
+    queryFn: () => getCollectorPickupDetails(id),
+  });
+
+  console.log(data, "pickup details data");
+
   return (
-    <div className="common-main-section" style={{ minHeight: "0px" }}>
-      <button className="back-text" onClick={() => navigate(-1)}>
-        <img src={iconBack} /> Back
-      </button>
-      <div style={{ marginTop: "20px" }}>
-        <h1 className="primary-title"> Collector Collection Information</h1>
-      </div>
-      <div className="pickupCollectorDetails row">
-        <div className="recycler-info col-lg-8">
-          <div className="profile-section">
-            <ProfilePic size={100} />
-          </div>
-          <div className="details">
-            <p>
-              <span>Collector Name:</span> <span>{collector.name}</span>
-            </p>
-            <p>
-              <span>Collector ID:</span> <span>{collector.recyclerId}</span>
-            </p>
-            <p>
-              <span>Collection ID:</span> <span>{collector.collectionId}</span>
-            </p>
-            <p>
-              <span>Date & Time:</span> <span>{collector.dateTime}</span>
-            </p>
-            <p>
-              <span>State:</span> <span>{collector.state}</span>
-            </p>
+    <>
+      <div className="common-main-section" style={{ minHeight: "0px" }}>
+        <div
+          className="common-page-toolbar"
+          style={{ marginTop: "0px", padding: "7px 0px" }}
+        >
+          <div>
+            <button className="back-text" onClick={() => navigate(-1)}>
+              <img src={iconBack} /> {"   "}
+              BACK
+            </button>
           </div>
         </div>
-        <div className="collector-section col-lg-4">
-          <div className="collector-address-card">
-            <div className="image-section">
-              <img src="/images/addressimg-2.png" />
-            </div>
-            <div className="collector-info">
-              <label className="name">Address</label>
-              <label className="id">
-                15-10/1 Jalan Sentosa 39/2, Subang Jaya 403450 Selangor,
-                Malaysia
-              </label>
+        <div style={{ marginTop: "20px", marginBottom: "20px" }}>
+          <h1 className="primary-title"> Collector Collection Information</h1>
+        </div>
+        <CollectionDetailsComponent data={data} isRecyclerDetail={false} />
+      </div>
+      <div
+        className="common-main-section"
+        style={{ marginTop: "20px", minHeight: "0px" }}
+      >
+        <div style={{ marginBottom: "20px" }}>
+          <h1 className="primary-title"> Recycler Information</h1>
+        </div>
+        <CollectionDetailsComponent data={data} isRecyclerDetail={true} />
+      </div>
+      <div
+        className="common-main-section"
+        style={{ marginTop: "20px", minHeight: "0px" }}
+      >
+        <h1 className="primary-title">Material Collection</h1>
+        <div className="material-section">
+          <div className="material-collection">
+            <div className="collection-grid">
+              {data?.data?.materils.length > 0 ? (
+                data?.data?.materils?.map((material, index) => (
+                  <MaterialCard key={index} material={material} />
+                ))
+              ) : (
+                <p>No Data available</p>
+              )}
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

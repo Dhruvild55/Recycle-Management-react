@@ -1,27 +1,38 @@
 import { iconEye } from "../../../assets/images/icons";
 import ProfilePic from "../../../shared/components/ProfilePic";
+import { formatDate } from "../../../shared/constants/ValidationRules";
 
 export const headers = [
-  { key: "transaction_id", label: "transaction_id" },
+  { key: "tranId", label: "transaction_id" },
   {
     key: "name",
     label: "name",
     render: (row) => {
       return (
         <div className="d-flex align-items-center gap-2">
-          <ProfilePic />
-          <span>{row.name}</span>
+          <ProfilePic image={row.userImg} />
+          <span>{row.userName}</span>
         </div>
       );
     },
   },
-  { key: "dateAndTime", label: "dateAndTime" },
+  {
+    key: "dateTime",
+    label: "dateAndTime",
+    render: (row) => {
+      return (
+        <div className="d-flex align-items-center gap-2">
+          <span>{formatDate(row.dateTime)}</span>
+        </div>
+      );
+    },
+  },
 
   {
-    key: "points-pt",
+    key: "points",
     label: "points-pt",
   },
-  { key: "redemption_item", label: "redemption_item" },
+  { key: "additionalInfo", label: "redemption_item" },
   {
     key: "action",
     label: "action",

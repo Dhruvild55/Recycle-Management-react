@@ -3,13 +3,13 @@ import ProfilePic from "../ProfilePic";
 
 const ProfileCardComponent = ({ userData = {}, isRecycler }) => {
   const {
-    email = "dd@gmail.com",
-    lastName = "Dudhiya",
-    firstName = "Dhruvil",
+    email = "",
+    lastName = "",
+    firstName = "",
     selfiePath = "",
-    lastLoginDate = "1st March 2025",
-    phoneNumber = "5643123456",
-    collectorSince = "1st March 2025",
+    lastLoginDate = "",
+    phoneNumber = "",
+    collectorSince = "",
   } = userData;
   // Format createdAt date
   const formatDate = (dateString) => {

@@ -37,11 +37,10 @@ $font-family: "Inter", sans-serif;
 
     .card-wrapper {
       padding: 10px;
-      display: flex;
-      gap: 70px;
+      display: grid;
+      gap: 30px;
+      grid-template-columns: repeat(3, 1fr);
       justify-content: flex-start; // Align items to the start
-      overflow-x: auto; // Enable horizontal scrolling
-      flex-wrap: nowrap; // Prevent wrapping
       max-width: 100%; // Ensure it takes full width
 
       scrollbar-width: thin;

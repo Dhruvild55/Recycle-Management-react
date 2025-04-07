@@ -43,7 +43,7 @@ export default function AddUserPage() {
       if (location.state?.fromUserList) {
         queryClient.invalidateQueries(["userList"]);
       }
-      navigate(route.userManagement);
+      navigate(route.userManagement.Admin.List);
     },
     onError: (error) => {
       ReactToastify(error?.response?.data?.message, "error");

@@ -52,10 +52,12 @@ export default function AddUserPage() {
   const { mutate, isPending } = useMutation({
     mutationFn: ({ id, updateData }) => EditAdmin(id, updateData),
     onSuccess: (data) => {
-      console.log(data);
+      ReactToastify(data?.message, "success");
+      navigate(route.userManagement.Admin.List);
     },
     onError: (error) => {
       console.log(error);
+      ReactToastify(error?.response?.data?.message, "error");
     },
   });
 

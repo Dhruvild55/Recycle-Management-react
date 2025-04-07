@@ -8,6 +8,7 @@ import useMediaQuery from "../../../../../shared/hooks/useMediaQuery";
 
 const RecyclerHistory = ({ upcommingPickUps }) => {
   const isMobile = useMediaQuery("(max-width: 425px)");
+
   const settings = {
     dots: true,
     infinite: false,
@@ -16,30 +17,46 @@ const RecyclerHistory = ({ upcommingPickUps }) => {
     slidesToScroll: 1,
   };
 
+  const noDataStyle = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#f8f8f8",
+    padding: "20px",
+    borderRadius: "12px",
+    fontSize: "16px",
+    color: "#666",
+    fontWeight: 500,
+    minHeight: "120px",
+    textAlign: "center",
+    marginTop: "10px",
+  };
+
   return (
     <>
       {isMobile ? (
-        <div className="slider-container">
+        <div className="slider-container" style={{ margin: "10px 0" }}>
           {upcommingPickUps?.length > 0 ? (
             <Slider {...settings}>
-              {upcommingPickUps?.map((data, index) => (
+              {upcommingPickUps.map((data, index) => (
                 <PickUpCard key={index} data={data} />
               ))}
             </Slider>
           ) : (
-            <p className="no-data-text">No Data Available</p>
+            <div style={noDataStyle}>No Data Available</div>
           )}
         </div>
       ) : (
-        <div className="card-wrapper">
-          {upcommingPickUps?.length > 0 ? (
-            upcommingPickUps?.map((data, index) => (
-              <PickUpCard key={index} data={data} />
-            ))
-          ) : (
-            <p className="no-data-text">No Data Available</p>
+        <>
+          {upcommingPickUps?.length === 0 && (
+            <div style={noDataStyle}>No Data Available</div>
           )}
-        </div>
+          <div className="card-wrapper">
+            {upcommingPickUps?.map((data, index) => (
+              <PickUpCard key={index} data={data} />
+            ))}
+          </div>
+        </>
       )}
     </>
   );

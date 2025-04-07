@@ -61,7 +61,10 @@ const RecyclerCollectionInfo = () => {
         </div>
         <DetailsComponent data={recyclerCollectionData} />
       </div>
-      <div className="common-main-section" style={{ marginTop: "20px" }}>
+      <div
+        className="common-main-section"
+        style={{ marginTop: "20px", minHeight: "0px" }}
+      >
         <h1 className="primary-title">Material Collection</h1>
         <div className="material-section">
           <div className="collection-grid">

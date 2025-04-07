@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import RecyclerInfoTopSection from "../Component/RecyclerInfoTopSection";
-import { iconDelete } from "../../../../assets/images/icons";
+import { iconBack, iconDelete } from "../../../../assets/images/icons";
 import RecyclerInformation from "./RecyclerInformation";
 import BusinessRegistration from "./BusinessRegistration";
 import BusinessAddress from "./BusinessAddress";
@@ -62,7 +62,7 @@ const RecyclerInformationSection = () => {
             className="back-text"
             onClick={() => navigate("/user-Management/recycler")}
           >
-            &larr; BACK
+            <img src={iconBack} /> {"  "} BACK
           </button>
           <div className="right-section">
             <button

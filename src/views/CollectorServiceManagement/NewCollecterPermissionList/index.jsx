@@ -4,6 +4,8 @@ import { data, headers } from "./configue";
 
 const NewCollecterPermissionList = () => {
   const navigate = useNavigate();
+
+  console.log("data", data);
   return (
     <>
       <div className="common-main-section">
