@@ -1,97 +1,199 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { useState, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
+
 import { iconBack } from "../../../../assets/images/icons";
 import ProfilePic from "../../../../shared/components/ProfilePic";
+import InputField from "../../../../shared/components/InputFieldComponent";
+import { getProductDetails } from "../../../../query/HardwareShopManagement/getProductDetailsById/getProductDetailsById.query";
 
 const ProductDetails = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const params = useParams();
+  const initialEditMode = location.state?.isEditMode ?? false;
+  const [isEditMode, setIsEditMode] = useState(initialEditMode);
+  const { id } = params;
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["productDetails", id],
+    queryFn: () => getProductDetails(id),
+  });
+
+  useEffect(() => {
+    if (data) {
+      console.log("data1", data);
+      reset({
+        productName: data?.data?.productName || "",
+        productId: data?.data?.id || "",
+        price: data?.data?.priceInFiat?.toString() || "",
+        points: data?.data?.priceInPoints?.toString() || "",
+        stock: data?.data?.currentStock?.toString() || "",
+        stockChange: "",
+        description: data?.data?.description || "",
+      });
+    }
+  }, [data, reset]);
+
+  const onSubmit = (formData) => {
+    console.log("Submitted Data:", formData);
+    setIsEditMode(false);
+    // Optionally trigger update API here
+  };
+
+  if (isLoading) return <p>Loading...</p>;
+
   return (
-    <div className="common-main-section">
-      <button className="back-text" onClick={() => navigate(-1)}>
-        <img src={iconBack} /> Back
-      </button>
-      <div className="row">
-        <div className="col-lg-3">
-          <ProfilePic size={160} />
-        </div>
-        <div className="col-lg-9">
+    <>
+      <div className="common-main-section">
+        <button className="back-text" onClick={() => navigate(-1)}>
+          <img src={iconBack} alt="Back" /> Back
+        </button>
+
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="row">
-            <div className="col-lg-6">
-              <label>Product Name</label>
-              <input
-                type="text"
-                className="form-control"
-                value="Jerrycan"
-                readOnly
-              />
+            <div className="col-lg-3" style={{ marginTop: "50px" }}>
+              <ProfilePic image={data?.data?.images} size={200} />
             </div>
-            <div className="col-lg-6">
-              <label>Product ID</label>
-              <input
-                type="text"
-                className="form-control"
-                value="Jerrycan"
-                readOnly
-              />
+
+            <div className="col-lg-9">
+              <div className="row">
+                <div className="col-lg-6">
+                  <InputField
+                    label="Product Name"
+                    type="text"
+                    name="productName"
+                    register={register}
+                    errors={errors}
+                    readOnly={!isEditMode}
+                  />
+                </div>
+                <div className="col-lg-6">
+                  <InputField
+                    label="Product ID"
+                    type="text"
+                    name="productId"
+                    register={register}
+                    errors={errors}
+                    readOnly
+                  />
+                </div>
+              </div>
+
+              <div className="row">
+                <div className="col-lg-6">
+                  <InputField
+                    label="Price"
+                    type="text"
+                    name="price"
+                    register={register}
+                    errors={errors}
+                    readOnly={!isEditMode}
+                  />
+                </div>
+                <div className="col-lg-6">
+                  <InputField
+                    label="Points Required"
+                    type="text"
+                    name="points"
+                    register={register}
+                    errors={errors}
+                    readOnly={!isEditMode}
+                  />
+                </div>
+              </div>
+
+              <div className="col-lg-12 mb-3">
+                <InputField
+                  label="Current Stock"
+                  type="text"
+                  name="stock"
+                  register={register}
+                  errors={errors}
+                  readOnly={!isEditMode}
+                />
+              </div>
+
+              <div className="col-lg-12 mb-2">
+                <InputField
+                  label="Add/Deduct Stock"
+                  type="text"
+                  name="stockChange"
+                  register={register}
+                  errors={errors}
+                  readOnly={!isEditMode}
+                />
+              </div>
+
+              <div className="col-lg-12 mt-3">
+                <InputField
+                  label="Product Short Description"
+                  type="textarea"
+                  name="description"
+                  register={register}
+                  errors={errors}
+                  rows={5}
+                  readOnly={!isEditMode}
+                />
+              </div>
+
+              {/* <div className="col-lg-12 mt-3">
+              {isEditMode ? (
+                <>
+                  <button type="submit" className="btn btn-success me-2">
+                    Save
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    onClick={() => setIsEditMode(false)}
+                  >
+                    Cancel
+                  </button>
+                </>
+              ) : (
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={() => setIsEditMode(true)}
+                >
+                  Edit
+                </button>
+              )}
+            </div> */}
             </div>
           </div>
-          <div className="row">
-            <div className="col-lg-6">
-              <label>Price</label>
-              <input
-                type="text"
-                className="form-control"
-                value="Jerrycan"
-                readOnly
-              />
-            </div>
-            <div className="col-lg-6">
-              <label>Points Required</label>
-              <input
-                type="text"
-                className="form-control"
-                value="Jerrycan"
-                readOnly
-              />
-            </div>
-          </div>
-          <div className="col-lg-12 mb-3">
-            <label>Current Stock</label>
-            <input
-              type="text"
-              className="form-control"
-              value="Jerrycan"
-              readOnly
-            />
-          </div>
-          <div className="col-lg-12 mb-2">
-            <label>Add/Deduct Stock</label>
-            <input
-              type="text"
-              className="form-control"
-              value="Jerrycan"
-              readOnly
-            />
-          </div>
-          <div>
-            <input
-              type="text"
-              className="form-control"
-              value="Jerrycan"
-              readOnly
-            />
-          </div>
-          <div className="col-lg-12 mt-3">
-            <label>Product Short Description</label>
-            <input
-              type="textArea"
-              className="form-control"
-              value="A jerrycan is a sturdy container, typically made of plastic or metal, designed for safely storing and transporting oil waste, preventing spills and ensuring proper disposal."
-              readOnly
-            />
-          </div>
-        </div>
+        </form>
       </div>
-    </div>
+      {isEditMode ? (
+        <div
+          className="common-main-section"
+          style={{ marginTop: "20px", minHeight: "0px" }}
+        >
+          <span style={{ fontSize: "16px", fontWeight: "600" }}>
+            Save Changes
+          </span>
+          <div className="form-actions" style={{ marginTop: "20px" }}>
+            <button type="submit" className="submit-button">
+              Save
+            </button>
+            <button type="button" className="cancel-button">
+              Cancle
+            </button>
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
+    </>
   );
 };
 

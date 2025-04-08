@@ -1,36 +1,57 @@
-/* eslint-disable no-unused-vars */
 import { iconDelete, iconView } from "../../../assets/images/icons";
+import ChipComponent from "../../../shared/components/ChipComponent";
 import ProfilePic from "../../../shared/components/ProfilePic";
 import { route } from "../../../shared/constants/AllRoutes";
 
 export const headers = (navigate) => [
-  { key: "user_id", label: "user_id" },
+  {
+    key: "userId",
+    label: "user_id",
+    render: (row) => {
+      return row.userId?.length > 10
+        ? row.userId?.slice(0, 10) + "..."
+        : row.userId;
+    },
+  },
   {
     key: "name",
     label: "name",
     render: (row) => {
       return (
         <div className="d-flex align-items-center">
-          <ProfilePic size={30} isChange={false} />
-          <span className="ms-2">{row.name}</span>
+          <ProfilePic size={30} isChange={false} image={row.userImg} />
+          <span className="ms-2">{row.userName}</span>
         </div>
       );
     },
   },
-  { key: "reqDate", label: "reqData" },
-  { key: "reqType", label: "reqType" },
-  { key: "phone_no", label: "phone_no" },
+  { key: "requestDate", label: "reqData" },
+  { key: "requestType", label: "reqType" },
+  { key: "phoneNo", label: "phone_no" },
   { key: "state", label: "state" },
-  { key: "status", label: "status" },
+  {
+    key: "status",
+    label: "status",
+    render: (row) => {
+      return (
+        <ChipComponent
+          label={row.status ? "" : "Pending"}
+          color={row.status ? "red" : "yellow"}
+        />
+      );
+    },
+  },
   {
     key: "action",
     label: "action",
-    render: () => {
+    render: (row) => {
       return (
         <div className="flex gap-2">
           <button
             className="action-btn"
-            onClick={() => navigate(route.collectorRequestDetails)}
+            onClick={() =>
+              navigate(route.collectionServiceManagement.Details(row.userId))
+            }
           >
             <img src={iconView} />
           </button>

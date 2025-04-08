@@ -16,6 +16,13 @@ const OrderHistory = () => {
       Headers={OrderHistoryHeaders(navigate)}
       data={orderHistoryData}
       isDateAndtime={true}
+      // getQueryFn={getProductList}
+      getQueryKey="ProductListData"
+      optionsData={[
+        { value: "", label: "All" },
+        { value: 1, label: "Enable" },
+        { value: 0, label: "Disable" },
+      ]}
     />
   );
 };

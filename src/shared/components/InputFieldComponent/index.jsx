@@ -13,6 +13,7 @@ const InputField = ({
   options,
   rows,
   isRequeirdLabel,
+  readOnly = false,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -24,16 +25,16 @@ const InputField = ({
       </label>
 
       {type === "tel" ? (
-        /* Handle Telephone Input */
         <div className="phone-input">
           <div className="input-tel">
-            <select className="country-code">
+            <select className="country-code" disabled={readOnly}>
               <option>+60</option>
             </select>
             <input
               className="phone-input-box"
               type="tel"
               placeholder={placeholder}
+              readOnly={readOnly}
               {...register(name, validation)}
             />
           </div>
@@ -42,9 +43,12 @@ const InputField = ({
           )}
         </div>
       ) : type === "select" ? (
-        /* Handle Dropdown Input */
         <>
-          <select className="roles-input" {...register(name, validation)}>
+          <select
+            className="roles-input"
+            disabled={readOnly}
+            {...register(name, validation)}
+          >
             {options?.map((option, index) => (
               <option key={index} value={option.value}>
                 {option.label}
@@ -56,11 +60,11 @@ const InputField = ({
           )}
         </>
       ) : type === "textarea" ? (
-        /* Handle Textarea Input */
         <div>
           <textarea
             placeholder={placeholder}
             rows={rows || 4}
+            readOnly={readOnly}
             {...register(name, validation)}
           />
           {errors?.[name] && (
@@ -80,9 +84,10 @@ const InputField = ({
                     : "password"
                   : type
               }
+              readOnly={readOnly}
               {...register(name, validation)}
             />
-            {type === "password" && (
+            {type === "password" && !readOnly && (
               <button
                 type="button"
                 className="eye-button"

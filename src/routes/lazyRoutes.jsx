@@ -207,10 +207,22 @@ const HardwareShopManagement = {
   },
   OrderHistory: {
     List: lazy(() => import("../views/hardwareShopManagement/OrderHistory")),
+    Details: lazy(() =>
+      import("../views/hardwareShopManagement/OrderHistory/Details")
+    ),
   },
   StockHistory: {
     List: lazy(() => import("../views/hardwareShopManagement/StockHistory")),
   },
+};
+
+const CollectionServiceManagement = {
+  List: lazy(() =>
+    import("../views/CollectorServiceManagement/NewCollecterPermissionList")
+  ),
+  Details: lazy(() =>
+    import("../views/CollectorServiceManagement/CollectorRequestDetails")
+  ),
 };
 export {
   AuthRoutes,
@@ -222,4 +234,5 @@ export {
   PointsTransactionManagement,
   HardwareShopManagement,
   RewardsManagement,
+  CollectionServiceManagement,
 };

@@ -63,9 +63,7 @@ export const OrderHistoryHeaders = (navigate) => [
         <button
           className="action-btn"
           onClick={() =>
-            navigate(
-              route.hardwareShopManagement.ProductListing.Details(row.id)
-            )
+            navigate(route.hardwareShopManagement.OrderHistory.Details(row.id))
           }
         >
           <img src={iconEye} />

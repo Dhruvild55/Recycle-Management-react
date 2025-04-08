@@ -81,14 +81,6 @@ export const route = {
   },
   addGuidelines: "/app-content-Management/add-Guidelines",
 
-  //! Collection Management
-  // recyclerCollection: "/collection-Management/recycler-collection",
-  // viewRecyclerCollection:
-  //   "/collection-Management/recycler-collection/view-recycler-collection",
-  // collectorCollection: "/Collection-Management/collector-collection",
-  // viewCollectorCollection:
-  //   "/collection-Management/collector-collection/view-collector-collection",
-
   // ! Collection Management
   collectionManagement: {
     RecyclerCollection: {
@@ -157,16 +149,22 @@ export const route = {
     },
     OrderHistory: {
       List: "/hardware-shop-management/orderHistory",
+      Details: (id) => `/hardware-shop-management/orderHistory/${id}`,
     },
     StockHistory: {
       List: "/hardware-shop-management/stockHistory",
     },
   },
 
-  //* Collection Service Management
-  collectorServiceManagement: "/Collector-Service-Management",
-  collectorRequestDetails:
-    "/Collector-Service-Management/Collecter-request-details",
+  collectionServiceManagement: {
+    List: "/collection-service-management",
+    Details: (id) => `/collection-service-management/${id}`,
+  },
+
+  // //* Collection Service Management
+  // collectorServiceManagement: "/Collector-Service-Management",
+  // collectorRequestDetails:
+  //   "/Collector-Service-Management/Collecter-request-details",
 
   // * Not Found Page
   NotFoundPage: "/not-found",

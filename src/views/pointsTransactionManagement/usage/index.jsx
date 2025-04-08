@@ -17,9 +17,9 @@ const UsageList = () => {
   const translations = useSelector((state) => state.settings.translations);
   const { filter, search, showing, entries } = translations;
   const [searchTerm, setSearchTerm] = useState("");
-  const [pageSize, setPageSize] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
   const [pageNumber, setPageNumber] = useState(1);
-  const [filterText, setFilter] = useState("All");
+  const [filterText, setFilter] = useState("");
   const [dateRange, setDateRange] = useState({
     startDate: new Date(),
     endDate: new Date(),

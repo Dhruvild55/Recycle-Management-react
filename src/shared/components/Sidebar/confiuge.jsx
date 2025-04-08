@@ -43,7 +43,7 @@ export const SidebarLinks = [
   },
   {
     name: "collection_service_management",
-    path: route.collectorServiceManagement,
+    path: route.collectionServiceManagement.List,
     icon: <BinIcon color="#1F7F82" />,
   },
   {

@@ -4,6 +4,7 @@ import {
   AppContentManagement,
   AuthRoutes,
   CollectionManagement,
+  CollectionServiceManagement,
   Dashboard,
   HardwareShopManagement,
   PointsTransactionManagement,
@@ -29,28 +30,6 @@ const AddGuideLinePage = lazy(() =>
   import("../views/appContentManagement/addGuidelines")
 );
 
-//* Rewards Management
-
-// const ViewRewardsTransactionPage = lazy(() =>
-//   import("../views/rewardsManagement/RewardsTransaction/ViewRewardsTransaction")
-// );
-
-// const ViewfiatAndDenominationsPage = lazy(() =>
-//   import("../views/rewardsManagement/SettingFiatAndPoints")
-// );
-
-// const RewardsDetailsPage = lazy(() =>
-//   import("../views/rewardsManagement/CashReward/CashRewardsDetails")
-// );
-
-//* collecterServiceManagement
-const CollecterServiceManagementPage = lazy(() =>
-  import("../views/CollectorServiceManagement/NewCollecterPermissionList")
-);
-const CollectorRequestDetailsPage = lazy(() =>
-  import("../views/CollectorServiceManagement/CollectorRequestDetails")
-);
-
 const CampaignCreate = lazy(() =>
   import("../views/campaignManagement/createCampaign")
 );
@@ -74,7 +53,8 @@ const RoutesDetails = [
     props: {},
     isPrivateRoute: true,
     children: [
-      //Dashboard
+      // ! Dashboard
+
       { path: route.dashboard, Component: Dashboard.Dashboard, exact: true },
       // ! User Management
       // * Admin / List
@@ -137,7 +117,7 @@ const RoutesDetails = [
         exact: true,
       },
 
-      //! collectorList
+      //! collector List
       {
         path: route.userManagement.Collector.List,
         Component: UserManagement.Collector.List,
@@ -200,15 +180,15 @@ const RoutesDetails = [
         exact: true,
       },
 
-      //* Collection Service Management
+      // ! collection Service Management
       {
-        path: route.collectorServiceManagement,
-        Component: CollecterServiceManagementPage,
+        path: route.collectionServiceManagement.List,
+        Component: CollectionServiceManagement.List,
         exact: true,
       },
       {
-        path: route.collectorRequestDetails,
-        Component: CollectorRequestDetailsPage,
+        path: route.collectionServiceManagement.Details(":id"),
+        Component: CollectionServiceManagement.Details,
         exact: true,
       },
       //!  Rewards Management
@@ -421,6 +401,12 @@ const RoutesDetails = [
       {
         path: route.hardwareShopManagement.OrderHistory.List,
         Component: HardwareShopManagement.OrderHistory.List,
+        exact: true,
+      },
+      // * Hardware shop Management / Order History Details
+      {
+        path: route.hardwareShopManagement.OrderHistory.Details(":id"),
+        Component: HardwareShopManagement.OrderHistory.Details,
         exact: true,
       },
       // * Hardware shop Management / Stock History

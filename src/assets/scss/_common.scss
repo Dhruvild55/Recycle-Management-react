@@ -162,3 +162,46 @@
   align-items: center;
   padding: 50px;
 }
+
+.checkbox-group {
+  display: flex;
+  gap: 25px;
+  .form-check {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+
+    label {
+      font-size: 14px;
+      font-weight: 500;
+      color: #344054;
+      margin: 0px;
+    }
+  }
+
+  .error-text {
+    color: red;
+    font-size: 12px;
+  }
+  .square-radio input[type="radio"] {
+    width: 25px;
+    height: 25px;
+    border-radius: 15px;
+    border: 2px solid #d0d5dd;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    display: inline-block;
+    position: relative;
+  }
+  /* Add checked effect */
+  .square-radio input[type="radio"]:checked {
+    background-color: white; /* Fill color when selected */
+    border: 2px solid #d0d5dd;
+  }
+  .form-check-input:checked[type="radio"] {
+    --bs-form-check-bg-image: url("/images/redioIcon.png") !important;
+    background-size: 12px 12px; /* Set image width & height */
+    background-position: center; /* Center the image */
+  }
+}

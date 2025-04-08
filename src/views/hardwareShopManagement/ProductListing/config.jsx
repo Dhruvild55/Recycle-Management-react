@@ -12,26 +12,26 @@ import { route } from "../../../shared/constants/AllRoutes";
 
 export const ProductListHeader = (navigate) => [
   {
-    key: "product_name",
+    key: "productName",
     label: "product_name",
     render: (row) => {
       return (
         <div className="d-flex align-items-center gap-2">
-          <ProfilePic />
-          <span>{row.product_name}</span>
+          <ProfilePic image={row.images} />
+          <span>{row.productName}</span>
         </div>
       );
     },
   },
   { key: "id", label: "id" },
   {
-    key: "category",
+    key: "productType",
     label: "category",
     render: (row) => {
       return (
         <div className="d-flex align-items-center gap-2">
           <BinIcon color="#475467" />
-          <span>{row.category}</span>
+          <span>{row.productType}</span>
         </div>
       );
     },
@@ -43,41 +43,73 @@ export const ProductListHeader = (navigate) => [
       return (
         <>
           <div className="d-flex align-items-center gap-3">
-            <img src={iconDoller} />
-            <span>{row.price}</span>
+            <img src={iconDoller} style={{ height: "13px", width: "13px" }} />
+            <span>
+              RM {"   "}
+              {row.priceInFiat}
+            </span>
           </div>
           <div className="d-flex align-items-center gap-3">
-            <img src={iconCoin} />
-            <span>500 pts</span>
+            <img src={iconCoin} style={{ height: "13px", width: "13px" }} />
+            <span>
+              {row.priceInPoints} {"   "} pts
+            </span>
           </div>
         </>
       );
     },
   },
   {
-    key: "current_stock",
+    key: "currentStock",
     label: "current_stock",
+    render: (row) => {
+      return (
+        <div className="d-flex align-items-center gap-2">
+          <span>{row.currentStock}</span>
+        </div>
+      );
+    },
   },
-  { key: "status", label: "status" },
+  {
+    key: "status",
+    label: "status",
+    render: (row) => {
+      return (
+        <div className="d-flex align-items-center gap-2">
+          <span>{row.status ? "Enable" : "Disable"}</span>
+        </div>
+      );
+    },
+  },
   {
     key: "action",
     label: "action",
     render: (row) => {
       return (
         <div>
-          <button className="action-btn">
+          <button
+            className="action-btn"
+            onClick={() =>
+              navigate(
+                route.hardwareShopManagement.ProductListing.Details(row.id),
+                { state: { isEditMode: true } }
+              )
+            }
+          >
             <img src={iconEdit} />
           </button>
           <button
             className="action-btn"
             onClick={() =>
               navigate(
-                route.hardwareShopManagement.ProductListing.Details(row.id)
+                route.hardwareShopManagement.ProductListing.Details(row.id),
+                { state: { isEditMode: false } }
               )
             }
           >
             <img src={iconEye} />
           </button>
+
           <button className="action-btn">
             <img src={iconDelete} />
           </button>
