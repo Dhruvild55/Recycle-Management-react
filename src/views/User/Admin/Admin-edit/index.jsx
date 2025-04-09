@@ -56,7 +56,6 @@ export default function AddUserPage() {
       navigate(route.userManagement.Admin.List);
     },
     onError: (error) => {
-      console.log(error);
       ReactToastify(error?.response?.data?.message, "error");
     },
   });
@@ -81,7 +80,6 @@ export default function AddUserPage() {
   // Handle form submission
   const onSubmit = async (data) => {
     const formData = new FormData();
-    console.log("editData", data);
     formData.append("FirstName", data.firstName);
     formData.append("LastName", data.lastName);
     formData.append("userName", data.userName);

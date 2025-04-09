@@ -101,23 +101,26 @@ const CustomDataTable = ({
         rows={rows}
         columns={columns}
         checkboxSelection={showCheckbox}
-        pagination={pagination}
-        pageSizeOptions={[5, 10, 20, 50]}
-        paginationModel={pagination ? paginationModel : undefined}
-        onPaginationModelChange={setPaginationModel}
-        disableRowSelectionOnClick
-        slotProps={{
-          pagination: {
-            component: () =>
-              pagination && (
+        pagination={pagination ? true : undefined}
+        pageSizeOptions={[5, 10, 20, 50, pageSize].filter(
+          (value, index, self) => self.indexOf(value) === index
+        )}
+        {...(pagination && {
+          paginationModel,
+          onPaginationModelChange: setPaginationModel,
+          slotProps: {
+            pagination: {
+              component: () => (
                 <CustomPagination
                   paginationModel={paginationModel}
                   setPaginationModel={setPaginationModel}
                   totalPages={totalPages}
                 />
               ),
+            },
           },
-        }}
+        })}
+        disableRowSelectionOnClick
         sx={{
           "& .MuiDataGrid-virtualScroller": {
             overflowY: "auto",

@@ -29,7 +29,6 @@ const AddRewards = () => {
   const { mutate, isPending } = useMutation({
     mutationFn: createReward,
     onSuccess: (data) => {
-      console.log("Reward Created Successfully:", data);
       ReactToastify("Reward Created Successfully", "success");
       navigate(-1);
     },

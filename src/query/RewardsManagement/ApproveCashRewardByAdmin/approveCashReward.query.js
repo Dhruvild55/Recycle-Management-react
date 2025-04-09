@@ -1,7 +1,6 @@
 import axiosInstance from "../../../axios";
 
 export const approveCashReward = async (id, data) => {
-  console.log("id", id);
   const res = await axiosInstance.put(
     `/admin/Approve-CashReward-By-Admin/2?culture=en`,
     data,

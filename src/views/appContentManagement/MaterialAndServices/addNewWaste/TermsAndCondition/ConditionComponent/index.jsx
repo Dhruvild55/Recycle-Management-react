@@ -17,7 +17,6 @@ const ConditionComponent = ({
   isDelete,
   refetch,
 }) => {
-  console.log(isLoading);
   const [isEdit, setIsEdit] = useState(false);
 
   const {
@@ -34,7 +33,6 @@ const ConditionComponent = ({
       refetch();
     },
     onError: (error) => {
-      console.log(error);
       ReactToastify(error?.message, "error");
     },
   });

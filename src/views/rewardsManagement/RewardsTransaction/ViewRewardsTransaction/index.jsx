@@ -13,7 +13,6 @@ const ViewRewardsTransaction = () => {
     queryKey: ["rewardsTransactionDetails", id],
     queryFn: () => getRewardTransactionDetails(id),
   });
-  console.log(data?.data);
 
   const formatDate = (dateString) => {
     if (!dateString || dateString === "0001-01-01T00:00:00") {

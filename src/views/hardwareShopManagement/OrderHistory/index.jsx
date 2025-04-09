@@ -2,7 +2,8 @@ import { useNavigate } from "react-router-dom";
 import CommonHardwareShopList from "../Component/CommonHardwareShopList";
 import { useSelector } from "react-redux";
 import { route } from "../../../shared/constants/AllRoutes";
-import { orderHistoryData, OrderHistoryHeaders } from "./config";
+import { OrderHistoryHeaders } from "./config";
+import { getOrderHistoryList } from "../../../query/HardwareShopManagement/getOrderHistoryList/getOrderHistoryList.query";
 
 const OrderHistory = () => {
   const navigate = useNavigate();
@@ -13,15 +14,15 @@ const OrderHistory = () => {
       translations={translations}
       navigate={navigate}
       route={route.hardwareShopManagement.OrderHistory.List}
-      Headers={OrderHistoryHeaders(navigate)}
-      data={orderHistoryData}
+      tableHeaders={OrderHistoryHeaders}
       isDateAndtime={true}
-      // getQueryFn={getProductList}
-      getQueryKey="ProductListData"
+      getQueryFn={getOrderHistoryList}
+      getQueryKey="orderHistoryList"
       optionsData={[
         { value: "", label: "All" },
-        { value: 1, label: "Enable" },
-        { value: 0, label: "Disable" },
+        { value: 1, label: "Completed" },
+        { value: 0, label: "Ready To Ship" },
+        { value: 2, label: "Cancelled" },
       ]}
     />
   );

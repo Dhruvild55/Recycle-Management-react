@@ -3,8 +3,6 @@ import { getFilePath } from "../../../../../query/getfilePath/filePath.query";
 
 /* eslint-disable react/prop-types */
 const CollectionHubCard = ({ data, isrecycler }) => {
-  console.log(data?.data?.collectionHubAddress, "collection hub card data");
-  console.log(data?.data?.recyclerAddress, "collection hub card data");
   const { data: imgData } = useQuery({
     queryKey: ["getImage", isrecycler],
     queryFn: () =>

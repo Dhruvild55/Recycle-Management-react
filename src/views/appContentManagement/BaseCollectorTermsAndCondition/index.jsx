@@ -13,7 +13,6 @@ const BaseCollectorTerms = () => {
     queryFn: () => getCollectorBaseTermsAndCondition(),
   });
 
-  console.log("Terms", data);
   return (
     <>
       <div className="common-main-section">

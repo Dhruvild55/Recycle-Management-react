@@ -19,13 +19,10 @@ const CashRewardsDetails = () => {
   const { mutate } = useMutation({
     mutationFn: (data) => approveCashReward(id, data),
     onSuccess: (data) => {
-      console.log(data);
       ReactToastify(data?.message, "success");
       navigate(-1);
     },
-    onError: (error) => {
-      console.log(error);
-    },
+    onError: (error) => {},
   });
 
   const handleApproval = (isApproved) => {

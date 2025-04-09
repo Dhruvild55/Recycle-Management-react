@@ -19,7 +19,6 @@ const BaseGuidelineAdd = () => {
   const createBaseGuidelineAPI = useMutation({
     mutationFn: createBaseGuideline,
     onSuccess: (data) => {
-      console.log(data);
       ReactToastify(data.message, "success");
       navigate(-1);
     },

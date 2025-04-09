@@ -57,7 +57,6 @@ const CommonListSection = ({
       refetch();
     },
   });
-  console.log(data);
   const tableData = data?.data?.items || [];
 
   const totalPages = Math.ceil((data?.data?.totalRecords || 1) / pageSize);

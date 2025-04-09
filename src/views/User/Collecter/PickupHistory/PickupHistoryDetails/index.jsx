@@ -43,8 +43,6 @@ const PickupHistoryDetails = () => {
     queryFn: () => getCollectorPickupDetails(id),
   });
 
-  console.log(data, "pickup details data");
-
   return (
     <>
       <div className="common-main-section" style={{ minHeight: "0px" }}>

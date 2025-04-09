@@ -64,7 +64,6 @@ const ProductManagement = () => {
       ReactToastify(data?.message, "success");
     },
     onError: (error) => {
-      console.log(error);
       ReactToastify(error?.message, "error");
     },
   });

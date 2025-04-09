@@ -1,9 +1,9 @@
 import axiosInstance from "../../../axios";
 
-export const updateReward = async (id, updatedData) => {
+export const updateOrderHistoryDetails = async (id, formData) => {
   const res = await axiosInstance.put(
-    `/admin/updateReward/${id}?culture=en`,
-    updatedData,
+    `/admin/edit-Product-Order-Status/${id}?culture=en`,
+    formData,
     {
       headers: {
         "Content-Type": "multipart/form-data",

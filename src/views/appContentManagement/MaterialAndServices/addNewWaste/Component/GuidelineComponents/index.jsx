@@ -37,7 +37,6 @@ const GuidelinesComponent = ({ data, isLoading, titleText, refetch }) => {
   };
 
   const onSubmit = async (formData) => {
-    console.log("Updated Data:", formData);
     const submitData = FormData();
     submitData.append("Description", formData.description);
     submitData.append("Title", formData.Title);
@@ -48,12 +47,10 @@ const GuidelinesComponent = ({ data, isLoading, titleText, refetch }) => {
   const { mutate: deleteGuidelineId } = useMutation({
     mutationFn: deleteGuideline,
     onSuccess: (data) => {
-      console.log(data);
       ReactToastify(data?.message, "sucess");
       refetch();
     },
     onError: (error) => {
-      console.log(error);
       ReactToastify(error?.message, "error");
     },
   });

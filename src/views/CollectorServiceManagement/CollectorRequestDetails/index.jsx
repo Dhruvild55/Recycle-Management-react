@@ -38,7 +38,6 @@ const CollectionRequestDetails = () => {
   } = useForm();
 
   const statusValue = watch("status", "approve");
-  console.log(statusValue, "statusValue");
   return (
     <>
       <div className="common-main-section">

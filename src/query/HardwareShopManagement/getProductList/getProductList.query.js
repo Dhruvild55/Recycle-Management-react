@@ -6,7 +6,6 @@ export const getProductList = async ({
   searchTerm,
   filterText,
 }) => {
-  console.log("getAllProducts");
   const res = await axiosInstance.get(
     `/admin/get-All-Products?PageNumber=${pageNumber}&PageSize=${pageSize}&SearchTerm=${searchTerm}&Filter=${filterText}&culture=en`
   );

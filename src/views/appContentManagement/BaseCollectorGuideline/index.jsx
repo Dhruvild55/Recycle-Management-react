@@ -15,7 +15,6 @@ const BaseCollectorGuideline = () => {
     queryFn: () => baseGuideline(),
   });
 
-  console.log("Base Guideline", data?.data);
   const navigate = useNavigate();
   return (
     <>

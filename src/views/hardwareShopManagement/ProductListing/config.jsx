@@ -10,7 +10,7 @@ import BinIcon from "../../../assets/images/icons/BinIcon";
 import ProfilePic from "../../../shared/components/ProfilePic";
 import { route } from "../../../shared/constants/AllRoutes";
 
-export const ProductListHeader = (navigate) => [
+export const ProductListHeader = (navigate, deleteProductMutation) => [
   {
     key: "productName",
     label: "product_name",
@@ -44,16 +44,11 @@ export const ProductListHeader = (navigate) => [
         <>
           <div className="d-flex align-items-center gap-3">
             <img src={iconDoller} style={{ height: "13px", width: "13px" }} />
-            <span>
-              RM {"   "}
-              {row.priceInFiat}
-            </span>
+            <span>RM {Number(row.priceInFiat).toFixed(2)}</span>
           </div>
           <div className="d-flex align-items-center gap-3">
             <img src={iconCoin} style={{ height: "13px", width: "13px" }} />
-            <span>
-              {row.priceInPoints} {"   "} pts
-            </span>
+            <span>{row.priceInPoints} pts</span>
           </div>
         </>
       );
@@ -111,7 +106,10 @@ export const ProductListHeader = (navigate) => [
           </button>
 
           <button className="action-btn">
-            <img src={iconDelete} />
+            <img
+              src={iconDelete}
+              onClick={() => deleteProductMutation(row.id)}
+            />
           </button>
         </div>
       );

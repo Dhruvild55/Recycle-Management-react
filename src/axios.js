@@ -39,7 +39,6 @@ axiosInstance.interceptors.response.use(
       return Promise.reject(error);
     }
     if (error?.response?.status === 400) {
-      console.log(error?.response?.data?.message);
       ReactToastify(error?.response?.data?.message, "error");
     }
     // return Promise.reject(error);

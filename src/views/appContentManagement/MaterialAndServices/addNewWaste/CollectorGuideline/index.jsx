@@ -30,7 +30,6 @@ const CollectorGuideline = () => {
     }
   }, [data]);
 
-  console.log("filterText", filterText);
   // ! get Collector guideline API
   const {
     data: collectorGuideline,

@@ -1,41 +1,48 @@
 import { iconEye } from "../../../assets/images/icons";
 import ChipComponent from "../../../shared/components/ChipComponent";
 import ProfilePic from "../../../shared/components/ProfilePic";
+import { formatDate } from "../../../shared/constants/ValidationRules";
 
 export const StockHistoryHeaders = (navigate) => [
-  { key: "dateAndtime", label: "dateAndTime" },
   {
-    key: "name",
+    key: "dateTime",
+    label: "dateAndTime",
+    render: (row) => {
+      return <span>{formatDate(row.dateTime)}</span>;
+    },
+  },
+  {
+    key: "userName",
     label: "name",
     render: (row) => {
       return (
         <div className="d-flex align-items-center gap-2">
-          <ProfilePic />
-          <span>{row.name}</span>
+          <ProfilePic image={row.userImg} />
+          <span>{row.userName}</span>
         </div>
       );
     },
   },
   { key: "quantity", label: "quantity" },
   {
-    key: "stock_activity",
+    key: "stockActivity",
     label: "stock_activity",
     render: (row) => {
       return (
         <div>
           <ChipComponent
             label={
-              row.stock_activity === "Add"
-                ? `+ ${row.stock_activity}`
-                : `- ${row.stock_activity}`
+              row.stockActivity === "Add"
+                ? `+ ${row.stockActivity}`
+                : `- ${row.stockActivity}`
             }
-            color={row.stock_activity === "Add" ? "green" : "yellow"}
+            color={row.stockActivity === "Add" ? "green" : "yellow"}
           />
         </div>
       );
     },
   },
-  { key: "total_stock", label: "total_stock" },
+  { key: "totalStock", label: "total_stock" },
   {
     key: "action",
     label: "action",

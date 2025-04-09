@@ -3,7 +3,6 @@ import { useDropzone } from "react-dropzone";
 import { iconUpload } from "../../../assets/images/icons";
 
 const DragAndDropComponent = ({ image, onDrop }) => {
-  console.log(image);
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     accept: "image/*",

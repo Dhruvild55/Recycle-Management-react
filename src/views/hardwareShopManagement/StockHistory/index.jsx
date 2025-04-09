@@ -2,7 +2,8 @@ import { useNavigate } from "react-router-dom";
 import CommonHardwareShopList from "../Component/CommonHardwareShopList";
 import { useSelector } from "react-redux";
 import { route } from "../../../shared/constants/AllRoutes";
-import { stockHistoryData, StockHistoryHeaders } from "./config";
+import { StockHistoryHeaders } from "./config";
+import { getStockHistoryList } from "../../../query/HardwareShopManagement/getStockHistoryList/getStockHistoryList.query";
 
 const StockHistory = () => {
   const navigate = useNavigate();
@@ -13,9 +14,15 @@ const StockHistory = () => {
       translations={translations}
       navigate={navigate}
       route={route.hardwareShopManagement.ProductListing.Add}
-      Headers={StockHistoryHeaders(navigate)}
-      data={stockHistoryData}
+      tableHeaders={StockHistoryHeaders}
       isDateAndtime={true}
+      getQueryFn={getStockHistoryList}
+      getQueryKey="stockHistory"
+      optionsData={[
+        { value: "", label: "All" },
+        { value: 1, label: "Add" },
+        { value: 0, label: "Deduct" },
+      ]}
     />
   );
 };

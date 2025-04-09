@@ -18,7 +18,6 @@ const RecyclerCollectionInfo = () => {
     queryFn: () => RecyclerDetailsById(id),
   });
 
-  console.log("res", data?.data);
   const recyclerCollectionData = data?.data;
   const materialData = data?.data?.materils;
 

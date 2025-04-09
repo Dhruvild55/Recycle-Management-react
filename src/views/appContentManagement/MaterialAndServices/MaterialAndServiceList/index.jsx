@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import { FaPlus } from "react-icons/fa6";
 import AppContentManagementTopSection from "../../Components/AppContentManagementTopSection";
@@ -20,14 +19,13 @@ const MaterialAndeServicesList = () => {
   }, []);
   const { data, isPending } = useQuery({
     queryKey: ["materialAndService"],
-    queryFn: getMaterialAndServices,
+    queryFn: () => getMaterialAndServices(),
   });
 
   const { mutate: deleteMaterialId } = useMutation({
     mutationFn: deleteMaterial,
     onSuccess: (data) => {
       queryClient.invalidateQueries(["materialAndService"]);
-      console.log("material Delete succesfully");
     },
     onError: (error) => {
       console.error("Delete failed:", error);
@@ -39,6 +37,7 @@ const MaterialAndeServicesList = () => {
   };
 
   const materialData = data?.data;
+  console.log(data?.data);
   const transformedData = materialData?.map((item) => ({
     ...item,
     id: item.materialTypeId, // Ensure every row has a unique `id`

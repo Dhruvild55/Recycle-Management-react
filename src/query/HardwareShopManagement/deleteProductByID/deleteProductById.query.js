@@ -1,9 +1,8 @@
 import axiosInstance from "../../../axios";
 
-export const updateReward = async (id, updatedData) => {
-  const res = await axiosInstance.put(
-    `/admin/updateReward/${id}?culture=en`,
-    updatedData,
+export const deleteProductById = async (id) => {
+  const res = await axiosInstance.delete(
+    `/admin/delete-Products-ById/${id}?culture=en`,
     {
       headers: {
         "Content-Type": "multipart/form-data",

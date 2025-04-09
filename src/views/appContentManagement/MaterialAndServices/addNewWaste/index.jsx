@@ -36,9 +36,7 @@ const AddNewWaste = () => {
       ReactToastify(data.message, "success");
       navigate(-1);
     },
-    onError: (errors) => {
-      console.log(errors);
-    },
+    onError: (errors) => {},
   });
 
   const onSubmit = async (data) => {

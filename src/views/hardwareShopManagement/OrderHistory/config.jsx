@@ -2,33 +2,37 @@ import { iconEye } from "../../../assets/images/icons";
 import ChipComponent from "../../../shared/components/ChipComponent";
 import ProfilePic from "../../../shared/components/ProfilePic";
 import { route } from "../../../shared/constants/AllRoutes";
+import { formatDate } from "../../../shared/constants/ValidationRules";
 
 export const OrderHistoryHeaders = (navigate) => [
-  { key: "order_id", label: "order_id" },
+  { key: "orderId", label: "order_id" },
   {
-    key: "product_name",
+    key: "productName",
     label: "product_name",
     render: (row) => {
       return (
         <div className="d-flex align-items-center gap-2">
-          <ProfilePic />
-          <span>{row.product_name}</span>
+          <ProfilePic image={row.productImage} />
+          <span>{row.productName}</span>
         </div>
       );
     },
   },
   {
-    key: "dateAndTime",
+    key: "dateTime",
     label: "dateAndTime",
+    render: (row) => {
+      return <span>{formatDate(row.dateTime)}</span>;
+    },
   },
   {
-    key: "customer_name",
+    key: "customerName",
     label: "customer_name",
     render: (row) => {
       return (
         <div className="d-flex align-items-center gap-2">
-          <ProfilePic />
-          <span>{row.customer_name}</span>
+          <ProfilePic image={row.customerImg} />
+          <span>{row.customerName}</span>
         </div>
       );
     },
@@ -38,16 +42,16 @@ export const OrderHistoryHeaders = (navigate) => [
     label: "quantity",
   },
   {
-    key: "order_status",
+    key: "orderStatus",
     label: "order_status",
     render: (row) => {
       return (
         <ChipComponent
-          label={row.order_status}
+          label={row.orderStatus}
           color={
-            row.order_status === "Completed"
+            row.orderStatus === "Completed"
               ? "green"
-              : row.order_status === "Ready to Ship"
+              : row.orderStatus === "ReadyToShip"
               ? "yellow"
               : "blue"
           }
@@ -63,31 +67,14 @@ export const OrderHistoryHeaders = (navigate) => [
         <button
           className="action-btn"
           onClick={() =>
-            navigate(route.hardwareShopManagement.OrderHistory.Details(row.id))
+            navigate(
+              route.hardwareShopManagement.OrderHistory.Details(row.orderId)
+            )
           }
         >
           <img src={iconEye} />
         </button>
       );
     },
-  },
-];
-
-export const orderHistoryData = [
-  {
-    order_id: "GTH 00389V",
-    product_name: "Jerrycan",
-    dateAndTime: "Mon., 13/01/2025",
-    customer_name: "Saleha Ismail",
-    quantity: "1",
-    order_status: "Completed",
-  },
-  {
-    order_id: "GTH 00389V",
-    product_name: "Jerrycan",
-    dateAndTime: "Mon., 13/01/2025",
-    customer_name: "Saleha Ismail",
-    quantity: "1",
-    order_status: "Ready to Ship",
   },
 ];

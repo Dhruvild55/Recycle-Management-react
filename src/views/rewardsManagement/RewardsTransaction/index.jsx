@@ -45,7 +45,6 @@ const RewardTransaction = () => {
 
   const rewardTransactionData = data?.data?.items;
   const totalPages = Math.ceil((data?.totalRecords || 1) / pageSize);
-  console.log(totalPages);
   return (
     <>
       <div className="common-main-section">

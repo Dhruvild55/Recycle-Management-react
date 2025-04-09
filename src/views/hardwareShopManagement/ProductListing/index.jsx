@@ -15,7 +15,7 @@ const ProductListing = () => {
       translations={translations}
       navigate={navigate}
       route={route.hardwareShopManagement.ProductListing.Add}
-      Headers={ProductListHeader(navigate)}
+      tableHeaders={ProductListHeader}
       isDateAndtime={false}
       getQueryFn={getProductList}
       getQueryKey="ProductListData"

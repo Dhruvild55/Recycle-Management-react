@@ -44,7 +44,6 @@ const CashReward = () => {
   const totalPages = Math.ceil(
     (cashRewardsData?.data?.totalRecords || 1) / pageSize
   );
-  console.log(cashRewardsData?.data);
   return (
     <div className="common-main-section">
       <RewardManagementTopSection />

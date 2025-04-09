@@ -85,8 +85,6 @@ const HardwareTable = () => {
     queryFn: () => getHardwareList({ id, pageNumber, pageSize }),
   });
 
-  console.log("hardwareData", data?.data?.items);
-
   const totalPages = Math.ceil((data?.data?.totalRecords || 1) / pageSize);
   return (
     <div className="user-profile-section">

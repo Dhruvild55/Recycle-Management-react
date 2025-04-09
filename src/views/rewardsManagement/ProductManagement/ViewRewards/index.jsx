@@ -54,9 +54,7 @@ const ViewRewards = () => {
       ReactToastify(data?.message, "success");
       navigate(-1);
     },
-    onError: (error) => {
-      console.log(error);
-    },
+    onError: (error) => {},
   });
 
   const handleChange = (e) => {
