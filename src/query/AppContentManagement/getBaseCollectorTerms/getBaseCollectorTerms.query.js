@@ -2,7 +2,7 @@ import axiosInstance from "../../../axios";
 
 export const getCollectorBaseTermsAndCondition = async () => {
   const res = await axiosInstance.get(
-    `/admin/getAllCollector-BaseSignUpSteps?culture=en`
+    `/admin/getAllCollector-BaseTermsAndConditions`
   );
   return res.data;
 };

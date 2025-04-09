@@ -36,10 +36,7 @@ export const route = {
   },
 
   //! User Management Collector
-  // collectorList: "/user-Management/collector",
-  // collectorDetails: (id) => `/user-Management/collector/details/${id}`,
-  // collectorPickupHistory: (id) =>
-  //   `/user-Management/collector/pickupHistory/${id}`,
+
   collectorClearance: (id) => `/user-Management/collector/clearance/${id}`,
 
   //! User Management Roles and Permission
@@ -161,11 +158,10 @@ export const route = {
     Details: (id) => `/collection-service-management/${id}`,
   },
 
-  // //* Collection Service Management
-  // collectorServiceManagement: "/Collector-Service-Management",
-  // collectorRequestDetails:
-  //   "/Collector-Service-Management/Collecter-request-details",
-
   // * Not Found Page
   NotFoundPage: "/not-found",
+
+  settings: {
+    View: "/Settings",
+  },
 };

@@ -9,6 +9,7 @@ import {
   HardwareShopManagement,
   PointsTransactionManagement,
   RewardsManagement,
+  Setting,
   SponsorManagement,
   UserManagement,
 } from "./lazyRoutes";
@@ -413,6 +414,13 @@ const RoutesDetails = [
       {
         path: route.hardwareShopManagement.StockHistory.List,
         Component: HardwareShopManagement.StockHistory.List,
+        exact: true,
+      },
+
+      // ! settings
+      {
+        path: route.settings.View,
+        Component: Setting.View,
         exact: true,
       },
     ],

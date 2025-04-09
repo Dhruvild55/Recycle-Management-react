@@ -1,16 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { iconBack } from "../../../../assets/images/icons";
 import DragAndDropComponent from "../../../../shared/components/DragAndDropComponent";
 import { Form } from "react-bootstrap";
 import { createEvent } from "../../../../query/AppContentManagement/EventManagement/createEvent/createEvent.query";
 import { ReactToastify } from "../../../../shared/utils";
 import { useMutation } from "@tanstack/react-query";
+import InputField from "../../../../shared/components/InputFieldComponent";
+import { getFilePath } from "../../../../query/getfilePath/filePath.query";
+import { updateBannerAndEvent } from "../../../../query/AppContentManagement/UpdateBannerAndEvent/updateBannerAndEvent.query";
 
 const EventAdd = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const editData = location.state || null;
+  console.log(editData);
   const translations = useSelector((state) => state.settings.translations);
   const {
     addNewEvent,
@@ -21,10 +27,8 @@ const EventAdd = () => {
     title,
     publish,
     unPublish,
-    add,
     cancle,
     typehere,
-    isRequire,
   } = translations;
 
   const [image, setImage] = useState(null);
@@ -35,9 +39,19 @@ const EventAdd = () => {
     control,
     setValue,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      title: editData?.title || "",
+      priority: editData?.sortingPriority || "",
+      description: editData?.description || "",
+      state: editData?.state || "",
+      postcode: editData?.postCode || "",
+      status: editData?.status || "Publish",
+    },
+  });
 
-  const { mutate, isPending } = useMutation({
+  // ! create Event API
+  const { mutate, isPending: createPending } = useMutation({
     mutationFn: createEvent,
     onSuccess: (data) => {
       ReactToastify(data?.message, "success");
@@ -47,6 +61,44 @@ const EventAdd = () => {
       ReactToastify("Something went wrong", "error");
     },
   });
+
+  // ! update mutation
+  const { mutate: updateMuatation, isPending: editPending } = useMutation({
+    mutationFn: ({ formData, id }) => updateBannerAndEvent({ formData, id }),
+    onSuccess: (data) => {
+      ReactToastify(data?.message, "success");
+      navigate(-1);
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  useEffect(() => {
+    const loadImage = async () => {
+      if (editData?.imagePath) {
+        const fileUrl = await getFilePath({ image: editData.imagePath });
+        const fileName = editData.imagePath.split("/").pop();
+        const file = await fetch(fileUrl)
+          .then((res) => res.blob())
+          .then(
+            (blob) =>
+              new File([blob], fileName, {
+                type: blob.type,
+              })
+          );
+
+        const fileWithPreview = Object.assign(file, {
+          preview: URL.createObjectURL(file),
+        });
+
+        setImage(fileWithPreview);
+        setValue("image", fileWithPreview);
+      }
+    };
+
+    if (editData) loadImage();
+  }, [editData, setValue]);
 
   const onDrop = (acceptedFiles) => {
     const file = acceptedFiles[0];
@@ -66,7 +118,11 @@ const EventAdd = () => {
     formData.append("Status", data.status);
     formData.append("State", data.state);
     formData.append("Postcode", data.postCode);
-    mutate(formData);
+    if (editData) {
+      updateMuatation({ formData, id: editData.id });
+    } else {
+      mutate(formData);
+    }
   };
 
   return (
@@ -100,97 +156,74 @@ const EventAdd = () => {
           </div>
 
           {/* Title Input */}
-          <div className="form-group">
-            <label>
-              {title} <span className="required">*</span>
-            </label>
-            <input
-              type="text"
-              placeholder={typehere}
-              {...register("title", { required: `${title}  ${isRequire}` })}
-            />
-            {errors.title && (
-              <p className="error-text">{errors.title.message}</p>
-            )}
-          </div>
+          <InputField
+            label={title}
+            placeholder={typehere}
+            type="text"
+            name="title"
+            register={register}
+            validation={{ required: "Title is required" }}
+            errors={errors}
+            isRequeirdLabel
+          />
 
-          {/* Sorting Priority Input */}
-          <div className="form-group">
-            <label>
-              {sortingPriority} (1-100) <span className="required">*</span>
-            </label>
-            <input
-              type="number"
-              placeholder={typehere}
-              {...register("priority", {
-                required: `${sortingPriority}  ${isRequire}`,
-                min: { value: 1, message: "Minimum value is 1" },
-                max: { value: 100, message: "Maximum value is 100" },
-              })}
-            />
-            {errors.priority && (
-              <p className="error-text">{errors.priority.message}</p>
-            )}
-          </div>
+          <InputField
+            label={`${sortingPriority} (1-100)`}
+            placeholder={typehere}
+            type="number"
+            name="priority"
+            register={register}
+            validation={{
+              required: "Sorting Priority is required",
+              min: { value: 1, message: "Minimum value is 1" },
+              max: { value: 100, message: "Maximum value is 100" },
+            }}
+            errors={errors}
+            isRequeirdLabel
+          />
+
           {/* State  Input */}
-          <div className="form-group">
-            <label>
-              {state}
-              <span className="required">*</span>
-            </label>
-            <input
-              type="text"
-              placeholder={typehere}
-              {...register("state", {
-                required: `${state}  ${isRequire}`,
-              })}
-            />
-            {errors.state && (
-              <p className="error-text">{errors.state.message}</p>
-            )}
-          </div>
+          <InputField
+            label={state}
+            type="text"
+            placeholder={typehere}
+            name="state"
+            register={register}
+            validation={{ required: "State is Required" }}
+            errors={errors}
+            isRequeirdLabel={true}
+          />
 
           {/* Postcode  Input */}
-          <div className="form-group">
-            <label>
-              {postCode}
-              <span className="required">*</span>
-            </label>
-            <input
-              type="text"
-              placeholder={typehere}
-              {...register("postCode", {
-                required: `${postCode}  ${isRequire}`,
-              })}
-            />
-            {errors.postCode && (
-              <p className="error-text">{errors.postCode.message}</p>
-            )}
-          </div>
+          <InputField
+            label={postCode}
+            placeholder={typehere}
+            type="text"
+            name="postcode"
+            register={register}
+            validation={{ required: "Postcode is required" }}
+            errors={errors}
+            isRequeirdLabel={true}
+          />
 
           {/* Description Input */}
-          <div className="form-group">
-            <label>
-              {eventDescription} <span className="required">*</span>
-            </label>
-            <input
-              type="text"
-              placeholder={typehere}
-              {...register("description", {
-                required: `${eventDescription}  ${isRequire}`,
-              })}
-            />
-            {errors.description && (
-              <p className="error-text">{errors.description.message}</p>
-            )}
-          </div>
+          <InputField
+            label={eventDescription}
+            placeholder={typehere}
+            type="textarea"
+            name="description"
+            register={register}
+            validation={{ required: "Description is required" }}
+            errors={errors}
+            isRequeirdLabel
+          />
 
           {/* Status (Radio Buttons) */}
           <div className="checkbox-group">
             <Controller
               name="status"
               control={control}
-              defaultValue="Publish"
+              defaultValue={editData?.status || "Publish"}
               render={({ field }) => (
                 <>
                   <Form.Check
@@ -223,7 +256,13 @@ const EventAdd = () => {
               {cancle}
             </button>
             <button type="submit" className="btn">
-              {add}
+              {editData
+                ? createPending
+                  ? "Updating..."
+                  : "Update"
+                : editPending
+                ? "Adding..."
+                : "Add"}
             </button>
           </div>
         </form>

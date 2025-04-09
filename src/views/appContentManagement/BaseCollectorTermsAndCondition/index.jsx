@@ -25,14 +25,20 @@ const BaseCollectorTerms = () => {
             icon={<FaPlus style={{ fontSize: "15px" }} />}
           />
         </div>
-        <ConditionComponent
-          title={data?.data[0].title}
-          description={data?.data[0].description}
-          id={data?.data[0].id}
-          isLoading={isPending}
-          isDelete={true}
-          refetch={refetch}
-        />
+
+        {data?.data?.length > 0 ? (
+          <ConditionComponent
+            title={data?.data[0].terms}
+            description={data?.data[0].description}
+            id={data?.data[0].id}
+            isLoading={isPending}
+            isDelete={true}
+            refetch={refetch}
+            index={1}
+          />
+        ) : (
+          <p> No Data Available</p>
+        )}
       </div>
       {data?.data.slice(1).map((item, index) => (
         <div
@@ -41,12 +47,13 @@ const BaseCollectorTerms = () => {
           key={index}
         >
           <ConditionComponent
-            title={item.title}
+            title={item.terms}
             description={item.description}
             id={item.id}
             isLoading={isPending}
             isDelete={true}
             refetch={refetch}
+            index={2 + index}
           />
         </div>
       ))}

@@ -3,9 +3,12 @@ import { useQuery } from "@tanstack/react-query";
 import { iconEdit } from "../../../../../assets/images/icons";
 import { getFilePath } from "../../../../../query/getfilePath/filePath.query";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { route } from "../../../../../shared/constants/AllRoutes";
 
 const BannerComponent = ({ items, isEvent }) => {
   const translations = useSelector((state) => state.settings.translations);
+  const navigate = useNavigate();
   const { state, postCode } = translations;
   const { imagePath, title, sortingPriority, description, status } = items;
   const image = imagePath;
@@ -27,7 +30,21 @@ const BannerComponent = ({ items, isEvent }) => {
             <p className="title">{title}</p>
           </div>
           <div>
-            <img src={iconEdit} alt="Edit" className="edit-icon" />
+            <img
+              src={iconEdit}
+              alt="Edit"
+              className="edit-icon"
+              onClick={() =>
+                navigate(
+                  isEvent
+                    ? route.appContentManagement.EventManagement.Add
+                    : route.appContentManagement.BannerManagement.Add,
+                  {
+                    state: items,
+                  }
+                )
+              }
+            />
           </div>
         </div>
         <div className="banner-description">

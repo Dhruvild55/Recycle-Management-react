@@ -9,6 +9,10 @@ const Dashboard = {
   Dashboard: lazy(() => import("../views/dashboard")),
 };
 
+const Setting = {
+  View: lazy(() => import("../views/Settings")),
+};
+
 const UserManagement = {
   Admin: {
     List: lazy(() => import(`../views/User/Admin/AdminList`)),
@@ -235,4 +239,5 @@ export {
   HardwareShopManagement,
   RewardsManagement,
   CollectionServiceManagement,
+  Setting,
 };

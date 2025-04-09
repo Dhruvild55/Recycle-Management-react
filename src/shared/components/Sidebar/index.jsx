@@ -1,16 +1,18 @@
 /* eslint-disable react/prop-types */
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState, memo, useCallback, useEffect } from "react";
 import { FaCaretRight } from "react-icons/fa";
 import { SidebarLinks } from "./confiuge";
 import { iconCarrateDown } from "../../../assets/images/icons";
 import SettingIcon from "../../../assets/images/icons/SettingIcon";
+import { route } from "../../constants/AllRoutes";
 
 const Sidebar = ({ isCollapsed, setSelectedMenu, selectedMenu }) => {
   const translations = useSelector((state) => state.settings.translations);
   const [openMenus, setOpenMenus] = useState({});
   const location = useLocation();
+  const naviagate = useNavigate();
 
   useEffect(() => {
     if (!selectedMenu?.name) {
@@ -18,6 +20,12 @@ const Sidebar = ({ isCollapsed, setSelectedMenu, selectedMenu }) => {
       const matchedMenu = SidebarLinks.find((link) => link.path.includes(path));
       if (matchedMenu) {
         setSelectedMenu({ name: matchedMenu.name, icon: matchedMenu.icon });
+      }
+      if (path === "Settings") {
+        setSelectedMenu({
+          name: "settings",
+          icon: <SettingIcon color="#1F7F82" />,
+        });
       }
     }
   }, [location, selectedMenu, setSelectedMenu]);
@@ -38,6 +46,11 @@ const Sidebar = ({ isCollapsed, setSelectedMenu, selectedMenu }) => {
     [setSelectedMenu]
   );
 
+  const handleSettingSelect = () => {
+    handleMenuSelect("settings");
+    naviagate(route.settings.View);
+  };
+
   return (
     <div className={`sidebar ${isCollapsed ? "collapsed" : ""}`}>
       <div className="sidebar-logo">
@@ -49,7 +62,7 @@ const Sidebar = ({ isCollapsed, setSelectedMenu, selectedMenu }) => {
             const isActive = selectedMenu?.name === name;
 
             return (
-              <li key={name} className={`menu-item `}>
+              <li key={name} className="menu-item">
                 <Link to={path}>
                   <div
                     className={`menu-header ${isActive ? "selected" : ""}`}
@@ -91,11 +104,21 @@ const Sidebar = ({ isCollapsed, setSelectedMenu, selectedMenu }) => {
               </li>
             );
           })}
+
+          <li className="menu-item push-bottom">
+            <div
+              className={`menu-header ${
+                selectedMenu?.name === "settings" ? "selected" : ""
+              }`}
+              onClick={() => handleSettingSelect()}
+            >
+              <SettingIcon color="#1F7F82" />
+              <span className="settings-label">
+                {translations.sidebar.settings}
+              </span>
+            </div>
+          </li>
         </ul>
-        <div className="settings-section">
-          <SettingIcon color="#1F7F82" />
-          <label>{translations.sidebar.settings}</label>
-        </div>
       </nav>
     </div>
   );

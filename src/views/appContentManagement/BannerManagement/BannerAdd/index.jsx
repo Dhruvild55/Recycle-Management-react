@@ -1,6 +1,7 @@
-import { useNavigate } from "react-router-dom";
+/* eslint-disable no-unused-vars */
+import { useLocation, useNavigate } from "react-router-dom";
 import DragAndDropComponent from "../../../../shared/components/DragAndDropComponent";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { Form } from "react-bootstrap";
 import { iconBack } from "../../../../assets/images/icons";
@@ -8,9 +9,16 @@ import { useMutation } from "@tanstack/react-query";
 import { CreateBanner } from "../../../../query/AppContentManagement/BannerManagement/CreateBanner/createBanner.query";
 import { ReactToastify } from "../../../../shared/utils";
 import { useSelector } from "react-redux";
+import InputField from "../../../../shared/components/InputFieldComponent";
+import { getFilePath } from "../../../../query/getfilePath/filePath.query";
+import { updateBannerAndEvent } from "../../../../query/AppContentManagement/UpdateBannerAndEvent/updateBannerAndEvent.query";
+import { route } from "../../../../shared/constants/AllRoutes";
 
 const BannerAdd = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const editData = location.state || null;
+
   const translations = useSelector((state) => state.settings.translations);
   const {
     addNewBanner,
@@ -32,18 +40,65 @@ const BannerAdd = () => {
     control,
     setValue,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      title: editData?.title || "",
+      priority: editData?.sortingPriority || "",
+      description: editData?.description || "",
+      status: editData?.status || "Publish",
+    },
+  });
 
-  const { mutate, isPending } = useMutation({
+  // ! Create Banner API
+  const { mutate: createMutation, isPending: createPending } = useMutation({
     mutationFn: CreateBanner,
     onSuccess: (data) => {
       ReactToastify(data?.message, "success");
-      navigate(-1);
+      navigate(route.appContentManagement.BannerManagement.List);
     },
     onError: () => {
       ReactToastify("Something went wrong", "error");
     },
   });
+
+  // ! Update banner API
+
+  const { mutate: updateMuatation, isPending } = useMutation({
+    mutationFn: ({ formData, id }) => updateBannerAndEvent({ formData, id }),
+    onSuccess: (data) => {
+      ReactToastify(data?.message, "success");
+      navigate(-1);
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  useEffect(() => {
+    const loadImage = async () => {
+      if (editData?.imagePath) {
+        const fileUrl = await getFilePath({ image: editData.imagePath });
+        const fileName = editData.imagePath.split("/").pop();
+        const file = await fetch(fileUrl)
+          .then((res) => res.blob())
+          .then(
+            (blob) =>
+              new File([blob], fileName, {
+                type: blob.type,
+              })
+          );
+
+        const fileWithPreview = Object.assign(file, {
+          preview: URL.createObjectURL(file),
+        });
+
+        setImage(fileWithPreview);
+        setValue("image", fileWithPreview);
+      }
+    };
+
+    if (editData) loadImage();
+  }, [editData, setValue]);
 
   const onDrop = (acceptedFiles) => {
     const file = acceptedFiles[0];
@@ -61,7 +116,12 @@ const BannerAdd = () => {
     formData.append("SortingPriority", data.priority);
     formData.append("Description", data.description);
     formData.append("Status", data.status);
-    mutate(formData);
+
+    if (editData) {
+      updateMuatation({ formData, id: editData.id });
+    } else {
+      createMutation(formData);
+    }
   };
 
   return (
@@ -76,7 +136,9 @@ const BannerAdd = () => {
         </button>
 
         <div className="title-section">
-          <label className="primary-title">{addNewBanner}</label>
+          <label className="primary-title">
+            {editData ? "Edit Banner" : addNewBanner}
+          </label>
         </div>
 
         <form className="add-waste-form" onSubmit={handleSubmit(onSubmit)}>
@@ -95,62 +157,51 @@ const BannerAdd = () => {
           </div>
 
           {/* Title Input */}
-          <div className="form-group">
-            <label>
-              {title} <span className="required">*</span>
-            </label>
-            <input
-              type="text"
-              placeholder={typehere}
-              {...register("title", { required: "Title is required" })}
-            />
-            {errors.title && (
-              <p className="error-text">{errors.title.message}</p>
-            )}
-          </div>
+          <InputField
+            label={title}
+            placeholder={typehere}
+            type="text"
+            name="title"
+            register={register}
+            validation={{ required: "Title is required" }}
+            errors={errors}
+            isRequeirdLabel
+          />
 
           {/* Sorting Priority Input */}
-          <div className="form-group">
-            <label>
-              {sortingPriority} (1-100) <span className="required">*</span>
-            </label>
-            <input
-              type="number"
-              placeholder={typehere}
-              {...register("priority", {
-                required: "Sorting Priority is required",
-                min: { value: 1, message: "Minimum value is 1" },
-                max: { value: 100, message: "Maximum value is 100" },
-              })}
-            />
-            {errors.priority && (
-              <p className="error-text">{errors.priority.message}</p>
-            )}
-          </div>
+          <InputField
+            label={`${sortingPriority} (1-100)`}
+            placeholder={typehere}
+            type="number"
+            name="priority"
+            register={register}
+            validation={{
+              required: "Sorting Priority is required",
+              min: { value: 1, message: "Minimum value is 1" },
+              max: { value: 100, message: "Maximum value is 100" },
+            }}
+            errors={errors}
+            isRequeirdLabel
+          />
 
           {/* Description Input */}
-          <div className="form-group">
-            <label>
-              {bannerDescription} <span className="required">*</span>
-            </label>
-            <input
-              type="text"
-              placeholder={typehere}
-              {...register("description", {
-                required: "Description is required",
-              })}
-            />
-            {errors.description && (
-              <p className="error-text">{errors.description.message}</p>
-            )}
-          </div>
+          <InputField
+            label={bannerDescription}
+            placeholder={typehere}
+            type="textarea"
+            name="description"
+            register={register}
+            validation={{ required: "Description is required" }}
+            errors={errors}
+            isRequeirdLabel
+          />
 
           {/* Status (Radio Buttons) */}
           <div className="checkbox-group">
             <Controller
               name="status"
               control={control}
-              defaultValue="Publish"
+              defaultValue={editData?.status || "Publish"}
               rules={{ required: "Status is required" }}
               render={({ field }) => (
                 <>
@@ -184,7 +235,7 @@ const BannerAdd = () => {
               {cancle}
             </button>
             <button type="submit" className="btn">
-              {isPending ? "Adding..." : add}
+              {createPending ? (editData ? "Updating..." : "Adding...") : add}
             </button>
           </div>
         </form>

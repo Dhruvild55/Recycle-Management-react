@@ -26,6 +26,7 @@ import ReportIcon from "../../../assets/images/icons/ReportIcon";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import PointsIcon from "../../../assets/images/icons/PointsIcon";
 import HardwareIcon from "../../../assets/images/icons/HardwareIcon";
+import SettingIcon from "../../../assets/images/icons/SettingIcon";
 
 function Header({ toggleSidebar, isCollapsed, selectedMenu }) {
   const dispatch = useDispatch();
@@ -113,7 +114,7 @@ function Header({ toggleSidebar, isCollapsed, selectedMenu }) {
                   <CollectionIcon color="#181D27" />
                 ) : selectedMenu.name === "rewards_Management" ? (
                   <RewardsIcon color="#181D27" />
-                ) : selectedMenu.name === "campaign_Management" ? (
+                ) : selectedMenu.name === "sponsor_Management" ? (
                   <SponserIcon color="#181D27" />
                 ) : selectedMenu.name === "collection_service_management" ? (
                   <BinIcon color="#181D27" />
@@ -123,6 +124,8 @@ function Header({ toggleSidebar, isCollapsed, selectedMenu }) {
                   <ReportIcon color="#181D27" />
                 ) : selectedMenu.name === "hardware_shop_Management" ? (
                   <HardwareIcon color="#181D27" />
+                ) : selectedMenu.name === "settings" ? (
+                  <SettingIcon color="#181D27" />
                 ) : (
                   ""
                 )}
@@ -150,7 +153,7 @@ function Header({ toggleSidebar, isCollapsed, selectedMenu }) {
                   <CollectionIcon color="#181D27" />
                 ) : selectedMenu.name === "rewards_Management" ? (
                   <RewardsIcon color="#181D27" />
-                ) : selectedMenu.name === "campaign_Management" ? (
+                ) : selectedMenu.name === "sponsor_Management" ? (
                   <SponserIcon color="#181D27" />
                 ) : selectedMenu.name === "collection_service_management" ? (
                   <BinIcon color="#181D27" />
@@ -160,6 +163,8 @@ function Header({ toggleSidebar, isCollapsed, selectedMenu }) {
                   <ReportIcon color="#181D27" />
                 ) : selectedMenu.name === "hardware_shop_Management" ? (
                   <HardwareIcon color="#181D27" />
+                ) : selectedMenu.name === "settings" ? (
+                  <SettingIcon color="#181D27" />
                 ) : (
                   ""
                 )}

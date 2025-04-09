@@ -8,6 +8,8 @@ import { iconDelete, iconEdit } from "../../../../../../assets/images/icons";
 import { deleteGuideline } from "../../../../../../query/AppContentManagement/MaterialAndServices/DeleteGuideline/deleteGuideline.query";
 import { useMutation } from "@tanstack/react-query";
 import { ReactToastify } from "../../../../../../shared/utils";
+import { useNavigate } from "react-router-dom";
+import { route } from "../../../../../../shared/constants/AllRoutes";
 
 const ConditionComponent = ({
   title,
@@ -15,17 +17,13 @@ const ConditionComponent = ({
   description,
   isLoading,
   isDelete,
+  index,
   refetch,
 }) => {
-  const [isEdit, setIsEdit] = useState(false);
+  const navigate = useNavigate();
+  console.log(title);
 
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    formState: { errors },
-  } = useForm();
-
+  // ! delete Guideline API
   const { mutate: deleteGuidelineId } = useMutation({
     mutationFn: deleteGuideline,
     onSuccess: (data) => {
@@ -48,24 +46,22 @@ const ConditionComponent = ({
         <div className="guideline-main-section">
           <div className="guideline-title">
             <span className="primary-title">
-              {!isEdit ? (
-                title
-              ) : (
-                <InputField
-                  type="text"
-                  register={register}
-                  name="title"
-                  validation={{ required: "TItle is required" }}
-                  errors={errors}
-                />
-              )}
+              {index}.{"  "}
+              {title}
             </span>
             <div>
-              <button
-                style={{ border: "none" }}
-                onClick={() => setIsEdit(true)}
-              >
-                <img src={iconEdit} />
+              <button style={{ border: "none" }}>
+                <img
+                  src={iconEdit}
+                  onClick={() =>
+                    navigate(
+                      route.appContentManagement.BaseCollectorGuideline.Add,
+                      {
+                        state: { id, title, description },
+                      }
+                    )
+                  }
+                />
               </button>
               {isDelete && (
                 <button style={{ border: "none" }}>
@@ -76,23 +72,7 @@ const ConditionComponent = ({
           </div>
           <div className="add-waste-form" style={{ padding: "0px" }}>
             <div className="content-section" style={{ marginTop: "20px" }}>
-              {isEdit ? (
-                <form onSubmit={handleSubmit(onSubmit)}>
-                  {" "}
-                  <InputField
-                    type="textarea"
-                    register={register}
-                    name="description"
-                    validation={{ required: "Description is required" }}
-                    errors={errors}
-                  />
-                  <button type="submit" className="save-btn">
-                    Save
-                  </button>
-                </form>
-              ) : (
-                <p>{description}</p>
-              )}
+              <p>{description}</p>
             </div>
           </div>
         </div>

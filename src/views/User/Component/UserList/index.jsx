@@ -63,6 +63,7 @@ const UserList = ({
     onSuccess: (data) => {
       ReactToastify(data.message, "success");
       refetch();
+      setPageNumber(1);
     },
     onError: () => {
       ReactToastify("Delete user failed", "error");
