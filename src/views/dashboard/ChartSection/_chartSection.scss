@@ -1,0 +1,19 @@
+.chart-contant {
+  margin-top: 30px;
+  gap: 30px; // gap: 32px;
+  display: flex;
+  .bar-chart {
+    width: 100%;
+    max-width: 266px;
+    border-radius: 20px;
+    border: 1px solid #abefc6;
+
+    @include media-max(lg) {
+      max-width: 335px;
+    }
+  }
+  @include media-max(lg) {
+    flex-direction: column;
+    align-items: center;
+  }
+}

@@ -1,0 +1,23 @@
+$primary-bg-color: white;
+$font-family: "Inter", sans-serif;
+
+.dashboard-section {
+  transition: margin-left 0.3s ease;
+
+  .cards-container {
+    display: flex;
+    flex-direction: column;
+    @include media-max(lg) {
+      flex-direction: column;
+    }
+  }
+  .table-section {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+
+    @include media-max(lg) {
+      flex-direction: column;
+    }
+  }
+}

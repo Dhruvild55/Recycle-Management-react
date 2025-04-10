@@ -24,6 +24,10 @@
 @import "../../shared/components/FillerDropdown/filterDropDown";
 @import "../../shared/components/SearchInput/searchInput";
 
+// Dashboard
+@import "../../views/dashboard/ChartSection/chartSection";
+@import "../../views/dashboard/dashboard";
+
 // userManagement
 @import "./components/UserManagement/Recycler/Information/recyclerInformation";
 @import "./components/UserManagement/Recycler/Information/businessRegister";
@@ -75,7 +79,6 @@
 @import "../../views/pointsTransactionManagement/components/DateRangPicker/datePicker";
 // views
 @import "./views/auth/login";
-@import "./views/dashboard/dashboard";
 
 @import "./views/userManagement/userManagement";
 @import "./views/createUser/createUser";

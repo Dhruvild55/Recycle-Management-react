@@ -31,11 +31,13 @@ export default function AddUserPage() {
     reset,
   } = useForm();
 
+  // ! roles list API
   const { data: rolesData, isLoading: isRolesLoading } = useQuery({
     queryKey: ["rolesList"],
     queryFn: getRoles,
   });
 
+  //! Create User API
   const { mutate, isPending } = useMutation({
     mutationFn: createUser,
     onSuccess: (data) => {
