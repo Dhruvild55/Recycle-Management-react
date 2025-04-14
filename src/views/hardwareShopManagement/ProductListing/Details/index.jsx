@@ -68,7 +68,6 @@ const ProductDetails = () => {
   }, [data, reset]);
 
   const onSubmit = (formData) => {
-    console.log("submit", formData);
     const data = new FormData();
     data.append("Id", formData.productId);
     data.append("ProductName", formData.productName);

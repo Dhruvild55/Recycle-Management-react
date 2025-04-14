@@ -21,7 +21,7 @@ const CollectionDetailsComponent = ({ data, isRecyclerDetail }) => {
       style={{ paddingBottom: "30px" }}
     >
       <div className="col-lg-2">
-        <ProfilePic size={120} image={data?.data?.collectorImg} />
+        <ProfilePic size={120} image={data?.data?.recyclerImg} />
       </div>
       <div className="col-lg-6">
         <div className="row mb-2">

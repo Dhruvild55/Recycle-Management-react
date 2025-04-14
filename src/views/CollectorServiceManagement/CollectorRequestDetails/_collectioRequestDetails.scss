@@ -70,10 +70,26 @@
     flex-direction: column;
     gap: 20px;
   }
-  .submit-button {
-    @include button-style(#3fb4b4, #fff, none, 225px);
-  }
   .cancel-button {
-    @include button-style(#f8f9fa, #000, 1px solid #ccc, 225px);
+    @include button-style(
+      #f8f9fa,
+      #000,
+      1px solid #ccc,
+      310px,
+      10px 20px,
+      16px,
+      #3fb4b4
+    );
+  }
+  .submit-button {
+    @include button-style(
+      #3fb4b4,
+      #000,
+      1px solid #ccc,
+      310px,
+      10px 20px,
+      16px,
+      #f8f9fa
+    );
   }
 }

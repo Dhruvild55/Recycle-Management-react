@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -37,6 +37,7 @@ const UserList = ({
   const combinedSearchTerm = `${searchQuery}`.trim();
   const debouncedSearchQuery = useDebounce(combinedSearchTerm, 500);
 
+  // ! Users List API
   const { data, isPending, refetch } = useQuery({
     queryKey: [
       queryKey,
@@ -58,11 +59,11 @@ const UserList = ({
     refetchOnWindowFocus: false,
   });
 
+  //! Delete User API
   const { mutate: deleteUserMutation } = useMutation({
     mutationFn: deleteUser,
     onSuccess: (data) => {
       ReactToastify(data.message, "success");
-      refetch();
       setPageNumber(1);
     },
     onError: () => {
@@ -87,7 +88,6 @@ const UserList = ({
               placeholder="Search"
               onSearch={(query) => {
                 setSearchQuery(query);
-                setPageNumber(1);
               }}
             />
           </div>
@@ -103,6 +103,7 @@ const UserList = ({
           <div className="tool-section">
             <FilterDropdown
               label={translations.filter}
+              value={filterText} // ✅ control the selected value
               options={[
                 { value: "", label: "" },
                 ...(roleOptions.map((role) => ({
@@ -110,8 +111,12 @@ const UserList = ({
                   label: role,
                 })) || []),
               ]}
-              onFilterChange={setFilter}
+              onFilterChange={(query) => {
+                setFilter(query);
+                setPageNumber(1);
+              }}
             />
+
             {/* <label className="back-text">{translations.filter}:</label>
             <select
               value={selectedRoleOpt}

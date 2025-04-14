@@ -1,9 +1,11 @@
 /* eslint-disable no-unused-vars */
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import ChipComponent from "../../../../../../shared/components/ChipComponent";
 import { useQuery } from "@tanstack/react-query";
 import { getRecyclerHistoryData } from "../../../../../../query/users/Recycler/getRecyclerHistoryDataById/getRecyclerHistoryData.query";
 import MaterialCardComponent from "./MaterialCardComponent";
+import { iconBack } from "../../../../../../assets/images/icons";
+import { route } from "../../../../../../shared/constants/AllRoutes";
 
 const ViewPreviousItems = () => {
   const navigate = useNavigate();
@@ -21,8 +23,16 @@ const ViewPreviousItems = () => {
       <div className="common-main-section">
         <div className="header-section">
           <div>
-            <button className="back-text" onClick={() => navigate(-1)}>
-              &larr; BACK
+            <button
+              className="back-text"
+              onClick={() =>
+                navigate(
+                  route.userManagement.Recycler.History(data?.data?.recyclerId)
+                )
+              }
+            >
+              <img src={iconBack} />
+              {"   "} BACK
             </button>
           </div>
         </div>

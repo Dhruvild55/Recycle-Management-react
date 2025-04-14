@@ -11,6 +11,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getMaterialAndServicesById } from "../../../../../query/AppContentManagement/MaterialAndServices/getMaterialAndServiceNameById/materialAndServicesById.query";
 import { getCollectorGuideline } from "../../../../../query/AppContentManagement/MaterialAndServices/getCollectorGuideline/getcollectorGuideline.query";
 import { route } from "../../../../../shared/constants/AllRoutes";
+import { FaPlus } from "react-icons/fa6";
 
 const CollectorGuideline = () => {
   const navigate = useNavigate();
@@ -58,22 +59,37 @@ const CollectorGuideline = () => {
           className="common-page-toolbar"
           style={{ marginTop: "20px", padding: "7px 0px" }}
         >
-          <div className="left-section">
-            <label className="primary-title" style={{ fontSize: "24px" }}>
-              Collector Guidelines
-            </label>
+          <label className="primary-title" style={{ fontSize: "24px" }}>
+            Collector Guidelines
+          </label>
+          <div className="tool-section">
+            <FilterDropdown
+              label={filter}
+              options={
+                data?.data?.map((category) => ({
+                  value: category.myServiceId,
+                  label: category.materilaName,
+                })) || []
+              }
+              value={filterText} // Set the default selected value
+              onFilterChange={setFilter}
+            />
+            <button
+              className="add-btn"
+              onClick={() =>
+                navigate(
+                  route.appContentManagement.MaterialAndServices.Add
+                    .GuidelineUpdateAdd,
+                  {
+                    state: { isrecycler: false },
+                  }
+                )
+              }
+            >
+              {" "}
+              Add Collector Guideline <FaPlus style={{ fontSize: "15px" }} />
+            </button>
           </div>
-          <FilterDropdown
-            label={filter}
-            options={
-              data?.data?.map((category) => ({
-                value: category.myServiceId,
-                label: category.materilaName,
-              })) || []
-            }
-            value={filterText} // Set the default selected value
-            onFilterChange={setFilter}
-          />
         </div>
 
         {collectionGuidelinePending ? (
@@ -86,6 +102,7 @@ const CollectorGuideline = () => {
               isLoading={isPending}
               titleText="Step 1"
               refetch={refetch}
+              isCollectorGuideline={true}
             />
           </>
         ) : (

@@ -61,7 +61,7 @@ const MaterialAndeServicesList = () => {
       </div>
       <CustomDataTable
         rows={transformedData || []}
-        columns={columns(handleDelete)}
+        columns={columns(handleDelete, navigate)}
         pagination={false}
         pageSize={10}
         showCheckbox={true}

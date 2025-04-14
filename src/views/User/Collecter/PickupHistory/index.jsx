@@ -59,21 +59,6 @@ const PickupHistory = () => {
   return (
     <div className="user-profile-section">
       <div className="common-main-section">
-        <div className="header-section">
-          <div className="left-side">
-            <button
-              className="back-text"
-              onClick={() => navigate(route.userManagement.Collector.List)}
-            >
-              <img src={iconBack} /> {"       "}
-              BACK
-            </button>
-          </div>
-          <div className="right-side">
-            <img src={iconDelete} />
-            <span>Suspend Collection Status</span>
-          </div>
-        </div>
         <CollectorTopSection />
         <div style={{ marginBottom: "20px" }}>
           <TitleComponent label="List of Recycler" />

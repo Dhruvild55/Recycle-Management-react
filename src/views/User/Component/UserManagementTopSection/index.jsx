@@ -29,7 +29,19 @@ function UserManagementTopSection({ translations }) {
         <select
           className="dropdown"
           value={selectedRole}
-          onChange={(e) => navigate(route[e.target.value])}
+          onChange={(e) =>
+            navigate(
+              e.target.value === "Admin"
+                ? route.userManagement.Admin.List
+                : e.target.value === "Recycler"
+                ? route.userManagement.Recycler.List
+                : e.target.value === "Collector"
+                ? route.userManagement.Collector.List
+                : e.target.value === "Roles"
+                ? route.rolesList
+                : ""
+            )
+          }
         >
           <option value="Admin">{admin}</option>
           <option value="Recycler">{recycler}</option>

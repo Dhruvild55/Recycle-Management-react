@@ -9,6 +9,8 @@ import { useEffect } from "react";
 import { iconWorld } from "../../../assets/images/icons";
 import { bgFrame, bgImage } from "../../../assets/images";
 import InputField from "../../../shared/components/InputFieldComponent";
+import { useDispatch, useSelector } from "react-redux";
+import { setUserData } from "../../../redux/userData/userDataSlice";
 
 const CONSTANT = {
   DOC_TITLE: "Login | Recycle Management",
@@ -20,6 +22,7 @@ const CONSTANT = {
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     document.title = CONSTANT.DOC_TITLE;
@@ -37,6 +40,8 @@ const Login = () => {
     mutationFn: loginUser,
     onSuccess: (data) => {
       localStorage.setItem("token", data.data.accessToken);
+      localStorage.setItem("role", data?.data?.roles);
+      dispatch(setUserData(data?.data));
       ReactToastify("Login successful", "success");
       navigate("/dashboard");
     },

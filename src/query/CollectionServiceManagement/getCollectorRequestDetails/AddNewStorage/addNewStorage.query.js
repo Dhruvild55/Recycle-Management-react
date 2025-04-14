@@ -1,7 +1,6 @@
 import axiosInstance from "../../../../axios";
 
 export const AddStorage = async ({ collectorId, materialId, kg }) => {
-  console.log(collectorId, materialId, kg);
   const data = {
     materialMasterId: materialId,
     current: 0,

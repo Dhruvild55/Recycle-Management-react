@@ -67,34 +67,50 @@ const StorageAddressDetails = ({
   }
   return (
     <>
-      <div className="storage-details-card-list">
-        {storageData?.map((card, index) => {
-          return (
-            <OilWasteCard
-              key={index}
-              date={card.applyDate}
-              material={card.matrial}
-              max={card.max}
-              min={card.current}
-              item={card.item}
-              image={card.image}
-            />
-          );
-        })}
-      </div>
-      <div className="table-footer" style={{ marginTop: "30px" }}>
-        <div>
-          <span className="back-text" style={{ color: "#181D27" }}>
-            {translations.showing} {storageData.length} {translations.entries}{" "}
-          </span>
-          <img src={iconRightArrow} />
+      {storageData?.length === 0 ? (
+        <div
+          className="no-data-msg"
+          style={{
+            marginTop: "20px",
+            color: "#888",
+            fontSize: "16px",
+          }}
+        >
+          No data available
         </div>
-        <Pagination
-          currentPage={pageNumber}
-          totalPages={totalPages}
-          onPageChange={setPageNumber}
-        />
-      </div>
+      ) : (
+        <>
+          <div className="storage-details-card-list">
+            {storageData.map((card, index) => (
+              <OilWasteCard
+                key={index}
+                date={card.applyDate}
+                material={card.matrial}
+                max={card.max}
+                min={card.current}
+                item={card.item}
+                image={card.image}
+              />
+            ))}
+          </div>
+
+          <div className="table-footer" style={{ marginTop: "30px" }}>
+            <div>
+              <span className="back-text" style={{ color: "#181D27" }}>
+                {translations.showing} {storageData.length}{" "}
+                {translations.entries}
+              </span>
+              <img src={iconRightArrow} />
+            </div>
+
+            <Pagination
+              currentPage={pageNumber}
+              totalPages={totalPages}
+              onPageChange={setPageNumber}
+            />
+          </div>
+        </>
+      )}
     </>
   );
 };

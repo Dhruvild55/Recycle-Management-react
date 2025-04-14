@@ -17,6 +17,11 @@ export const validationRules = {
       message: "Please enter a valid name",
     },
   },
+  userName: {
+    required: "User name is required",
+    minLength: { value: 2, message: "Must be at least 2 characters" },
+    maxLength: { value: 50, message: "Must be less than 50 characters" },
+  },
   email: {
     required: "Email is required",
     pattern: {

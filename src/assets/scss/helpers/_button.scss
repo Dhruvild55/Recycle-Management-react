@@ -4,7 +4,8 @@
   $border: none,
   $width,
   $padding: 10px 20px,
-  $font-size: 16px
+  $font-size: 16px,
+  $hoverColor
 ) {
   background-color: $bg-color;
   color: $text-color;
@@ -18,5 +19,10 @@
 
   @media (max-width: 1024px) {
     max-width: 100%;
+  }
+  &:hover {
+    background-color: $hoverColor;
+    color: aliceblue;
+    transition: background-color 0.3s ease;
   }
 }

@@ -23,7 +23,6 @@ const OrderHistoryDetails = () => {
   const { mutate, isPending } = useMutation({
     mutationFn: ({ id, formData }) => updateOrderHistoryDetails(id, formData),
     onSuccess: (data) => {
-      console.log("sucess", data);
       ReactToastify(data?.mesasage, "success");
       navigate(-1);
     },

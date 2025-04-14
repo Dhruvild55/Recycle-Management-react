@@ -70,31 +70,59 @@
           flex-direction: column;
         }
       }
+      // .form-actions {
+      //   display: flex;
+      //   margin-bottom: 20px;
+      //   gap: 10px;
+      //   @include media-max(lg) {
+      //     flex-direction: column;
+      //   }
+      //   .submit-button,
+      //   .cancel-button {
+      //     padding: 10px 20px;
+      //     font-size: 16px;
+      //     border-radius: 4px;
+      //     cursor: pointer;
+      //     max-width: 400px;
+      //     width: 100%;
+      //     background-color: #f8f9fa;
+      //     border: 1px solid #ccc;
+
+      //     :hover {
+      //       background-color: #3fb4b4;
+      //     }
+      //   }
+      // }
       .form-actions {
         display: flex;
         margin-bottom: 20px;
         gap: 10px;
+        justify-content: flex-start;
         @include media-max(lg) {
           flex-direction: column;
+          gap: 20px;
         }
-        .submit-button,
         .cancel-button {
-          padding: 10px 20px;
-          font-size: 16px;
-          border-radius: 4px;
-          cursor: pointer;
-          max-width: 400px;
-          width: 100%;
+          @include button-style(
+            #f8f9fa,
+            #000,
+            1px solid #ccc,
+            310px,
+            10px 20px,
+            16px,
+            #3fb4b4
+          );
         }
         .submit-button {
-          background-color: #3fb4b4;
-          color: #fff;
-          border: none;
-        }
-
-        .cancel-button {
-          background-color: #f8f9fa;
-          border: 1px solid #ccc;
+          @include button-style(
+            #f8f9fa,
+            #000,
+            1px solid #ccc,
+            310px,
+            10px 20px,
+            16px,
+            #3fb4b4
+          );
         }
       }
     }

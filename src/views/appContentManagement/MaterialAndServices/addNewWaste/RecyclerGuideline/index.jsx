@@ -12,6 +12,7 @@ import FilterDropdown from "../../../../../shared/components/FillerDropdown";
 import GuidelinesComponent from "../Component/GuidelineComponents";
 import { getRecyclerGuideline } from "../../../../../query/AppContentManagement/MaterialAndServices/getRecyclerGuideline/getrecyclerGuideline.query";
 import { route } from "../../../../../shared/constants/AllRoutes";
+import { FaPlus } from "react-icons/fa6";
 
 const RecyclerGuideline = () => {
   const navigate = useNavigate();
@@ -59,22 +60,37 @@ const RecyclerGuideline = () => {
           className="common-page-toolbar"
           style={{ marginTop: "20px", padding: "7px 0px" }}
         >
-          <div className="left-section">
-            <label className="primary-title" style={{ fontSize: "24px" }}>
-              Recycler Guidelines
-            </label>
+          <label className="primary-title" style={{ fontSize: "24px" }}>
+            Recycler Guidelines
+          </label>
+          <div className="tool-section">
+            <FilterDropdown
+              label={filter}
+              options={
+                data?.data?.map((category) => ({
+                  value: category.myServiceId,
+                  label: category.materilaName,
+                })) || []
+              }
+              value={filterText} // Set the default selected value
+              onFilterChange={setFilter}
+            />
+            <button
+              className="add-btn"
+              onClick={() =>
+                navigate(
+                  route.appContentManagement.MaterialAndServices.Add
+                    .GuidelineUpdateAdd,
+                  {
+                    state: { isrecycler: true },
+                  }
+                )
+              }
+            >
+              {" "}
+              Add Recycler Guideline <FaPlus style={{ fontSize: "15px" }} />
+            </button>
           </div>
-          <FilterDropdown
-            label={filter}
-            options={
-              data?.data?.map((category) => ({
-                value: category.myServiceId,
-                label: category.materilaName,
-              })) || []
-            }
-            value={filterText} // Set the default selected value
-            onFilterChange={setFilter}
-          />
         </div>
         {recyclerGuidelinePending ? (
           <p>Loading....</p>
@@ -85,6 +101,7 @@ const RecyclerGuideline = () => {
               isLoading={isPending}
               titleText="Step  1"
               refetch={refetch}
+              isCollectorGuideline={false}
             />
           </>
         ) : (

@@ -16,7 +16,6 @@ const EventAdd = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const editData = location.state || null;
-  console.log(editData);
   const translations = useSelector((state) => state.settings.translations);
   const {
     addNewEvent,

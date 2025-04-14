@@ -6,10 +6,16 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
+import { useQuery } from "@tanstack/react-query";
+import { getFilePath } from "../../../../../../../query/getfilePath/filePath.query";
 
-const MaterialCardComponent = ({ items = {}, index }) => {
-  const { image = "/images/oilwaste.png", materialName = "Used Cooking Oil" } =
-    items;
+const MaterialCardComponent = ({ items, index }) => {
+  const image = items?.image;
+  const { data: materialImg } = useQuery({
+    queryKey: ["materialImgkey", image],
+    queryFn: () => getFilePath({ image }),
+  });
+
   return (
     <Card sx={{ maxWidth: 345, boxShadow: "none", width: "100%" }}>
       <CardActionArea>
@@ -17,8 +23,8 @@ const MaterialCardComponent = ({ items = {}, index }) => {
           sx={{ borderRadius: "12px" }}
           component="img"
           height="200"
-          image={image}
-          alt={materialName}
+          image={materialImg}
+          alt={items.materialName}
         />
         <CardContent
           sx={{
@@ -42,7 +48,7 @@ const MaterialCardComponent = ({ items = {}, index }) => {
             variant="body2"
             sx={{ color: "#535862", fontSize: "14px", fontWeight: "400" }}
           >
-            {materialName}
+            {items?.materialName}
           </Typography>
         </CardContent>
       </CardActionArea>

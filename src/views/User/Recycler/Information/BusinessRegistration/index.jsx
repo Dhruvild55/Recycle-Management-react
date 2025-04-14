@@ -1,34 +1,59 @@
 /* eslint-disable react/prop-types */
+import { useForm } from "react-hook-form";
+import InputField from "../../../../../shared/components/InputFieldComponent";
+import { useEffect } from "react";
+
 const BusinessRegistration = ({ businessDetails }) => {
+  const {
+    register,
+    reset,
+    formState: { errors },
+  } = useForm({});
+
+  useEffect(() => {
+    if (businessDetails) {
+      reset({
+        businessName: businessDetails.businessName || "",
+        businessCategory: businessDetails.businessCategory || "",
+        businessRegistrationNumber:
+          businessDetails.businessRegistrationNumber || "",
+      });
+    }
+  }, [businessDetails, reset]);
+
   return (
     <div>
       <label className="primary-title">Business Registration Information</label>
       <form style={{ marginTop: "15px" }}>
         <div className="row">
           <div className="col-md-4 mb-3">
-            <label>Business Name</label>
-            <input
+            <InputField
+              label="Business Name"
+              name="businessName"
               type="text"
-              className="form-control"
-              value={businessDetails?.businessName}
+              register={register}
+              errors={errors}
               readOnly
             />
           </div>
           <div className="col-md-4 mb-3">
-            <label>Business category</label>
-            <input
+            <InputField
+              label="Business Category"
+              name="businessCategory"
               type="text"
-              className="form-control"
-              value={businessDetails?.businessCategory}
+              register={register}
+              errors={errors}
               readOnly
             />
           </div>
           <div className="col-md-4 mb-3">
-            <label>Business Registration Number</label>
-            <input
+            <InputField
+              label="Business Registration Number"
+              name="businessRegistrationNumber"
               type="text"
-              className="form-control"
-              value={businessDetails?.businessRegistrationNumber}
+              register={register}
+              errors={errors}
+              readOnly
             />
           </div>
         </div>

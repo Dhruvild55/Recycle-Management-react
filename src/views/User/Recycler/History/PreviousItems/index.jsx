@@ -53,33 +53,35 @@ const PreviousItems = ({
               </td>
             </tr>
           ) : pastPickUps.length > 0 ? (
-            pastPickUps.map((item) => (
-              <tr key={item.id}>
-                <td>{item.id}</td>
-                <td>{item.material?.materialName || "N/A"}</td>
-                <td>{item.material?.weight || 0} kg</td>
-                <td>{item.pickupDate || "N/A"}</td>
-                <td>{item.estPoints || 0}</td>
-                <td>
-                  <button
-                    className="view-button"
-                    style={{
-                      backgroundColor: "#D9F0FF",
-                      padding: "5px 10px",
-                      color: "#008ADF",
-                      borderRadius: "10px",
-                    }}
-                    onClick={() =>
-                      navigate(
-                        route.userManagement.Recycler.ViewHistory(item.id)
-                      )
-                    }
-                  >
-                    View
-                  </button>
-                </td>
-              </tr>
-            ))
+            pastPickUps.map((item) => {
+              return (
+                <tr key={item.id}>
+                  <td>{item.id}</td>
+                  <td>{item.material?.materialName || "N/A"}</td>
+                  <td>{item.material?.weight || 0} kg</td>
+                  <td>{item.pickupDate || "N/A"}</td>
+                  <td>{item.estPoints || 0}</td>
+                  <td>
+                    <button
+                      className="view-button"
+                      style={{
+                        backgroundColor: "#D9F0FF",
+                        padding: "5px 10px",
+                        color: "#008ADF",
+                        borderRadius: "10px",
+                      }}
+                      onClick={() =>
+                        navigate(
+                          route.userManagement.Recycler.ViewHistory(item.id)
+                        )
+                      }
+                    >
+                      View
+                    </button>
+                  </td>
+                </tr>
+              );
+            })
           ) : (
             <tr>
               <td colSpan={headerData.length} style={{ textAlign: "center" }}>

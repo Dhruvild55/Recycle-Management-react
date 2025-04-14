@@ -252,6 +252,13 @@ const RoutesDetails = [
         Component: AppContentManagement.MaterialAndeServices.Add.MaterialType,
         exact: true,
       },
+      {
+        path: route.appContentManagement.MaterialAndServices.Add
+          .GuidelineUpdateAdd,
+        Component:
+          AppContentManagement.MaterialAndeServices.Add.GuidelineUpdateAdd,
+        exact: true,
+      },
       // * Material And Services / CollectorGuidline
       {
         path: route.appContentManagement.MaterialAndServices.Add

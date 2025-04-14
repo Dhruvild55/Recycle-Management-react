@@ -109,10 +109,26 @@
   .form-actions {
     justify-content: flex-start;
     .cancel-button {
-      @include button-style(#f8f9fa, #000, 1px solid #ccc, 310px);
+      @include button-style(
+        #f8f9fa,
+        #000,
+        1px solid #ccc,
+        310px,
+        10px 20px,
+        16px,
+        #3fb4b4
+      );
     }
     .submit-button {
-      @include button-style(#3fb4b4, #fff, none, 310px);
+      @include button-style(
+        #3fb4b4,
+        #000,
+        1px solid #ccc,
+        310px,
+        10px 20px,
+        16px,
+        #f8f9fa
+      );
     }
   }
 }

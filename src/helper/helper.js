@@ -9,6 +9,5 @@ export function navigationTo(link) {
 }
 
 export function removeToken() {
-  console.log("removeToken");
   localStorage.clear("");
 }

@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useQuery } from "@tanstack/react-query";
-import { iconDelete } from "../../../../assets/images/icons";
+import { iconBack, iconDelete } from "../../../../assets/images/icons";
 import CollectorTopSection from "../Component/CollectorTopSection";
 import CollecterInformation from "./CollecterInformation";
 import StorageAddressDetails from "./StorageComponent";
@@ -32,20 +32,6 @@ const CollecterProfile = () => {
   return (
     <div className="user-profile-section">
       <div className="common-main-section">
-        <div className="header-section">
-          <div className="left-side">
-            <button
-              className="back-text"
-              onClick={() => navigate(route.userManagement.Collector.List)}
-            >
-              &larr; BACK
-            </button>
-          </div>
-          <div className="right-side">
-            <img src={iconDelete} style={{ cursor: "pointer" }} /> {"  "}
-            <span>Suspend Collector Status</span>
-          </div>
-        </div>
         <CollectorTopSection />
         {isPending ? (
           <div
@@ -63,15 +49,25 @@ const CollecterProfile = () => {
           <CollecterInformation userData={userData} />
         )}
       </div>
-      <div className="common-main-section" style={{ marginTop: "10px" }}>
+      <div
+        className="common-main-section"
+        style={{ marginTop: "10px", minHeight: "0px" }}
+      >
         <label className="primary-title">Vehicle Detail</label>
+
         {isPending ? (
           <div className="loader-container">
             <Loader animation="border" width="50px" height="50px" />
           </div>
+        ) : vehicles?.length === 0 ? (
+          <div
+            className="no-data-msg"
+            style={{ marginTop: "20px", color: "#888" }}
+          >
+            No data available
+          </div>
         ) : (
           <div
-            className=""
             style={{
               display: "flex",
               flexWrap: "wrap",
@@ -79,10 +75,10 @@ const CollecterProfile = () => {
               marginTop: "20px",
             }}
           >
-            {vehicles?.map((vehicle, index) => (
+            {vehicles.map((vehicle, index) => (
               <VehicleCardComponent
                 key={index}
-                brand={vehicle?.brand}
+                brand={vehicle.brand}
                 model={vehicle.model}
                 color={vehicle.color}
                 registrationNo={vehicle.registrationNo}
@@ -93,7 +89,11 @@ const CollecterProfile = () => {
           </div>
         )}
       </div>
-      <div className="common-main-section" style={{ marginTop: "10px" }}>
+
+      <div
+        className="common-main-section"
+        style={{ marginTop: "10px", minHeight: "0px" }}
+      >
         <label className="primary-title">Storage</label>
         <div style={{ marginTop: "20px" }}>
           <StorageAddressDetails

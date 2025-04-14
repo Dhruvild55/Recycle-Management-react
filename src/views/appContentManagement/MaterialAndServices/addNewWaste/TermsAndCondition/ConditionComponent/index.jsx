@@ -21,7 +21,6 @@ const ConditionComponent = ({
   refetch,
 }) => {
   const navigate = useNavigate();
-  console.log(title);
 
   // ! delete Guideline API
   const { mutate: deleteGuidelineId } = useMutation({

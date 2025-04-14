@@ -39,11 +39,6 @@ const RewardsList = () => {
             <img src={iconBack} /> {"   "}
             BACK
           </button>
-          <div className="right-section">
-            <button className="" style={{ border: "none" }}>
-              <img src={iconDelete} alt="delete icon" /> Deactivate Account
-            </button>
-          </div>
         </div>
         <RecyclerInfoTopSection />
         <label className="primary-title">Rewards History</label>

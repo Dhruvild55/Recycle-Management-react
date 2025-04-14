@@ -1,9 +1,6 @@
+/* eslint-disable no-unused-vars */
 import { useNavigate, useParams } from "react-router-dom";
-import {
-  iconBack,
-  iconDelete,
-  iconRightArrow,
-} from "../../../../assets/images/icons";
+import { iconBack, iconRightArrow } from "../../../../assets/images/icons";
 import CustomTable from "../../../../shared/components/CustomTable";
 import RecyclerInfoTopSection from "../Component/RecyclerInfoTopSection";
 import { useQuery } from "@tanstack/react-query";
@@ -96,11 +93,6 @@ const HardwareTable = () => {
           >
             <img src={iconBack} /> {"   "} BACK
           </button>
-          <div className="right-section">
-            <button className="" style={{ border: "none" }}>
-              <img src={iconDelete} alt="delete icon" /> Deactivate Account
-            </button>
-          </div>
         </div>
         <RecyclerInfoTopSection />
         <label className="primary-title">Hardware</label>

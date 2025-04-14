@@ -4,9 +4,10 @@ import { useForm } from "react-hook-form"; // Import useForm
 import { iconDelete, iconEdit } from "../../../../../../assets/images/icons";
 import DragAndDropComponent from "../../../../../../shared/components/DragAndDropComponent";
 import InputField from "../../../../../../shared/components/InputFieldComponent";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { deleteGuideline } from "../../../../../../query/AppContentManagement/MaterialAndServices/DeleteGuideline/deleteGuideline.query";
 import { ReactToastify } from "../../../../../../shared/utils";
+import { getFilePath } from "../../../../../../query/getfilePath/filePath.query";
 
 const GuidelinesComponent = ({ data, isLoading, titleText, refetch }) => {
   const [image, setImage] = useState(null);
@@ -19,13 +20,27 @@ const GuidelinesComponent = ({ data, isLoading, titleText, refetch }) => {
     formState: { errors },
   } = useForm();
 
+  const { data: imageData } = useQuery({
+    queryKey: ["filePathguidline", data?.imagePath],
+    queryFn: () => getFilePath({ image: data?.imagePath }),
+    enabled: !!data?.imagePath,
+  });
+
   useEffect(() => {
     if (data) {
       setValue("description", data.description);
       setValue("title", data.title);
-      setImage(data.imagePath);
     }
   }, [data, setValue]);
+
+  useEffect(() => {
+    if (imageData) {
+      setImage({
+        preview: imageData,
+        name: "Existing Image",
+      });
+    }
+  }, [imageData]);
 
   const onDrop = (acceptedFiles) => {
     const file = acceptedFiles[0];
@@ -40,14 +55,14 @@ const GuidelinesComponent = ({ data, isLoading, titleText, refetch }) => {
     const submitData = FormData();
     submitData.append("Description", formData.description);
     submitData.append("Title", formData.Title);
-    setIsEdit(false); // Exit edit mode after saving
+    setIsEdit(false);
   };
 
   //! Delete Guideline API
   const { mutate: deleteGuidelineId } = useMutation({
     mutationFn: deleteGuideline,
     onSuccess: (data) => {
-      ReactToastify(data?.message, "sucess");
+      ReactToastify(data?.message, "success");
       refetch();
     },
     onError: (error) => {
@@ -113,7 +128,10 @@ const GuidelinesComponent = ({ data, isLoading, titleText, refetch }) => {
                     errors={errors}
                   />
                   <button type="submit" className="save-btn">
-                    Save
+                    Update
+                  </button>
+                  <button type="submit" className="save-btn">
+                    Cancel
                   </button>
                 </form>
               ) : (

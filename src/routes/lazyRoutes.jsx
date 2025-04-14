@@ -83,6 +83,11 @@ const AppContentManagement = {
           "../views/appContentManagement/MaterialAndServices/addNewWaste/CollectorGuideline"
         )
       ),
+      GuidelineUpdateAdd: lazy(() =>
+        import(
+          "../views/appContentManagement/MaterialAndServices/addNewWaste/CollectorGuideline/AddUpdateGuidline"
+        )
+      ),
       RecyclerGuideline: lazy(() =>
         import(
           "../views/appContentManagement/MaterialAndServices/addNewWaste/RecyclerGuideline"

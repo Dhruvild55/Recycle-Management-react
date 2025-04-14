@@ -47,7 +47,6 @@ const AddProductListing = () => {
   };
 
   const onsubmit = (data) => {
-    console.log("formData", data);
     const formData = new FormData();
     formData.append("Image", image);
     formData.append("ProductName", data.productName);

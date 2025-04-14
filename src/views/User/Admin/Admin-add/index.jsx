@@ -13,6 +13,7 @@ import { validationRules } from "../../../../shared/constants/ValidationRules";
 import { Loader } from "../../../../shared/components/Loader";
 import { Avatar, useMediaQuery } from "@mui/material";
 import { getRoles } from "../../../../query/roles/getRoles/getRoles.query";
+import { tr } from "date-fns/locale";
 
 export default function AddUserPage() {
   const navigate = useNavigate();
@@ -137,6 +138,7 @@ export default function AddUserPage() {
                 errors={errors}
                 name="firstName"
                 validation={validationRules.firstName}
+                isRequeirdLabel={true}
               />
               <InputField
                 label={language.formFields.last_name}
@@ -146,6 +148,7 @@ export default function AddUserPage() {
                 errors={errors}
                 name="lastName"
                 validation={validationRules.lastName}
+                isRequeirdLabel={true}
               />
               <InputField
                 label={language.formFields.username}
@@ -154,6 +157,8 @@ export default function AddUserPage() {
                 register={register}
                 errors={errors}
                 name="userName"
+                validation={validationRules.userName}
+                isRequeirdLabel={true}
               />
             </div>
             <div className="form-group">
@@ -165,6 +170,7 @@ export default function AddUserPage() {
                 errors={errors}
                 name="phone"
                 validation={validationRules.phone}
+                isRequeirdLabel={true}
               />
 
               <InputField
@@ -175,10 +181,12 @@ export default function AddUserPage() {
                 errors={errors}
                 name="email"
                 validation={validationRules.email}
+                isRequeirdLabel={true}
               />
 
               <InputField
                 label={language.formFields.password}
+                isRequeirdLabel={true}
                 placeholder="Create a password"
                 type="password"
                 register={register}
@@ -197,6 +205,7 @@ export default function AddUserPage() {
             <div className="form-group-last">
               <InputField
                 label={language.formFields.roles}
+                isRequeirdLabel={true}
                 type="select"
                 register={register}
                 errors={errors}
@@ -212,6 +221,7 @@ export default function AddUserPage() {
 
               <InputField
                 label={language.formFields.confirm_password}
+                isRequeirdLabel={true}
                 placeholder="Confirm your password"
                 type="password"
                 register={register}

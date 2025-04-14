@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
+import { ro } from "date-fns/locale";
 import { iconDelete, iconEdit } from "../../../../assets/images/icons";
 import ProfilePic from "../../../../shared/components/ProfilePic";
+import { route } from "../../../../shared/constants/AllRoutes";
 
 const formatDate = (isoString) => {
   const date = new Date(isoString);
@@ -9,7 +11,7 @@ const formatDate = (isoString) => {
   const year = date.getFullYear();
   return `${day}/${month}/${year}`;
 };
-export const columns = (handleDelete) => [
+export const columns = (handleDelete, navigate) => [
   {
     field: "materialName",
     headerName: "Waste Category",
@@ -27,7 +29,11 @@ export const columns = (handleDelete) => [
       </div>
     ),
   },
-  { field: "status", headerName: "Status", width: 150 },
+  {
+    field: "status",
+    headerName: "Status",
+    width: 150,
+  },
   {
     field: "updated",
     headerName: "Updated",
@@ -45,7 +51,17 @@ export const columns = (handleDelete) => [
           <div style={{ display: "flex", gap: "5px" }}>
             <button
               style={{ border: "none", margin: "0px" }}
-              onClick={() => alert(`page is under development`)}
+              onClick={() =>
+                navigate(
+                  route.appContentManagement.MaterialAndServices.Add
+                    .MaterialType,
+                  {
+                    state: {
+                      matirialData: params.row,
+                    },
+                  }
+                )
+              }
               className="action-btn"
             >
               <img src={iconEdit} />

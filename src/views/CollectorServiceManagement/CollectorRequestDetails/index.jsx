@@ -9,7 +9,7 @@ import { formatDate } from "../../../shared/constants/ValidationRules";
 import TitleComponent from "../../../shared/components/TitleComponent";
 import { getFilePath } from "../../../query/getfilePath/filePath.query";
 import VehicleCardComponent from "../../User/Collecter/Information/VehicleCardComponent";
-import { Controller, useFieldArray, useForm, useWatch } from "react-hook-form";
+import { Controller, useFieldArray, useForm } from "react-hook-form";
 import { Form } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { AddStorage } from "../../../query/CollectionServiceManagement/getCollectorRequestDetails/AddNewStorage/addNewStorage.query";
@@ -128,7 +128,6 @@ const CollectionRequestDetails = () => {
       });
     });
 
-    console.log("Submitting payload:", payload);
     approveCollector({ payload, id });
   };
 
