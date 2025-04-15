@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useNavigate, useParams } from "react-router-dom";
 import CommonCardComponent from "../../../shared/components/CommonCardComponent";
 import ProfileCardComponent from "../../../shared/components/ProfileCardComponent";
@@ -87,8 +88,8 @@ const CollectionRequestDetails = () => {
       reset({
         collectorStatus: { status: "approve", remark: "" },
         hubStatus: { status: "approve", remark: "" },
-        materialStatuses: data.data.materialTypes.map((material) => ({
-          materialId: material.materialId,
+        materialStatuses: data?.data?.materialTypes.map((material) => ({
+          materialId: material?.materialId,
           status: "approve",
           remark: "",
         })),
