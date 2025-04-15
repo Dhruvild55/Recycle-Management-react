@@ -138,6 +138,9 @@ const AppContentManagement = {
     List: lazy(() =>
       import("../views/appContentManagement/BaseCollectorTermsAndCondition")
     ),
+    Add: lazy(() =>
+      import("../views/appContentManagement/BaseCollectorTermsAndCondition/Add")
+    ),
   },
 };
 

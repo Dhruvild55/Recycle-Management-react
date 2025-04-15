@@ -335,10 +335,16 @@ const RoutesDetails = [
         Component: AppContentManagement.BaseCollectionGuideline.Add,
         exact: true,
       },
-      // * base trems And Condition / Add
+      // * base trems And Condition List
       {
         path: route.appContentManagement.BaseCollectorTerms.List,
         Component: AppContentManagement.BaseCollectionTerms.List,
+        exact: true,
+      },
+      // * base trems And Condition Add
+      {
+        path: route.appContentManagement.BaseCollectorTerms.Add,
+        Component: AppContentManagement.BaseCollectionTerms.Add,
         exact: true,
       },
 

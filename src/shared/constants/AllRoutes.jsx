@@ -78,6 +78,7 @@ export const route = {
     },
     BaseCollectorTerms: {
       List: "/app-content-management/base-collector-terms",
+      Add: "/app-content-management/base-collector-terms/add",
     },
   },
   addGuidelines: "/app-content-Management/add-Guidelines",
