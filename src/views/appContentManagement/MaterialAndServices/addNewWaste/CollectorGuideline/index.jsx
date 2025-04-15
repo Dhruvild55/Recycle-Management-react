@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-unused-vars */
 import { useNavigate } from "react-router-dom";
 import { iconBack } from "../../../../../assets/images/icons";
 import TopSection from "../Component/TopSection";
@@ -103,6 +102,7 @@ const CollectorGuideline = () => {
               titleText="Step 1"
               refetch={refetch}
               isCollectorGuideline={true}
+              serviceId={filterText}
             />
           </>
         ) : (
@@ -126,6 +126,8 @@ const CollectorGuideline = () => {
             isLoading={isPending}
             titleText={`Step ${index + 2}`}
             refetch={refetch}
+            isCollectorGuideline={true}
+            serviceId={filterText}
           />
         </div>
       ))}

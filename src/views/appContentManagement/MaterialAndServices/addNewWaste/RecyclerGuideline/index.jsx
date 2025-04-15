@@ -102,6 +102,7 @@ const RecyclerGuideline = () => {
               titleText="Step  1"
               refetch={refetch}
               isCollectorGuideline={false}
+              serviceId={filterText}
             />
           </>
         ) : (
@@ -125,6 +126,8 @@ const RecyclerGuideline = () => {
             isLoading={isPending}
             titleText={`Step ${index + 2}`}
             refetch={refetch}
+            isCollectorGuideline={false}
+            serviceId={filterText}
           />
         </div>
       ))}

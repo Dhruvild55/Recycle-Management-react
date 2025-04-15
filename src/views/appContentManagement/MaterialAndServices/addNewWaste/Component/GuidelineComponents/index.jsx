@@ -8,8 +8,17 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { deleteGuideline } from "../../../../../../query/AppContentManagement/MaterialAndServices/DeleteGuideline/deleteGuideline.query";
 import { ReactToastify } from "../../../../../../shared/utils";
 import { getFilePath } from "../../../../../../query/getfilePath/filePath.query";
+import { updateGuideline } from "../../../../../../query/AppContentManagement/MaterialAndServices/UpdateGuideline/updateGuideline.query";
 
-const GuidelinesComponent = ({ data, isLoading, titleText, refetch }) => {
+const GuidelinesComponent = ({
+  data,
+  isLoading,
+  titleText,
+  refetch,
+  serviceId,
+  isCollectorGuideline,
+}) => {
+  console.log(data, serviceId);
   const [image, setImage] = useState(null);
   const [isEdit, setIsEdit] = useState(false);
 
@@ -20,6 +29,7 @@ const GuidelinesComponent = ({ data, isLoading, titleText, refetch }) => {
     formState: { errors },
   } = useForm();
 
+  // ! Get Image API
   const { data: imageData } = useQuery({
     queryKey: ["filePathguidline", data?.imagePath],
     queryFn: () => getFilePath({ image: data?.imagePath }),
@@ -49,12 +59,32 @@ const GuidelinesComponent = ({ data, isLoading, titleText, refetch }) => {
         preview: URL.createObjectURL(file),
       })
     );
+    setValue("image", file); // Set file in React Hook Form
   };
 
+  // ! Update Guideline
+  const { mutate: update } = useMutation({
+    mutationFn: ({ id, submitData }) => updateGuideline({ id, submitData }),
+    onSuccess: (data) => {
+      ReactToastify(data?.message, "success");
+      refetch();
+    },
+    onError: (errors) => {
+      ReactToastify(errors?.message, "error");
+    },
+  });
+
   const onSubmit = async (formData) => {
-    const submitData = FormData();
+    const submitData = new FormData();
     submitData.append("Description", formData.description);
-    submitData.append("Title", formData.Title);
+    submitData.append("Title", formData.title);
+    submitData.append("GuidelineImg", formData.image);
+    submitData.append("MyServiceId", serviceId);
+    submitData.append(
+      "IsForCollector",
+      isCollectorGuideline ? "true" : "false"
+    );
+    update({ id: data?.id, submitData });
     setIsEdit(false);
   };
 
@@ -127,12 +157,18 @@ const GuidelinesComponent = ({ data, isLoading, titleText, refetch }) => {
                     validation={{ required: "Description is required" }}
                     errors={errors}
                   />
-                  <button type="submit" className="save-btn">
-                    Update
-                  </button>
-                  <button type="submit" className="save-btn">
-                    Cancel
-                  </button>
+                  <div className="form-actions">
+                    <button
+                      type="button"
+                      className="btn"
+                      onClick={() => setIsEdit(false)}
+                    >
+                      Cancel
+                    </button>
+                    <button type="submit" className="btn">
+                      Update
+                    </button>
+                  </div>
                 </form>
               ) : (
                 <p>{data?.description}</p>

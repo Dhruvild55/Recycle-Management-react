@@ -252,6 +252,14 @@ const RoutesDetails = [
         Component: AppContentManagement.MaterialAndeServices.Add.MaterialType,
         exact: true,
       },
+      // Add guideline
+      {
+        path: route.appContentManagement.MaterialAndServices.Add
+          .TermsAndConditionAdd,
+        Component:
+          AppContentManagement.MaterialAndeServices.Add.TermsAndConditionAdd,
+        exact: true,
+      },
       {
         path: route.appContentManagement.MaterialAndServices.Add
           .GuidelineUpdateAdd,

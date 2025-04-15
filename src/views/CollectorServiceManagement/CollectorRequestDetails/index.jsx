@@ -31,10 +31,12 @@ const CollectionRequestDetails = () => {
   });
 
   // ! Fetch Img Data API
+  const addressImgPath = data?.data?.addressImgPath;
+
   const { data: imgData } = useQuery({
-    queryKey: ["getAddressImg", data?.data?.addressImgPath],
-    queryFn: () => getFilePath({ image: data?.data?.addressImgPath }),
-    enabled: !!data?.data?.addressImgPath,
+    queryKey: ["getAddressImg", addressImgPath],
+    queryFn: () => getFilePath({ image: addressImgPath }),
+    enabled: !!addressImgPath,
   });
 
   // ! Approve Collector API
@@ -104,6 +106,7 @@ const CollectionRequestDetails = () => {
 
   const onSubmit = (formValues) => {
     const payload = [];
+    console.log("submitted");
 
     payload.push({
       approveFor: "Collector",
@@ -151,7 +154,11 @@ const CollectionRequestDetails = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="common-main-section">
         <div className="header-section" style={{ marginBottom: "20px" }}>
-          <button className="back-text" onClick={() => navigate(-1)}>
+          <button
+            className="back-text"
+            type="button"
+            onClick={() => navigate(-1)}
+          >
             <img src={iconBack} alt="back" /> BACK
           </button>
         </div>

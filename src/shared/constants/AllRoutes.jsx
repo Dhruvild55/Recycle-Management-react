@@ -60,6 +60,8 @@ export const route = {
           "/app-content-management/material-services-management/collection-incentive",
         TermsAndCondition:
           "/app-content-management/material-services-management/terms&condition",
+        TermsAndConditionAdd:
+          "/app-content-management/material-services-management/terms&condition/add",
       },
     },
     BannerManagement: {

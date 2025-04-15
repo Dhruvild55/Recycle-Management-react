@@ -11,6 +11,8 @@ import { getMaterialAndServicesById } from "../../../../../query/AppContentManag
 import { getTermsAndonditionbyId } from "../../../../../query/AppContentManagement/MaterialAndServices/getTermsAndConditionbyId/getTermsAndCondition.query";
 import ConditionComponent from "./ConditionComponent";
 import { route } from "../../../../../shared/constants/AllRoutes";
+import { FaPlus } from "react-icons/fa6";
+import ViewTermsAndCondition from "./ViewTermsAndConditionComponent";
 
 const TermsAndCondition = () => {
   const navigate = useNavigate();
@@ -55,28 +57,39 @@ const TermsAndCondition = () => {
           className="common-page-toolbar"
           style={{ marginTop: "20px", padding: "7px 0px" }}
         >
-          <div className="left-section">
-            <label className="primary-title" style={{ fontSize: "24px" }}>
-              Term & Conditions
-            </label>
+          <label className="primary-title" style={{ fontSize: "24px" }}>
+            Term & Conditions
+          </label>
+          <div className="tool-section">
+            <FilterDropdown
+              label={filter}
+              options={
+                data?.data?.map((category) => ({
+                  value: category.myServiceId,
+                  label: category.materilaName,
+                })) || []
+              }
+              value={filterText}
+              onFilterChange={setFilter}
+            />
+            <button
+              className="add-btn"
+              onClick={() =>
+                navigate(
+                  route.appContentManagement.MaterialAndServices.Add
+                    .TermsAndConditionAdd
+                )
+              }
+            >
+              {" "}
+              Add Terms and Condition <FaPlus style={{ fontSize: "15px" }} />
+            </button>
           </div>
-          <FilterDropdown
-            label={filter}
-            options={
-              data?.data?.map((category) => ({
-                value: category.myServiceId,
-                label: category.materilaName,
-              })) || []
-            }
-            value={filterText}
-            onFilterChange={setFilter}
-          />
         </div>
-        <ConditionComponent
+        <ViewTermsAndCondition
           data={termsAndCondition?.data[0]}
+          serviceId={filterText}
           isLoading={isPending}
-          title={termsAndCondition?.data[0]?.terms}
-          description={termsAndCondition?.data[0]?.description}
         />
       </div>
       {termsAndCondition?.data.slice(1).map((item, index) => {
@@ -90,10 +103,10 @@ const TermsAndCondition = () => {
             }}
             key={index}
           >
-            <ConditionComponent
-              title={item.terms}
-              description={item.description}
+            <ViewTermsAndCondition
+              data={item}
               isLoading={isPending}
+              serviceId={filterText}
             />
           </div>
         );

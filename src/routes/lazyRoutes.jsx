@@ -103,6 +103,11 @@ const AppContentManagement = {
           "../views/appContentManagement/MaterialAndServices/addNewWaste/TermsAndCondition"
         )
       ),
+      TermsAndConditionAdd: lazy(() =>
+        import(
+          "../views/appContentManagement/MaterialAndServices/addNewWaste/TermsAndCondition/AddTarmsAndCondition"
+        )
+      ),
     },
   },
   BannerManagement: {
