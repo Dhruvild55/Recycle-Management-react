@@ -16,7 +16,6 @@ const BaseTermsAndConditionAdd = () => {
   const {
     register,
     handleSubmit,
-    setValue,
     formState: { errors },
   } = useForm({
     defaultValues: {

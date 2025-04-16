@@ -2,12 +2,14 @@
 import { useNavigate } from "react-router-dom";
 import CustomTable from "../../../shared/components/CustomTable";
 import { headers } from "./configue";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { getCollectorRequestList } from "../../../query/CollectionServiceManagement/getCollectorRequestList/getColectorRequestList.query";
 import Pagination from "../../../shared/components/CustomPagination";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import { iconRightArrow } from "../../../assets/images/icons";
+import { deleteUser } from "../../../query/users/deleteUser/deleteUser.query";
+import { ReactToastify } from "../../../shared/utils";
 
 const NewCollecterPermissionList = () => {
   const navigate = useNavigate();
@@ -16,9 +18,21 @@ const NewCollecterPermissionList = () => {
   const [pageSize, setPageSize] = useState(10);
   const [pageNumber, setPageNumber] = useState(1);
 
-  const { data, isPending } = useQuery({
+  const { data, isPending, refetch } = useQuery({
     queryKey: ["getCollectorRequestList", pageSize, pageNumber],
     queryFn: () => getCollectorRequestList({ pageNumber, pageSize }),
+  });
+
+  const { mutate: deleteUserMutation } = useMutation({
+    mutationFn: deleteUser,
+    onSuccess: (data) => {
+      ReactToastify(data.message, "success");
+      setPageNumber(1);
+      refetch();
+    },
+    onError: () => {
+      ReactToastify("Delete user failed", "error");
+    },
   });
 
   const totalPages = Math.ceil((data?.data?.totalRecords || 1) / pageSize);
@@ -29,7 +43,7 @@ const NewCollecterPermissionList = () => {
           New collector enrollment
         </label>
         <CustomTable
-          headers={headers(navigate)}
+          headers={headers(navigate, deleteUserMutation)}
           data={data?.data?.items}
           isLoading={isPending}
         />

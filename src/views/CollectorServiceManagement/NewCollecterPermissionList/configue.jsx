@@ -3,7 +3,7 @@ import ChipComponent from "../../../shared/components/ChipComponent";
 import ProfilePic from "../../../shared/components/ProfilePic";
 import { route } from "../../../shared/constants/AllRoutes";
 
-export const headers = (navigate) => [
+export const headers = (navigate, deleteUserMutation) => [
   {
     key: "userId",
     label: "user_id",
@@ -56,7 +56,10 @@ export const headers = (navigate) => [
             <img src={iconView} />
           </button>
           <button className="action-btn">
-            <img src={iconDelete} />
+            <img
+              src={iconDelete}
+              onClick={() => deleteUserMutation({ userId: row.userId })}
+            />
           </button>
         </div>
       );

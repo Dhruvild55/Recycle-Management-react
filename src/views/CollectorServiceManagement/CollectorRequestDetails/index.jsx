@@ -74,6 +74,7 @@ const CollectionRequestDetails = () => {
     control,
     watch,
     reset,
+    getValues,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -83,31 +84,30 @@ const CollectionRequestDetails = () => {
     },
   });
 
+  const { fields } = useFieldArray({
+    control,
+    name: "materialStatuses",
+  });
+
   useEffect(() => {
-    if (data?.data?.materialTypes) {
+    if (!loadingDetails && data?.data?.materialTypes?.length) {
       reset({
         collectorStatus: { status: "approve", remark: "" },
         hubStatus: { status: "approve", remark: "" },
-        materialStatuses: data?.data?.materialTypes.map((material) => ({
-          materialId: material?.materialId,
+        materialStatuses: data.data.materialTypes.map((material) => ({
+          materialId: material.materialId,
           status: "approve",
           remark: "",
         })),
       });
     }
-  }, [data]);
-
-  const { fields } = useFieldArray({
-    control,
-    name: "materialStatuses",
-  });
+  }, [loadingDetails, data?.data?.materialTypes, reset]);
 
   const collectorStatus = watch("collectorStatus.status");
   const hubStatus = watch("hubStatus.status");
 
   const onSubmit = (formValues) => {
     const payload = [];
-    console.log("submitted");
 
     payload.push({
       approveFor: "Collector",
@@ -135,6 +135,20 @@ const CollectionRequestDetails = () => {
     approveCollector({ payload, id });
   };
 
+  const handleCancle = () => {
+    console.log("btnClicked");
+    const values = getValues();
+    const payload = [
+      {
+        approveFor: "Collector",
+        materialId: 0,
+        isApprove: false,
+        remark: values.collectorStatus.remark || "",
+      },
+    ];
+    approveCollector({ payload, id });
+  };
+
   const handleKgChange = (materialId, value) => {
     setKgData((prev) => ({ ...prev, [materialId]: value }));
   };
@@ -150,6 +164,11 @@ const CollectionRequestDetails = () => {
 
     setSubmittedKgIds((prev) => [...prev, materialId]);
   };
+
+  const isAnyRejected =
+    collectorStatus === "reject" ||
+    hubStatus === "reject" ||
+    watch("materialStatuses")?.some((item) => item.status === "reject");
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -237,7 +256,7 @@ const CollectionRequestDetails = () => {
                       />
                       <div className="address-details">
                         <p>Collector Address</p>
-                        <span>{data?.data?.collectionHub || " - "}</span>
+                        <span>{data?.data?.address || " - "}</span>
                       </div>
                     </div>
                   </div>
@@ -314,16 +333,17 @@ const CollectionRequestDetails = () => {
       </div>
 
       {/* Collection Hub Section */}
-      <div className="common-main-section" style={{ marginTop: "20px" }}>
+      <div
+        className="common-main-section"
+        style={{ marginTop: "20px", minHeight: "0px" }}
+      >
         <p className="primary-title">Collection Hub</p>
-        {data?.data?.collectionHub?.length === 0 ? (
-          <p>No Data Available</p>
-        ) : (
+        {data?.data?.collectionHub !== null ? (
           <>
             <div className="compound-images-section">
               <CommonCardComponent
-                image={data?.data?.collectionHub?.[0]?.addressImg}
-                description={data?.data?.collectionHub?.[0]?.address}
+                image={data?.data?.collectionHub?.addressImg}
+                description={data?.data?.collectionHub?.address}
               />
             </div>
             <div className="checkbox-group mt-3 border-top pt-3 d-flex align-items-center">
@@ -361,12 +381,18 @@ const CollectionRequestDetails = () => {
               )}
             </div>
           </>
+        ) : (
+          <p style={{ padding: "10px", color: "#888" }}>
+            No Hub data available.
+          </p>
         )}
       </div>
 
       {/* Material Types Section */}
+      {console.log(fields)}
       {fields.map((field, index) => {
-        const material = data.data.materialTypes.find(
+        console.log("field", field);
+        const material = data?.data?.materialTypes.find(
           (m) => m.materialId === field.materialId
         );
         const statusPath = `materialStatuses.${index}.status`;
@@ -378,33 +404,46 @@ const CollectionRequestDetails = () => {
           <div
             className="common-main-section"
             key={field.id}
-            style={{ marginTop: "20px" }}
+            style={{ marginTop: "20px", minHeight: "0px" }}
           >
-            <p className="primary-title">{material?.materialName}</p>
-            <div className="compound-images-section">
+            <p className="primary-title">
+              Material Type : {material?.materialName}
+            </p>
+            <div className="compound-images-section" style={{ margin: "0px" }}>
               <CommonCardComponent
                 image={material?.materialImg}
                 description={material?.description}
+                isMaterial={true}
               />
             </div>
 
-            <div className="d-flex gap-2 align-items-center mt-2">
+            <div className="d-flex gap-2 align-items-center ">
               <label>Storage</label>
-              <input
-                type="number"
-                value={kgData[field.materialId] || ""}
-                onChange={(e) =>
-                  handleKgChange(field.materialId, e.target.value)
-                }
-              />
-              <span>Kg</span>
-              <button
-                type="button"
-                onClick={() => handleKgSubmit(field.materialId)}
-                className="btn btn-sm btn-outline-success"
-              >
-                Send
-              </button>
+              <div className="d-flex gap-2 align-items-center">
+                <input
+                  style={{
+                    borderRadius: "8px",
+                    padding: "7px",
+                    border: "1px solid",
+                  }}
+                  type="number"
+                  placeholder="Enter kg"
+                  value={kgData[field.materialId] || ""}
+                  onChange={(e) =>
+                    handleKgChange(field.materialId, e.target.value)
+                  }
+                />
+                <button
+                  type="button"
+                  onClick={() => handleKgSubmit(field.materialId)}
+                  className="add-btn"
+                  disabled={
+                    !kgData[field.materialId] || isNaN(kgData[field.materialId])
+                  }
+                >
+                  Send
+                </button>
+              </div>
             </div>
 
             {isKgSubmitted && (
@@ -454,10 +493,19 @@ const CollectionRequestDetails = () => {
       >
         <p className="primary-title">Approval Collector / Material</p>
         <div className="form-actions">
-          <button type="submit" className="submit-button">
+          <button
+            type="submit"
+            className="submit-button"
+            disabled={isAnyRejected}
+            style={{ cursor: isAnyRejected ? "not-allowed" : "pointer" }}
+          >
             Approve
           </button>
-          <button type="button" className="cancel-button">
+          <button
+            type="button"
+            className="cancel-button"
+            onClick={() => handleCancle()}
+          >
             Reject
           </button>
         </div>
