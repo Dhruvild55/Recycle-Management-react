@@ -8,18 +8,16 @@ import { useQuery } from "@tanstack/react-query";
 import { usedPointsTransactionList } from "../../../query/PointsTransactionManagement/Used/usedPointsTransaction/usedpointsTransaction.query";
 import SearchInput from "../../../shared/components/SearchInput";
 import { useState } from "react";
-import FilterDropdown from "../../../shared/components/FillerDropdown";
 import useDebounce from "../../../shared/hooks/useDebounce";
 import Pagination from "../../../shared/components/CustomPagination";
 import { iconRightArrow } from "../../../assets/images/icons";
 
 const UsageList = () => {
   const translations = useSelector((state) => state.settings.translations);
-  const { filter, search, showing, entries } = translations;
+  const { search, showing, entries } = translations;
   const [searchTerm, setSearchTerm] = useState("");
   const [pageSize, setPageSize] = useState(10);
   const [pageNumber, setPageNumber] = useState(1);
-  const [filterText, setFilter] = useState("");
   const [dateRange, setDateRange] = useState({
     startDate: new Date(),
     endDate: new Date(),
@@ -29,26 +27,30 @@ const UsageList = () => {
   const combinedSearchTerm = `${searchTerm}`.trim();
   const debouncedSearchQuery = useDebounce(combinedSearchTerm, 500);
 
+  const formatEndDate = (date) => {
+    const d = new Date(date);
+    d.setHours(29, 29, 0, 0); // Set time to 22:59:00
+    return d.toISOString(); // or format it as needed
+  };
+
   const { data: usedList, isPending } = useQuery({
     queryKey: [
       "newCollectorPermissionList",
       pageSize,
       pageNumber,
       debouncedSearchQuery,
-      filterText,
       isDateFilterActive ? dateRange?.startDate.toDateString() : "",
-      isDateFilterActive ? dateRange?.endDate.toDateString() : "",
+      isDateFilterActive ? formatEndDate(dateRange?.endDate) : "",
     ],
     queryFn: () =>
       usedPointsTransactionList({
         pageSize,
         pageNumber,
         searchTerm: debouncedSearchQuery,
-        filterText,
         startDate: isDateFilterActive
           ? dateRange?.startDate.toDateString()
           : "",
-        endDate: isDateFilterActive ? dateRange?.endDate.toDateString() : "",
+        endDate: isDateFilterActive ? formatEndDate(dateRange?.endDate) : "",
       }),
     refetchOnWindowFocus: false,
   });
@@ -66,7 +68,7 @@ const UsageList = () => {
               setSearchTerm(query);
               setPageNumber(1);
             }}
-            dynamicWidth="470px"
+            dynamicWidth="570px"
           />
         </div>
         <DatePicker
@@ -77,13 +79,6 @@ const UsageList = () => {
             setPageNumber(1);
           }}
         />
-        <div className="tool-section">
-          <FilterDropdown
-            label={filter}
-            options={[{ value: "", label: "All" }]}
-            onFilterChange={setFilter}
-          />
-        </div>
       </div>
       <CustomTable
         headers={headers}

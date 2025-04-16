@@ -1,40 +1,90 @@
 import { iconEye } from "../../../assets/images/icons";
 import ChipComponent from "../../../shared/components/ChipComponent";
 import ProfilePic from "../../../shared/components/ProfilePic";
+import { formatDate } from "../../../shared/constants/ValidationRules";
 
 export const headers = [
-  { key: "collectionId", label: "collectionId" },
+  { key: "requestId", label: "collectionId" },
   {
-    key: "name",
+    key: "userName",
     label: "name",
     render: (row) => {
       return (
         <div className="d-flex align-items-center gap-2">
           <ProfilePic />
-          <span>{row.name}</span>
+          <span>{row.userName}</span>
         </div>
       );
     },
   },
-  { key: "dateAndTime", label: "dateAndTime" },
+  {
+    key: "dateTime",
+    label: "dateAndTime",
+    render: (row) => {
+      return (
+        <div className="d-flex align-items-center gap-2">
+          <span>{formatDate(row.dateTime)}</span>
+        </div>
+      );
+    },
+  },
   {
     key: "userType",
     label: "userType",
     render: (row) => {
+      const userType =
+        row.userType === "B2B Recycler"
+          ? "Recycler"
+          : row.userType === "B2C Recycler"
+          ? "Recycler"
+          : row.userType === "B2B Collector"
+          ? "Collector"
+          : row.userType === "B2C Collector"
+          ? "Collector"
+          : "";
       return (
         <ChipComponent
-          label={row.userType}
-          color={row.userType === "Recycler" ? "green" : "yellow"}
+          label={userType}
+          color={userType === "Recycler" ? "green" : "yellow"}
         />
       );
     },
   },
   {
-    key: "points-pt",
+    key: "points",
     label: "points-pt",
+    render: (row) => {
+      return (
+        <span>
+          +{row.points}
+          {"  "}pts
+        </span>
+      );
+    },
   },
   { key: "materialType", label: "materialType" },
-  { key: "status", label: "status" },
+  {
+    key: "status",
+    label: "status",
+    render: (row) => {
+      return (
+        <div
+          className="flex gap-2"
+          style={{ alignItems: "center", display: "flex" }}
+        >
+          <div
+            style={{
+              width: "10px",
+              height: "10px",
+              backgroundColor: row.status === "Pending" ? "#C6C6C6" : "#00DE4E",
+              borderRadius: "20px",
+            }}
+          ></div>
+          <span>{row.status}</span>
+        </div>
+      );
+    },
+  },
   {
     key: "action",
     label: "action",
