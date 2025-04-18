@@ -291,6 +291,14 @@ const RoutesDetails = [
           AppContentManagement.MaterialAndeServices.Add.CollectionIncentive,
         exact: true,
       },
+      // * Material And Services / Collection Add
+      {
+        path: route.appContentManagement.MaterialAndServices.Add
+          .CollectionIncentiveAdd,
+        Component:
+          AppContentManagement.MaterialAndeServices.Add.CollectionIncentiveAdd,
+        exact: true,
+      },
       // * Material And Services / TremsAndCondition
       {
         path: route.appContentManagement.MaterialAndServices.Add

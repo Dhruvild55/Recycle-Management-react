@@ -58,6 +58,8 @@ export const route = {
           "/app-content-management/material-services-management/recycler-guideline",
         CollectionIncentive:
           "/app-content-management/material-services-management/collection-incentive",
+        CollectionIncentiveAdd:
+          "/app-content-management/material-services-management/collection-incentive/add",
         TermsAndCondition:
           "/app-content-management/material-services-management/terms&condition",
         TermsAndConditionAdd:

@@ -98,6 +98,11 @@ const AppContentManagement = {
           "../views/appContentManagement/MaterialAndServices/addNewWaste/CollectionIncentive"
         )
       ),
+      CollectionIncentiveAdd: lazy(() =>
+        import(
+          "../views/appContentManagement/MaterialAndServices/addNewWaste/CollectionIncentive/Add"
+        )
+      ),
       TermsAndCondition: lazy(() =>
         import(
           "../views/appContentManagement/MaterialAndServices/addNewWaste/TermsAndCondition"
