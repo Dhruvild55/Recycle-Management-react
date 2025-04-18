@@ -1,8 +1,14 @@
 import { iconDelete, iconView } from "../../../../assets/images/icons";
 import ProfilePic from "../../../../shared/components/ProfilePic";
 import { route } from "../../../../shared/constants/AllRoutes";
+import { showDeleteConfirmation } from "../../../../shared/utils";
 
-export const collecterColumns = (navigate, deleteUserMutation) => [
+export const collecterColumns = (
+  navigate,
+  deleteUserMutation,
+  editPermission,
+  deletePermission
+) => [
   {
     key: "id",
     label: "user_id",
@@ -63,12 +69,18 @@ export const collecterColumns = (navigate, deleteUserMutation) => [
         >
           <img src={iconView} />
         </button>
-        <button
-          onClick={() => deleteUserMutation({ userId: row.id })}
-          className="action-btn"
-        >
-          <img src={iconDelete} />
-        </button>
+        {deletePermission && (
+          <button
+            onClick={() =>
+              showDeleteConfirmation(() =>
+                deleteUserMutation({ userId: row.id })
+              )
+            }
+            className="action-btn"
+          >
+            <img src={iconDelete} />
+          </button>
+        )}
       </div>
     ),
   },

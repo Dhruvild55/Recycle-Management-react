@@ -13,9 +13,14 @@ import GuidelinesComponent from "../Component/GuidelineComponents";
 import { getRecyclerGuideline } from "../../../../../query/AppContentManagement/MaterialAndServices/getRecyclerGuideline/getrecyclerGuideline.query";
 import { route } from "../../../../../shared/constants/AllRoutes";
 import { FaPlus } from "react-icons/fa6";
+import usePagePermissions from "../../../../../shared/hooks/usePagePermission/usePagePermission";
+import ButtonComponent from "../../../../../shared/components/Buttoncomponent";
 
 const RecyclerGuideline = () => {
   const navigate = useNavigate();
+  const { canCreate, canDelete, canEdit } = usePagePermissions(
+    "Collector Terms & Condition"
+  );
   const translations = useSelector((state) => state.settings.translations);
   const { filter } = translations;
   const [filterText, setFilter] = useState();
@@ -75,21 +80,22 @@ const RecyclerGuideline = () => {
               value={filterText} // Set the default selected value
               onFilterChange={setFilter}
             />
-            <button
-              className="add-btn"
-              onClick={() =>
-                navigate(
-                  route.appContentManagement.MaterialAndServices.Add
-                    .GuidelineUpdateAdd,
-                  {
-                    state: { isrecycler: true },
-                  }
-                )
-              }
-            >
-              {" "}
-              Add Recycler Guideline <FaPlus style={{ fontSize: "15px" }} />
-            </button>
+            {canCreate && (
+              <ButtonComponent
+                label="Add Recycler Guideline"
+                className="add-btn"
+                icon={<FaPlus style={{ fontSize: "15px" }} />}
+                onClick={() =>
+                  navigate(
+                    route.appContentManagement.MaterialAndServices.Add
+                      .GuidelineUpdateAdd,
+                    {
+                      state: { isrecycler: true },
+                    }
+                  )
+                }
+              />
+            )}
           </div>
         </div>
         {recyclerGuidelinePending ? (
@@ -103,6 +109,8 @@ const RecyclerGuideline = () => {
               refetch={refetch}
               isCollectorGuideline={false}
               serviceId={filterText}
+              editPermission={canEdit}
+              deletePermission={canDelete}
             />
           </>
         ) : (
@@ -128,6 +136,8 @@ const RecyclerGuideline = () => {
             refetch={refetch}
             isCollectorGuideline={false}
             serviceId={filterText}
+            editPermission={canEdit}
+            deletePermission={canDelete}
           />
         </div>
       ))}

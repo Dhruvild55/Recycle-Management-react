@@ -2,6 +2,8 @@ import { iconDelete, iconView } from "../../../assets/images/icons";
 import ChipComponent from "../../../shared/components/ChipComponent";
 import ProfilePic from "../../../shared/components/ProfilePic";
 import { route } from "../../../shared/constants/AllRoutes";
+import { formatDate } from "../../../shared/constants/ValidationRules";
+import { showDeleteConfirmation } from "../../../shared/utils";
 
 export const headers = (navigate, deleteUserMutation) => [
   {
@@ -25,8 +27,26 @@ export const headers = (navigate, deleteUserMutation) => [
       );
     },
   },
-  { key: "requestDate", label: "reqData" },
-  { key: "requestType", label: "reqType" },
+  {
+    key: "requestDate",
+    label: "reqData",
+    render: (row) => {
+      return <span>{formatDate(row.requestDate)}</span>;
+    },
+  },
+  {
+    key: "requestType",
+    label: "reqType",
+    render: (row) => {
+      return (
+        <span>
+          {row.requestType.length > 5
+            ? `${row.requestType.slice(0, 5)}...`
+            : row.requestType}
+        </span>
+      );
+    },
+  },
   { key: "phoneNo", label: "phone_no" },
   { key: "state", label: "state" },
   {
@@ -35,8 +55,18 @@ export const headers = (navigate, deleteUserMutation) => [
     render: (row) => {
       return (
         <ChipComponent
-          label={row.status ? "" : "Pending"}
-          color={row.status ? "red" : "yellow"}
+          label={row.status}
+          color={
+            row.status === "Pending"
+              ? "yellow"
+              : row.status === "Approved"
+              ? "green"
+              : row.status === "Rejected"
+              ? "blue"
+              : row.status === "Notready"
+              ? "yellow"
+              : ""
+          }
         />
       );
     },
@@ -58,7 +88,11 @@ export const headers = (navigate, deleteUserMutation) => [
           <button className="action-btn">
             <img
               src={iconDelete}
-              onClick={() => deleteUserMutation({ userId: row.userId })}
+              onClick={() => {
+                showDeleteConfirmation(() =>
+                  deleteUserMutation({ userId: row.userId })
+                );
+              }}
             />
           </button>
         </div>

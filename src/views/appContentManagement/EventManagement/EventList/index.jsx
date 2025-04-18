@@ -14,6 +14,7 @@ import { getallEvents } from "../../../../query/AppContentManagement/EventManage
 import BannerComponent from "../../BannerManagement/BannerList/BannerComponent";
 import Pagination from "../../../../shared/components/CustomPagination";
 import { Loader } from "../../../../shared/components/Loader";
+import usePagePermissions from "../../../../shared/hooks/usePagePermission/usePagePermission";
 
 const EventManagement = () => {
   const translations = useSelector((state) => state.settings.translations);
@@ -24,6 +25,10 @@ const EventManagement = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterText, setFilter] = useState("All");
+
+  const { canCreate, canDelete, canEdit } = usePagePermissions(
+    "Collector Terms & Condition"
+  );
 
   const debouncedSearchQuery = useDebounce(searchTerm.trim(), 500);
 
@@ -70,14 +75,16 @@ const EventManagement = () => {
             onFilterChange={setFilter}
           />
         </div>
-        <button
-          className="add-btn"
-          onClick={() =>
-            navigate(route.appContentManagement.EventManagement.Add)
-          }
-        >
-          {addEvent} <FaPlus style={{ fontSize: "15px" }} />
-        </button>
+        {canCreate && (
+          <button
+            className="add-btn"
+            onClick={() =>
+              navigate(route.appContentManagement.EventManagement.Add)
+            }
+          >
+            {addEvent} <FaPlus style={{ fontSize: "15px" }} />
+          </button>
+        )}
       </div>
 
       {/* Show Loader While Fetching Data */}
@@ -99,7 +106,13 @@ const EventManagement = () => {
           >
             {eventList?.data?.items?.length > 0 ? (
               eventList.data.items.map((item) => (
-                <BannerComponent key={item.id} items={item} isEvent={true} />
+                <BannerComponent
+                  key={item.id}
+                  items={item}
+                  isEvent={true}
+                  editPermission={canEdit}
+                  deletePermission={canDelete}
+                />
               ))
             ) : (
               <p className="no-data">No events found</p>

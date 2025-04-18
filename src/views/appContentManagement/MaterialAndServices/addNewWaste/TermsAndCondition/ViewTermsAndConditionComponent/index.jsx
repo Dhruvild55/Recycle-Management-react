@@ -4,7 +4,13 @@ import { iconEdit } from "../../../../../../assets/images/icons";
 import { useNavigate } from "react-router-dom";
 import { route } from "../../../../../../shared/constants/AllRoutes";
 
-const ViewTermsAndCondition = ({ data, isLoading, serviceId }) => {
+const ViewTermsAndCondition = ({
+  data,
+  isLoading,
+  serviceId,
+  editpermission,
+  deletePermission,
+}) => {
   const navigate = useNavigate();
 
   return (
@@ -16,20 +22,22 @@ const ViewTermsAndCondition = ({ data, isLoading, serviceId }) => {
           <div className="guideline-title">
             <span className="primary-title">Title: {data?.terms}</span>
             <div>
-              <button
-                style={{ border: "none" }}
-                onClick={() =>
-                  navigate(
-                    route.appContentManagement.MaterialAndServices.Add
-                      .TermsAndConditionAdd,
-                    {
-                      state: data,
-                    }
-                  )
-                }
-              >
-                <img src={iconEdit} />
-              </button>
+              {editpermission && (
+                <button
+                  style={{ border: "none" }}
+                  onClick={() =>
+                    navigate(
+                      route.appContentManagement.MaterialAndServices.Add
+                        .TermsAndConditionAdd,
+                      {
+                        state: data,
+                      }
+                    )
+                  }
+                >
+                  <img src={iconEdit} />
+                </button>
+              )}
             </div>
           </div>
           <div className="add-waste-form" style={{ padding: "0px" }}>

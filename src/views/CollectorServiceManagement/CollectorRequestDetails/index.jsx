@@ -95,9 +95,10 @@ const CollectionRequestDetails = () => {
         collectorStatus: { status: "approve", remark: "" },
         hubStatus: { status: "approve", remark: "" },
         materialStatuses: data.data.materialTypes.map((material) => ({
-          materialId: material.materialId,
+          materialId: material.materialTypeId,
           status: "approve",
           remark: "",
+          MyserviceId: material.serviceId,
         })),
       });
     }
@@ -124,11 +125,13 @@ const CollectionRequestDetails = () => {
     });
 
     formValues.materialStatuses.forEach((mat) => {
+      console.log("id", mat);
       payload.push({
         approveFor: "materialType",
         materialId: mat.materialId,
         isApprove: mat.status === "approve",
         remark: mat.remark || "",
+        MyserviceId: mat.MyserviceId,
       });
     });
 
@@ -150,9 +153,11 @@ const CollectionRequestDetails = () => {
   };
 
   const handleKgChange = (materialId, value) => {
+    console.log(value);
     setKgData((prev) => ({ ...prev, [materialId]: value }));
   };
   const handleKgSubmit = (materialId) => {
+    console.log("materialId", materialId);
     const collectorId = data?.data?.userId;
     const kg = kgData[materialId];
     console.log("Send KG to API:", {
@@ -241,8 +246,18 @@ const CollectionRequestDetails = () => {
                       <strong className="heading col">Status</strong>
                       <span className="status-pending detail col">
                         <ChipComponent
-                          label={data?.data?.status ? "Approved" : "Pending"}
-                          color={data?.data?.status ? "green" : "yellow"}
+                          label={data?.data?.status}
+                          color={
+                            data?.data?.status === "Pending"
+                              ? "yellow"
+                              : data?.data?.status === "Approved"
+                              ? "green"
+                              : data?.data?.status === "Rejected"
+                              ? "blue"
+                              : data?.data?.status === "Notready"
+                              ? "yellow"
+                              : ""
+                          }
                         />
                       </span>
                     </div>
@@ -391,10 +406,11 @@ const CollectionRequestDetails = () => {
       {/* Material Types Section */}
       {console.log(fields)}
       {fields.map((field, index) => {
-        console.log("field", field);
+        console.log("feild", field);
         const material = data?.data?.materialTypes.find(
-          (m) => m.materialId === field.materialId
+          (m) => m.materialTypeId === field.materialId
         );
+        console.log(material);
         const statusPath = `materialStatuses.${index}.status`;
         const remarkPath = `materialStatuses.${index}.remark`;
         const materialStatus = watch(statusPath);
@@ -407,7 +423,7 @@ const CollectionRequestDetails = () => {
             style={{ marginTop: "20px", minHeight: "0px" }}
           >
             <p className="primary-title">
-              Material Type : {material?.materialName}
+              Material Type : {material?.materialTypeName}
             </p>
             <div className="compound-images-section" style={{ margin: "0px" }}>
               <CommonCardComponent

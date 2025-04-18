@@ -12,6 +12,7 @@ import DragAndDropComponent from "../../../../shared/components/DragAndDropCompo
 import TopSection from "./Component/TopSection";
 import { postMaterialData } from "../../../../query/AppContentManagement/MaterialAndServices/postMaterialData/postMaterialData.query";
 import { updateMaterial } from "../../../../query/AppContentManagement/MaterialAndServices/UpdateMaterial/updateMaterial.query";
+import usePagePermissions from "../../../../shared/hooks/usePagePermission/usePagePermission";
 
 const AddNewWaste = () => {
   const navigate = useNavigate();
@@ -19,6 +20,9 @@ const AddNewWaste = () => {
   const materialData = location?.state?.matirialData || null;
   const isEditMode = !!materialData;
 
+  const { canCreate, canDelete, canEdit } = usePagePermissions(
+    "Collector Terms & Condition"
+  );
   const [image, setImage] = useState(null);
 
   const {

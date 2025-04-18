@@ -7,7 +7,10 @@ import { useForm } from "react-hook-form";
 import { iconDelete, iconEdit } from "../../../../../../assets/images/icons";
 import { deleteGuideline } from "../../../../../../query/AppContentManagement/MaterialAndServices/DeleteGuideline/deleteGuideline.query";
 import { useMutation } from "@tanstack/react-query";
-import { ReactToastify } from "../../../../../../shared/utils";
+import {
+  ReactToastify,
+  showDeleteConfirmation,
+} from "../../../../../../shared/utils";
 import { useNavigate } from "react-router-dom";
 import { route } from "../../../../../../shared/constants/AllRoutes";
 
@@ -19,6 +22,8 @@ const ConditionComponent = ({
   isDelete,
   index,
   refetch,
+  editPermission,
+  deletePermission,
 }) => {
   const navigate = useNavigate();
 
@@ -48,23 +53,31 @@ const ConditionComponent = ({
               {index}.{"  "}
               {title}
             </span>
+
             <div>
-              <button style={{ border: "none" }}>
-                <img
-                  src={iconEdit}
-                  onClick={() =>
-                    navigate(
-                      route.appContentManagement.BaseCollectorGuideline.Add,
-                      {
-                        state: { id, title, description },
-                      }
-                    )
-                  }
-                />
-              </button>
-              {isDelete && (
+              {editPermission && (
                 <button style={{ border: "none" }}>
-                  <img src={iconDelete} onClick={() => handleDelete(id)} />
+                  <img
+                    src={iconEdit}
+                    onClick={() =>
+                      navigate(
+                        route.appContentManagement.BaseCollectorGuideline.Add,
+                        {
+                          state: { id, title, description },
+                        }
+                      )
+                    }
+                  />
+                </button>
+              )}
+              {isDelete && deletePermission && (
+                <button style={{ border: "none" }}>
+                  <img
+                    src={iconDelete}
+                    onClick={() => {
+                      showDeleteConfirmation(() => handleDelete(id));
+                    }}
+                  />
                 </button>
               )}
             </div>

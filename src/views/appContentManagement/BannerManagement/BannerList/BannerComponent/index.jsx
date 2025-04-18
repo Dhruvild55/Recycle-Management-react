@@ -6,7 +6,12 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { route } from "../../../../../shared/constants/AllRoutes";
 
-const BannerComponent = ({ items, isEvent }) => {
+const BannerComponent = ({
+  items,
+  isEvent,
+  editPermission,
+  deletePermission,
+}) => {
   const translations = useSelector((state) => state.settings.translations);
   const navigate = useNavigate();
   const { state, postCode } = translations;
@@ -29,23 +34,25 @@ const BannerComponent = ({ items, isEvent }) => {
             </p>
             <p className="title">{title}</p>
           </div>
-          <div>
-            <img
-              src={iconEdit}
-              alt="Edit"
-              className="edit-icon"
-              onClick={() =>
-                navigate(
-                  isEvent
-                    ? route.appContentManagement.EventManagement.Add
-                    : route.appContentManagement.BannerManagement.Add,
-                  {
-                    state: items,
-                  }
-                )
-              }
-            />
-          </div>
+          {editPermission && (
+            <div>
+              <img
+                src={iconEdit}
+                alt="Edit"
+                className="edit-icon"
+                onClick={() =>
+                  navigate(
+                    isEvent
+                      ? route.appContentManagement.EventManagement.Add
+                      : route.appContentManagement.BannerManagement.Add,
+                    {
+                      state: items,
+                    }
+                  )
+                }
+              />
+            </div>
+          )}
         </div>
         <div className="banner-description">
           <p className="description">{description}</p>

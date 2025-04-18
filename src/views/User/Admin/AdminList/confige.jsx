@@ -1,6 +1,7 @@
 import { iconDelete, iconEdit } from "../../../../assets/images/icons";
 import ProfilePic from "../../../../shared/components/ProfilePic";
 import { route } from "../../../../shared/constants/AllRoutes";
+import { showDeleteConfirmation } from "../../../../shared/utils";
 
 const formatDate = (dateTimeString) => {
   const isoString = dateTimeString.replace(" ", "T");
@@ -32,7 +33,12 @@ const renderLastLogin = (row) => (
   </div>
 );
 
-export const headers = (navigate, deleteUserMutation) => [
+export const headers = (
+  navigate,
+  deleteUserMutation,
+  editPermission,
+  deletePermission
+) => [
   { key: "id", label: "user_id", render: renderId },
   { key: "userName", label: "name", render: renderUserName },
   { key: "roles", label: "roles" },
@@ -45,22 +51,30 @@ export const headers = (navigate, deleteUserMutation) => [
     render: (row) => {
       return (
         <div className="btn-section">
-          <button
-            onClick={() =>
-              navigate(route.userManagement.Admin.Edit(row.id), {
-                state: { userData: row },
-              })
-            }
-            className="action-btn"
-          >
-            <img src={iconEdit} />
-          </button>
-          <button
-            onClick={() => deleteUserMutation({ userId: row.id })}
-            className="action-btn"
-          >
-            <img src={iconDelete} />
-          </button>
+          {editPermission && (
+            <button
+              onClick={() =>
+                navigate(route.userManagement.Admin.Edit(row.id), {
+                  state: { userData: row },
+                })
+              }
+              className="action-btn"
+            >
+              <img src={iconEdit} />
+            </button>
+          )}
+          {deletePermission && (
+            <button
+              onClick={() =>
+                showDeleteConfirmation(() =>
+                  deleteUserMutation({ userId: row.id })
+                )
+              }
+              className="action-btn"
+            >
+              <img src={iconDelete} />
+            </button>
+          )}
         </div>
       );
     },

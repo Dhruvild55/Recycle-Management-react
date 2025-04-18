@@ -13,12 +13,17 @@ import { getBannerList } from "../../../../query/AppContentManagement/BannerMana
 import SearchInput from "../../../../shared/components/SearchInput";
 import useDebounce from "../../../../shared/hooks/useDebounce";
 import FilterDropdown from "../../../../shared/components/FillerDropdown";
+import usePagePermissions from "../../../../shared/hooks/usePagePermission/usePagePermission";
 
 const BannerList = () => {
   const translations = useSelector((state) => state.settings.translations);
   const { filter, search, showing, entries, addBanner, bannerManagement } =
     translations;
   const navigate = useNavigate();
+
+  const { canCreate, canDelete, canEdit } = usePagePermissions(
+    "Collector Terms & Condition"
+  );
   const [pageSize, setPageSize] = useState(10);
   const [pageNumber, setPageNumber] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
@@ -71,15 +76,17 @@ const BannerList = () => {
             onFilterChange={setFilter}
           />
         </div>
-        <button
-          className="add-btn"
-          onClick={() =>
-            navigate(route.appContentManagement.BannerManagement.Add)
-          }
-        >
-          {" "}
-          {addBanner} <FaPlus style={{ fontSize: "15px" }} />
-        </button>
+        {canCreate && (
+          <button
+            className="add-btn"
+            onClick={() =>
+              navigate(route.appContentManagement.BannerManagement.Add)
+            }
+          >
+            {" "}
+            {addBanner} <FaPlus style={{ fontSize: "15px" }} />
+          </button>
+        )}
       </div>
       <div
         className="banner-section"
@@ -93,7 +100,14 @@ const BannerList = () => {
       >
         {bannerList?.data?.items?.length > 0 ? (
           bannerList?.data?.items?.map((items) => {
-            return <BannerComponent key={items.id} items={items} />;
+            return (
+              <BannerComponent
+                key={items.id}
+                items={items}
+                editPermission={canEdit}
+                deletePermission={canDelete}
+              />
+            );
           })
         ) : (
           <div

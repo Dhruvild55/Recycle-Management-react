@@ -3,6 +3,7 @@ import { ro } from "date-fns/locale";
 import { iconDelete, iconEdit } from "../../../../assets/images/icons";
 import ProfilePic from "../../../../shared/components/ProfilePic";
 import { route } from "../../../../shared/constants/AllRoutes";
+import { showDeleteConfirmation } from "../../../../shared/utils";
 
 const formatDate = (isoString) => {
   const date = new Date(isoString);
@@ -11,70 +12,77 @@ const formatDate = (isoString) => {
   const year = date.getFullYear();
   return `${day}/${month}/${year}`;
 };
-export const columns = (handleDelete, navigate) => [
+export const columns = (
+  handleDelete,
+  navigate,
+  editPermission,
+  deletePermission
+) => [
   {
-    field: "materialName",
-    headerName: "Waste Category",
-    width: 500,
-    renderCell: (params) => (
+    key: "materialName",
+    label: "wasteCategory",
+    render: (params) => (
       <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
         <ProfilePic
           size={30}
-          userId={params.row.materialTypeId}
-          image={params.row.imagePath}
-          name={params.row.materialName}
+          userId={params.materialTypeId}
+          image={params.imagePath}
+          name={params.materialName}
           isChange={false}
         />
-        <span>{params.row.materialName}</span>
+        <span>{params.materialName}</span>
       </div>
     ),
   },
   {
-    field: "status",
-    headerName: "Status",
-    width: 150,
+    key: "status",
+    label: "status",
   },
   {
-    field: "updated",
-    headerName: "Updated",
-    width: 200,
-    renderCell: (params) => <span>{formatDate(params.row.updated)}</span>,
+    key: "updated",
+    label: "updated",
+    render: (params) => <span>{formatDate(params.updated)}</span>,
   },
   {
-    field: "actions",
-    headerName: "Actions",
-    width: 100,
-    sortable: false,
-    renderCell: (params) => {
+    key: "actions",
+    label: "action",
+    render: (params) => {
       return (
         <>
           <div style={{ display: "flex", gap: "5px" }}>
-            <button
-              style={{ border: "none", margin: "0px" }}
-              onClick={() =>
-                navigate(
-                  route.appContentManagement.MaterialAndServices.Add
-                    .MaterialType,
-                  {
-                    state: {
-                      matirialData: params.row,
-                    },
-                  }
-                )
-              }
-              className="action-btn"
-            >
-              <img src={iconEdit} />
-            </button>
-            <button
-              className="action-btn"
-              style={{ border: "none", margin: "0px" }}
-              onClick={() => handleDelete(params.row.materialTypeId)}
-            >
-              <img src={iconDelete} />
-            </button>
+            {editPermission && (
+              <button
+                style={{ border: "none", margin: "0px" }}
+                onClick={() =>
+                  navigate(
+                    route.appContentManagement.MaterialAndServices.Add
+                      .MaterialType,
+                    {
+                      state: {
+                        matirialData: params,
+                      },
+                    }
+                  )
+                }
+                className="action-btn"
+              >
+                <img src={iconEdit} />
+              </button>
+            )}
+            {deletePermission && (
+              <button
+                className="action-btn"
+                style={{ border: "none", margin: "0px" }}
+                onClick={() => {
+                  showDeleteConfirmation(() =>
+                    handleDelete(params.materialTypeId)
+                  );
+                }}
+              >
+                <img src={iconDelete} />
+              </button>
+            )}
           </div>
-          ;
         </>
       );
     },

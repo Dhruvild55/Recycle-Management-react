@@ -25,6 +25,9 @@ const UserList = ({
   tableHeaders,
   addButton,
   roleOptions,
+  editPermission,
+  deletePermission,
+  createPermission,
 }) => {
   const [pageSize, setPageSize] = useState(10);
   const [pageNumber, setPageNumber] = useState(1);
@@ -92,7 +95,7 @@ const UserList = ({
             />
           </div>
 
-          {addButton && (
+          {addButton && createPermission && (
             <ButtonComponent
               label={addButton.label}
               onClick={() => navigate(addButton.route)}
@@ -131,7 +134,12 @@ const UserList = ({
           </div>
         </div>
         <CustomTable
-          headers={tableHeaders(navigate, deleteUserMutation)}
+          headers={tableHeaders(
+            navigate,
+            deleteUserMutation,
+            editPermission,
+            deletePermission
+          )}
           data={tableData}
           isLoading={isPending}
         />

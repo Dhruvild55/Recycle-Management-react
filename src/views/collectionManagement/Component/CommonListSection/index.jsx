@@ -21,6 +21,8 @@ const CommonListSection = ({
   queryKey,
   fetchfunction,
   role,
+  editPermission,
+  deletePermission,
 }) => {
   const navigate = useNavigate();
   const [pageSize, setPageSize] = useState(10);
@@ -82,7 +84,12 @@ const CommonListSection = ({
       </div>
 
       <CustomTable
-        headers={tableHeaders(navigate, deleteMutate)}
+        headers={tableHeaders(
+          navigate,
+          deleteMutate,
+          editPermission,
+          deletePermission
+        )}
         data={tableData}
         isLoading={isPending}
       />

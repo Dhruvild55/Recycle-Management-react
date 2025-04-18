@@ -7,9 +7,14 @@ import { getCollectorBaseTermsAndCondition } from "../../../query/AppContentMana
 import { useNavigate } from "react-router-dom";
 import { route } from "../../../shared/constants/AllRoutes";
 import TermsAndConditionComponent from "./TermsAndConditionComponent";
+import usePagePermissions from "../../../shared/hooks/usePagePermission/usePagePermission";
 
 const BaseCollectorTerms = () => {
   const navigate = useNavigate();
+
+  const { canCreate, canDelete, canEdit } = usePagePermissions(
+    "Collector Terms & Condition"
+  );
 
   // ! Base Terms And Condition API
   const { data, isPending, refetch } = useQuery({
@@ -23,14 +28,17 @@ const BaseCollectorTerms = () => {
         <AppContentManagementTopSection />
         <div className="common-page-toolbar" style={{ padding: "7px 0px" }}>
           <TitleComponent label="Terms And Condition" />
-          <ButtonComponent
-            label="Add T&C"
-            className="add-btn"
-            icon={<FaPlus style={{ fontSize: "15px" }} />}
-            onClick={() =>
-              navigate(route.appContentManagement.BaseCollectorTerms.Add)
-            }
-          />
+
+          {canCreate && (
+            <ButtonComponent
+              label="Add T&C"
+              className="add-btn"
+              icon={<FaPlus style={{ fontSize: "15px" }} />}
+              onClick={() =>
+                navigate(route.appContentManagement.BaseCollectorTerms.Add)
+              }
+            />
+          )}
         </div>
 
         {data?.data?.length > 0 ? (
@@ -42,6 +50,8 @@ const BaseCollectorTerms = () => {
             isDelete={true}
             refetch={refetch}
             index={1}
+            editPermission={canEdit}
+            deletePermission={canDelete}
           />
         ) : (
           <p> No Data Available</p>
@@ -61,6 +71,8 @@ const BaseCollectorTerms = () => {
             isDelete={true}
             refetch={refetch}
             index={2 + index}
+            editPermission={canEdit}
+            deletePermission={canDelete}
           />
         </div>
       ))}

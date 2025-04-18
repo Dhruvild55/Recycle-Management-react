@@ -13,12 +13,18 @@ import ConditionComponent from "./ConditionComponent";
 import { route } from "../../../../../shared/constants/AllRoutes";
 import { FaPlus } from "react-icons/fa6";
 import ViewTermsAndCondition from "./ViewTermsAndConditionComponent";
+import usePagePermissions from "../../../../../shared/hooks/usePagePermission/usePagePermission";
+import ButtonComponent from "../../../../../shared/components/Buttoncomponent";
 
 const TermsAndCondition = () => {
   const navigate = useNavigate();
   const translations = useSelector((state) => state.settings.translations);
   const { filter } = translations;
   const [filterText, setFilter] = useState();
+
+  const { canCreate, canDelete, canEdit } = usePagePermissions(
+    "Collector Terms & Condition"
+  );
 
   //! get matrial and service id Data API
   const { data, isPending } = useQuery({
@@ -72,24 +78,25 @@ const TermsAndCondition = () => {
               value={filterText}
               onFilterChange={setFilter}
             />
-            <button
+            <ButtonComponent
               className="add-btn"
+              label="Add Terms and Condition"
+              icon={<FaPlus style={{ fontSize: "15px" }} />}
               onClick={() =>
                 navigate(
                   route.appContentManagement.MaterialAndServices.Add
                     .TermsAndConditionAdd
                 )
               }
-            >
-              {" "}
-              Add Terms and Condition <FaPlus style={{ fontSize: "15px" }} />
-            </button>
+            />
           </div>
         </div>
         <ViewTermsAndCondition
           data={termsAndCondition?.data[0]}
           serviceId={filterText}
           isLoading={isPending}
+          editpermission={canEdit}
+          deletePermission={canDelete}
         />
       </div>
       {termsAndCondition?.data.slice(1).map((item, index) => {
@@ -107,6 +114,8 @@ const TermsAndCondition = () => {
               data={item}
               isLoading={isPending}
               serviceId={filterText}
+              editpermission={canEdit}
+              deletePermission={canDelete}
             />
           </div>
         );

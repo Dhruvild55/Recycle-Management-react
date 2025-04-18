@@ -6,7 +6,10 @@ import DragAndDropComponent from "../../../../../../shared/components/DragAndDro
 import InputField from "../../../../../../shared/components/InputFieldComponent";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { deleteGuideline } from "../../../../../../query/AppContentManagement/MaterialAndServices/DeleteGuideline/deleteGuideline.query";
-import { ReactToastify } from "../../../../../../shared/utils";
+import {
+  ReactToastify,
+  showDeleteConfirmation,
+} from "../../../../../../shared/utils";
 import { getFilePath } from "../../../../../../query/getfilePath/filePath.query";
 import { updateGuideline } from "../../../../../../query/AppContentManagement/MaterialAndServices/UpdateGuideline/updateGuideline.query";
 
@@ -17,6 +20,8 @@ const GuidelinesComponent = ({
   refetch,
   serviceId,
   isCollectorGuideline,
+  editPermission,
+  deletePermission,
 }) => {
   console.log(data, serviceId);
   const [image, setImage] = useState(null);
@@ -126,15 +131,24 @@ const GuidelinesComponent = ({
               )}
             </span>
             <div>
-              <button
-                style={{ border: "none" }}
-                onClick={() => setIsEdit(true)}
-              >
-                <img src={iconEdit} />
-              </button>
-              <button style={{ border: "none" }}>
-                <img src={iconDelete} onClick={() => handleDelete(data?.id)} />
-              </button>
+              {editPermission && (
+                <button
+                  style={{ border: "none" }}
+                  onClick={() => setIsEdit(true)}
+                >
+                  <img src={iconEdit} />
+                </button>
+              )}
+              {deletePermission && (
+                <button style={{ border: "none" }}>
+                  <img
+                    src={iconDelete}
+                    onClick={() => {
+                      showDeleteConfirmation(() => handleDelete(data?.id));
+                    }}
+                  />
+                </button>
+              )}
             </div>
           </div>
           <div className="add-waste-form" style={{ padding: "0px" }}>

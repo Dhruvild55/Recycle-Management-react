@@ -9,6 +9,7 @@ import {
 import BinIcon from "../../../assets/images/icons/BinIcon";
 import ProfilePic from "../../../shared/components/ProfilePic";
 import { route } from "../../../shared/constants/AllRoutes";
+import { showDeleteConfirmation } from "../../../shared/utils";
 
 export const ProductListHeader = (navigate, deleteProductMutation) => [
   {
@@ -108,7 +109,9 @@ export const ProductListHeader = (navigate, deleteProductMutation) => [
           <button className="action-btn">
             <img
               src={iconDelete}
-              onClick={() => deleteProductMutation(row.id)}
+              onClick={() => {
+                showDeleteConfirmation(() => deleteProductMutation(row.id));
+              }}
             />
           </button>
         </div>

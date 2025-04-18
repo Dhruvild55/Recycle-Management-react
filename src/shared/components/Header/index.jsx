@@ -27,6 +27,8 @@ import useMediaQuery from "../../hooks/useMediaQuery";
 import PointsIcon from "../../../assets/images/icons/PointsIcon";
 import HardwareIcon from "../../../assets/images/icons/HardwareIcon";
 import SettingIcon from "../../../assets/images/icons/SettingIcon";
+import { getPermission } from "../../../query/roles/getPermissions/getPermission.query";
+import { setPermissions } from "../../../redux/userPermissions/userPermissionSlice";
 
 function Header({ toggleSidebar, isCollapsed, selectedMenu }) {
   const dispatch = useDispatch();
@@ -49,6 +51,20 @@ function Header({ toggleSidebar, isCollapsed, selectedMenu }) {
     queryKey: ["getProfile"],
     queryFn: () => getProfile(),
   });
+
+  const rolesFromStorage = localStorage.getItem("role") || "";
+  const roleArray = rolesFromStorage.split(",").map((r) => r.trim());
+
+  const allowedRoles = ["Admin", "Super Admin"];
+
+  const matchedRole = roleArray.find((role) => allowedRoles.includes(role));
+
+  const { data: permissionData, isLoading: permissionPending } = useQuery({
+    queryKey: ["getPermissions", matchedRole],
+    queryFn: () => getPermission({ role: matchedRole }),
+  });
+
+  dispatch(setPermissions(permissionData?.data));
 
   const handleLanguageChange = (e) => {
     const language = e.target.value;

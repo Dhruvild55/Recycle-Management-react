@@ -7,7 +7,10 @@ import { iconDelete, iconEdit } from "../../../../assets/images/icons";
 import { route } from "../../../../shared/constants/AllRoutes";
 import { deleteTerms } from "../../../../query/AppContentManagement/getBaseCollectorTerms/DeleteTerms/deleteTerms.query";
 import { useMutation } from "@tanstack/react-query";
-import { ReactToastify } from "../../../../shared/utils";
+import {
+  ReactToastify,
+  showDeleteConfirmation,
+} from "../../../../shared/utils";
 
 const TermsAndConditionComponent = ({
   title,
@@ -17,6 +20,8 @@ const TermsAndConditionComponent = ({
   isDelete,
   index,
   refetch,
+  editPermission,
+  deletePermission,
 }) => {
   const navigate = useNavigate();
 
@@ -47,22 +52,29 @@ const TermsAndConditionComponent = ({
               {title}
             </span>
             <div>
-              <button style={{ border: "none" }}>
-                <img
-                  src={iconEdit}
-                  onClick={() =>
-                    navigate(
-                      route.appContentManagement.BaseCollectorTerms.Add,
-                      {
-                        state: { id, title, description },
-                      }
-                    )
-                  }
-                />
-              </button>
-              {isDelete && (
+              {editPermission && (
                 <button style={{ border: "none" }}>
-                  <img src={iconDelete} onClick={() => handleDelete(id)} />
+                  <img
+                    src={iconEdit}
+                    onClick={() =>
+                      navigate(
+                        route.appContentManagement.BaseCollectorTerms.Add,
+                        {
+                          state: { id, title, description },
+                        }
+                      )
+                    }
+                  />
+                </button>
+              )}
+              {isDelete && deletePermission && (
+                <button style={{ border: "none" }}>
+                  <img
+                    src={iconDelete}
+                    onClick={() => {
+                      showDeleteConfirmation(() => handleDelete(id));
+                    }}
+                  />
                 </button>
               )}
             </div>

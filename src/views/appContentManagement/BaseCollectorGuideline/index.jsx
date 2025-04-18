@@ -7,8 +7,13 @@ import { useQuery } from "@tanstack/react-query";
 import { baseGuideline } from "../../../query/AppContentManagement/BaseCollectorGuideline/baseCollectorGuideline.query";
 import ConditionComponent from "../MaterialAndServices/addNewWaste/TermsAndCondition/ConditionComponent";
 import { route } from "../../../shared/constants/AllRoutes";
+import usePagePermissions from "../../../shared/hooks/usePagePermission/usePagePermission";
 
 const BaseCollectorGuideline = () => {
+  const { canCreate, canDelete, canEdit } = usePagePermissions(
+    "Collector Terms & Condition"
+  );
+
   // ! Base guideline API
   const { data, isPending, refetch } = useQuery({
     queryKey: ["baseGuideline"],
@@ -22,14 +27,16 @@ const BaseCollectorGuideline = () => {
         <AppContentManagementTopSection />
         <div className="common-page-toolbar" style={{ padding: "7px 0px" }}>
           <TitleComponent label="Collector Guideline" />
-          <ButtonComponent
-            label="Add Guideline"
-            className="add-btn"
-            onClick={() =>
-              navigate(route.appContentManagement.BaseCollectorGuideline.Add)
-            }
-            icon={<FaPlus style={{ fontSize: "15px" }} />}
-          />
+          {canCreate && (
+            <ButtonComponent
+              label="Add Guideline"
+              className="add-btn"
+              onClick={() =>
+                navigate(route.appContentManagement.BaseCollectorGuideline.Add)
+              }
+              icon={<FaPlus style={{ fontSize: "15px" }} />}
+            />
+          )}
         </div>
         {data?.data?.length > 0 ? (
           <ConditionComponent
@@ -40,6 +47,8 @@ const BaseCollectorGuideline = () => {
             isDelete={true}
             refetch={refetch}
             index={1}
+            editPermission={canEdit}
+            deletePermission={canDelete}
           />
         ) : (
           <p> No Data Available</p>
@@ -59,6 +68,8 @@ const BaseCollectorGuideline = () => {
             isDelete={true}
             refetch={refetch}
             index={2 + index}
+            editPermission={canEdit}
+            deletePermission={canDelete}
           />
         </div>
       ))}

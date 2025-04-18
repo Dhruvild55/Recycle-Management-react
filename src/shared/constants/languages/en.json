@@ -56,6 +56,9 @@
     "collectorName": "Collector Name",
     "materialType": "Material Type",
 
+    "updated": "Updated",
+    "wasteCategory": "Waste Category",
+
     "collectorId": "Collector Id",
     "depotName": "Depot Name",
 

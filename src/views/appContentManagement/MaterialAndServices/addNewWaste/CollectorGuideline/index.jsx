@@ -11,12 +11,17 @@ import { getMaterialAndServicesById } from "../../../../../query/AppContentManag
 import { getCollectorGuideline } from "../../../../../query/AppContentManagement/MaterialAndServices/getCollectorGuideline/getcollectorGuideline.query";
 import { route } from "../../../../../shared/constants/AllRoutes";
 import { FaPlus } from "react-icons/fa6";
+import usePagePermissions from "../../../../../shared/hooks/usePagePermission/usePagePermission";
+import ButtonComponent from "../../../../../shared/components/Buttoncomponent";
 
 const CollectorGuideline = () => {
   const navigate = useNavigate();
   const translations = useSelector((state) => state.settings.translations);
   const { filter } = translations;
   const [filterText, setFilter] = useState();
+  const { canCreate, canDelete, canEdit } = usePagePermissions(
+    "Collector Terms & Condition"
+  );
 
   //! get matrial and service id Data API
   const { data, isPending } = useQuery({
@@ -73,21 +78,22 @@ const CollectorGuideline = () => {
               value={filterText} // Set the default selected value
               onFilterChange={setFilter}
             />
-            <button
-              className="add-btn"
-              onClick={() =>
-                navigate(
-                  route.appContentManagement.MaterialAndServices.Add
-                    .GuidelineUpdateAdd,
-                  {
-                    state: { isrecycler: false },
-                  }
-                )
-              }
-            >
-              {" "}
-              Add Collector Guideline <FaPlus style={{ fontSize: "15px" }} />
-            </button>
+            {canCreate && (
+              <ButtonComponent
+                label="Add Collector Guideline"
+                className="add-btn"
+                icon={<FaPlus style={{ fontSize: "15px" }} />}
+                onClick={() =>
+                  navigate(
+                    route.appContentManagement.MaterialAndServices.Add
+                      .GuidelineUpdateAdd,
+                    {
+                      state: { isrecycler: false },
+                    }
+                  )
+                }
+              />
+            )}
           </div>
         </div>
 
@@ -103,6 +109,8 @@ const CollectorGuideline = () => {
               refetch={refetch}
               isCollectorGuideline={true}
               serviceId={filterText}
+              editPermission={canEdit}
+              deletePermission={canDelete}
             />
           </>
         ) : (
@@ -128,6 +136,8 @@ const CollectorGuideline = () => {
             refetch={refetch}
             isCollectorGuideline={true}
             serviceId={filterText}
+            editPermission={canEdit}
+            deletePermission={canDelete}
           />
         </div>
       ))}
