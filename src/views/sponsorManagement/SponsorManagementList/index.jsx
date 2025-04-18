@@ -11,6 +11,9 @@ import FilterDropdown from "../../../shared/components/FillerDropdown";
 import { useQuery } from "@tanstack/react-query";
 import { getSponsorList } from "../../../query/SponsorManagement/getSponsorList/getSponsorList.query";
 import useDebounce from "../../../shared/hooks/useDebounce";
+import ButtonComponent from "../../../shared/components/Buttoncomponent";
+import { FaPlus } from "react-icons/fa6";
+import { route } from "../../../shared/constants/AllRoutes";
 
 const SponsorManagement = () => {
   const translations = useSelector((state) => state.settings.translations);
@@ -72,12 +75,13 @@ const SponsorManagement = () => {
               setPageNumber(1);
             }}
           />
-          <FilterDropdown
-            label={translations.filter}
-            options={[{ value: "", label: "All" }]}
-            onFilterChange={setFilter}
-          />
         </div>
+        <ButtonComponent
+          className="add-btn"
+          label="Add Sponsor"
+          onClick={() => navigate(route.sponsorManagement.Add)}
+          icon={<FaPlus style={{ fontSize: "15px" }} />}
+        />
       </div>
       <CustomTable
         headers={sponsorHeader(navigate, formatDate)}

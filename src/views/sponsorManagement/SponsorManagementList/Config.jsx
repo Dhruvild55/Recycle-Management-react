@@ -52,7 +52,7 @@ export const sponsorHeader = (navigate, formatDate) => [
         <button
           className="action-btn"
           onClick={() =>
-            navigate(route.sponsorManagement.View.SponsorInfo(row.campaignId))
+            navigate(route.sponsorManagement.View.SponsorInfo(row.sponsorId))
           }
         >
           <img src={iconEye} />

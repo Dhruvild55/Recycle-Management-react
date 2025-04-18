@@ -4,8 +4,15 @@ import ProfilePic from "../../../../../shared/components/ProfilePic";
 import { formatDate } from "../../../../../shared/constants/ValidationRules";
 
 const DetailsComponent = ({ data }) => {
+  // const id =
+  //   data?.collectorId?.length > 10
+  //     ? `${data?.collectorId.slice(0, 10)}...`
+  //     : data?.collectorId;
+
   const id =
-    data?.collectorId.length > 10
+    data?.collectorId === null
+      ? ""
+      : data?.collectorId?.length > 10
       ? `${data?.collectorId.slice(0, 10)}...`
       : data?.collectorId;
   return (
@@ -95,9 +102,13 @@ const DetailsComponent = ({ data }) => {
                     fontWeight: "600",
                   }}
                 >
-                  {data?.collectorName}
+                  {data?.collectorName === " "
+                    ? "No Data Available"
+                    : data?.collectorName}
                 </p>
-                <p style={{ marginBottom: "0px" }}>Collector ID :{id}</p>
+                {data?.collectorId !== null && (
+                  <p style={{ marginBottom: "0px" }}>Collector ID :{id}</p>
+                )}
               </div>
             </div>
           </div>

@@ -38,10 +38,16 @@ const AddRewards = () => {
     },
   });
 
-  const { data: categoryData, isLoading: isCategoryLoading } = useQuery({
-    queryKey: ["getRewardsCategory"],
-    queryFn: getRewardsCategory,
-  });
+  const categoryData = [
+    { categoryId: 1, category: "Privilege" },
+    { categoryId: 2, category: "Food And Beverage" },
+    { categoryId: 3, category: "Lifestyle" },
+  ];
+
+  // const { data: categoryData, isLoading: isCategoryLoading } = useQuery({
+  //   queryKey: ["getRewardsCategory"],
+  //   queryFn: getRewardsCategory,
+  // });
 
   const onDrop = (acceptedFiles) => {
     const file = acceptedFiles[0];
@@ -57,7 +63,7 @@ const AddRewards = () => {
     formData.append("RewardName", data.rewardName);
     formData.append("Point", data.point);
     formData.append("Validity", data.validity);
-    formData.append("RewardCategoryId", data.category);
+    formData.append("RewardCategory", data.category);
     formData.append("Description", data.shortDescription);
     formData.append("RewardImg", image);
     formData.append("BulkVoucher", excelFile);
@@ -123,14 +129,10 @@ const AddRewards = () => {
             name="category"
             register={register}
             type="select"
-            options={
-              isCategoryLoading
-                ? [{ value: "", label: "Loading categories..." }]
-                : categoryData?.data?.map((item) => ({
-                    value: item.categoryId,
-                    label: item.category,
-                  }))
-            }
+            options={categoryData?.map((item) => ({
+              value: item.categoryId,
+              label: item.category,
+            }))}
             rules={{ required: "Category is required" }}
             errors={errors}
             required

@@ -21,10 +21,16 @@ const ViewRewards = () => {
     queryFn: () => getRewardsDetails({ id }),
   });
 
-  const { data: categoryData, isLoading: isCategoryLoading } = useQuery({
-    queryKey: ["getRewardsCategory"],
-    queryFn: getRewardsCategory,
-  });
+  // const { data: categoryData, isLoading: isCategoryLoading } = useQuery({
+  //   queryKey: ["getRewardsCategory"],
+  //   queryFn: getRewardsCategory,
+  // });
+
+  const categoryData = [
+    { categoryId: 1, category: "Privilege" },
+    { categoryId: 2, category: "Food And Beverage" },
+    { categoryId: 3, category: "Lifestyle" },
+  ];
 
   const [formData, setFormData] = useState({
     rewardName: data?.data?.rewardName || "",
@@ -61,7 +67,7 @@ const ViewRewards = () => {
     const { name, value } = e.target;
 
     if (name === "rewardCategoryId") {
-      const selectedCategory = categoryData?.data?.find(
+      const selectedCategory = categoryData?.find(
         (cat) => cat.categoryId === value
       );
 
@@ -84,7 +90,7 @@ const ViewRewards = () => {
     sendData.append("Description", formData?.description);
     sendData.append("Point", formData?.point);
     sendData.append("RewardName", formData?.rewardName);
-    sendData.append("RewardCategoryId", formData?.rewardCategoryId);
+    sendData.append("RewardCategory", formData?.rewardCategoryId);
     sendData.append("Validity", formData?.validity);
     mutate({ id, updatedData: sendData });
   };
@@ -147,7 +153,7 @@ const ViewRewards = () => {
               disabled={!isEdit}
             >
               {/* Ensure there's a default option */}
-              {categoryData?.data?.map((category) => (
+              {categoryData?.map((category) => (
                 <option key={category.categoryId} value={category.categoryId}>
                   {category.category}
                 </option>

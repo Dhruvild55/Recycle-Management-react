@@ -146,6 +146,7 @@ const AppContentManagement = {
 
 const SponsorManagement = {
   List: lazy(() => import("../views/sponsorManagement/SponsorManagementList")),
+  Add: lazy(() => import("../views/sponsorManagement/AddSponsor")),
   View: {
     SponsorInfo: lazy(() =>
       import(

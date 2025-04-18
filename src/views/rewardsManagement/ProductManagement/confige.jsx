@@ -1,6 +1,7 @@
 import { iconDelete, iconEdit, iconEye } from "../../../assets/images/icons";
 import ProfilePic from "../../../shared/components/ProfilePic";
 import { route } from "../../../shared/constants/AllRoutes";
+import { showDeleteConfirmation } from "../../../shared/utils";
 
 export const headers = (navigate, deleteReward) => [
   {
@@ -61,7 +62,9 @@ export const headers = (navigate, deleteReward) => [
           </button>
           <button
             className="action-btn"
-            onClick={() => deleteReward(row.rewardId)}
+            onClick={() => {
+              showDeleteConfirmation(() => deleteReward(row.rewardId));
+            }}
           >
             <img src={iconDelete} />
           </button>

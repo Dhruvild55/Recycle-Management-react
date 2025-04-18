@@ -118,6 +118,7 @@ export const route = {
   //! Sponser Management
   sponsorManagement: {
     List: "/sponsor-Management/list",
+    Add: "/sponsor-Management/add",
     View: {
       SponsorInfo: (id) => `/sponsor-Management/list/view-sponsor-info/${id}`,
       PartnerCatelogue: {

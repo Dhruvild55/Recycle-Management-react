@@ -361,6 +361,11 @@ const RoutesDetails = [
         Component: SponsorManagement.List,
         exact: true,
       },
+      {
+        path: route.sponsorManagement.Add,
+        Component: SponsorManagement.Add,
+        exact: true,
+      },
       // * sponsor Management View
       {
         path: route.sponsorManagement.View.SponsorInfo(":id"),
